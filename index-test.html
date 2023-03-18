@@ -70,7 +70,7 @@
 			const isValidCredential = validCredentials.some(credential => credential.username === username && credential.password === password);
 
 			if (isValidCredential) {
-				window.location.href = 'home.html'; // Redirect the user to the home page if the credentials are valid
+				window.location.href = 'home'; // Redirect the user to the home page if the credentials are valid
 			} else {
 				alert('Invalid username or password. Please try again.'); // Display an error message if the credentials are invalid
 			}
