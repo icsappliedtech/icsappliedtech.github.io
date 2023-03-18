@@ -1,6 +1,6 @@
 // After successful authentication, create a session or generate a token
 const sessionData = {
-    username: 'user1',
+    username: 'username',
     isAuthenticated: true
   };
   const sessionToken = btoa(JSON.stringify(sessionData)); // Encode the session data as a base64 string
