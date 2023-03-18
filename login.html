@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Form</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f5f5f5;
+		}
+		.container {
+			margin: 0 auto;
+			width: 300px;
+			padding: 20px;
+			background-color: #fff;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0,0,0,0.2);
+		}
+		input[type="text"], input[type="password"] {
+			display: block;
+			margin-bottom: 20px;
+			padding: 10px;
+			width: 100%;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+			font-size: 16px;
+			font-family: Arial, sans-serif;
+		}
+		input[type="submit"] {
+			display: block;
+			margin: 0 auto;
+			padding: 10px 20px;
+			background-color: #4CAF50;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+			font-family: Arial, sans-serif;
+		}
+		input[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<form id="login-form">
+			<label for="username">Username:</label>
+			<input type="text" id="username" name="username" placeholder="Enter your username" required>
+			<label for="password">Password:</label>
+			<input type="password" id="password" name="password" placeholder="Enter your password" required>
+			<input type="submit" value="Login">
+		</form>
+	</div>
+	<script>
+		const form = document.getElementById('login-form');
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			const username = form.username.value;
+			const password = form.password.value;
+
+			// Authentication logic
+			const validCredentials = [
+				{username: 'user1', password: 'password1'},
+				{username: 'user2', password: 'password2'},
+				{username: 'user3', password: 'password3'}
+			];
+
+			const isValidCredential = validCredentials.some(credential => credential.username === username && credential.password === password);
+
+			if (isValidCredential) {
+				window.location.href = 'home'; // Redirect the user to the home page if the credentials are valid
+			} else {
+				alert('Invalid username or password. Please try again.'); // Display an error message if the credentials are invalid
+			}
+		});
+	</script>
+</body>
+</html>
