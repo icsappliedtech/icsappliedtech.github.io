@@ -1,0 +1,42 @@
+/* import and embed google fonts */
+@import url('https://fonts.googleapis.com/css2?family=GFS+Didot&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200&display=swap');
+
+/* Sets defaults for padding and margin to '0' */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* Set defaults for html element */
+html {
+    /* default text size for browsers is 16px */
+    /* 1em equals 16px */
+    /* font-size: 16px; */
+    font-family: 'GFS Didot', serif;
+    color: rgb(70, 70, 70);
+}
+
+/* Set defaults for body element */
+body {
+    font-size: 100%;
+    background-color: rgb(255, 255, 255);
+}
+
+/* Set heading element default properties */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Kanit', sans-serif;
+    color: rgb(0, 48, 68);
+}
+
+/* Set heading element sizes */
+h1 {font-size: 2.5em;}
+h2 {font-size: 2.25em;}
+h3 {font-size: 2em;}
+h4 {font-size: 1.75em;}
+h5 {font-size: 1.5em;}
+h6 {font-size: 1.25em;}
+
+p, blockquote {
+    line-height: 1.5;
+}

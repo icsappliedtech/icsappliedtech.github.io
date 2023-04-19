@@ -1,0 +1,34 @@
+Step 1:
+• Re-organize your main directory.
+• Make an OLD folder and put all your old files in that folder
+
+Step 2:
+• Download boilerplate files from google classroom
+
+Step 3:
+• Update meta data in the index.html file
+
+Step 4:
+• Open the new index.html file in the browser to inspect it
+
+Step 5:
+• Open the new normalize.css and main.css files and inspect them
+
+Step 6:
+• make yourself a favicon.ico icon and also replace the other icons in the main directory with your own icon
+
+Step 7:
+• Start to create your responsive navigation bar
+
+https://youtu.be/GdrbE-s5DgQ
+
+Outside resource:
+https://cdnjs.com/libraries/font-awesome
+https://fontawesome.com/
+https://pixabay.com/
+
+EM vs REM font size
+
+EM - is relative to the parent element's font size. If you want to scale the element's size based on its parent's size, use EM.
+
+REM - is relative to the root (HTML) font size. If you want to scale the element's size based on the root size, no matter what the parent size is, use REM.
