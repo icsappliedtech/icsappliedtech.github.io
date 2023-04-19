@@ -34,6 +34,9 @@
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
 
+  <!-- CSS stylesheet from outside third party source here ( https://cdnjs.com/libraries/font-awesome ) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
   <!-- CSS stylesheet used to set defaults and normalize generic styles ** DO NOT CHANGE ** -->
   <link rel="stylesheet" href="css/normalize.css">
 
@@ -47,8 +50,66 @@
 
 <body>
 
+  <header>
+
+    <!-- Responsive top horizontal navigation bar -->
+    <div class="navbar">
+      <div class="logo"><a href="#">APPLIED TECH</a></div>
+      <ul class="links">
+        <li><a href="hero">HOME</a></li>
+        <li><a href="about">ABOUT</a></li>
+        <li><a href="services">SERVICES</a></li>
+        <li><a href="contact">CONTACT</a></li>
+      </ul>
+      <a href="#" class="action_btn">GET STARTED</a>
+      <div class="toggle_btn">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+
+    <!-- Responsive top dropdown menu -->
+    <div class="dropdown_menu">
+      <li><a href="hero">HOME</a></li>
+      <li><a href="about">ABOUT</a></li>
+      <li><a href="services">SERVICES</a></li>
+      <li><a href="contact">CONTACT</a></li>
+      <li><a href="#" class="action_btn">GET STARTED</a></li>
+    </div>
+
+  </header>
+
   <!-- Add webpage content here -->
-  <p>My website content will go here.</p>
+  <main>
+    <section id="hero" class="center">
+      <h1>HELLO!</h1>
+      <h2>Welcome to Applied Technologies.</h2>
+
+      <p>
+        Engage with relevant topics and learn new tech tools that will boost your skills and confidence.
+      </p>
+      
+      <br />
+
+      <a href="#" class="action_btn">LEARN MORE</a>
+
+    </section>
+  </main>
+
+  <!-- JavaScript code that shows and hides responsive dropdown navigation -->
+  <script>
+    const toggleBtn = document.querySelector('.toggle_btn')
+    const toggleBtnIcon = document.querySelector('.toggle_btn i')
+    const dropDownMenu = document.querySelector('.dropdown_menu')
+
+    toggleBtn.onclick = function() {
+      dropDownMenu.classList.toggle('open')
+      const isOpen = dropDownMenu.classList.contains('open')
+
+      toggleBtnIcon.classList = isOpen
+      ? 'fa-solid fa-xmark'
+      : 'fa-solid fa-bars'
+    }
+  </script>
 
 </body>
 
