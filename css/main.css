@@ -231,7 +231,7 @@ header {
 }
 
 .dropdown_menu .action_btn {
-  width: 100%;
+  width: 95%;
   display: flex;
   justify-content: center;
 }
