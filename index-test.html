@@ -50,33 +50,9 @@
 
 <body>
 
-  <header>
-    <!-- Responsive top horizontal navigation bar -->
-    <div class="navbar">
-      <div class="logo"><a href="/">APPLIED TECH</a></div>
-      <ul class="links">
-        <li><a href="hero">HOME</a></li>
-        <li><a href="about">ABOUT</a></li>
-        <li><a href="blocks">BLOCKS</a></li>
-        <li><a href="sandbox">SANDBOX</a></li>
-        <li><a href="https://www.ics.ac.th/" target="_blank">ICSBKK</a></li>
-      </ul>
-      <a href="mailto:jason_w@ics.ac.th" class="action_btn">CONTACT</a>
-      <div class="toggle_btn">
-        <i class="fa-solid fa-bars"></i>
-      </div>
-    </div>
-
-    <!-- Responsive top dropdown menu -->
-    <div class="dropdown_menu">
-      <li><a href="hero">HOME</a></li>
-        <li><a href="about">ABOUT</a></li>
-        <li><a href="blocks">BLOCKS</a></li>
-        <li><a href="sandbox">SANDBOX</a></li>
-        <li><a href="https://www.ics.ac.th/" target="_blank">ICSBKK</a></li>
-      <li><a href="mailto:jason_w@ics.ac.th" class="action_btn">CONTACT</a></li>
-    </div>
-  </header>
+  <!-- Header navigation include -->     
+  <div include-html="inc/navHeader.html"></div>
+  <!---->
 
   <!-- Add webpage content here -->
   <main>
@@ -95,21 +71,13 @@
     </section>
   </main>
 
-  <!-- JavaScript code that shows and hides responsive dropdown navigation -->
-  <script>
-    const toggleBtn = document.querySelector('.toggle_btn')
-    const toggleBtnIcon = document.querySelector('.toggle_btn i')
-    const dropDownMenu = document.querySelector('.dropdown_menu')
+  <!-- JavaScript file include and function call -->
+  <script src="js/include-html.js"></script>
+  <script>includeHTML();</script>
 
-    toggleBtn.onclick = function() {
-      dropDownMenu.classList.toggle('open')
-      const isOpen = dropDownMenu.classList.contains('open')
-
-      toggleBtnIcon.classList = isOpen
-      ? 'fa-solid fa-xmark'
-      : 'fa-solid fa-bars'
-    }
-  </script>
+  <!-- JavaScript file include and function call -->
+  <script src="js/menu-toggle.js"></script>
+  <script>menuToggle();</script>
 
 </body>
 
