@@ -71,30 +71,13 @@
     </section>
   </main>
 
-  <!-- JavaScript code that shows and hides responsive dropdown navigation -->
-  <script>
-    const toggleBtn = document.querySelector('.toggle_btn')
-    const toggleBtnIcon = document.querySelector('.toggle_btn i')
-    const dropDownMenu = document.querySelector('.dropdown_menu')
+  <!-- JavaScript file include and function call -->
+  <script src="js/include-html.js"></script>
+  <script>includeHTML();</script>
 
-    toggleBtn.onclick = function() {
-      dropDownMenu.classList.toggle('open')
-      const isOpen = dropDownMenu.classList.contains('open')
-
-      toggleBtnIcon.classList = isOpen
-      ? 'fa-solid fa-xmark'
-      : 'fa-solid fa-bars'
-    }
-  </script>
-
-  <!-- JavaScript files -->
-    <script src="js/include-html.js"></script>
-  <!---->
-
-  <!-- JavaScript function call to include-html.js -->
-  <script>
-    includeHTML();
-  </script>
+  <!-- JavaScript file include and function call -->
+  <script src="js/menu-toggle.js"></script>
+  <script>includeHTML();</script>
 
 </body>
 
