@@ -149,6 +149,19 @@ a:hover {
   color: coral;
 }
 
+p a {
+  font-family: 'Cormorant Garamond', serif;
+  text-decoration: none;
+  color: coral;
+  font-weight: 300;
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+p a:hover {
+  color: #fff;
+}
+
 /* HEADER */
 header {
   position: relative;
