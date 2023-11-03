@@ -173,10 +173,11 @@ header {
   height: 60px;
   max-width: 1200px;
   margin: 0 auto;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background: rgba(0, 0, 0, 0.9);
 }
 
 .navbar .logo a {
