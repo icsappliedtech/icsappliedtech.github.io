@@ -23,8 +23,22 @@
     <a href="https://www.mrjasoncode.com/block-e-2023/tan/" target="_blank">Tan-Tan</a><br><br>
     <a href="https://www.mrjasoncode.com/block-e-2023/totto/" target="_blank">Totto</a>
     </p>
-<p>
-  <a href="https://www.mrjasoncode.com/studentwork">Go Back</a>
-  </p>
-</body>
-</html>
+    <p>
+      <button onclick="closeWin()">CLOSE WINDOWN</button>
+    </p>
+  
+    <!-- JavaScript code for closing html window -->
+    <script>
+      let myWindow;
+      
+      function openWin() {
+        myWindow = window.open("https://www.mrjasoncode.com", "_blank");
+      }
+      
+      function closeWin() {
+        myWindow.close();
+      }
+      </script>
+  
+  </body>
+  </html>
