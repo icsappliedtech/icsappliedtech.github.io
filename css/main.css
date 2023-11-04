@@ -166,6 +166,8 @@ p a:hover {
 header {
   position: relative;
   padding: 0 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 100;
 }
 
 .navbar {
@@ -177,7 +179,6 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(255, 255, 255, 0.1);
 }
 
 .navbar .logo a {
@@ -225,9 +226,9 @@ header {
   display: none;
   position: absolute;
   right: 2rem;
-  top: 60px;
+  top: 70px;
   height: 0;
-  width: 300px;
+  width: 200px;
   background: rgba(0, 0, 0, 0.9);
   backdrop-filter: blur(1.25px);
   border-radius: 10px;
@@ -247,7 +248,7 @@ header {
 }
 
 .dropdown_menu .action_btn {
-  width: 90%;
+  width: 80%;
   display: flex;
   justify-content: center;
 }
