@@ -290,7 +290,7 @@ section#hero {
 }
 
 section#subpage {
-  height: calc(100vh);
+  /* height: calc(100vh); */
   display: flex;
   width: 80%;
   flex-direction: column;
