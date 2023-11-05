@@ -309,10 +309,13 @@ section#subpage {
 }
 
 #subpage h1, h2, h3, h4 {
-  font-family: 'Lato', sans-serif;
   font-weight: 300;
   margin-bottom: 1rem;
 }
+
+#subpage h1, h2 {font-family: 'Lato', sans-serif;}
+
+#subpage h3, h4 {font-family: 'Cormorant Garamond', serif;}
 
 #subpage h1 {font-size: 3.5rem;}
 
