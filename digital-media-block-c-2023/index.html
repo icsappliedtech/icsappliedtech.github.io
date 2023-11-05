@@ -3,20 +3,15 @@
   <head>
     <title>Digital Media C Block 2023</title>
 
-      <!-- JavaScript code method 1 -->
-  <script>
-    function closeWindow() {
+    <!-- JavaScript close window method 2 avoiding 'close window user prompt' -->
+    <!--
+    <script language="javascript" type="text/javascript">
+      function windowClose() {
+      window.open('','_parent','');
       window.close();
-    }
-  </script>
-
-  <!-- JavaScript code method 2 -->
-  <script language="javascript" type="text/javascript">
-    function windowClose() {
-    window.open('','_parent','');
-    window.close();
-    }
-  </script>
+      }
+    </script>
+    -->
 
   </head>
 <body>
@@ -48,22 +43,17 @@
 
     </p>
 
-    <!-- JavaScript method 1 -->
-    <p>
-      <button onclick="closeWin()">CLOSE WINDOWN</button>
-    </p>
-
-    <!-- JavaScript method 2 -->
-    <p>
-      <input type="button" value="CLOSE WINDOW" onclick="windowClose();">
-    </p>
-
-    <!-- JavaScript method 3 -->
+    <!-- JavaScript close window method 1 WITH 'close window user prompt' -->
     <p>
       <input type="button" value="CLOSE WINDOW" onclick="self.close()">
     </p>
-  
 
-  
+    <!-- JavaScript close window method 2 WITHOUT 'close window user prompt' -->
+    <!--
+    <p>
+      <input type="button" value="CLOSE WINDOW" onclick="windowClose();">
+    </p>
+    -->
+
   </body>
   </html>
