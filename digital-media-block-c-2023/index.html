@@ -2,32 +2,68 @@
 <html>
   <head>
     <title>Digital Media C Block 2023</title>
-  </head>
-<body>
-<h1>Student Work</h1>
-<h2>30 Second Commercials</h2>
-  <p>
-    <h4>Addidas</h4><br>
-    <audio controls>
-      <source src="/digital-media-block-c-2023/audio/Addidas.ogg" type="audio/ogg">
-      <source src="/digital-media-block-c-2023/audio/Addidas.mp3" type="audio/mpeg">
-    </audio>
-    <br><br>
 
-    <a href="/digital-media-block-c-2023/audio/Addidas.mp3" target="_blank">Addidas</a><br><br>
-    <a href="/digital-media-block-c-2023/audio/Bees-Wax-Wraps.mp3" target="_blank">Bees Wax Wraps</a><br><br>
-    <a href="/digital-media-block-c-2023/audio/Bunny-Toy.mp3" target="_blank">Bunny Toy</a>
-    </p>
-    <p>
-      <button onclick="closeWin()">CLOSE WINDOWN</button>
-    </p>
-  
-  <!-- JavaScript code for closing html window -->
+      <!-- JavaScript code method 1 -->
   <script>
     function closeWindow() {
       window.close();
     }
   </script>
+
+  <!-- JavaScript code method 2 -->
+  <script language="javascript" type="text/javascript">
+    function windowClose() {
+    window.open('','_parent','');
+    window.close();
+    }
+  </script>
+
+  </head>
+<body>
+<h1>Student Work</h1>
+<h2>30 Second Commercials</h2>
+  <p>
+    <hr>
+    <h4>Addidas</h4>
+    <audio controls>
+      <source src="/digital-media-block-c-2023/audio/Addidas.ogg" type="audio/ogg">
+      <source src="/digital-media-block-c-2023/audio/Addidas.mp3" type="audio/mpeg">
+    </audio>
+
+    <hr>
+    <h4>Bees Wax Wraps</h4>
+    <audio controls>
+      <source src="/digital-media-block-c-2023/audio/Bees-Wax-Wraps.ogg" type="audio/ogg">
+      <source src="/digital-media-block-c-2023/audio/Bees-Wax-Wraps.mp3" type="audio/mpeg">
+    </audio>
+
+    <hr>
+    <h4>Bunny Toy</h4>
+    <audio controls>
+      <source src="/digital-media-block-c-2023/audio/Bunny-Toy.ogg" type="audio/ogg">
+      <source src="/digital-media-block-c-2023/audio/Bunny-Toy.mp3" type="audio/mpeg">
+    </audio>
+
+    <hr>
+
+    </p>
+
+    <!-- JavaScript method 1 -->
+    <p>
+      <button onclick="closeWin()">CLOSE WINDOWN</button>
+    </p>
+
+    <!-- JavaScript method 2 -->
+    <p>
+      <input type="button" value="CLOSE WINDOW" onclick="windowClose();">
+    </p>
+
+    <!-- JavaScript method 3 -->
+    <p>
+      <input type="button" value="CLOSE WINDOW" onclick="self.close()">
+    </p>
+  
+
   
   </body>
   </html>
