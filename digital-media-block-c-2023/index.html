@@ -2,8 +2,8 @@
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Digital Media C Block 2023</title>
-    <meta name="description" content="Student Work">
+    <title>Mr Jason Code: Digital Media C Block 2023</title>
+    <meta name="description" content="International Community School of Bangkok Student Work">
     <meta name="keywords" content="student work, international community school, ics, bangkok, thailand">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="../icon.png">
@@ -82,7 +82,7 @@
             <source src="/digital-media-block-c-2023/audio/Bunny-Toy.mp3" type="audio/mpeg">
           </audio>
         </p>
-        
+
         <hr width=200px>
         <!-- JavaScript close window method 1 WITH 'close window user prompt' -->
         <input class="action_btn" type="button" value="CLOSE WINDOW" onclick="self.close()">
@@ -91,6 +91,22 @@
           <!-- <input type="button" value="CLOSE WINDOW" onclick="windowClose();"> -->
     </section>
   </main>
+
+    <!-- JavaScript code that shows and hides responsive dropdown navigation -->
+    <script>
+      const toggleBtn = document.querySelector('.toggle_btn')
+      const toggleBtnIcon = document.querySelector('.toggle_btn i')
+      const dropDownMenu = document.querySelector('.dropdown_menu')
+  
+      toggleBtn.onclick = function() {
+        dropDownMenu.classList.toggle('open')
+        const isOpen = dropDownMenu.classList.contains('open')
+  
+        toggleBtnIcon.classList = isOpen
+        ? 'fa-solid fa-xmark'
+        : 'fa-solid fa-bars'
+      }
+    </script>
 
   </body>
   </html>
