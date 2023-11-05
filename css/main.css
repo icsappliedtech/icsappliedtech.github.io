@@ -234,7 +234,7 @@ header {
   right: 2rem;
   top: 70px;
   height: 0;
-  width: 200px;
+  width: 220px;
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(1.25px);
   border-radius: 10px;
@@ -244,7 +244,7 @@ header {
 }
 
 .dropdown_menu.open {
-  height: 210px;
+  height: 240px;
 }
 
 .dropdown_menu li {
