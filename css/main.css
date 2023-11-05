@@ -292,7 +292,7 @@ section#hero {
 
 section#subpage {
   /* height: calc(100vh); */
-  margin-top: 20px;
+  margin-top: 40px;
   display: flex;
   width: 80%;
   flex-direction: column;
