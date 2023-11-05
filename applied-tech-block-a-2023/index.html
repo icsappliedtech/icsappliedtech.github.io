@@ -15,21 +15,17 @@
     <a href="https://www.mrjasoncode.com/block-a-2023/pun/" target="_blank">Pun</a>
     </p>
   <p>
-    <button onclick="closeWin()">CLOSE WINDOWN</button>
+    <button onclick="closeWindow()">CLOSE WINDOWN</button>
   </p>
 
   <!-- JavaScript code for closing html window -->
   <script>
-    let myWindow;
-    
-    function openWin() {
-      myWindow = window.open("https://www.mrjasoncode.com", "_blank");
+    function closeWindow() {
+      if (confirm('Do you want to close the tab?')) {
+        window.close();
+      }
     }
-    
-    function closeWin() {
-      myWindow.close();
-    }
-    </script>
+  </script>
 
 </body>
 </html>
