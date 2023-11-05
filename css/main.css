@@ -131,6 +131,7 @@ body {
   background-image: url('../img/background/mountains-1112911_1920.jpg');
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
 }
 
 li {
