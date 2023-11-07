@@ -302,5 +302,30 @@
       }
     </script>
 
+    <script>
+      // Function to pause all audio elements except the one currently playing
+      function pauseOtherAudios(current) {
+        // Get all audio elements
+        var audios = document.getElementsByTagName('audio');
+
+        // Pause all other audio elements
+        for (var i = 0; i < audios.length; i++) {
+          if (audios[i] !== current) {
+            audios[i].pause();
+          }
+        }
+      }
+
+      // Add event listeners to all audio elements
+      window.addEventListener('DOMContentLoaded', (event) => {
+        var audios = document.getElementsByTagName('audio');
+        for (var i = 0; i < audios.length; i++) {
+          audios[i].addEventListener('play', function() {
+            pauseOtherAudios(this);
+          });
+        }
+      });
+    </script>
+
   </body>
   </html>
