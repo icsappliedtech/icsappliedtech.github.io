@@ -326,6 +326,20 @@ section#subpage {
 
 #subpage h4 {font-size: 1.6rem;}
 
+/* SUBPAGE GRID SYSTEM FOR CONTENT */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* creates 4 equal columns */
+  grid-gap: 10px; /* space between columns */
+  padding: 10px;
+}
+
+.grid-item {
+  background-color: #f2f2f2; /* example background color */
+  padding: 20px;
+  text-align: center;
+}
+
 /* RESPONSIVE DESIGN */
 @media(max-width: 992px) {
   .navbar .links, .navbar .action_btn {
@@ -345,6 +359,20 @@ section#subpage {
   .dropdown_menu {
     left: 2rem;
     width: unset;
+  }
+}
+
+/* Responsive layout for tablets */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns in smaller screens */
+  }
+}
+
+/* Responsive layout for mobile */
+@media (max-width: 480px) {
+  .grid-container {
+    grid-template-columns: 1fr; /* 1 column in very small screens */
   }
 }
 
