@@ -328,7 +328,7 @@ section#subpage {
 
 /* AUDIO ELEMENT STYLE */
 audio {
-  width: 100%;
+  width: 200px;
 }
 
 /* SUBPAGE GRID SYSTEM FOR CONTENT */
