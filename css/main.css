@@ -308,14 +308,14 @@ section#subpage {
   color: white;
 }
 
-#subpage h1, h2, h3, h4 {
+#subpage h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
-  margin-bottom: 1rem;
+  margin-bottom: 20px;
 }
 
 #subpage h1, h2 {font-family: 'Lato', sans-serif;}
 
-#subpage h3, h4 {font-family: 'Cormorant Garamond', serif;}
+#subpage h3, h4, h5, h6 {font-family: 'Cormorant Garamond', serif;}
 
 #subpage h1 {font-size: 3.5rem;}
 
@@ -344,6 +344,11 @@ audio {
   /* background-color: #f2f2f2; */
   padding: 20px;
   text-align: center;
+}
+
+.grid-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
 }
 
 /* RESPONSIVE DESIGN */
