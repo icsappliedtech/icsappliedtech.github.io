@@ -332,6 +332,7 @@ section#subpage {
   grid-template-columns: repeat(4, 1fr); /* creates 4 equal columns */
   grid-gap: 20px; /* space between columns */
   padding: 10px;
+  margin: 20px;
 }
 
 .grid-item {
