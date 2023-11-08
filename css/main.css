@@ -326,6 +326,12 @@ section#subpage {
 
 #subpage h4 {font-size: 1.6rem;}
 
+/* AUDIO ELEMENT STYLES */
+audio {
+  width: 100%;
+  height: auto;
+}
+
 /* SUBPAGE GRID SYSTEM FOR CONTENT */
 .grid-container {
   display: grid;
