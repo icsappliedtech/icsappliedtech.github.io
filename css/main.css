@@ -326,10 +326,9 @@ section#subpage {
 
 #subpage h4 {font-size: 1.6rem;}
 
-/* AUDIO ELEMENT STYLES */
+/* AUDIO ELEMENT STYLE */
 audio {
   width: 100%;
-  height: auto;
 }
 
 /* SUBPAGE GRID SYSTEM FOR CONTENT */
