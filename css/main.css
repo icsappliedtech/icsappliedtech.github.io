@@ -330,12 +330,13 @@ section#subpage {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* creates 4 equal columns */
-  grid-gap: 10px; /* space between columns */
+  grid-gap: 20px; /* space between columns */
   padding: 10px;
 }
 
 .grid-item {
-  background-color: #f2f2f2; /* example background color */
+  background: rgba(255, 255, 255, 0.1);
+  /* background-color: #f2f2f2; */
   padding: 20px;
   text-align: center;
 }
