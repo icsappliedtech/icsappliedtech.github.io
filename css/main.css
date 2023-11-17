@@ -310,7 +310,7 @@ section#subpage {
 
 #subpage h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 #subpage h1, h2 {font-family: 'Lato', sans-serif;}
@@ -325,9 +325,14 @@ section#subpage {
 
 #subpage h4 {font-size: 1.6rem;}
 
+#subpage h5 {font-size: 1.4rem;}
+
+#subpage h6 {font-size: 1.2rem;}
+
 /* AUDIO ELEMENT STYLE */
 audio {
   width: 200px;
+  margin-bottom: 10px;
 }
 
 /* SUBPAGE GRID SYSTEM FOR CONTENT */
