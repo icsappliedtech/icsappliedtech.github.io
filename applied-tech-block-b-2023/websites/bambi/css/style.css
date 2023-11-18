@@ -1,0 +1,245 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background-color:aliceblue;
+    background-image: url("../img/nature-3719233_1920.jpg");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+p {
+    margin: 10px;
+    font-family: 'Cormorant', serif;
+    line-height: 1.5rem;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    width: 50%;
+    border: 0px;
+    border-top: 1px solid #ffffff;
+    padding: 0;
+    margin: 1rem;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+Li{
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color:ghostwhite;
+    font-size: 1rem;
+
+}
+
+a:hover {
+    color:thistle;
+}
+
+/* HEADER */
+header {
+    position: relative;
+    padding: 0 2rem;
+}
+
+.navbar {
+    width: 100%;
+    height: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+}
+
+.navbar .logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar .links {
+    display: flex;
+    gap: 2rem;
+}
+
+.navbar .toggle_btn {
+    color:floralwhite;
+    font-size: 1.5rm;
+    cursor: pointer;
+    display: none;
+}
+
+.action_btn {
+    background-color: thistle;
+    color:ghostwhite;
+    padding: 0.5rem 1rem;
+    outline: none;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: scale 0.2 ease;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+}
+
+.action_btn:hover {
+    scale: 1.05;
+    color:floralwhite;
+}
+
+.action_btn:active {
+    scale: 0.95;
+}
+
+/* DROPDOWN MENU */
+.dropdown_menu {
+    display: none;
+    position: absolute;
+    right: 2rem;
+    top: 60px;
+    height: 0;
+    width: 200px;
+    background-color: rgb(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dropdown_menu.open {
+    height: 180px;
+}
+
+.dropdown_menu li {
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown_menu .action_btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* HERO */
+section#hero {
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color:floralwhite;
+}
+
+#subpage h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant', serif;
+    margin-bottom: 1rem;
+}
+
+#subpage h1 {font-size: 3rem;}
+
+#subpage h2 {font-size: 2.5rem;}
+
+#subpage h3 {font-size: 2rem;}
+
+#subpage h4 {font-size: 1.8rem;}
+
+#subpage h5 {font-size: 1.6rem;}
+
+#subpage h6 {font-size: 1.4rem;}
+
+/* SUBPAGE */
+section#subpage {
+    margin-top: 40px;
+    display: flex;
+    width: 60%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color:floralwhite; 
+}
+
+.center {
+    margin: 0 auto;
+
+}
+
+/* SUBPAGE GRID SYSTEM FOR CONTENT */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4,1fr); /* creates 4 equal columns */
+    grid-gap: 20px; /* space between columns */
+    padding: 10px;
+    margin: 10 px;
+}
+
+.grid-item {
+    background: rgb(255, 255, 255, 0.1);
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.grid-item:hover{
+    background: rgb(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 992px) {
+    .navbar .links,
+    .navbar .action_btn {
+        display: none;
+    }
+
+    .navbar .toggle_btn {
+        display: block;
+    }
+
+.dropdown_menu{
+    display: block;
+}
+
+}
+
+@media (max-width: 576px) {
+    .dropdown_menu {
+        left: 2rem;
+        width: unset;
+    }
+}
+
+/* RESPONSIVE LAYOUT FOR TABLETS */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(2,1fr); /* 2 columns in smaller screens */
+    }
+}
+
+
+/* RESPONSIVE LAYOUT FOR MOBILE */
+@media (max-width: 480px) {
+    .grid-container {
+        grid-template-columns: repeat(1fr); /* 1 columns in smaller screens */
+    }
+}

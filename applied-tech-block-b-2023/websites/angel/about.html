@@ -1,0 +1,109 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Angel: About Page</title>
+  <meta name="description" content="This is my first website for applied tech">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Lora&family=Sarabun:wght@300;400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+
+  <!-- This is my first website-->
+  <header>
+      <div class="navbar">
+        <div class="logo">
+          <a href="index.html" target="_blank">Angel</a>
+        </div>
+        <ul class="links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="classes.html">Classes</a></li>
+        </ul>
+        <a href="mailto:27angel_p@students.ics.ac.th?subject=I Want More Information&cc=27fangfang_s@students.ics.ac.th&body=I am practicing HTML in B block applied technologies class. thank you." class="action_btn">Contact</a>
+        <div class="toggle_btn">
+          <i class="fa-solid fa-bars" style="color: #000000;"></i>
+        </div>
+      </div>
+      
+      <div class="dropdown_menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="classes.html">Classes</a></li>
+        <li><a href="mailto:27angel_p@students.ics.ac.th?subject=I Want More Information&cc=27fangfang_s@students.ics.ac.th&body=I am practicing HTML in B block applied technologies class. thank you" class="action_btn">Contact</a></li>
+      </div>
+
+  </header>
+
+  <main>
+    <section id="subpage" class="center">
+      <h2>about me</h2>
+      <img src="img/angel.jpg" alt="kanade yoisaki" width="25%"
+      <p>
+        I love eating cheezas. Thank you. 
+      </p>
+      <p>
+        Hi. my name is Angel. I am aoey's gymbro. I like school. But I don't like waking up. A famous person named Aoey once said 'we don't inherit earth from our ancestors we borrow it from our children' I really love this quote. Aoey is so wise and knowledgable. She shames vegans in biology class. I think the vegan teacher knows where she lives. the formula for photosynthesis is 6h20+6co2+sunlight energy -> c6h12o6 + 6o2. I don't know why we have to learn about it.  I'd rather eat a plant than memorize equations. I hope it tastes good.
+      </p>
+      <p>
+        Aoey's hamster died from diarrhea. Poor hamster. Can't relate. When I die, I want to become a tree. So I can use my photosynthesis knowledge. If I become a tree, then kanade will be the vines. Then she can hug me till i get chopped.  I dont think that wil happen. She is fictional.I want to become pixels when I die. 
+      </p>
+      <p>
+        Kanade can we honestly e date? you're so beautiful. You always make me laugh, you always make me smile. You literally make me want to become a better person... I really enjoy every moment we spend together. My time has no value unless its spent with you. I tell everyone of my iris how awesome you are. Thank you for being you. Whenever you need someone to be there for you, know that ll always be right there by your side. I love you so much. I don't think you ever realize how amazing you are sometimes. Life isn't as fun when you're not around. You are truly stunning. I want you to be my soulmate. I love the way you smile, your eyes are absolutely gorgeous. 
+      </p>
+      <hr>
+      <a href="index.html" class="action_btn">Back Home</a>
+      <br>
+      <br>
+    </section>
+  </main>
+
+  <!-- JavaScript code that shows and hides responsive dropdown navigation -->
+<script>
+  const toggleBtn = document.querySelector('.toggle_btn')
+  const toggleBtnIcon = document.querySelector('.toggle_btn i')
+  const dropDownMenu = document.querySelector('.dropdown_menu')
+  
+  toggleBtn.onclick = function() {
+  dropDownMenu.classList.toggle('open')
+  const isOpen = dropDownMenu.classList.contains('open')
+  
+  toggleBtnIcon.classList = isOpen
+  ? 'fa-solid fa-xmark'
+  : 'fa-solid fa-bars'
+  }
+  </script>
+
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>

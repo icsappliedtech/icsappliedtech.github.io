@@ -1,0 +1,106 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Bambi: About Page</title>
+  <meta name="description" content="this is my first website for applied tech b block">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+
+  <!-- This is my first websiite -->
+<header>
+  <div class="navbar">
+  <div class="logo">
+    <a href="index.html">Bambi</a>
+  </div>
+  <ul class="links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="classes.html">Classes</a></li>
+  </ul>
+  <a href="mailto:27bambi_j@students.ics.ac.th?subject=HTML Mailto Code Practice&cc=nantapatbambi@gmail.com&body=I am practicing my mailto function in B Block Applied Technologies class. Thank you." class="action_btn">Contact</a>
+  <div class="toggle_btn">
+    <i class="fa-solid fa-bars"></i>  
+  </div>
+</div> 
+
+<div class="dropdown_menu">
+  <li><a href="index.html">Home</a></li>
+  <li><a href="about.html">About</a></li>
+  <li><a href="classes.html">Classes</a></li>
+  <li><a href="mailto:27bambi_j@students.ics.ac.th?subject=HTML Mailto Code Practice&cc=nantapatbambi@gmail.com&body=I am practicing my mailto function in B Block Applied Technologies class. Thank you." class="action_btn">Contact</a></li>
+</div>
+
+</header>
+
+<main>
+  <section id="subpage"class= "center">
+    <h2>About me!</h2>
+    <img src="img/bambi.jpeg" alt="bambi" width="25%">
+    <p>
+        I am currently a student at ICS. I learn several subjects in this school. This is my 4th year learning here. My teachers are great.
+    </p>
+    <p>
+       my name is bambi bc my moms name is deer in thai and she thought it would be an amazing idea to name me bambi from the disney movie (that i've never watched before) "bambi is a strange name" -kp
+    </p>
+    <p>
+      this class is my b block and im taking it in semester one of the school year 23/24. next semester im taking intro to art and design because at first i was supposed to take that class but i got put in the wrong class
+    </p>
+    <hr>
+    <a href="index.html" class="action_btn">Back Home</a>
+    <br>
+    <br>
+  </section>
+</main>
+
+<!-- JavaScript code that shows and hides responsive dropdown navigation -->
+<script>
+  const toggleBtn = document.querySelector('.toggle_btn')
+  const toggleBtnIcon = document.querySelector('.toggle_btn i')
+  const dropDownMenu = document.querySelector('.dropdown_menu')
+  
+  toggleBtn.onclick = function() {
+  dropDownMenu.classList.toggle('open')
+  const isOpen = dropDownMenu.classList.contains('open')
+  
+  toggleBtnIcon.classList = isOpen
+  ? 'fa-solid fa-xmark'
+  : 'fa-solid fa-bars'
+  }
+  </script>
+
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>

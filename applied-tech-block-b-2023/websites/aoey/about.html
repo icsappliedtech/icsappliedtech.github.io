@@ -1,0 +1,110 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Aoey: About Page</title>
+  <meta name="description" content="This is my first website for applied tech B block">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+ 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500&family=Zilla+Slab:ital,wght@0,400;0,500;1,500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+
+  <!-- This is my first website -->
+  <header>
+    <div class="navbar">
+      <div class="logo">
+        <a href="index.html">Aoey Thampraneet</a>
+      </div>
+      <ul class="links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="classes.html">Classes</a></li>
+      </ul>
+      <a href="mailto:27aoey_t@students.ics.ac.th?subject=HTML Mailto Code Practice&cc=27angel_p@students.ics.ac.th&body=I would like more information about your services. Thankyou." class="action_btn">Contact</a>
+      <div class="toggle_btn">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+
+    <div class="dropdown_menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="classes.html">Classes</a></li>
+      <li> <a href="mailto:27aoey_t@students.ics.ac.th?subject=HTML Mailto Code Practice&cc=27angel_p@students.ics.ac.th&body=I would like more information about your services. Thankyou." 
+      class="action_btn">Contact</a></li>
+    </div>
+
+  </header>
+
+  <main>
+    <section id="subpage" class="center">
+      <h2>About Me!</h2>
+      <img src="img/aoey.jpg" alt="aoey thampraneet" width="25%">
+      <p>
+       I an currently a student at ICS. When I grow up, I want to live in a van with a dog named Phobia.
+      </p>
+      <p>
+        My Roborovski hamster died of diarhhea, I was so sad. So instead of having animal pets, I grew so many types of plants. Mango trees, durian, lychee, watermelon, orange, limes, dragonfruit, etc. But they also died because my grandma thought they were weeds and cut them all down. 
+      </p>
+      <p>
+       I like ballet, and badminton, and basketball. Do you know what they all have in common? They are all sports that starts with the letters BA! And yes, ballet is a sport, and in my opinion, its way harder than basketball or badminton. 
+      </p>
+      <p>
+        My favorite subject currently is biology. Well, my favorite teachers eversince 7th grade were all science teachers, Mr. Stephen, Mr. Chris and Mr. Paul. But that doesnt excuse the fact that I HATE SCHOOL. The only reason I come to school is so that my parents dont go to jail.
+      </p>
+      <hr>
+      <a href="index.html" class="action_btn">Back Home</a>
+      <br>
+      <br>
+    </section>
+  </main>
+
+  <!-- JavaScript code that shows and hides responsive dropdown navigation -->
+<script>
+  const toggleBtn = document.querySelector('.toggle_btn')
+  const toggleBtnIcon = document.querySelector('.toggle_btn i')
+  const dropDownMenu = document.querySelector('.dropdown_menu')
+  
+  toggleBtn.onclick = function() {
+  dropDownMenu.classList.toggle('open')
+  const isOpen = dropDownMenu.classList.contains('open')
+  
+  toggleBtnIcon.classList = isOpen
+  ? 'fa-solid fa-xmark'
+  : 'fa-solid fa-bars'
+  }
+  </script>
+
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>
