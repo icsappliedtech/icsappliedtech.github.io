@@ -1,0 +1,124 @@
+<!-- This is a comment. It doesn't alter the code at all. -->
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Banana Man: About Page</title>
+  <meta name="description" content="This is my first website for Applied Tech B Block, and it's all about bananas.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  
+  <!-- Place favicon.ico in the root directory -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quattrocento+
+     Sans:ital,wght@0,400;0,700;1,400;1,700&family=Rosarivo:ital@0;1&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <meta name="theme-color" content="#ffe228">
+</head>
+
+<body>
+
+  <!-- This is my first website -->
+  <header>
+    <div class="navbar">
+      <div class="logo">
+        <a href="index.html" target="_blank">Banana Man</a>
+      </div>
+      <ul class="links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="classes.html">Classes</a></li>
+      </ul>
+      <a href="mailto:27max_m@students.ics.ac.th?subject=I Want More Personal Info&bcc=morales4christ@gmail.com&cc=27maiya_h@students.ics.ac.th&body=I would like to find out more about you. Don't be alarmed if you think you're being stalked. Thank you." class="action_btn">Contact Us</a>
+      <div class="toggle_btn">
+        <i class="fa-solid fa-bars fa-lg" style="color: #574400;"></i>
+      </div>
+    </div>
+
+    <div class="dropdown_menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="classes.html">Classes</a></li>
+      <li><a href="mailto:27max_m@students.ics.ac.th?subject=I Want More Personal Info&bcc=morales4christ@gmail.com&cc=27maiya_h@students.ics.ac.th&body=I would like to find out more about you. Don't be alarmed if you think you're being stalked. Thank you." class="action_btn">Contact Us</a></li>
+    </div>
+
+  </header>
+
+  <main>
+    <section id="subpage" class="center">
+      <h2>About Me</h2>
+      <img src="img/max_morales.jpg" alt="max morales" width="40%">
+      <p>
+        My name is Max Morales, but I go by Banana Man. I'm a 15 year-old 9th-grader taking an Applied Tech class at ICS.
+      </p>
+      <p>
+        I was born on September 22, 2008 in Dallas, Texas. I've lived there for most of my life (from birth to thirteen years), but my family moved to Thailand in November of 2021. My dad's a pastor at ECB. I've always been homeschooled, but starting freshman year, I've attended ICS.
+      </p>
+      <p>
+        I've had an obsession with bananas ever since I was little, but I can't remember <em>why</em> or how it started. The earliest sign of banana-ness is a comic I made (I don't remember how old I was; somewhere between 6-10) of a chicken and banana. It went like this: 
+      </p>
+      <p>
+        Chicken: "Hi, I'm a chicken"! <br> Banana: "Well I'm a banana, so there!" <br> Chicken: "Get out of my comic strip!" <br> Banana: <em>>pulls out a flamethrower and proceeds to cook the chicken alive<</em> <br> "Take that, chicken!" <br> Chicken: "AHHHHH! IT'S HOT!" <br> <em>>chicken becomes a cooked chicken dinner<</em> <br> Banana: "Ha ha ha ha ha!" <br> Moral: Don't mess with bananas if you're a chicken (or if you're anything).
+      </p>
+      <p>
+        I don't know where it came from (and I was obsessed before that) but that's the earliest evidence I have.
+      </p>
+      <p>
+        Anyway, that's a little info about me. I hope you enjoy my website!
+      </p>
+      <hr>
+      <a href="index.html" class="action_btn">Back Home</a>
+      <br>
+      <br>
+    </section>
+  </main>
+
+  <!-- JavaScript code that shows and hides responsive dropdown navigation -->
+  <script>
+    const toggleBtn = document.querySelector('.toggle_btn')
+    const toggleBtnIcon = document.querySelector('.toggle_btn i')
+    const dropDownMenu = document.querySelector('.dropdown_menu')
+  
+    toggleBtn.onclick = function() {
+      dropDownMenu.classList.toggle('open')
+      const isOpen = dropDownMenu.classList.contains('open')
+  
+      toggleBtnIcon.classList = isOpen
+      ? 'fa-solid fa-xmark'
+      : 'fa-solid fa-bars'
+    }
+  </script>
+
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>

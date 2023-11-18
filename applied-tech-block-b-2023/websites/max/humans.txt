@@ -1,0 +1,16 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Max Morales
+    Designer and developer
+
+# THANKS
+
+    My thanks to Mr. Jason Weimer, who helped teach me how to build my own website.
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5
+    Apache Server Configs, jQuery, Modernizr, Normalize.css

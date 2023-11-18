@@ -1,0 +1,16 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+   Maiya Holcomb
+   World-Famous Website Developer
+
+# THANKS
+
+   Thank you to my family and friends for always being there and supporting me ;)
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5
+    Apache Server Configs, jQuery, Modernizr, Normalize.css
