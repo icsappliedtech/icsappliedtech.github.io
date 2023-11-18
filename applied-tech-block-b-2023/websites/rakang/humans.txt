@@ -1,0 +1,16 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Rakang
+    Coder?
+
+# THANKS
+
+    Mr. Jason, Mom, Dad, Family
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5
+    Apache Server Configs, jQuery, Modernizr, Normalize.css
