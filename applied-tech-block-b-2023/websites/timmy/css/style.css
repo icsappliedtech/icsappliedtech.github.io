@@ -1,0 +1,264 @@
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+height: 100vh;
+background-color: rgb(220, 235, 245);
+background-image: url("../img/rock-climbing-1283693_1920.jpg");
+background-size: cover;
+background-position: center top;
+background-repeat: no-repeat;
+background-attachment: fixed;
+}
+
+p {
+    margin: 10px;
+    font-family: 'Baskervville', serif;
+    line-height: 1.5rem;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ffffff;
+    padding: 0;
+    margin: 1rem 0;
+    width: 50%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Ysabeau Office', sans-serif;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(237, 69, 8);
+    font-size: 1rem;
+}
+
+a:hover {
+    color: rgb(14, 169, 204);
+}
+
+/* HEADER */
+header {
+    position: relative;
+    padding: 0 2rem;
+}
+
+.navbar {
+    width: 100%;
+    padding: 20px;
+    max-width: 2100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: uppercase;
+    font-family: 'Ysabeau Office', sans-serif;
+}
+
+.navbar .logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar .links {
+    display: flex;
+    gap: 2rem;
+}
+
+.navbar .toggle_btn {
+    color: rgb(237, 69, 8);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+
+.action_btn {
+    background-color: rgb(237, 69, 8);
+    color: rgb(240, 248, 255);
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: scale 0.2 ease;
+    text-transform: uppercase;
+    font-family: 'Ysabeau Office', sans-serif;
+}
+
+.action_btn:hover {
+    scale: 1.05;
+    color: rgb(240, 248, 255)
+}
+
+.action_btn:active {
+    scale: 0.95;
+}
+
+/* Dropdown Menu */
+.dropdown_menu {
+    display: none;
+    position: absolute;
+    right: 2rem;
+    top: 60px;
+     height: 0;
+    width: 200px;
+    background-color: rgb(14, 169, 204, 0.2);
+    backdrop-filter: blur(15px);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dropdown_menu.open {
+    height: 175px;
+}
+
+.dropdown_menu li {
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown_menu .action_btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Hero */
+section#hero {
+    height: calc(100vh - 410px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: rgb(237, 69, 8);
+}
+
+
+
+#hero h1, h2, h3, h4, h5, h6 {
+    font-family:'Ysabeau Office', sans-serif;
+    margin-bottom: 1rem;
+}
+
+#hero h1 {font-size: 3rem;}
+
+#hero h2 {font-size: 2.5rem;}
+
+#hero h3 {font-size: 2rem;}
+
+#hero h4 {font-size: 1.8rem;}
+
+#hero h5 {font-size: 1.6rem;}
+
+#hero h6 {font-size: 1.4rem;}
+
+/* Subpage */
+section#subpage {
+    margin-top: 40px;
+    display: flex;
+    width: 60%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: rgb(139, 250, 154);
+}
+
+#subpage h1, h2, h3, h4, h5, h6 {
+    font-family: 'Baskervville', serif;
+    margin-bottom: 1rem;
+}
+
+#subpage h1 {font-size: 3rem;}
+
+#subpage h2 {font-size: 2.5rem;}
+
+#subpage h3 {font-size: 2rem;}
+
+#subpage h4 {font-size: 1.8rem;}
+
+#subpage h5 {font-size: 1.6rem;}
+
+#subpage h6 {font-size: 1.4rem;}
+
+.center {
+    margin: 0 auto;
+
+}
+
+/* Subpage Grid System For Content */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Create 4 equal columns */
+    grid-gap: 20px; /* space between columns */
+    padding: 10px;
+    margin: 10px;
+}
+
+.grid-item {
+    background: rgb(255, 255, 255, .1);
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.grid-item:hover {
+    background: rgb(255, 255, 255, .2);
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .navbar .links,
+    .navbar .action_btn {
+        display: none;
+    }
+
+    .navbar .toggle_btn {
+        display: block;
+    }
+
+.dropdown_menu {
+    display: block;
+}
+}
+
+@media (max-width: 576px) {
+    .dropdown_menu {
+        left: 2rem;
+        width: unset;
+    }
+}
+
+/* Responsive Layout For Tablets */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns in smaller screens */
+    }
+}
+
+/* Responsive Layout For Mobile */
+
+@media (max-width: 480px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* 1 columns in smaller screens */
+    }
+}
