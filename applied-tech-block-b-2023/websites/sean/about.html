@@ -1,0 +1,107 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Sean: About Page</title>
+  <meta name="description" content="This is my first website for Applied Tech B Block">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Rubik:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+
+  <!-- This is my first website -->
+ <header>
+  <div class="navbar">
+    <div class="logo">
+      <a href="index.html">Sean Woo</a>
+    </div>
+  <ul class="links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="classes.html">Classes</a></li>
+  </ul>
+  <a href="mailto:27sean_w@students.ics.ac.th?subject=HTML Mailto Code Test&cc=27yosep_j@students.ics.ac.th&body=I am testing my mailto function in my first website. Thank you." class="action_btn">Contact</a>
+  <div class="toggle_btn">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+  </div>
+
+<div class="dropdown_menu">
+  <li><a href="index.html">Home</a></li>
+  <li><a href="about.html">About</a></li>
+  <li><a href="classes.html">Classes</a></li>
+  <li><a href="mailto:27sean_w@students.ics.ac.th?subject=HTML Malito Code Test&cc=27yosep_j@students.ics.ac.th&body=I am testing my mailto function in my first website. Thank You." class="action_btn">Contact</a></li>
+</div>
+
+</header>
+
+<main>
+  <section id="subpage" class="center">
+    <h2>About Me!</h2>
+    <img src="img/sean.jpeg" alt="sean woo" width="20%">
+    <p>
+      My name is Sean and I am 14 years old. I am currently a freshman at ICS. 
+    </p>
+    <p>
+      I am a 9th grader at ICS. I've been at ICS for 8 years and this is my 9th year of being at this school. Overall I'd say ICS is a pretty good school, because the education here is good and the sports are good as well. But the food could use a bit of improvement. I look forward to graduating from ICS in the future.
+    </p>
+    <p>
+      About my life, I am the only child and I get all the love from my parents. Both my parents work so I live with my grandparents as well. I used to have pets such as, rabbits and fish, but now I don't have any. I like playing games and football. I'm broke so please send me money. 
+    </p>
+    <hr>
+    <a href="index.html" class="action_btn">Back Home</a>
+    <video src="img/Taylor Swift - You Belong With Me (480p).mp4" height="250" width="330" controls>Video not supported</video>
+    <br>
+    <br>
+  </section>
+</main>
+
+<!-- JavaScript code that shows and hides responsive dropdown navigation -->
+<script>
+  const toggleBtn = document.querySelector('.toggle_btn')
+  const toggleBtnIcon = document.querySelector('.toggle_btn i')
+  const dropDownMenu = document.querySelector('.dropdown_menu')
+  
+  toggleBtn.onclick = function() {
+  dropDownMenu.classList.toggle('open')
+  const isOpen = dropDownMenu.classList.contains('open')
+  
+  toggleBtnIcon.classList = isOpen
+  ? 'fa-solid fa-xmark'
+  : 'fa-solid fa-bars'
+  }
+  </script>
+
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>
