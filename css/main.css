@@ -317,6 +317,13 @@ section#subpage {
   margin-bottom: 10px;
 }
 
+#subpage p {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+
 #subpage h1, h2 {font-family: 'Lato', sans-serif;}
 
 #subpage h3, h4, h5, h6 {font-family: 'Cormorant Garamond', serif;}
@@ -360,6 +367,27 @@ audio {
 .grid-item:hover {
   background: rgba(255, 255, 255, 0.15);
   cursor: pointer;
+}
+
+.grid-container .grid-item p {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.grid-container .grid-item h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+.grid-container .grid-item h6 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.5;
 }
 
 /* RESPONSIVE DESIGN */
