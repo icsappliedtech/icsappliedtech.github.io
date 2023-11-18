@@ -1,0 +1,16 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Kp
+	Designer and Developer
+
+# THANKS
+
+    Thanks to Bambi cuz she's an amazing friend & tom cruise!!!!
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5
+    Apache Server Configs, jQuery, Modernizr, Normalize.css

@@ -1,0 +1,106 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Mackenzie Sullivan: Home Page</title>
+  <meta name="description" content="This is a cool website designed by a student in Applied Tech B Block...which is me.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400;1,6..96,500&family=Major+Mono+Display&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+
+  <!-- This is my first website. -->
+  <header>
+    <div class="navbar">
+      <div class="logo">
+        <a href="index.html">Mackenzie Sullivan</a>
+      </div>
+      <ul class="links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="classes.html">Classes</a></li>
+      </ul>
+      <a href="mailto:27mackenzie_s@students.ics.ac.th?subject=HTML Practice for Applied Technology&cc=27maiya_h@students.ics.ac.th&bcc=kiki.scalene@gmail.com&body=I am practicing HTML in B Block Applied Technologies class. Thank you!" class="action_btn">Contact</a>
+      <div class="toggle_btn">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+
+    <div class="dropdown_menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="classes.html">Classes</a></li>
+        <li><a href="mailto:27mackenzie_s@students.ics.ac.th?subject=HTML Practice for Applied Technology&cc=27maiya_h@students.ics.ac.th&bcc=kiki.scalene@gmail.com&body=I am practicing HTML in B Block Applied Technologies class. Thank you!" class= "action_btn">Contact</a></li>
+    </div>
+
+  </header>
+
+  <main>
+    <section id="subpage" class="center">
+      <h1>About Me!</h1>
+      <img src="img/mackenzie.jpg" alt="mackenzie sullivan" width="40%">
+      <p>
+        Hey what's good? My name is Mackenzie and this is just a little about me.<br /> I love Spotify, football (either one), writing, chatting with my friends (in person or online) and playing video games. 
+      </p>
+      <p>
+        I, Mackenzie Sullivan, am a person of many things. Sometimes it is a good thing, and other times it is not as good. I love school, and the aspect of getting knowledge. I also love football, writing, running, and violin. There are many other things that I love, but those are some of the main things. I have lived in Littleton Colorado for most of my life thus far, though I was born in Albany, New York. I am the oldest of six kids (I have a family of eight people). Their names are Wyatt, Alannah, Loralei, Delaney, and Cassidy from oldest to youngest respectively. Moving here was the first time that us kids had ever been out of the country, so it was all a new experience. When we lived in Colorado, we attended a public school named Dennison Elementary. There I did fifth grade under a very influential teacher in my life, and I still have some letters from her now. Shortly after we moved, not only physically, but also emotionally by coming to Thailand. The emotions were hard to come through, but I’m glad that we are here. In the end, I have been inspired by many people throughout my life, lived through a couple things, and made great friends along the way.
+      </p>
+      <p>
+        As mentioned before, I love writing. This can be about many things, including writing about some of the challenges I have faced along the way. Some artists I love include for King and Country, Kyle Hume, Matthew West, Tobymac, Building 429, and Sidewalk Prophets. I love to recommend songs to people, so if you are in need of a song recommendation, just ask! However, I think my favorite thing to do is talk to my friends. (If you're my friend, you definetly know this about me.) Thanks for reading my paragraphs. 
+      </p>
+      <hr>
+      <a href="index.html" class="action_btn">Back Home</a>
+      <br>
+      <br>
+    </section>
+  </main>
+
+  <!-- JavaScript code that shows and hides responsive dropdown navigation -->
+<script>
+  const toggleBtn = document.querySelector('.toggle_btn')
+  const toggleBtnIcon = document.querySelector('.toggle_btn i')
+  const dropDownMenu = document.querySelector('.dropdown_menu')
+  
+  toggleBtn.onclick = function() {
+  dropDownMenu.classList.toggle('open')
+  const isOpen = dropDownMenu.classList.contains('open')
+  
+  toggleBtnIcon.classList = isOpen
+  ? 'fa-solid fa-xmark'
+  : 'fa-solid fa-bars'
+  }
+  </script>
+
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>
