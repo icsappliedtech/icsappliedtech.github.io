@@ -1,0 +1,109 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Nishka Gurung: Home Page</title>
+  <meta name="description" content="This is my first website for Applied Tech B Block">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+
+  <!-- Place favicon.ico in the root directory -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow&family=Fredericka+the+Great&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+
+  <!-- This is my first website -->
+ <header>
+  <div class="navbar">
+    <div class="logo">
+      <a href="index.html" target="_blank" div>Nishka Gurung</a>
+    </div>
+    <ul class="links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="classes.html">Classes</a></li>
+    </ul>
+    <a href="mailto:27nishka_g@students.ics.ac.th?subject=I Want More Info&bcc=nishka.d.gurung@gmail.com&cc=27mackenzie_s@students.ics.ac.th&body=I would like to find out more about your services. Thank you." class="action_btn">Contact Us!</a><li>
+    <div class="toggle_btn">
+      <i class="fa-solid fa-bars fa-beat-fade" style="color:antiquewhite;"></i>
+    </div>
+</div> 
+
+<div class="dropdown_menu">
+  <li><a href="index.html">Home</a></li>
+  <li><a href="about.html">About</a></li>
+  <li><a href="classes.html">Classes</a></li>
+  <li><a href="mailto:27nishka_g@students.ics.ac.th?subject=I Want More Info&bcc=nishka.d.gurung@gmail.com&cc=27mackenzie_s@students.ics.ac.th&body=I would like to find out more about your services. Thank you." class="action_btn">Contact Us!</a></li>
+    <div class="toggle_btn">
+
+</div>
+
+ </header>
+
+<main>
+<section id="subpage" class="center">
+  <h1>About Me</h1>
+  <img src="img/nishka.jpg" alt="nishka gurung" width="25%">
+    <p>
+      Hello! My name is Nishka. I am 14 years old, in 9th grade, and taking Applied Technology class at ICS this year. 
+    </p>
+    <p>
+      Dear reader of this information concerning myself: Hello! As Charlotte the spider of "Charlotte's Web" would say, salutations. Im not quite completely sure how to explain myself to you. I'm a jumbled tangle of yarn string that tells my stories and holds together my heart. Things that bring me joy are spending time with family and friends, reading stories, writing stories, and making and hearing music.
+    </p>
+    <p>
+    I love the feeling of holding hands with people I love, and letting the sunlight hit my face in the way that feels just right. I try to notice the tatters in leaves and the birds taking flight and the millipedes narrowly escaping death-by-crushing. I bury my head in books, but I don't like the word "book-worm", so I refer to myslef as a "book dragon". It makes me glad to put words on paper, and make ink letters overflow with feelings and descriptions and incredible stories. I overthink too often, and I'm not very sure of myself, but the incredibly incredible people I am blessed to have around me help me grow. Thankyou for taking the time to read this summary of me!
+    </p>
+<hr>
+  <a href="index.html" class="action_btn">Back Home</a>
+  <br>
+  <br>
+</section>
+</main>
+
+
+<!-- Javascript code that shows and hides responsive dropdown navigation -->
+ <script>
+  const toggleBtn = document.querySelector('.toggle_btn')
+  const toggleBtnIcon = document.querySelector('.toggle_btn i')
+  const dropDownMenu = document.querySelector('.dropdown_menu')
+  
+  toggleBtn.onclick = function() {
+  dropDownMenu.classList.toggle('open')
+  const isOpen = dropDownMenu.classList.contains('open')
+  
+  toggleBtnIcon.classList = isOpen
+  ? 'fa-solid fa-xmark'
+  : 'fa-solid fa-bars'
+  }
+  </script>
+
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>

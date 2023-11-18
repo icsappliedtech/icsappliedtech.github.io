@@ -1,0 +1,19 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Pung
+   Designer and Developer 
+   @ygnup on instagram
+   @ygnup on snapchat
+
+
+# THANKS
+
+    Thanks to my parents for having me.
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5
+    Apache Server Configs, jQuery, Modernizr, Normalize.css
