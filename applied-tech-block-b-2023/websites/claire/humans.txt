@@ -1,0 +1,16 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Claire Sirisantana
+   Designer
+
+# THANKS
+
+    Thanks to Mr. Jason for helping me with the code and how to set up a website
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5
+    Apache Server Configs, jQuery, Modernizr, Normalize.css
