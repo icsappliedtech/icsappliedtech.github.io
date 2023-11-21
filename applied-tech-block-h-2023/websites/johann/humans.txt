@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+Johann Johnson - Designer and Developer
+   
+
+# THANKS
+
+    Mr.Jasom for beimg my wonderfull teacher
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5, Javascript
