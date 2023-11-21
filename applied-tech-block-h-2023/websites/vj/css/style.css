@@ -1,0 +1,250 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    background-color: royalblue;
+    background-image: url(../img/solar-wind-7917660_1920.jpg);
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family:'Young Serif', serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family:b s'Bree Serif', serif;
+}
+
+h1 {
+    line-height: 1.5rem;
+    margin: 10px;
+}
+
+li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: beige;
+    font-size: 1rem;
+}
+
+a:hover {
+    color:rgb(245, 139, 0)
+}
+
+p {
+    line-height: 1.5rem;
+    margin: 10px;
+}
+
+hr {
+    width: 300px;
+    color: antiquewhite;
+    display: block;
+    height: 1px;
+    border: none;
+    border-top: 1px solid white;
+    margin: 1rem 0;
+    padding: 0;
+}
+
+/* HEADER */
+header {
+    position: relative;
+    padding: 0   2rem;
+}
+
+.navbar {
+    width: 100%;
+    height: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+display: flex;
+align-items: center;
+justify-content: space-between;
+text-transform: uppercase;
+}
+
+.navbar .logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar .links {
+    display: flex;
+    gap: 5rem;
+}
+
+.navbar .toggle_btn{
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+
+.action_btn {
+    background-color: wheat;
+    color: black;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.action_btn:hover {
+    scale: 1.05;
+    color: orange;
+}
+
+.action_btn:active {
+    scale: 0.95;
+}
+
+
+/* dropdown MENU */
+ .dropdown_menu {
+    display: none;
+    position: absolute;
+    right: 2rem;
+    top: 60px;
+    height: 0;
+    width: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+}
+
+.dropdown_menu.open {
+    height: 200px;
+    
+}
+
+.dropdown_menu li {
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;    
+    justify-content: center;
+}
+
+.dropdown_menu .action_btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* HERO */
+section#hero {
+height: calc(100vh - 60px);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+color: antiquewhite;
+line-height: 30px;
+}
+
+#hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.center {
+    margin: 0 auto;
+}
+
+section#subpage {
+    margin-top: 60px;
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: bisque;
+    line-height: 30px;
+
+}
+
+section#subpage img {
+
+    width: 100%;
+    max-width: 250px;
+}
+
+.ICS {
+    color: aquamarine;
+}
+
+
+
+/* SUBPAGE GRID SYSTEM FOR CONTENT */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* creates 4 equal columns */
+    grid-gap: 20px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.grid-item {
+    background:rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    width: 300px;
+}
+
+.grid-item:hover {
+    background:rgba(255, 255, 255, 0.20);
+    cursor: pointer;
+}
+
+/* RESPONSIVE DESIGN */
+@media(max-width:992px){
+    .navbar .links,
+    .navbar .action_btn {
+        display: none;
+    }
+
+    .navbar .toggle_btn {
+        display: block;
+    }
+
+    .dropdown_menu {
+        display: block;
+    }
+}
+
+@media (max-width: 576px) {
+    .dropdown_menu {
+        left: 2rem;
+        width: unset;
+    }
+}
+
+/* RESPONSIVE LAYOUT FOR TABLETS */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns in smaller screens */
+    }
+}
+
+/* RESPONSIVE LAYOUT FOR MOBILE */
+@media (max-width: 480px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* 1 columns in smaller screens */
+    }
+}

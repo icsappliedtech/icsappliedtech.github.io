@@ -1,0 +1,107 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>My First WebisTe: About Page</title>
+  <meta name="description" content="This is a website for applied technologies H Block">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Young+Serif&display=swap" rel="stylesheet">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+
+  <!-- Header info goes here -->
+  <header>
+    <div class="navbar">
+      <div class="logo">
+        <a href="#" >Vj</a>
+      </div>
+      <ul class="links">
+        <li> <a href="index.html" >Home</li></a>
+        <li> <a href="about.html">About</li></a>
+        <li> <a href="classes.html">classes</li></a>
+      </ul> 
+      <a href="mailto: 26victor_g@students.ics.ac.th?subject=Extra information" class="action_btn"> Contact </a>
+      <div class="toggle_btn">
+        <div><i class="fa-solid fa-bars"></i></div>
+
+      </div>
+    </div>
+
+    <div class="dropdown_menu open">
+      <li> <a href="index.html" >Home</li></a>
+        <li> <a href="about.html">About</li></a>
+        <li> <a href="classes.html">classes</li></a>
+        <li><a href="mailto: 26victor_g@students.ics.ac.th?subject=Extra information" class="action_btn"> Contact </a></li>
+    </div>
+
+  </header>
+
+  <main>
+    <section id="subpage" class="center">
+      <h1>About Me</h1>
+      <img src="img/vj.png" alt="my photo-vj">
+      <paragraph>
+       My name is Vj but my full name is Victor Joaquin Lopez <br /><br />
+        I am a student in ICS, <a href="https://www.ics.ac.th/" class="ICS" target="_blank">International Community School</a>. I am currently living in Bangkok Thailand. I am currently in grade 10 or year 11. I am 15 years old.
+
+        This is my first interactive website, I made it for a class known as Applied Technologies, which is taught by Mr Jason Weimer. Mr.Jason is also a cofounder for a coffee shop known as Simple Coffee.
+      </paragraph>
+      <hr>
+        
+      <a href="index.html" class="action_btn"> Back Home </a>
+
+
+
+    </section>
+  </main>
+  <script>const toggleBtn = document.querySelector('.toggle_btn')
+    const toggleBtnIcon = document.querySelector('.toggle_btn i')
+    const dropDownMenu = document.querySelector('.dropdown_menu')
+    
+    toggleBtn.onclick = function() {
+    dropDownMenu.classList.toggle('open')
+    const isOpen = dropDownMenu.classList.contains('open')
+    
+    toggleBtnIcon.classList = isOpen
+    ? 'fa-solid fa-xmark'
+    : 'fa-solid fa-bars'
+    }
+    </script>
+
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <!-- Javescript files go here -->
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>
