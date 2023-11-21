@@ -1,0 +1,105 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>My First Website?: About Page</title>
+  <meta name="description" content="This is my first website for Applied Tech H Block Class">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gabarito&family=Nanum+Myeongjo:wght@400;800&display=swap" rel="stylesheet">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <meta name="theme-color" content="#B51F1F">
+</head>
+
+<body>
+
+  <!-- Header Information goes here -->
+  <Header>
+    <div class="navbar">
+      <div class="logo">
+        <a href="index.html">Ella Smit</a>
+      </div>
+      <ul class="links">
+        <li><a href="index.html">Home</li></a>
+        <li><a href="about.html">About</li></a>
+        <li><a href="classes.html">Classes</li></a>
+      </ul>
+      <a href="mailto:27ella_s@students.ics.ac.th?subject=More information or help" class="action_btn">Contact</a>
+      <div class="toggle_btn">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+
+    <div class="dropdown_menu">
+      <li><a href="index.html">Home</li></a>
+      <li><a href="about.html">About</li></a>
+      <li><a href="classes.html">Classes</li></a>
+   <li> <a href="mailto:27ella_s@students.ics.ac.th?subject=More information or help" class="action_btn">Contact</a></li>
+    </div>    
+
+  </Header>
+
+  <main>
+    <section id="subpage" class="center">
+      <h1>About Me!</h1>
+      <p>
+        <img src="img/ella.jpg" alt="MY photo Gabriella Smit">
+        <br>
+        
+        I am a South African living in Thailand. I am a student at the <a href="https://www.ics.ac.th/"target="_blank">International School of Bankok</a> (ICS), participating in Mr. Jasons' Applied Techonolgy class. 
+    </p>
+    <p>Moving to a new country at the age of fourteen, has been a troumatic experience. My culture is something I carry around with me as I explore the new, exciting culture of Thailand. 
+      I love making music and playing sports. The stage is still a location I am experimenting with but it is some thing I really enjoy. Coming to ICS has been a beautiful and chaotic journey which lead me too a new community and exposed international, networks of friendships.
+    </p>
+    <hr>
+      <a href="index.html" class="action_btn">Back Home</a>
+    </section>
+  </main>
+
+ <!-- JavaScript code that shows and hides responsive dropdown navigation -->
+<script>
+  const toggleBtn = document.querySelector('.toggle_btn')
+  const toggleBtnIcon = document.querySelector('.toggle_btn i')
+  const dropDownMenu = document.querySelector('.dropdown_menu')
+  
+  toggleBtn.onclick = function() {
+  dropDownMenu.classList.toggle('open')
+  const isOpen = dropDownMenu.classList.contains('open')
+  
+  toggleBtnIcon.classList = isOpen
+  ? 'fa-solid fa-xmark'
+  : 'fa-solid fa-bars'
+  }
+  </script>
+
+
+  <!-- Javascript files go here -->
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>
