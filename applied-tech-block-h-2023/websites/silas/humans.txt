@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Silas -- Developer -- @silaspangie
+
+# THANKS
+
+    Mr Jason for your help in Applied Tech
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5, javascript
+   
