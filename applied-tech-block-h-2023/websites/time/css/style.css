@@ -1,0 +1,240 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color:blanchedalmond;
+    background-image: url(../img/anthony-perales-asset.jpg);
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Noto Serif', serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Noto Serif', serif;
+}
+
+h1{
+    line-height: 1.5rem;
+    margin: 20px;
+}
+
+li{
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color:rgb(255, 255, 255)
+}
+
+a:hover {
+    color:maroon
+
+}
+
+p{
+    line-height: 1.25rem;
+    margin: 10px;
+}
+
+hr {
+    width: 300px;
+    color:moccasin;
+    display: block;
+    height: 1px;
+    border: none;
+    border-top: 1px solid rgb(181, 241, 255);
+    margin: 1rem 0;
+    padding: 0;
+}
+
+/* HEADER */
+header{
+    position: relative;
+    padding: 0 2rem;
+}
+
+.navbar {
+    width: 100%;
+    height: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Noto Serif', serif;
+    text-transform: uppercase;
+}
+
+.navbar .logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar .links{
+display: flex;
+gap: 4rem;
+}
+
+.navbar .toggle_btn{
+    color: greenyellow;
+    font-size: 1.5rem;
+    display: none;
+}
+
+.action_btn{
+    background-color: azure;
+    color: slategrey;
+    padding: 0.5rem 1rem;
+border: none;
+outline: none;
+border-radius: 20px;
+font-size: 0.8rem;
+font-weight: bold;
+cursor: pointer;
+transition: scale 0.2 ease;
+font-family: 'Noto Serif', serif;
+text-transform: uppercase;
+}
+
+.action_btn:hover{
+    scale: 1.05;
+    color: teal;
+}
+.action_btn:active{
+    scale: 0.95;
+}
+
+/* dropdown menu */
+.dropdown_menu{
+    display: none;
+    position: absolute;
+    right: 2rem;
+    top: 60px;
+    height: 0;
+    width: 150px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blue(15px);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dropdown_menu.open {
+    height: 180px;
+
+}
+
+.dropdown_menu li{
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown_menu .action_btn{
+    width: 100%;
+display: flex;
+justify-content: center;
+}
+
+/* HERO*/
+section#hero{
+height: calc(100vh - 60px);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+color:rgb(255, 247, 0);
+}
+
+#hero h1{
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-family: 'Noto Serif', serif;
+}
+
+.center {
+margin: 0 auto;
+}
+
+section#subpage {
+    margin-top: 60px;
+    display: flex;
+    width: 60%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color:rgb(194, 255, 253)
+}
+
+
+
+section#subpage img {
+width: 100%;
+max-width: 250px;
+}
+/* subpage grid system for content */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.grid-item {
+    background: rgba(203, 235, 255, 0.52);
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.grid-item:hover {
+    background:rgba(149, 255, 255, 0.28);
+    cursor: pointer;
+}
+
+/* RESPONSIVE DESIGN */
+@media(max-width: 992px){
+    .navbar .links,
+    .navbar .action_btn{
+        display: none;
+    }
+    .navbar .toggle_btn {
+        display: block;
+}
+
+.dropdown_menu {
+    display: block;
+}
+}
+
+@media (max-width: 576px) {
+    .dropdown_menu {
+        left: 2rem;
+        width: unset;
+    }
+}
+
+/*responsive layout for tablets*/
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr); /* 2column in smaller screen */
+    }
+}
+
+/*responsive layout for mobile*/
+@media (max-width: 480px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* 2column in smaller screen */
+    }
+}
