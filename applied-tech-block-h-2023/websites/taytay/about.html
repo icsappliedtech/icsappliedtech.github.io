@@ -1,0 +1,101 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>My First Website: About page</title>
+  <meta name="description" content="This is a website for applied technologies H Block">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,300&display=swap" rel="stylesheet">
+  
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+
+  <!-- Header info goes here -->
+  <header>
+    <div class="navbar">
+      <div class="logo">
+        <a href="#" >TayTay</a>
+      </div>
+      <ul class="links">
+        <li> <a href="index.html" >Home</li></a>
+        <li> <a href="about.html">About</li></a>
+        <li> <a href="classes.html">classes</li></a>
+      </ul> 
+      <a href="mailto:26taytay_s@students.ics.ac.th?subject=I want more information." class="action_btn">Contact</a>
+      <div class="toggle_btn">
+      <i class="fa-solid fa-bars"></i>  
+      </div>
+    </div>
+
+    <div class="dropdown_menu">
+      <li> <a href="index.html">Home</li></a>
+      <li> <a href="about.html">About</li></a>
+      <li> <a href="classes.html">classes</li></a>
+      <a href="mailto:26taytay_s@students.ics.ac.th?subject=I want more information." class="action_btn">Contact</a>
+    </div>
+
+  </header>
+
+  <main>
+    <section id="hero">
+      <h1>About me</h1>
+        <img src="img/Tayshin.jpg" alt="my photo TayTay">
+      <p>
+        My name is TayTay, <a href="https://www.ics.ac.th/" target="_blank">I am a student at ICS</a> and I have the most mediocre grades known to mankind. Almost every day, I go cycling with the ambition to oneday, if possible, compete in a race. Today, I was told to write two paragraphs about myself but honestly, I really don't know what to write about. I mean, I'm just an ordinary student who wants to find success in school.
+        I'm in a family of 3 with no brothers or sisters. <br><br>I'm really good at math, I mean, Isaac Newton doesn't stand a chance against me in terms of math. Please allow me to prove my mathematic prowess. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50. As you can see, I am an expert at math which is why I aspire to be a Mechatronics Engineer in the future..  
+      </p>
+      <hr>
+      <a href="index.html" class="action_btn">Back Home</a>
+
+    </section>
+  </main>
+
+  <script>
+    const toggleBtn = document.querySelector('.toggle_btn')
+    const toggleBtnIcon = document.querySelector('.toggle_btn i')
+    const dropDownMenu = document.querySelector('.dropdown_menu')
+    
+    toggleBtn.onclick = function() {
+    dropDownMenu.classList.toggle('open')
+    const isOpen = dropDownMenu.classList.contains('open')
+    
+    toggleBtnIcon.classList = isOpen
+    ? 'fa-solid fa-xmark'
+    : 'fa-solid fa-bars'
+    }
+    </script>
+  <!-- Javescript files go here -->
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>
+
