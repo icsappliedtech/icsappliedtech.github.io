@@ -1,0 +1,14 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Pep -- Designer and Developer -- @pep._.b
+
+# THANKS
+
+    Mr. Jason Weimer
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5, Javascript
