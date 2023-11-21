@@ -1,0 +1,14 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+   Joel Aasebø (designer, developer, amazing person)
+
+# THANKS
+
+    Joel, Mr. Jason, Mason (for giving me water so I don't die)
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5, Javascript
