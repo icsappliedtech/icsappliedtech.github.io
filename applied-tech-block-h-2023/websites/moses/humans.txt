@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Moses -- Designer and Developer 
+
+# THANKS
+
+    Thanks for Mr Jason.
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5, JavaScript
+    
