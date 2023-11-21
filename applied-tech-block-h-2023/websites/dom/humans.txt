@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Dom -- Designer and Developer -- @_.dom.s
+
+# THANKS
+
+    All kinds of fun tutorials
+
+# TECHNOLOGY COLOPHON
+
+   C553, HTML5, Javascript
+
