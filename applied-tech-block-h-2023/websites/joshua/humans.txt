@@ -1,0 +1,14 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    joshua -- everything -- @joshuuuaa_l
+
+# THANKS
+
+    to me, myself, and i
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5, Javascript

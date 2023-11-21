@@ -1,0 +1,14 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Yejun Shim -- Designer & Developer -- ___Nujey
+
+# THANKS
+
+    To God
+
+# TECHNOLOGY COLOPHON
+
+    C553, HTML5, Javascript
