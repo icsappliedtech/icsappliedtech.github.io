@@ -1,0 +1,132 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Classes</title>
+  <meta name="description" content="This is my first website for Applied Tech, H Block class">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@1,200&family=Roboto:wght@100&display=swap" rel="stylesheet">
+
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="theme-color" content="#4E00DA">
+</head>
+
+<body>
+
+  <!-- Header Information Goes Here -->
+<header>
+  <div class="navbar">
+    <div class="logo">
+      <a href="#">Mason</a>
+    </div>
+    <ul class="links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="classes.html">Classes</a></li>
+  </ul>
+  <a href="mailto: 27mason_d@students.ics.ac.th?subject=I want more information." class="action_btn">Contact</a>
+  <div class="toggle_btn">
+    <i class="fa-solid fa-bars"></i>
+   </div>
+  </div>
+
+  <div class="dropdown_menu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="classes.html">Classes</a></li>
+    <li><a href="mailto: 27mason_d@students.ics.ac.th?subject=I want more information." class="action_btn">Contact</a></li>
+  </div>
+
+</header>
+
+<main>
+  <section id="subpage" class="center">
+<h1>Classes</h1>
+<p>
+ These are the classes that I am taking at ICS this semester.</p>
+ <!-- Grid Row Begins -->
+ <div class="grid-container">
+  <div class="grid-item">
+    <p><a href="https://classroom.google.com/c/NjE4NTM4NzI1MDQ4" target="_blank">Teacher's Aid</a></p>
+    </div>
+  <div class="grid-item">
+  <p><a href="https://classroom.google.com/c/NjMzMzQ4MTg0NzA2" target="_blank">English Composition</a></p>
+  </div>
+  <div class="grid-item">
+  <p><a href="https://classroom.google.com/c/NjE3NDA0NzQ4MzQ2" target="_blank">Spanish</a></p>
+  </div>
+  <div class="grid-item">
+  <p><a href="https://classroom.google.com/c/NjE3MjAwMTAxNzU1" target="_blank">Geography</a></p>
+  </div>
+</div>
+  <!-- Grid Row Ends -->
+
+   <!-- Grid Row Begins -->
+   <div class="grid-container">
+  <div class="grid-item">
+  <p><a href="https://classroom.google.com/c/NjE3MTAwNjQ4MzU4" target="_blank">Algebra 1</a></p>
+  </div>
+    <div class="grid-item">
+  <p><a href="https://classroom.google.com/c/NjE3Mzk3OTgyOTQz" target="_blank">Band</a></p>
+</div>
+    <div class="grid-item">
+  <p><a href="https://classroom.google.com/c/NjE3MTk3ODE4NTUy" target="_blank">ICP</a></p>
+</div>
+    <div class="grid-item">
+  <p><a href="https://classroom.google.com/c/NjE3MDI0Nzg5NjE1" target="_blank">Applied Technology</a></p>
+</div>
+</div>
+ <!-- Grid Row Ends -->
+<hr>
+<a href="index.html" class="action_btn">Back to Home</a>
+  </section>
+</main>
+
+<!-- JavaScript code that shows and hides responsive dropdown navigation -->
+<script>
+  const toggleBtn = document.querySelector('.toggle_btn')
+  const toggleBtnIcon = document.querySelector('.toggle_btn i')
+  const dropDownMenu = document.querySelector('.dropdown_menu')
+  
+  toggleBtn.onclick = function() {
+  dropDownMenu.classList.toggle('open')
+  const isOpen = dropDownMenu.classList.contains('open')
+  
+  toggleBtnIcon.classList = isOpen
+  ? 'fa-solid fa-xmark'
+  : 'fa-solid fa-bars'
+  }
+  </script>
+
+
+   <!-- Javascript Files Go Here -->
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>
+
