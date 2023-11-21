@@ -1,0 +1,14 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Palm -- Designer and Developer -- @Palm 
+
+# THANKS
+
+    My family, my friends, and co-workers
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5, Javascript
