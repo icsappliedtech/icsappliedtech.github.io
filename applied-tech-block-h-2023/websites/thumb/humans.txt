@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    <Thumb> -- <Designer and Developer> -- <thiranyashtiti@gmail.com>
+
+# THANKS
+
+    <Mr. Jason Weimer>
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5, JavaScript
+    
