@@ -1,0 +1,115 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Nara Vattanamara: About Page</title>
+  <meta name="description" content="This is my first website for Applied Tech B Block">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+
+  <!-- This is my first website -->
+  <header>
+    <div class="navbar">
+      <div class="logo">
+        <a href="index.html">Nara Vattanamara</a>
+      </div>
+      <ul class="links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="classes.html">Classes</a></li>
+      </ul>
+      <a href="mailto:27nara_v@ics.ac.th?subject=HTML Mailto Code Practice&cc=27nara_v@ics.ac.th&body=I am practicing HTML in B Block Applied Technologies class. Thank you." class="action_btn">Contact</a>
+      <div class="toggle_btn">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+
+    <div class="dropdown_menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="classes.html">Classes</a></li>
+      <li><a href="mailto:27nara_v@ics.ac.th?subject=HTML Mailto Code Practice&cc=27nara_v@ics.ac.th&body=I am practicing HTML in B Block Applied Technologies class. Thank you." class="action_btn">Contact</a></li>
+    </div>
+
+  </header>
+
+
+  <main>
+    <section id="subpage" class="center">
+    <h2>About Me!</h2>
+      <img src="img/nara.jpg" alt="Nara Vattanamara" width="25%">
+      <p>
+        I'm currently a student at ICS. 
+      </p>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      </p>
+      <p>
+        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+      </p>
+      <p>
+        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+      </p>
+      <p>
+        There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
+      </p>
+      <hr>
+      <a href="index.html" class="action_btn">Back Home</a>
+      <br>
+      <br>
+    </section>
+  </main>
+
+<!-- JavaScript code that shows and hides responsive dropdown navigation -->
+<script>
+  const toggleBtn = document.querySelector('.toggle_btn')
+  const toggleBtnIcon = document.querySelector('.toggle_btn i')
+  const dropDownMenu = document.querySelector('.dropdown_menu')
+  
+  toggleBtn.onclick = function() {
+  dropDownMenu.classList.toggle('open')
+  const isOpen = dropDownMenu.classList.contains('open')
+  
+  toggleBtnIcon.classList = isOpen
+  ? 'fa-solid fa-xmark'
+  : 'fa-solid fa-bars'
+  }
+  </script>
+
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+ <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+ <script>
+  window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+  ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>
+
+
