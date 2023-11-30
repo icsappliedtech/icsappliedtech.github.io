@@ -355,8 +355,26 @@ audio {
   margin: 10px;
 }
 
+.grid-container-video {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* creates 4 equal columns */
+  grid-gap: 20px; /* space between columns */
+  padding: 10px;
+  margin: 10px;
+}
+
 .grid-item {
   width: 250px;
+  background: rgba(255, 255, 255, 0.1);
+  /* background-color: #f2f2f2; */
+  padding: 20px;
+  text-align: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.grid-item-video {
+  width: 450px;
   background: rgba(255, 255, 255, 0.1);
   /* background-color: #f2f2f2; */
   padding: 20px;
@@ -418,6 +436,9 @@ audio {
   .grid-container {
     grid-template-columns: repeat(2, 1fr); /* 2 columns in smaller screens */
   }
+  .grid-container-video {
+    grid-template-columns: 1fr; /* 1 column in small screens */
+  }
 }
 
 /* Responsive layout for mobile */
@@ -426,6 +447,23 @@ audio {
     grid-template-columns: 1fr; /* 1 column in very small screens */
   }
 }
+
+/* Responsive Video */
+.responsive-video {
+  position: relative;
+  padding-bottom: 56.25%; /* Aspect Ratio 16:9 */
+  padding-top: 25px;
+  height: 0;
+}
+
+.responsive-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 
 /* ==========================================================================
    Helper classes
