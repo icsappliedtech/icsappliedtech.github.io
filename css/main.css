@@ -220,12 +220,12 @@ header {
 }
 
 .action_btn:hover {
-  scale: 1.02;
+  transform: scale(1.02);
   color: white;
 }
 
 .action_btn:active {
-  scale: 0.95;
+  transform: scale(0.95);
 }
 
 /* DROPDOWN MENU */
@@ -357,7 +357,7 @@ audio {
 
 .grid-container-video {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* creates 4 equal columns */
+  grid-template-columns: repeat(2, 1fr); /* creates 2 equal columns */
   grid-gap: 20px; /* space between columns */
   padding: 10px;
   margin: 10px;
@@ -365,7 +365,7 @@ audio {
 
 .grid-container-2column {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* creates 4 equal columns */
+  grid-template-columns: repeat(2, 1fr); /* creates 2 equal columns */
   grid-gap: 20px; /* space between columns */
   padding: 10px;
   margin: 10px;
@@ -401,6 +401,15 @@ audio {
   border-radius: 10px;
 }
 
+.grid-item-submenu {
+  width: 200px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  text-align: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
 .grid-item:hover {
   background: rgba(255, 255, 255, 0.15);
   cursor: pointer;
@@ -411,6 +420,10 @@ audio {
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.5;
+}
+
+.grid-container .grid-item-submenu h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lato', sans-serif;
 }
 
 .grid-container .grid-item h4 {
