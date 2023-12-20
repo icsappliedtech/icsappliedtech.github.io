@@ -422,7 +422,14 @@ audio {
   line-height: 1.5;
 }
 
-.grid-container .grid-item-submenu h1, h2, h3, h4, h5, h6 {
+.grid-container .grid-item-video p {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.grid-container .grid-item-submenu h6 {
   font-family: 'Lato', sans-serif;
 }
 
