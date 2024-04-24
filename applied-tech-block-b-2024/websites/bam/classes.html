@@ -1,0 +1,152 @@
+<!-- Defines the document as an HTML5 document. Only appears once at the top of each HTML page. Does not have a closing tag. -->
+<!doctype html>
+
+<!-- <html> is the root element of an HTML page. -->
+  <!-- class no-js is a fallback that indicates that JavaScript is not supported or has not yet been loaded. -->
+  <!-- land attribute defines the document language and en simply stands for English. -->
+<html class="no-js" lang="en">
+
+<!-- <head> is the container for the following elements: <title>, <style>, <meta>, <script>, <base> -->
+  <!-- <head> contains all the metadata (the data about data)-->
+<head>
+
+  <!-- utf-8 is a character encoding system allowing characters to be represented by ASCII text. -->
+  <meta charset="utf-8">
+
+  <!-- The title of this document and is shown in the browser tab. -->
+  <title>Bam Chao Website:About</title>
+
+  <!-- Describes the content on this webpage. -->
+  <meta name="description" content="My first personal website">
+
+    <!-- Desfine keywords associated with this webpage. -->
+  <meta name="keywords" content="Bam Chao, Bangkok, Thailand, Applied Technologies, ICS">
+
+<!-- Sets the viewpoint default to make the website look good on all devices. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- og means "Open Graph". This information is used in social media postings.-->
+  <meta property="og:title" content="Bam Chao Website">
+  <meta property="og:type" content="My first personal website">
+  <meta property="og:url" content="https://www.mrjasoncode.com">
+  <meta property="og:image" content="icon.png">
+
+ <link rel="manifest" href="site.webmanifest">
+
+ <link rel="apple-touch-icon" href="icon.png">
+
+ <!-- Place favicon.ico in the root directory -->
+
+ <!-- CSS stylesheet from outside third party source. -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ 
+ <!-- ** DO NOT CHANGE ** CSS styles used to set defaults and normalize generic styles. -->
+  <link rel="stylesheet" href="css/normalize.css">
+
+  <!-- CSS styles that can be customized for this website. -->
+  <link rel="stylesheet" href="css/main.css">
+
+  <!-- Used by some browsers to adjust the color of the address bar and/or other UI elements. -->
+  <meta name="theme-color" content="#fafafa">
+
+</head>
+
+<body>
+
+  <header>
+    <div class="navbar">
+      <div class="logo"><a href="index.html">BAM</a></div>
+      <ul class="links"
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="about.html">ABOUT</a></li>
+      <li><a href="classes.html">CLASSES</a></li>
+    </ul>
+    <a href="mailto:25bam_c@students.ics.ac.th?subject=Website Contact" class="action_btn">CONTACT</a>
+    <div class="toggle_btn">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+  </div>
+
+    <div class="dropdown_menu">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="about.html">ABOUT</a></li>
+      <li><a href="classes.html">CLASSES</a></li>
+      <li><a href="mailto:25bam_c@students.ics.ac.th?subject=Website Contact" class="action_btn">CONTACT</a></li>
+    </div>
+
+  </header>
+
+  <main>
+    <section id="subpage" class="center">
+      <h1>My Classes!</h1>
+      <p>These are the classes I'm taking at ICS this semester.</p>
+
+      <!-- Grid Row Begin -->
+        <div class="grid-container">
+            <div class="grid-item">
+                <p><a href="#" target="_blank">AP Biology</a></p>
+            </div>
+            <div class="grid-item">
+                <p><a href="#" target="_blank">Thai</a></p>
+            </div>
+            <div class="grid-item">
+                <p><a href="#" target="_blank">Statistics</a></p>
+            </div>
+            <div class="grid-item">
+                <p><a href="#" target="_blank">Entrepreneurship</a></p>
+            </div>
+        </div>
+      <!-- Grid Row End -->
+
+        <!-- Grid Row Begin -->
+        <div class="grid-container">
+            <div class="grid-item">
+                <p><a href="#" target="_blank">Applied Technologies</a></p>
+            </div>
+            <div class="grid-item">
+                <p><a href="#" target="_blank">Conceptual Physics</a></p>
+            </div>
+            <div class="grid-item">
+                <p><a href="#" target="_blank">American Literature</a></p>
+            </div>
+            <div class="grid-item">
+                <p><a href="#" target="_blank">Honors Precalculus</a></p>
+            </div>
+        </div>
+        <!-- Grid Row End -->
+      
+      <a href="index.html" class="action_btn">GO HOME</a>
+      <br>
+      <br>
+    </section>
+  </main>
+
+  <!-- JavaScript code that shows and hides responsive dropdown navigation-->
+  <script>
+    const toggleBtn = document.querySelector('.toggle_btn')
+    const toggleBtnIcon = document.querySelector('.toggle_btn i')
+    const dropDownMenu = document.querySelector('.dropdown_menu')
+
+    toggleBtn.onclick = function () {
+    dropDownMenu.classList.toggle('open')
+    const isOpen = dropDownMenu.classList.contains('open')
+
+    toggleBtnIcon.classList = isOpen
+    ? 'fa-solid fa-xmark'
+    : 'fa-solid fa-bars'
+    }
+    </script>
+
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>
