@@ -1,0 +1,119 @@
+<!-- Declaration defining this document as a HTML5 document. It only appears once at the top of each HTML page. It does not have a closing tag.-->
+<!doctype html>
+
+<!-- <HTML> is the root element of an HTML page.-->
+<!-- Class no-js is a fallback that indicates that Javascript is not supported or has not been loaded.-->
+<!-- Lang attribute defines the document language and EN simple stands for English.-->
+  <html class="no-js" lang="en">
+
+<!-- <head> is the container for the following HTML elements: <titles>, <styles>, <meta>, <link>, <script>, <base>-->
+<!-- <head> contains all the metadata (the data about data).-->
+<head>
+<!-- utf-8 is a character encoding system allowing characters to be represented by ASCII text.-->
+  <meta  charset="utf-8">
+
+<!-- The title of this document and is shown in the browser tab.-->
+<title> Hannah Tian: My First Website</title>
+
+<!-- Describe the content on this webpage.-->
+  <meta name="description" content="Hannah Tian's first personal website for Applied Technologies Class at ICS.">
+
+  <!-- Describes the keywords on this webpage.-->
+  <meta name="keywords" content="applied technologies,ics ,hannah tian, bangkok, thailand">
+  
+  <!-- Setting the viewpoint default to make the website look good on all devices.-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- OG means "Open Graph", this information is used in social media postings.-->
+  <meta property="og:title" content="Hannah Tian's Personal Website">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="https://www.mrjasoncode.com">
+  <meta property="og:image" content="icon.png">
+
+  <link rel="manifest" href="site.webmanifest">
+ 
+  <link rel="apple-touch-icon" href="icon.png">
+  
+  <!-- Place favicon.ico in the root directory -->
+
+  <!-- Third party css stylesheet for 3 bar menu used in nav bar.-->
+
+  <!-- ** DO NOT CHANGE ** CSS stylesheet used to set defaults and normalize generic styles.-->
+  <link rel="stylesheet" href="css/normalize.css">
+  
+  <!-- CSS stylesheet that can be customized for this website.-->
+  <link rel="stylesheet" href="css/main.css">
+
+  <!-- Used by some browsers to adjust the color of the address bar and/or other UI elements.-->
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+
+  <header>
+    <!-- Responsive top horizontal navigaton bar.-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <div class="navbar">
+      <div class="logo"><a href=https://www.mrjasoncode.com>Hannah</a></div>
+      <ul class="links">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="classes.html">CLASSES</a></li>
+      </ul>
+      <a href="mailto:27hannah_t@students.ics.ac.th?subject=Website Contact" class="action_btn">CONTACT</a>
+      <div class="toggle_btn">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+
+    <div class="dropdown_menu">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="classes.html">CLASSES</a></li>
+      <li><a href="mailto:27hannah_t@students.ics.ac.th?subject=Website Contact" class="action_btn">CONTACT</a></li>
+    </div>
+
+   </header>
+
+   <main>
+    <section id="subpage"> <class=center>
+        <h1>About Me!</h1>
+        <img src="img/about-me.jpg">
+      <p>
+        My name is Hannah, I am a freshman in <a href="https://ics.ac.th" target="_blank">International Community School of Bangkok.</a> I am the only child in my family. I like to play games like roblox and valorant. My birthday is April 30, 2009, I'm almost 15 years old! I like to watch Barbie and My Little Pony.
+      </p> 
+      <a href="about.html" class="action_btn">Go home</a>
+    </section>
+   </main>
+   
+   
+   <script>
+    const toggleBtn = document.querySelector('.toggle_btn')
+    const toggleBtnIcon = document.querySelector('.toggle_btn i')
+    const dropDownMenu = document.querySelector('.dropdown_menu')
+    
+    toggleBtn.onclick = function() {
+    dropDownMenu.classList.toggle('open')
+    const isOpen = dropDownMenu.classList.contains('open')
+    
+    toggleBtnIcon.classList = isOpen
+    ? 'fa-solid fa-xmark'
+    : 'fa-solid fa-bars'
+    }
+    </script>
+  
+  <!-- Add your site or application content here -->
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>
