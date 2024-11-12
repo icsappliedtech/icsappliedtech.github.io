@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Abby -- Web Designer and Developer -- 28abby_l@students.ics.ac.th
+
+# THANKS
+
+    The team that made the HTML Boilerplate template files.
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5
+    Apache Server Configs, jQuery, Modernizr, Normalize.css
