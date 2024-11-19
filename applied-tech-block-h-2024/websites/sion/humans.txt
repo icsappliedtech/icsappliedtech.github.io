@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    <Sion Kim> -- <A very hungryand tired student> -- <@27sion_k>
+
+# THANKS
+
+    <name>
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5
+    Apache Server Configs, jQuery, Modernizr, Normalize.css
