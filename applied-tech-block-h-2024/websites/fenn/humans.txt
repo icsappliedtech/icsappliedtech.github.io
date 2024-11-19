@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Fenn -- Web Designer and Developer -- @feen.p_
+
+# THANKS
+
+    <The team that made the HTML 5 Boilerplate template files>
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5
+    Apache Server Configs, jQuery, Modernizr, Normalize.css
