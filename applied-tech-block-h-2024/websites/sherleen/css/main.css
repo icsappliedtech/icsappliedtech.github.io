@@ -11,11 +11,16 @@
    Base styles: opinionated defaults
    ========================================================================== */
 
-html {
+
+  
+contact.html {
   color: #000000;
   font-size: 1em;
   line-height: 1.4;
 }
+
+
+
 
 /*
  * Remove text-shadow in selection highlight:
