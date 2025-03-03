@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X Posts - MrJasonCode</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f0f0f0;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    #x-posts {
+      background: white;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .post {
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      background: #fafafa;
+    }
+    .post:hover {
+      transform: scale(1.02);
+      transition: transform 0.2s;
+    }
+    #loading {
+      text-align: center;
+      color: #666;
+    }
+    .error {
+      color: #d32f2f;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>X Posts Showcase</h1>
+  <section id="x-posts">
+    <div id="loading">Loading X posts...</div>
+    <div id="posts-container"></div>
+  </section>
+  <script>
+    fetch('https://x-api-proxy.vercel.app/api/tweets')
+      .then(response => response.json())
+      .then(data => {
+        const loading = document.getElementById('loading');
+        const container = document.getElementById('posts-container');
+        loading.style.display = 'none'; // Hide loading
+        if (data.data && data.data.length > 0) {
+          data.data.forEach(post => {
+            const postElement = document.createElement('div');
+            postElement.className = 'post';
+            postElement.textContent = post.text;
+            container.appendChild(postElement);
+          });
+        } else {
+          container.innerHTML = '<p class="error">No posts found.</p>';
+        }
+      })
+      .catch(error => {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('posts-container').innerHTML = '<p class="error">Failed to load X posts. Try again later.</p>';
+        console.error('Error:', error);
+      });
+  </script>
+</body>
+</html>
