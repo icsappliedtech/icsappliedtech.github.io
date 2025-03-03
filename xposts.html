@@ -29,7 +29,7 @@
   </section>
   <script>
     async function fetchPosts(attempt = 1, maxAttempts = 3) {
-      const query = document.getElementById('search').value || 'techeducation';
+      const query = document.getElementById('search').value || 'edtech';
       try {
         const response = await fetch(`https://x-api-proxy.vercel.app/api/tweets?q=${encodeURIComponent(query)}`);
         if (!response.ok) {
