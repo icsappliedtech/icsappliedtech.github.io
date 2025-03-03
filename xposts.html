@@ -5,42 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>X Posts - MrJasonCode</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      background: #f0f0f0;
-    }
-    h1 {
-      color: #333;
-      text-align: center;
-    }
-    #x-posts {
-      background: white;
-      padding: 15px;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .post {
-      margin: 10px 0;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 3px;
-      background: #fafafa;
-    }
-    .post:hover {
-      transform: scale(1.02);
-      transition: transform 0.2s;
-    }
-    #loading {
-      text-align: center;
-      color: #666;
-    }
-    .error {
-      color: #d32f2f;
-      text-align: center;
-    }
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background: #f0f0f0; }
+    h1 { color: #333; text-align: center; }
+    #x-posts { background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .post { margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 3px; background: #fafafa; }
+    .post:hover { transform: scale(1.02); transition: transform 0.2s; }
+    #loading { text-align: center; color: #666; }
+    .error { color: #d32f2f; text-align: center; }
   </style>
 </head>
 <body>
@@ -48,14 +19,26 @@
   <section id="x-posts">
     <div id="loading">Loading X posts...</div>
     <div id="posts-container"></div>
+    <div id="error-message" class="error" style="display: none;"></div>
   </section>
   <script>
-    fetch('https://x-api-proxy.vercel.app/api/tweets')
-      .then(response => response.json())
-      .then(data => {
+    async function fetchPosts(attempt = 1, maxAttempts = 3) {
+      try {
+        const response = await fetch('https://x-api-proxy.vercel.app/api/tweets');
+        if (!response.ok) {
+          if (response.status === 429 && attempt < maxAttempts) {
+            const delay = Math.pow(2, attempt) * 1000; // Exponential backoff: 2s, 4s, etc.
+            await new Promise(resolve => setTimeout(resolve, delay));
+            return fetchPosts(attempt + 1, maxAttempts);
+          }
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        
         const loading = document.getElementById('loading');
         const container = document.getElementById('posts-container');
-        loading.style.display = 'none'; // Hide loading
+        loading.style.display = 'none';
+        
         if (data.data && data.data.length > 0) {
           data.data.forEach(post => {
             const postElement = document.createElement('div');
@@ -66,12 +49,16 @@
         } else {
           container.innerHTML = '<p class="error">No posts found.</p>';
         }
-      })
-      .catch(error => {
-        document.getElementById('loading').style.display = 'none';
-        document.getElementById('posts-container').innerHTML = '<p class="error">Failed to load X posts. Try again later.</p>';
-        console.error('Error:', error);
-      });
+      } catch (error) {
+        const loading = document.getElementById('loading');
+        const errorDiv = document.getElementById('error-message');
+        loading.style.display = 'none';
+        errorDiv.style.display = 'block';
+        errorDiv.textContent = `Failed to load X posts: ${error.message}`;
+        console.error('Fetch Error:', error);
+      }
+    }
+    fetchPosts(); // Start fetching
   </script>
 </body>
 </html>
