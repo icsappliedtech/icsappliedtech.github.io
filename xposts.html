@@ -10,6 +10,7 @@
     #x-posts { background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
     .post { margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 3px; background: #fafafa; }
     .post:hover { transform: scale(1.02); transition: transform 0.2s; }
+    .post a { color: #1e90ff; text-decoration: underline; }
     #loading { text-align: center; color: #666; }
     .error { color: #d32f2f; text-align: center; }
     #search-container { margin-bottom: 15px; text-align: center; }
@@ -29,6 +30,16 @@
     <div id="error-message" class="error" style="display: none;"></div>
   </section>
   <script>
+    function processPostText(text) {
+      // Remove hashtags (e.g., #coding becomes coding)
+      let cleanedText = text.replace(/#\w+/g, match => match.slice(1));
+      
+      // Convert URLs to clickable links
+      cleanedText = cleanedText.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank">$1</a>');
+      
+      return cleanedText;
+    }
+
     async function fetchPosts(useSearch = false, attempt = 1, maxAttempts = 3) {
       const query = useSearch ? document.getElementById('search').value : '';
       const url = query
@@ -39,7 +50,7 @@
         const response = await fetch(url);
         if (!response.ok) {
           if (response.status === 429 && attempt < maxAttempts) {
-            const delay = Math.pow(2, attempt) * 1000;
+            const delay = Math.min(attempt * 15 * 1000, 15 * 60 * 1000);
             await new Promise(resolve => setTimeout(resolve, delay));
             return fetchPosts(useSearch, attempt + 1, maxAttempts);
           }
@@ -56,7 +67,7 @@
           data.data.forEach(post => {
             const postElement = document.createElement('div');
             postElement.className = 'post';
-            postElement.textContent = post.text;
+            postElement.innerHTML = processPostText(post.text); // Process text here
             container.appendChild(postElement);
           });
         } else {
@@ -67,11 +78,11 @@
         const errorDiv = document.getElementById('error-message');
         loading.style.display = 'none';
         errorDiv.style.display = 'block';
-        errorDiv.textContent = `Failed to load X posts: ${error.message}`;
+        errorDiv.textContent = `Failed to load X posts: ${error.message}. Retrying may help after 15 minutes.`;
         console.error('Fetch Error:', error);
       }
     }
-    fetchPosts(false); // Load @jasonweimer's 10 latest posts
+    fetchPosts(false); // Load @jasonweimer's 10 posts
   </script>
 </body>
 </html>
