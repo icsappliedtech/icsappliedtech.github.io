@@ -47,8 +47,8 @@
   <meta name="theme-color" content="#fafafa">
 
   <style>
-    #x-posts { background: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    .post { margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 3px; background: #fafafa; }
+    #x-posts { background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 5px; }
+    .post { margin: 10px 0; padding: 10px; border-radius: 3px; background: rgba(255, 255, 255, 0.1); }
     .post:hover { transform: scale(1.02); transition: transform 0.2s; }
     .post a { color: #1e90ff; text-decoration: underline; }
     #loading { text-align: center; color: #666; }
@@ -90,7 +90,7 @@
   <!-- Add webpage content here -->
   <main>
     <section id="subpage" class="center">
-      <h2>X Post Showcase</h2>
+      <h2>Latest X Posts</h2>
       <hr width=200px>
 
       <!-- Dynamic X Posts from @jasonweimer X account -->
@@ -101,7 +101,7 @@
           <button onclick="fetchPosts(true)">Search</button>
           <button onclick="fetchPosts(false)">My Posts</button>
         </div> -->
-        <div id="loading">Loading X Posts</div>
+        <div id="loading">Loading...</div>
         <div id="posts-container"></div>
         <div id="error-message" class="error" style="display: none;"></div>
       </section>
