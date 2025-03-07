@@ -51,11 +51,11 @@
     .post { margin: 10px 0; padding: 10px; border-radius: 3px; background: rgba(255, 255, 255, 0.1); }
     .post:hover { transform: scale(1.02); transition: transform 0.2s; }
     .post a { color: coral;; text-decoration: none; }
-    #loading { text-align: center; color: #333333; }
+    #loading { text-align: center; color: #666666; }
     .error { color: #d32f2f; text-align: center; }
     #search-container { margin-bottom: 15px; text-align: center; }
     input, button { padding: 5px; margin: 5px; }
-    .left { text-align: left;}
+    .left { text-align: left; }
   </style>
 
 </head>
@@ -108,15 +108,9 @@
       </section>
       <script>
         function processPostText(text) {
-          // Remove hashtags and the word following them (e.g., #coding)
           let cleanedText = text.replace(/#\w+/g, '');
-          
-          // Convert URLs to clickable links
           cleanedText = cleanedText.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank">$1</a>');
-          
-          // Clean up extra spaces left by hashtag removal
           cleanedText = cleanedText.replace(/\s+/g, ' ').trim();
-          
           return cleanedText;
         }
     
@@ -147,7 +141,7 @@
               data.data.forEach(post => {
                 const postElement = document.createElement('div');
                 postElement.className = 'post';
-                postElement.innerHTML = processPostText(post.text); // Process text here
+                postElement.innerHTML = processPostText(post.text);
                 container.appendChild(postElement);
               });
             } else {
@@ -158,7 +152,7 @@
             const errorDiv = document.getElementById('error-message');
             loading.style.display = 'none';
             errorDiv.style.display = 'block';
-            errorDiv.textContent = `Failed to load X posts: ${error.message}. Retrying may help after 15 minutes.`;
+            errorDiv.textContent = `Failed to load X posts: ${error.message}. Showing cached or static data if available.`;
             console.error('Fetch Error:', error);
           }
         }
