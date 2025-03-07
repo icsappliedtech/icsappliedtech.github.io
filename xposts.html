@@ -110,15 +110,15 @@
         function processPostText(text) {
           // Remove hashtags and the word following them (e.g., #coding)
           let cleanedText = text.replace(/#\w+/g, '');
-      
+          
           // Convert URLs to clickable links
           cleanedText = cleanedText.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank">$1</a>');
-      
+          
           // Clean up extra spaces left by hashtag removal
           cleanedText = cleanedText.replace(/\s+/g, ' ').trim();
-      
-      return cleanedText;
-    }
+          
+          return cleanedText;
+        }
     
         async function fetchPosts(useSearch = false, attempt = 1, maxAttempts = 3) {
           const query = useSearch ? document.getElementById('search').value : '';
