@@ -50,7 +50,7 @@
     #x-posts {background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 5px;}
     .post {margin: 10px 0; padding: 10px; border-radius: 3px; background: rgba(255, 255, 255, 0.1);}
     .post:hover {transform: scale(1.02); transition: transform 0.2s;}
-    .post p {font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; line-height: 1.5;}
+    .post p {font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; line-height: 1.5; margin: 0;}
     .post a {color: coral; text-decoration: none;}
     #loading {text-align: center; color: #999999;}
     .error {color: #ffffff; text-align: center;}
@@ -176,7 +176,9 @@
         data.data.forEach(post => {
           const postElement = document.createElement('div');
           postElement.className = 'post';
-          postElement.innerHTML = processPostText(post.text);
+          const pElement = document.createElement('p');
+          pElement.innerHTML = processPostText(post.text);
+          postElement.appendChild(pElement);
           container.appendChild(postElement);
         });
       } else {
