@@ -107,57 +107,84 @@
         <div id="error-message" class="error" style="display: none;"></div>
       </section>
       <script>
-        function processPostText(text) {
-          let cleanedText = text.replace(/#\w+/g, '');
-          cleanedText = cleanedText.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank">$1</a>');
-          cleanedText = cleanedText.replace(/\s+/g, ' ').trim();
-          return cleanedText;
-        }
-    
-        async function fetchPosts(useSearch = false, attempt = 1, maxAttempts = 3) {
-          const query = useSearch ? document.getElementById('search').value : '';
-          const url = query
-            ? `https://x-api-proxy.vercel.app/api/tweets?q=${encodeURIComponent(query)}`
-            : 'https://x-api-proxy.vercel.app/api/tweets';
-          
-          try {
-            const response = await fetch(url);
-            if (!response.ok) {
-              if (response.status === 429 && attempt < maxAttempts) {
-                const delay = Math.min(attempt * 15 * 1000, 15 * 60 * 1000);
-                await new Promise(resolve => setTimeout(resolve, delay));
-                return fetchPosts(useSearch, attempt + 1, maxAttempts);
-              }
-              throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            const data = await response.json();
-            
-            const loading = document.getElementById('loading');
-            const container = document.getElementById('posts-container');
-            loading.style.display = 'none';
-            
-            if (data.data && data.data.length > 0) {
-              container.innerHTML = '';
-              data.data.forEach(post => {
-                const postElement = document.createElement('div');
-                postElement.className = 'post';
-                postElement.innerHTML = processPostText(post.text);
-                container.appendChild(postElement);
-              });
-            } else {
-              container.innerHTML = '<p class="error">No posts found' + (query ? ' for "' + query + '"' : '') + '.</p>';
-            }
-          } catch (error) {
-            const loading = document.getElementById('loading');
-            const errorDiv = document.getElementById('error-message');
-            loading.style.display = 'none';
-            errorDiv.style.display = 'block';
-            errorDiv.textContent = `Failed to load X posts: ${error.message}. Showing cached or static data if available.`;
-            console.error('Fetch Error:', error);
+    // Your static tweets (replace with your real posts)
+    const staticPosts = {
+  data: [
+    { text: "What’s a simple change you made that had a huge impact on your work? A tool, a habit, or a mindset shift. Drop yours in the replies below." },
+    { text: "Whitespace isn’t empty space. It’s what makes everything else readable. Next time you’re designing, remove an element instead of adding one. See what happens." },
+    { text: "If people don’t trust your brand, they won’t buy from you. Trust isn’t built through flashy marketing. It comes from consistency, clarity, and follow-through. Say what you do. Do what you say." },
+    { text: "Great ideas don’t come from staring at a blank screen. They come from doing the work. Start with something rough, then shape it into something real." },
+    { text: "I used to overthink launching new ideas. The best ones came from testing early and adjusting fast. If you're waiting for perfect, you’re already behind." },
+    { text: "Good UX isn’t just about how something looks. It’s about how it works. Use Jakob’s Law, people expect your product to work like others they already know. Fight that expectation, and you’ll lose them." },
+    { text: "A clean design isn’t about what you add. It’s about what you remove. If everything is important, nothing is." },
+    { text: "The best UI is the one people don’t think about. To test clarity, watch someone use your design without explaining it. Where they pause, struggle, or hesitate is where you need to fix friction." },
+    { text: "People say to work smarter, not harder, but smart work is built on disciplined effort. You don’t get efficiency without putting in the reps first. Master the skill, then streamline." },
+    { text: "What’s a skill you learned that completely changed how you approach work? Could be a technique, a mindset shift, or even a tool." }
+  ]
+};
+
+    function processPostText(text) {
+      let cleanedText = text.replace(/#\w+/g, '');
+      cleanedText = cleanedText.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank">$1</a>');
+      cleanedText = cleanedText.replace(/\s+/g, ' ').trim();
+      return cleanedText;
+    }
+
+    async function fetchPosts(useSearch = false, attempt = 1, maxAttempts = 3) {
+      const query = useSearch ? document.getElementById('search').value : '';
+      const url = query
+        ? `https://x-api-proxy.vercel.app/api/tweets?q=${encodeURIComponent(query)}`
+        : 'https://x-api-proxy.vercel.app/api/tweets';
+      
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          if (response.status === 429 && attempt < maxAttempts) {
+            const delay = Math.min(attempt * 15 * 1000, 15 * 60 * 1000);
+            await new Promise(resolve => setTimeout(resolve, delay));
+            return fetchPosts(useSearch, attempt + 1, maxAttempts);
           }
+          throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        fetchPosts(false); // Load @jasonweimer's 10 posts
-      </script>
+        const data = await response.json();
+        displayPosts(data);
+      } catch (error) {
+        const loading = document.getElementById('loading');
+        const errorDiv = document.getElementById('error-message');
+        loading.style.display = 'none';
+        
+        if (error.message.includes('429') || error.message.includes('500')) {
+          displayPosts(staticPosts);
+          errorDiv.style.display = 'block';
+          errorDiv.textContent = 'Using cached posts due to server issues or rate limits. Live updates resume soon.';
+        } else {
+          errorDiv.style.display = 'block';
+          errorDiv.textContent = `Failed to load X posts: ${error.message}`;
+          console.error('Fetch Error:', error);
+        }
+      }
+    }
+
+    function displayPosts(data) {
+      const loading = document.getElementById('loading');
+      const container = document.getElementById('posts-container');
+      loading.style.display = 'none';
+      
+      if (data.data && data.data.length > 0) {
+        container.innerHTML = '';
+        data.data.forEach(post => {
+          const postElement = document.createElement('div');
+          postElement.className = 'post';
+          postElement.innerHTML = processPostText(post.text);
+          container.appendChild(postElement);
+        });
+      } else {
+        container.innerHTML = '<p class="error">No posts found.</p>';
+      }
+    }
+
+    fetchPosts(false); // Load @jasonweimer's 10 posts
+  </script>
 
       <!-- Dynamic X Posts from @jasonweimer X account -->
 
