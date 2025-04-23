@@ -1,0 +1,454 @@
+/* =====================
+    Font Styles START
+   ====================== */
+
+/* Import font styles from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Fragment+Mono:ital@0;1&display=swap');
+
+/* Font Menu Text CSS Classes */
+.fragment-mono-regular {
+    font-family: "Fragment Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .fragment-mono-regular-italic {
+    font-family: "Fragment Mono", monospace;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+/* Font Body Text CSS Classes */
+.anonymous-pro-regular {
+    font-family: "Anonymous Pro", monospace;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .anonymous-pro-bold {
+    font-family: "Anonymous Pro", monospace;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .anonymous-pro-regular-italic {
+    font-family: "Anonymous Pro", monospace;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  .anonymous-pro-bold-italic {
+    font-family: "Anonymous Pro", monospace;
+    font-weight: 700;
+    font-style: italic;
+  }  
+
+/* =====================
+    Font Styles END
+   ====================== */
+
+  /* =====================
+    Link Styles START
+ ====================== */
+
+ a {
+  text-decoration: none;
+  color:rgb(190, 140, 35);
+ }
+
+ a:hover {
+  color:rgb(255, 175, 0);
+ }
+
+/* =====================
+    Link Styles END
+====================== */
+
+   /* =====================
+    HR Styles START
+ ====================== */
+
+    hr.new1 {
+      border-top: 1px solid salmon;
+    }
+
+    hr.new2 {
+      border-top: 1px dashed #ffffff;
+    }
+
+    hr.new3 {
+      border-top: 1px dotted salmon;
+    }
+
+    hr.new4 {
+      background: salmon;
+      height: 2px;
+      border: 0px;
+    }
+
+    hr.new5 {
+      height: 10px;
+      border: 0px;
+      background: salmon;
+      border-radius: 5px;
+    }
+
+    hr.new6 {
+      content: "b";
+      display: inline-block;
+      position: relative;
+      top: -0.7em;
+      font-size: 1em;
+      padding: 0 0.25em;
+      background: rgb(255, 175, 0);;
+    }
+
+    hr.new7 {
+      height: 14px;
+      border-radius: 0px;
+      display: inline-block;
+      position: relative;
+      top: -0.7em;
+      font-size: 1em;
+      padding: 0 0.25em;
+      background: rgb(255, 175, 0);;
+    }
+
+   /* =====================
+    HR Styles END
+ ====================== */
+
+/* =====================
+    Background Images START
+   ====================== */
+
+   body, html {
+      height: 100%;
+      margin: 0;
+   }
+
+   .bg-home {
+      background-image: url("../img/whitebeard.jpg");
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+   }
+
+   .bg-sub {
+    background-image: url("../img/goldroger.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+ }
+
+/* =====================
+    Background Images END
+   ====================== */
+
+/* =====================
+    Heading and Paragraph Styles START
+   ====================== */
+
+   h1 {font-size: 4rem;}
+   h2 {font-size: 3.5rem;}
+   h3 {font-size: 3rem;}
+   h4 {font-size: 2.5rem;}
+   h5 {font-size: 2rem;}
+   h6 {font-size: 1.6rem;}
+
+   h1, h2, h3, h4, h5, h6 {
+    font-family: "Anonymous Pro", monospace;
+    font-weight: 700;
+    font-style: normal;
+    padding: 0;
+    margin: 0;
+   }
+
+   p {
+    font-family: "Anonymous Pro", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1rem;
+    line-height: 1.75;
+    padding: 0;
+    margin: 0 0 20px 0;
+   }
+
+/* =====================
+  Heading and Paragraph Styles END
+ ====================== */
+
+/* =====================
+    Button Styles START
+ ====================== */
+
+ .action-btn {
+    background-color: rgb(190, 140, 35);
+    box-shadow: 0px 0px 3px 3px rgb(100, 73, 0);
+    font-family: "Fragment Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: 0;
+    font-size: 1.2rem;
+    color: #000000;
+    padding: 7px 17px 7px 17px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .action-btn:hover {
+    background-color: #000000;
+    color: rgb(190, 140, 35);
+  }
+
+/* =====================
+  Button Styles END
+ ====================== */
+
+/* =====================
+    Home Page and Sub Page Containers START
+ ====================== */
+ .homepage-container {
+  background-color:rgb(255, 255, 255, 0.8);
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+ }
+
+ .homepage-h1 {
+  margin: 150px 0 -10px 0;
+ }
+
+ .subpage-container {
+  background-color:rgb(0, 0, 0, 0.75);
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  color:#ffffff
+ }
+
+ .form-container {
+  width: 60%;
+  text-align: left;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+ }
+ 
+ .grid-container {
+  display: flex;
+  justify-content: center;
+ }
+
+.grid-cards {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+}
+
+.grid-cards a:hover {
+  background-color: #666666;
+  border-radius: 20px;
+}
+
+.grid-card {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 175, 70, 0.75);
+  color: #000000;
+  height: 100px;
+  border-radius: 20px;
+  font-family: "Fragment Mono", monospace;
+  font-weight: 700;
+  font-style: normal;
+}
+
+ /* =====================
+    Home Page and Sub Page Containers END
+ ====================== */
+
+  /* =====================
+    Subpage Content Styles START
+ ====================== */
+
+ .subpage-content {
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+ }
+
+ .photo {
+  width: 100%;
+  border-radius: 50px;
+ }
+
+   /* =====================
+    Subpage Content Styles END
+ ====================== */
+
+  /* =====================
+    Contact Page Styles START
+ ====================== */
+
+ form {
+  font-family: "Anonymous Pro", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1rem;
+  line-height: 1.75;
+ }
+
+ input[type=text], [type=email], textarea, select {
+  width: 100%;
+  padding: 10px 10px;
+  margin: 10px 0px 20px 0px;
+  display: inline-block;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-family: "Anonymous Pro", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 0.8rem;
+  line-height: 1.75;
+ }
+
+ textarea {
+  height: 100px;
+ }
+
+input[type=submit] {
+  width: 100%;
+  background-color: rgb(225, 165, 45);
+  box-shadow: 0px 0px 3px 3px rgb(180, 130, 30);
+  font-family: "Fragment Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+  text-decoration: 0;
+  font-size: 1.2rem;
+  color: #000000;
+  padding: 10px 10px;
+  margin: 10px 0px 20px 0px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #000000;
+  color: rgb(225, 165, 45);
+}
+
+   /* =====================
+    Contact Page Styles END
+ ====================== */
+
+ /* =====================
+    Navbar Styles START
+ ====================== */
+ .logo {
+    font-family: "Anonymous Pro", monospace;
+    font-weight: 700;
+    font-style: normal;
+ }
+ 
+.nav-container {
+  background-color: #000000;
+  box-shadow: 0px 0px 10px 10px #00000075;
+  font-size: 1.2rem;
+  font-family: "Anonymous Pro", monospace;
+  font-weight: 700;
+  font-style: normal;
+  height: 60px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.navbar ul {
+  display: flex;
+}
+
+.nav-container .navbar {
+  justify-content: space-between;
+}
+
+.navbar ul li {
+  list-style-type: none;
+}
+
+.nav-container .navbar ul li {
+  padding: 0;
+  margin: 0 20px;
+}
+
+.navbar a {
+  color:rgb(190, 140, 35);
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  color: #ffffff;
+}
+
+@media screen and (min-width: 390px) and (max-width: 767) {
+  .nav-container {
+    height: auto;
+  }
+  .nav-container .navbar {
+    flex-direction: column;
+  }
+}
+
+ /* =====================
+    Navbar Styles END
+ ====================== */
+
+  /* =====================
+    Footer Styles START
+ ====================== */
+
+ .footer-container {
+  background-color: #000000;
+  height: 40px;
+  width: 100%;
+  padding: 20px 0px 10px 0px;
+ }
+
+ .footer-content {
+  text-align: center;
+  color: rgb(190, 140, 35);
+  font-size: 0.8rem;
+  font-family: "Anonymous Pro", monospace;
+  font-weight: 400;
+  font-style: italic;
+ }
+
+   /* =====================
+    Footer Styles END
+ ====================== */

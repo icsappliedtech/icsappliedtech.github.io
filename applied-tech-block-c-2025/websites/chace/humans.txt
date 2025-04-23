@@ -1,0 +1,16 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Siraphop Silphanisong -- Head Director and Professional Failure
+
+# THANKS
+
+    Jarukit Ekwongviricha -- Procrastinating and giving me the opportunity to seize the day
+    Jason "Weimar Republic" Weimer -- Starting civil peace
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5
+    Apache Server Configs, jQuery, Modernizr, Normalize.css
