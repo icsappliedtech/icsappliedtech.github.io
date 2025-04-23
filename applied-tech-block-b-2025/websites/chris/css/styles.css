@@ -1,0 +1,361 @@
+/* =====================
+    Font Styles START
+    ==================== */
+
+    @import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* FONT MENU TINOS CSS CLASSES */
+.tinos-regular {
+    font-family: "Tinos", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .tinos-bold {
+    font-family: "Tinos", serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .tinos-regular-italic {
+    font-family: "Tinos", serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  .tinos-bold-italic {
+    font-family: "Tinos", serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+  
+/* FONT BODY TEXT PT SERIF */
+.pt-serif-regular {
+  font-family: "PT Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.pt-serif-bold {
+  font-family: "PT Serif", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.pt-serif-regular-italic {
+  font-family: "PT Serif", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.pt-serif-bold-italic {
+  font-family: "PT Serif", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* ====================
+    Font Styles END
+    =================== */
+/* Background images start */
+  body, html {
+    height: 100%;
+    margin: 0;
+
+  }
+
+  .bg-home {
+    background-image: url("../img/background.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+  }
+
+
+  .bg-sub {
+    background-image: url("../img/chinese-new-year-9466072.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+/* end bg image */
+
+/* headings and paragraph styles start */
+
+    h1 {font-size: 6rem;}
+    h2 {font-size: 5rem;}
+    h3 {font-size: 4rem;}
+    h4 {font-size: 5rem;}
+    h5 {font-size: 2rem;}
+    h6 {font-size: 1.6rem;}
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: "PT Serif", serif;
+      font-weight: 400;
+      font-style: normal;  
+      padding:0;
+      margin: 0;
+    }
+
+    p{
+      font-family: "PT Serif", serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 1rem;
+      line-height: 1.75rem;
+      padding: 0;
+      margin: 0 0 20px 0;
+    }
+/* headings and paragraph styles end */
+
+/*link styles start*/
+
+    a {
+      text-decoration: none;
+      color: aqua;
+    }
+
+    a:hover {
+      color: blue;
+    }
+/* link styles end*/
+
+/* button stlyes start */
+    .action_btn {
+      background-color: rgba(255, 255, 255, 0.46);
+      box-shadow: 0px 0px 3px 3px rgb(0, 0, 0, 0.1);
+      font-family: "Tinos", serif;
+      font-weight: 700;
+      font-style: normal;
+      font-size: 1.2rem;
+      padding: 7px 17px 7px 17px;
+      text-decoration: none;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .action_btn:hover {
+      background-color: rgba(255, 255, 255, 0.082);
+      color: aqua
+    }
+
+/* button style end */
+
+/* homepage and subpage container syles */
+
+    .homepage-container {
+      background-color: rgb(255, 255, 255, 0);
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .homepage-container h1 {
+      margin: 150px 0 -10px 0;
+
+    }
+
+    .subpage-container {
+      background-color: rgb(255, 255, 255, 0.9);
+      width: 90%; 
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .grid-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .grid-cards {
+      display: grid;
+      width: 100%;
+      grid-gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .grid-card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(0, 0, 0, 0.4);
+      color: white;
+      height: 100px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: "Tinos", serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    .grid-cards a:hover {
+      background-color: black;
+      border-radius: 10px;
+
+    }
+
+    .subpage-content {
+      width: 80%;
+      height: 100%;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .photo {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+/* contact form styles statr */
+    form {
+      font-size: 1rem;
+      line-height: 1.75;
+      font-family: "PT Serif", serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    input[type=text], select {
+      width: 100%;
+      padding: 20px 20px;
+      margin: 10px 0 20px 0px;
+      display: inline-block;
+      border: 1px solid color(black);
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 0.5rem;
+      line-height: 1.75;
+    }
+
+
+    input[type=email] {
+      width: 100%;
+      padding: 20px 20px;
+      margin: 10px 0 20px 0px;
+      display: inline-block;
+      border: 1px solid color(black);
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 0.5rem;
+      line-height: 1.75;
+    }
+
+    textarea {
+      width: 100%;
+      height: 150px;
+      padding: 20px;
+      margin: 10px 0 20px 0px;
+      box-sizing: border-box;
+      border: 1px solid black;
+      border-radius: 5px;
+      resize: none;
+      font-size: 0.8rem;
+      line-height: 1.75;
+    }
+
+    input[type=submit] {
+      width: 100%;
+      background-color: aqua;
+      color: white;
+      background-color: rgba(255, 255, 255, 0.46);
+      box-shadow: 0px 0px 3px 3px rgb(0, 0, 0, 0.1);
+      font-family: "Tinos", serif;
+      font-weight: 700;
+      font-style: normal;
+      font-size: 1.2rem;
+      padding: 7px 17px 7px 17px;
+      text-decoration: none;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      cursor: pointer;
+
+    }
+
+    input[type=submit]:hover {
+      background-color: white;
+      color: aqua;
+    }
+/*contact form styles end*/
+
+
+/* nav bar start */
+
+    .nav-container {
+      background-color: black;
+      box-shadow: 0px 0px 10px 10px rgb(0, 0, 0, 0.4);
+      font-size: 1.2rem;
+      font-family: "Tinos", serif;
+      font-weight: 700;
+      font-style: normal;
+      height: 60px;
+      width: 100%;
+      position: sticky;
+      top: 0;
+    }
+
+    .form-container {
+      width: 60%;
+      text-align: left;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .navbar ul {
+      display: flex;
+    }
+
+    .nav-container .navbar {
+      justify-content: space-between;
+    }
+
+    .navbar ul li {
+      list-style-type: none;
+    }
+
+    .nav-container .navbar ul li {
+      padding: 0px;
+      margin: 0 20px;
+      
+    }
+
+/* footer */
+    .footer-container {
+      background-color: black;
+      height: 40px;
+      width: 100%;
+      padding: 20px 0px 10px 0px;
+    }
+
+    .footer-content {
+      text-align: center;
+      color: white;
+      font-size: 0.8rem;
+      font-family: "Tinos", serif;
+      font-weight: 400;
+      font-style: italic;
+    
+    }
