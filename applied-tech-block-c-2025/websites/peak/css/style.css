@@ -1,0 +1,433 @@
+/* ===================
+    Font style START
+    ================== */
+
+/* Import Font styles from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Happy+Monkey&display=swap');
+
+/* Font Menu Text CSS Classes */
+.comic-neue-light {
+    font-family: "Comic Neue", cursive;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .comic-neue-regular {
+    font-family: "Comic Neue", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .comic-neue-bold {
+    font-family: "Comic Neue", cursive;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .comic-neue-light-italic {
+    font-family: "Comic Neue", cursive;
+    font-weight: 300;
+    font-style: italic;
+  }
+  
+  .comic-neue-regular-italic {
+    font-family: "Comic Neue", cursive;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  .comic-neue-bold-italic {
+    font-family: "Comic Neue", cursive;
+    font-weight: 700;
+    font-style: italic;
+  }
+ 
+/* Font Body Text CSS Class */
+.happy-monkey-regular {
+    font-family: "Happy Monkey", system-ui;
+    font-weight: 400;
+    font-style: normal;
+  }  
+
+/* ====================
+    Font Styles END
+    =================== */
+
+/* ====================
+    Link Styles START
+    ===================*/
+
+    a {
+      text-decoration: none;
+      color: #078BC9;
+    }
+
+    a:hover {
+      color: #2e2e2e
+    }
+
+/* ====================
+    Link Styles END
+    ===================*/
+
+  /* ==================
+  HR Styles START
+    =================== */
+
+    hr.new1 {
+      border-top: 1px solid red;
+    }
+
+    hr.new2 {
+      border-top: 1px dashed red;
+    }
+
+    hr.new3 {
+      border-top: 1px dotted red;
+    }
+
+    hr.new4 {
+      border-top: 1px solid red;
+    }
+
+    hr.new5 {
+      border-top: 10px solid red;
+      border-top: 0px;
+      border-radius: 5px;
+    }
+
+/* ===================
+    Background images START
+    =================== */
+
+    body, html {
+      height: 100%;
+      margin: 0;
+    }
+
+    .bg-home {
+      background-image: url("../img/castle-4613926_1920.jpg");
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover; 
+      background-attachment: fixed;
+    }
+
+    .bg-sub {
+      background-image: url("../img/palace-7701252_1920.jpg");
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover; 
+      background-attachment: fixed;
+    }
+
+/* ===================
+    Background Images END
+    ================== */
+
+
+/* ===================
+    Heading and Paragraph Styles START
+    ================== */
+
+    h1 {font-size: 6rem;}
+    h2 {font-size: 5rem;}
+    h3 {font-size: 4rem;}
+    h4 {font-size: 3rem;}
+    h5 {font-size: 2rem;}
+    h6 {font-size: 1.6rem;}
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: "Happy Monkey", system-ui;
+      font-weight: 400;
+      font-style: normal;
+      padding: 0;
+      margin: 0;
+    }
+
+    p {
+      font-family: "Happy Monkey", system-ui;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 1rem;
+      line-height: 1.75;
+      padding: 0;
+      margin: 0 0 20px 0
+    }
+
+/* ===================
+    Heading and Paragraph Styles END
+    ================== */
+
+/* ===================
+    Button Styles START
+    ================== */
+
+    .action_btn {
+      background-color: #078BC9;
+      box-shadow: 0px 0px 3px 3px rgb(255, 255, 255, 0.6);
+      font-family: "Comic Neue", cursive;
+      font-weight: 700;
+      font-style: normal;
+      font-size: 1.2rem;
+      color: #ffffff;
+      padding: 7px 17px 7px 17px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+  .action_btn:hover {
+    background-color: #ffffff;
+    color: #078BC9;
+  }
+
+/* ===================
+    Button Styles END
+    ================== */
+
+/* ===================
+    Home Page and Sub Page Containers START
+    ================== */
+
+    .homepage-container {
+      background-color: rgb(0,0,0,0.3);
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .homepage h1 {
+      margin: 150px 0 -10px 0;
+    }
+
+    .subpage-container {
+      background-color: rgb(0,0,0,0.5);
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+
+/* ===================
+    Subpage Content Styles START
+    ================== */
+
+  .subpage-content {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: cemter;
+  }
+
+  .photo {
+    width: 100%;
+    border-radius: 20px
+  }
+
+  .grid-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .grid-cards {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 20px;
+  }
+
+  .form-container {
+    width: 60%;
+    text-align: left;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px
+  }
+
+  .grid-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0,0,0,0.4);
+    color: #ffffff;
+    height: 100px;
+    border-radius: 10px;
+    font-family: "Happy Monkey", system-ui;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .grid-cards a:hover {
+    background-color: #ffffff;
+    border-radius: 10px
+  }
+
+/* ===================
+    Home Page and Sub Page Containers END
+    ================== */
+
+/* ===================
+    Contacts Page Styles Start
+    ================== */
+
+    form {
+      font-family: "Happy Monkey", system-ui;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    input[type=text], [type=email], textarea, select{
+      width: 100%;
+      padding: 10px 10px;
+      margin: 10px 0px 20px 0px;
+      display: inline-block;
+      border: 1px solid #000000;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-family: "Comic Neue", cursive;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 0.8rem;
+      line-height: 1.75;
+    }
+
+    textarea {
+      height: 100px
+    }
+
+    input[type=submit] {
+      width: 100%;
+      background-color: #078BC9;
+      box-shadow: 0px 0px 3px 3px rgb(255, 255, 255, 0.6);
+      font-family: "Comic Neue", cursive;
+      font-weight: 700;
+      font-style: normal;
+      font-size: 1.2rem;
+      color: #ffffff;
+      padding: 10px 10px;
+      margin: 10px 0px 20px 0px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+      background-color: #ffffff;
+      color: #078BC9;
+    }
+
+ /* ===================
+    Contact Page Styles End
+    ================== */
+    
+    /* ===================
+    Navbar Start
+    ================== */
+
+    .logo {
+        font-family: "Comic Neue", cursive;
+        font-weight: 700;
+        font-style: normal;
+    }
+
+    .nav-container {
+      background-color: #2e2e2e;
+      box-shadow: 0px 0px 10px 10px rgb(0,0,0,0.5);
+      font-size: 1.2rem;
+      font-family: "Comic Neue", cursive;
+      font-weight: 700;
+      font-style: normal;
+      height: 60px;
+      width: 100%;
+      position: sticky;
+      top: 0;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .navbar ul {
+      display: flex; 
+    }
+
+    .nav-container .navbar {
+      justify-content: space-between;
+    }
+
+    .navbar ul li {
+      list-style-type: none;
+    }
+
+    .nav-container .navbar ul li {
+      padding: 0;
+      margin: 0 20px;
+    }
+
+    .navbar a {
+      color: #078BC9;
+      text-decoration: none;
+    }
+
+    .navbar a:hover {
+      color: #ffffff;
+    }
+
+    @media screen and (min-width: 390px) and (max-width: 767px) {
+      .nav-container {
+        height: auto; 
+      }
+
+      .nav-container .navbar {
+        flex-direction: column;
+      }
+    }
+
+/* ===================
+    Navbar END
+    ================== */   
+
+/* ===================
+    Footer Styles START
+    ================== */
+
+    .footer-container {
+      background-color: #2e2e2e;
+      height: 40px;
+      width: 100%;
+      padding: 20px 0px 10px 0px
+    }
+
+
+    .footer-content {
+      text-align: center;
+      color: #ffffff;
+      font-size: 0.8rem;
+      font-family: "Happy Monkey", system-ui;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+/* ===================
+    Footer Styles END
+    ================== */
+
+
