@@ -1,0 +1,426 @@
+/* =============================
+    Font styles START
+    ============================ */
+
+/* Import Font styles from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Text:ital@0;1&display=swap');
+
+/* Font Menu Text CSS classes */
+.dm-serif-text-regular {
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .dm-serif-text-regular-italic {
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+/* ==============================
+    Font Styles END
+    ============================= */
+
+/* ==============================
+    Link Styles START
+    ============================= */
+
+    a {
+      text-decoration: none;
+      color:#ff9100;
+
+    }
+
+    a:hover {
+      color: #000000
+    }
+
+/* ==============================
+    Link Styles END
+    ============================= */    
+
+/* ==============================
+    HR Styles START 
+    ============================= */  
+
+    hr.new1 {
+      border-top: 1px solid red;
+    }
+
+    hr.new2 {
+      border-top: 1px dashed red;
+    }
+
+    hr.new3 {
+      border-top: 1px dotted red;
+    }
+
+    hr.new4 {
+      height: 1px red;
+      border: 0px;
+      background: red;
+    }
+
+    hr.new5 {
+      border: 10px solid red;
+      border-radius: 5px;
+    }
+
+  hr.new6:after {
+    content: "broski";
+    display: incline-block;
+    position: relative;
+    top: -0.7em;
+    font-size: 1.5em;
+    padding: 0 0.25em;
+    background: rgb(255,255,255,0.0);
+  }
+
+  hr.new7 {
+    height: 14px;
+    border: 0;
+    background: #666666;
+    border-radius: 5px;
+    box-shadow:inset 0 12 px 12px -12px rgb(0.0.0.0.8);
+  }
+/* ==============================
+    HR Styles END
+    ============================= */   
+
+/* ==============================
+    Background Images START
+    ============================= */
+
+    body, html {
+      height: 100%;
+      margin: 0;
+    }
+
+    .bg-home {
+      background-image: url("../img/landscape-4143400_1920.jpg");
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment:fixed;
+    }
+
+    .bg-sub {
+      background-image: url("../img/bangkok-1759467_1920.jpg");
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment:fixed;
+    }
+
+/* ==============================
+    Background Images END
+    ============================= /*
+
+/* ==============================
+    Heading and Paragraph Styles START
+    ============================= */
+
+    h1{font: size 6rem;}
+    h2{font-size: 5rem;}
+    h3{font-size: 4rem;}
+    h4{font-size: 3rem;}
+    h5{font-size: 2rem;}
+    h6{font-size: 1.6rem;}
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: "DM Serif Text", serif;
+      font-weight: 400;
+      font-style: normal;
+      padding: 0;
+      margin: 0;
+      }
+    
+      p{
+        font-family: "DM Serif Text", serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: rem ;
+        line-height: 1.75;
+        padding: 0;
+        margin: 0 0 20px 0;
+      }
+
+/* ==============================
+    Heading and Paragraph Styles END
+    ============================= */
+  
+/* ==============================
+   Button Styles START
+    ============================= */
+
+    .action-btn {
+      background-color: #000000;
+      box-shadow: 0px 0px 3px 3px rgba(255, 13, 13, 0);
+      font-family: "DM Serif Text", serif;
+      font-weight: 400;
+      font-style: normal;
+      text-decoration: none;
+      font-size: rem;
+      color: #ff7300;
+      padding: 7px 17px 7px 17px;
+      border: none;
+      outline: none; 
+      border-radius: 5px;
+      cursor: pointer;
+      
+    }
+
+    .action-btn:hover {
+      background-color: #ffffff;
+      color: #000000
+    }
+
+/* ==============================
+   Button Styles END
+    ============================= */
+
+/* ==============================
+   Home Page and Sub Page Containers START
+    ============================= */
+
+    .homepage-container {
+      background-color: rgb(255, 255, 255, 0.0);
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .homepage h1 {
+      margin: 150px 0 -10px 0;
+    }
+
+    .subpage-container {
+      background-color: rgb(255, 255, 255, 0.9);
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .form-container {
+      width: 60%;
+      text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .grid-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .grid-cards {
+      display: grid;
+      width: 100%;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-gap: 20px;
+    }
+
+    .grid-cards a:hover {
+      background: #666666;
+      border-radius: 10px;
+    }
+
+    .grid-card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.4);
+      color: #ffffff;
+      height: 100px;
+      border-radius: 10px;
+      font-family: "DM Serif Text", serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+/* ==============================
+   Home Page and Sub Page Containers END
+    ============================= */
+
+/* ==============================
+   Subpage Content Styles START
+    ============================= */
+
+    .subpage-content {
+      width: 80%;
+      height: 100%;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .photo {
+      width: 100%;
+      border-radius: 100px;
+    }
+
+/* ==============================
+   Subpage Content Styles END
+    ============================= */
+
+/* ==============================
+   Contact Page Styles START
+    ============================= */
+
+  form {
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+    input[type=text], [type=email], select {
+      width: 100%;
+      padding: 10px 10px;
+      margin: 10px 0px 20px 0px;
+      display: inline-block;
+      border: 1px solid #000000;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-family: "PT Serif", serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 0.8rem;
+      line-height: 1.75;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+    }
+
+    input[type=submit] {
+      background-color: #000000;
+      box-shadow: 0px 0px 3px 3px rgba(255, 13, 13, 0);
+      font-family: "DM Serif Text", serif;
+      font-weight: 400;
+      font-style: normal;
+      text-decoration: none;
+      font-size: rem;
+      color: #ff7300;
+      padding: 7px 17px 7px 17px;
+      border: none;
+      outline: none; 
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+/* ==============================
+   Contact Page Styles END
+    ============================= */
+
+/* ==============================
+   Navbar START
+    ============================= */
+
+    .logo {
+      font-family: "DM Serif Text", serif;
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    .nav-container {
+      background-color: #000000;
+      box-shadow: 0px 0px 10px 10px rgb(0,0,0,0.4);
+      font-size: 1.2rem;
+      font-family: "DM Serif Text", serif;
+      font-weight: 00;
+      font-style: normal;
+      height: 60px;
+      width: 100%;
+      position: sticky;
+      top: 0;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .navbar ul {
+      display: flex;
+    }
+
+    .nav-container .navbar {
+        justify-content: space-between;
+    }
+
+    .navbar ul li {
+      list-style-type: none;
+    }
+
+    .nav-container .navbar ul li {
+      padding: 0;
+      margin: 0 20px;
+    }
+    
+    .navbar a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .navbar a:hover {
+      color: #ffffff;
+    }
+
+    @media screen and (min-width: 390px) and (max-width: 767px) {
+      .nav-container {
+        height: auto;
+      }
+
+      .nav-container .navbar {
+        flex-direction: column;
+      }
+    }
+      
+/* ==============================
+   Navbar END
+    ============================= */
+
+/* ==============================
+   Footer Styles START
+    ============================= */
+
+    .footer-container {
+      background-color: #000000;
+      height: 40px;
+      width: 100%;
+      padding: 20px 0px 10px 0px;
+      
+    }
+
+    .footer-content {
+      text-align: center;
+      color: #ffffff;
+      font-size: 0.8;
+      font-family: "DM Serif Text", serif;
+      font-weight: 400;
+      font-style: italic;
+    }
+
+/* ==============================
+   Footer Styles END
+    ============================= */
