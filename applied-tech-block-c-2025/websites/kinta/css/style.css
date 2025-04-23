@@ -1,0 +1,426 @@
+/* =============================
+    Font styles START
+    ============================ */
+
+/* Import Font styles from Google Fonts */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap');
+
+/* font style*/
+
+.asul-regular {
+  font-family: "Asul", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.asul-bold {
+  font-family: "Asul", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+.cinzel-decorative-regular {
+    font-family: "Cinzel Decorative", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .cinzel-decorative-bold {
+    font-family: "Cinzel Decorative", serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .cinzel-decorative-black {
+    font-family: "Cinzel Decorative", serif;
+    font-weight: 900;
+    font-style: normal;
+  }
+  
+/* background images start */
+
+  body,html {
+     height: 100%;
+     margin: 0;     
+   }
+
+    .bg-home {
+      background-image: url("../IMG/vietnam-2158400.jpg");
+      height: 100%;
+      background-position:center ;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+
+    }
+
+    .bg-sub {
+      background-image: url("../IMG/Sun_Moon_Lake.jpg");
+      height: 100%;
+      background-position:center ;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+
+    }
+
+    .bg-school {
+      background-image: url("../IMG/lamelo1.webp");
+      height: 100%;
+      background-position:center ;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+
+    }
+
+    .bg-contact {
+      background-image: url("../IMG/01BookTalkK2.avif");
+      height: 100%;
+      background-position:center ;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+
+    }
+
+
+/* background images End */
+
+/* =============================
+    paragraph styles START
+    ============================ */
+
+    h1 {font-size: 6rem}
+    h2 {font-size: 5rem}
+    h3 {font-size: 4rem}
+    h4 {font-size: 3rem}
+    h5 {font-size: 2rem}
+    h6 {font-size: 1.6rem}
+    
+    h1, h2, h3, h4, h5 {
+      font-family: "Cinzel Decorative", serif;
+      font-weight: 400;
+      font-style: normal;
+      padding: 0;
+      margin: 0;
+    }
+    
+    p{
+      font-family: "Cinzel Decorative", serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 1rem ;
+      line-height: 1.75;
+      padding: 0;
+      margin: 0 0 20px 0;
+    }
+
+    /* =============================
+    paragraph styles End
+    ============================ */
+
+    .action-btn{
+      background-color: rgb(75, 83, 246);
+      box-shadow: 3px 3px 3px 3px rgba(115, 137, 248, 0);
+      font-family: "Cinzel Decorative", serif;
+      font-weight: 700;
+      font-style: normal;
+      text-decoration: none;
+      font-size: 1.2rem;
+      color: azure;
+      padding: 7px 17px 7px 17px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .action-btn:hover{
+      background-color: azure;
+      color: rgba(115, 182, 248, 0)  ;
+    }
+
+       /* =============================
+    sub pages start
+    ============================ */
+
+    .subpage-container {
+      background-color: rgba(255,255,255,0.7);
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto; 
+      padding: 20px;
+      text-align: center;
+    }
+
+    .form-container {
+      width: 60%;
+      text-align: left;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+
+    .homepage-container h1{
+      margin: 150px 0px -10px 0;
+    }
+
+    .homepage-container {
+      background-color: rgba(255,255,255,0.9);
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto; 
+      padding: 20px;
+      text-align: center;
+    }
+
+    .logo {
+      font-family: "Cinzel Decorative", serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    .nav-container {
+      background-color:  rgb(75, 83, 246);
+      box-shadow: 0px 0px 5px 5px rgba(87, 125, 219, 0.15);
+      font-size: 1.2rem;
+      font-family: "Cinzel Decorative", serif;
+      font-weight: 400;
+      font-style: normal;
+      position: sticky;
+      top: 0;
+      height: 60px;
+      width: 100%;
+    }
+
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 90%;
+      height: 100%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .nav-bar ul {
+      display: flex;
+    }
+
+    .nav-container .nav-bar {
+        justify-content: space-between;
+    }
+
+    .nav-bar ul li {
+      list-style-type: none;
+    }
+
+    .nav-container .nav-bar ul li {
+      padding: 0;
+      margin: 0 20px;
+    }
+    
+    .nav-bar a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .nav-bar a:hover {
+      color: #000000;
+    }
+
+    @media screen and (min-width: 390px) and (max-width: 767px){
+    .nav-container{
+      height:auto
+    }
+
+    .nav-container .nav-bar {
+      flex-direction: column;
+    }
+    }
+
+
+  /* =============================
+    sub pages start
+    ============================ */
+
+     .subpage-content {
+      width: 80%;
+      height: 100%;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+     }
+
+     .photo {
+      width: 100%;
+      border-radius: 600px;
+     }
+
+
+     .footer-container {
+      background-color: black;
+      width: 100%;
+      height: 40px;
+      padding: 20px 0px 10px 0px;
+      font-family: "Asul", serif;
+      font-weight: 400;
+      font-style: normal;
+      }
+    
+
+    .footer-content{
+     text-align: center;
+     color: #ffffff;
+     font-size: 1.3rem;
+     font-family: "Asul", serif;
+     font-weight: 400;
+     font-style: normal;
+    }
+
+
+    /* =============================
+    link styles
+    ============================ */
+     a{
+      text-decoration: none;color: rgb(75, 83, 246);
+     }
+   
+     a:hover {
+      color:#000000;
+     }
+
+
+
+    .grid-container{
+      display: flex ;
+      justify-content: center;
+    }
+
+    .grid-cards {
+      display: grid;
+      width: 100%;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-gap: 20px;
+    }
+    
+    .grid-card {
+      display:flex ;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: rgb(75, 83, 246);
+      height: 100px;
+      border-radius: 10px;
+      font-family: "Asul", serif;
+      font-weight: 400;
+      font-style: normal;
+     
+    }
+
+    .grid-cards a:hover {
+         background-color: #000000;
+         border-radius: 10px;
+
+    }
+
+    h1.new1{
+      border-top: 1px solid red;
+    }
+
+
+    h1.new2{
+      border-top: 1px dashed red;
+    }
+
+    h1.new3{
+      border-top: 1px dotted red;
+    }
+
+
+    h1.new4{
+      height: 1px solid red;
+      border: 0px;
+      background-color: red;
+    }
+
+    h1.new5{
+      border: 10px solid red;
+      border-radius: 5px;
+    }
+    
+    hr.new6:after {
+      content: "kinta";
+      display: incline-block;
+      position: relative;
+      top: -0.7em;
+      font-size: 1.5em;
+      padding: 0 0.25em;
+      background: rgb(255,255,255,0.0);
+    }
+    hr.new7 {
+      height: 14px;
+      border: 0;
+      background: #666666;
+      border-radius: 5px;
+      box-shadow:inset 0 12 px 12px -12px rgb(0.0.0.0.8);
+    }
+
+
+
+
+
+    form {
+      font-family: "Asul", serif;
+  font-weight: 400;
+  font-style: normal;
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+  
+      input[type=text], [type=email], select {
+        width: 100%;
+        padding: 10px 10px;
+        margin: 10px 0px 20px 0px;
+        display: inline-block;
+        border: 1px solid #000000;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-family: "Asul", serif;
+  font-weight: 400;
+  font-style: normal;
+        font-size: 0.8rem;
+        line-height: 1.75;
+      }
+  
+      textarea {
+        width: 100%;
+        height: 100px;
+      }
+  
+      input[type=submit] {
+        background-color: #000000;
+        box-shadow: 0px 0px 3px 3px rgba(255, 13, 13, 0);
+        font-family: "Asul", serif;
+  font-weight: 400;
+  font-style: normal;
+        text-decoration: none;
+        font-size: rem;
+        color: #348dd5;
+        padding: 7px 17px 7px 17px;
+        border: none;
+        outline: none; 
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+      }
+  
+      input[type=submit]:hover {
+        background-color: #ffffff;
+        color: #000000;
+      }
