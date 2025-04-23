@@ -1,0 +1,445 @@
+/* ==================
+    Font styles START
+   ================== */ 
+
+/* import font stles from Google Fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Dekko&family=Noticia+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* Font Body Text */
+  .dekko-regular {
+    font-family: "Dekko", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+/* Font Heading Text */ 
+.lavishly-yours-regular {
+  font-family: "Lavishly Yours", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.chewy-regular {
+  font-family: "Chewy", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+
+
+  
+
+/* ==================
+     Font Styles END
+     ================== */
+
+/* ===================
+   Link Styles START
+   =================== */ 
+
+a {
+  text-decoration: none;
+  color: rgb(231, 220, 220);
+
+  a:hover {
+   color: rgb(255, 255, 255);
+  
+  }
+  
+}
+/* ===================
+   Link Styles END
+   =================== */ 
+
+/* ===================
+   HR START
+   =================== */ 
+
+hr.new1 {
+  border-top: 1px solid rgb(255, 255, 255);
+}
+ 
+hr.new2 {
+  border-top: 1px dashed #ffffff;
+}
+
+hr.new3 {
+  border-top: 1px dotted #ffffff;
+}
+
+hr.new4 {
+  height: 1px;
+  border: 0px;
+  background: rgb(255, 255, 255);
+}
+
+hr.new5 {
+  border-top: 5px solid #ffffff;
+  border-radius: 5px
+}
+
+hr.new6:after {
+ content: S;
+ display: inline-block;
+ position: relative;
+ top: -07em;
+ font-size: 1.5em;
+ padding: 0 0,25em;
+ border-top: 1px;
+ background: rgb(255, 255, 255)
+}
+
+hr.new7 {
+  height: 10px;
+  border: 0;
+  background: red;
+  border-radius: 5px;
+  box-shadow: inset 0 12px 12px -12px rgb(231, 220, 220)
+}
+/* ===================
+   HR START
+   =================== */ 
+
+
+/* =======================
+   Background Images START
+   ======================= */
+
+   body,html {
+    height: 100%;
+    margin: 0%
+   }
+
+   .bg-home{
+     background-image: url("../img/lotus-814529_1920.jpg");
+     height: 100%; 
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-attachment: fixed;
+
+   }
+
+   .bg-sub{
+    background-image: url("../img/kite-3448482_1920.jpg");
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; 
+
+   }
+/* =======================
+   Background Images END
+  ======================== */
+
+/* ==========================
+   Heading and Paragraph Styles START
+   ========================== */
+
+   h1 {font-size: 6rem;}
+   h2 {font-size: 5rem;}
+   h3 {font-size: 4rem;}
+   h4 {font-size: 3rem;}
+   h5 {font-size: 2rem;}
+   h6 {font-size: 1rem;}
+
+   h1,h2,h3,h4,h5,h6 {
+    font-family: "Noticia Text", serif;
+    font-weight: 400;
+    font-style: normal;
+    padding: 0;
+    margin: 0; 
+   }
+
+   p {
+    font-family: "Noticia Text", serif;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.75;
+    padding: 0;
+    margin: 0 0 20 0; 
+   }
+
+/* ==========================
+   Heading and Paragraph Styles END
+   ========================== */
+
+/* ==========================
+   Button Style START
+   ========================== */
+
+   .action_btn {
+    background-color: #424b46;
+    box-shadow: 0px 0px 3px 3px rgb(82, 87, 84); 
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: none; 
+    font-size: 1.2rem;
+    color: #eed1d1 ;
+    padding: 8fx 18fx 8px 18px ;
+    border: none; 
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer; 
+   }
+
+
+   .action_btn:hover {
+    background-color: #eed1dd ;
+    color: #333f37;
+   }
+
+/* ==========================
+   Button Styles END
+   ========================== */
+/* =====================================
+  Home page and Sub Page Container START
+  ====================================== */
+     .homepage-container {
+      background-color: rgb(226, 199, 199, 0.2);
+      width: 90%; 
+      max-width: 1200px;
+      margin: 0 auto; 
+      padding:20px;
+      text-align: center; 
+      color: #e8ced5
+
+     }
+
+    
+    .subpage-container {
+      background-color: rgba(57, 64, 60, 0.8);
+      width: 90%; 
+      max-width: 1200px;
+      margin: 0 auto; 
+      padding:20px;
+      text-align: center; 
+      color: #d0bdc2
+     }
+
+     .homepage h1 {
+      margin: 150px 0 -10px 0; 
+     }
+
+    .form-container {
+     width: 90%;
+     text-align: left;
+     max-width: 1200px;
+     margin: 0 auto;
+     padding: 20px;
+    }
+
+
+    .grid-container {
+      display: flex;
+      justify-content: center; 
+    }
+
+    .grid-cards {
+      display: grid;
+      width: 100%;
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      grid-gap: 20px;
+    }
+
+    .grid-cards  a:hover {
+      background-color: #ffffff;
+      border-radius: 20px;
+    }
+
+    .grid-card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(103, 116, 112, 0.8);
+      height: 100px;
+      border-radius: 20px;
+      font-family: "Dekko", cursive;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 1.3rem;
+      
+    }
+    
+
+/* =====================================
+  Home page and Sub Page Container END
+  ====================================== */
+
+/* ========================
+  Subpage Content Styles START
+  ========================= */
+.subpage-content {
+  width: 80%;
+  height: 100% ;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center; 
+}
+
+.photo {
+  width:100%;
+  border-radius: 10px;
+
+}
+/* ========================
+  Subpage Content Styles END
+  ========================= */
+
+/* ========================
+  Content Page Styles START
+  ========================= */
+
+form {
+    font-family: "Dekko", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.5rem;
+    line-height: 2;
+}
+input[type=text], [type=email], textarea, select{
+  width:100%;
+  padding: 10px 10px;
+  margin: 10px 0px 20px 0px;
+  display: inline-block;
+  border: 1px solid #a58989;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-family: "Dekko", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.2rem;
+    line-height: 1.75;
+}
+
+textarea {
+  height:150px;
+}
+
+input[type=submit] {
+  width:100%;
+  background-color: #424b46;
+    box-shadow: 0px 0px 3px 3px rgb(82, 87, 84); 
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: none; 
+    font-size: 1.2rem;
+    color: #ecd2d2 ;
+    padding: 10px 10px;
+    margin: 10px 0px 20px 0px;
+    border: none; 
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer; 
+}
+
+input[type=submit]:hover {
+  background-color: #91a19a;
+  color: #f0d8de
+}
+
+  /* ========================
+  Content Page Styles END
+  ========================= */
+
+/* =================
+  Navbar START
+  ================= */ 
+
+  .logo {
+      font-family: "Dekko", cursive;
+      font-weight: 400;
+      font-style: normal;
+    font-size: 2rem;
+  }
+
+  .nav-container {
+    background-color:#e8ccd3; 
+    box-shadow: 0px 0px 10px 10px rgba(255, 255, 255, 0.402);
+    font-size: 2rem;
+    font-family: "Dekko", cursive;
+    font-weight: 400;
+    font-style: normal;
+    height: 60px ;
+    width: 100%; 
+    position: sticky;
+    top: 0; 
+  }
+
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  .navbar ul {
+    display: flex;
+  }
+
+  .nav-container .navbar {
+    justify-content: space-between;
+  }
+
+  .navbar ul li {
+    list-style-type: none;
+  }
+
+  .nav-container .navbar ul li {
+    padding: 0;
+    margin: 0 20px
+  }
+
+  .navbar a {
+    color:#333d3f;
+    text-decoration: none; 
+  }
+  
+  .navbar a:hover {
+    color:#ffffff
+  }
+   @media screen  and (min-width: 390px) and (max-width:767)
+    {
+     .nav-container {
+       height: auto; 
+     }
+
+     .nav-container .navbar {
+      flex-direction: column;
+    }
+
+    }
+   
+    
+/* =================
+   Navbar Styles END
+   ================= */
+
+   /* =====================
+   Footer Styles START
+   ==================== */
+
+   .footer-container {
+    background-color:#3b4840;
+    height: 40px;
+    width: 100%;
+    padding: 20px 0px 10px 0px
+   }
+
+   .footer-content  {
+    text-align: center;
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-family: "Lavishly Yours", cursive;
+    font-weight: 400;
+    font-style: normal;
+   }
+   /* =====================
+   Footer Styles END
+   ==================== */
