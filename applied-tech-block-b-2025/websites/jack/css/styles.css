@@ -1,0 +1,356 @@
+/* ================
+   Font Styles START 
+   =============== */
+ 
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Julius+Sans+One&display=swap');
+  
+/* FONT MENU ASAP CSS Classes */
+.gruppo-regular {
+  font-family: "Gruppo", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+ /* FONT BODY TEXT ASAP CSS Classes */
+ .julius-sans-one-regular {
+  font-family: "Julius Sans One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+ }
+  
+/* =============
+   Font Styles END 
+   ================== */  
+   
+   /* ==================
+   Background Images START 
+   ==================== */
+
+   body, html {
+    height: 100%;
+    margin: 0%;
+   }
+  
+   .bg-home {
+    background-image: url("../img/the-fog-4909513_1920.jpg");
+    height: 100%;
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; 
+   }
+
+   .bg-sub {
+    background-image: url("../img/forest-8355748_1920.jpg");
+    height: 100%;
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; 
+   }
+
+   /* ==================
+   Background Images END 
+   ==================== */
+   /* ==================
+   Heading and paragraph styles START 
+   ==================== */
+
+   h1{font-size:6rem;}
+   h2{font-size:5rem;}
+   h3{font-size:4rem;}
+   h4{font-size:3rem;}
+   h5{font-size:2rem;}
+   h6{font-size: 1.6rem;}
+
+   h1, h2, h3, h4, h5, h6 {
+    font-family: "Julius Sans One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    padding: 0;
+    margin: 0;
+   }
+
+   p {
+    font-family: "Gruppo", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.75rem;
+    padding: 0;
+    margin: 0 0 20px 0;
+   }
+
+/* ==================
+   Heading and paragraph styles END 
+   ==================== */
+   /* ==================
+   Link Styles  START 
+   ==================== */
+
+   a{
+    text-decoration: none;
+    color:rgb(255, 255, 255);
+   }
+    /* ==================
+   Link Styles  END  
+   ==================== */
+ /* ==================
+  Button Styles START 
+   ==================== */
+  
+   .action_btn {
+    background-color:rgb(255, 255, 255);
+    box-shadow: 0px 0px 3px 3px rgb(0, 0, 0, 0.5);
+    font-family: "Gruppo", sans-serif;
+    font-weight: 400;
+      font-style: normal;
+      text-decoration: none;
+      font-size: 1.2rem;
+      color: #030000;
+      padding: 7px 17px 7px 17px;
+      border: none; 
+      outline: none;
+      border-radius: 5px;
+      cursor: pointer;
+  
+   }
+
+   .action_btn:hover {
+    background-color: aliceblue;
+    color: rgb(6, 201, 245);
+   }
+
+   /* ==================
+  Button Styles END 
+   ==================== */
+   
+    /* ==================
+  Home Page and Sub Page Containers Styles START
+   ==================== */
+
+   .homepage-container {
+    background-color: rgba(244, 238, 238, 0);
+    width: 90%; 
+    max-width: 1200px;
+    margin: 0 auto; 
+    padding: 20px; 
+    text-align: center; 
+   } 
+
+   .homepage-container h1 {
+    margin: 150px 0 -10px 0;
+   }
+   .subpage-container {
+    background-color: rgb(0, 0, 0, 0.5);
+    color: rgb(255, 255, 255);
+    width: 90%; 
+    max-width: 1200px;
+    margin: 0 auto; 
+    padding: 20px; 
+    text-align: center; 
+   } 
+
+   .form-container {
+    width: 60%;
+    text-align: left;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+   }
+  
+
+   .grid-container {
+      display: flex;
+      justify-content: center; 
+   }
+
+  .grid-cards {
+    display: grid; 
+    width: 100%; 
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+
+  .grid-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 0, 0, 0.5);
+    color: white;
+    height: 100px;
+    border-radius: 10px; 
+    font-size: 1rem;
+    font-family: "Julius Sans One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  }
+
+  .grid-cards a:hover {
+    background-color: #827d7d;
+    border-radius: 10px;
+  }
+/* ==================
+  Home Page and Sub Page Containers Styles END
+   ==================== */
+
+   /*========================= 
+   Subpage Content Styles Start
+   =========================*/
+     
+   .subpage-content {
+      width: 50%;
+      height: 100%;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center; 
+   }
+   .photo {
+      width: 50%;
+      border-radius: 10px;
+   }
+   /*========================= 
+   Subpage Content Styles END
+   =========================*/
+   /*========================= 
+   Contact Form Styles START
+   =========================*/
+   form {
+    font-size: 1rem;
+    line-height: 1.75; 
+      font-family: "Julius Sans One", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+   }
+
+   input[type=text], select {
+    width: 100%;
+    padding: 20px 20px;
+    margin: 10px 0 20px 0px; 
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 0.8rem;
+    line-height: 1.75; 
+  }
+
+    input[type=email] {
+      width: 100%;
+      padding: 20px 20px;
+      margin: 10px 0 20px 0px; 
+      display: inline-block;
+      border: 1px solid black;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 0.8rem;
+      line-height: 1.75; 
+   }
+
+   textarea {
+    width:100%;
+    height: 150px;
+    padding: 20px 20px;
+    margin: 10px 0px 20px 0px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid black; 
+    border-radius: 5px;
+    background-color: white;
+    resize: none;
+    font-size: 0.8rem;
+    line-height:1.75;
+   }
+
+   input[type=submit] {
+    width: 100%;
+    background-color:aliceblue;
+    color: rgb(0, 0, 0);;
+   font-weight: 400;
+     font-style: normal;
+     text-decoration: none;
+     font-size: 1.2rem;
+     color: #030000;
+     padding: 7px 17px 7px 17px;
+     border: none; 
+     outline: none;
+     border-radius: 5px;
+     cursor: pointer;
+   }
+
+     input[type=submit]:hover {
+      background-color: white; 
+      color:rgb(6, 201, 245);
+     }
+
+   /* ==================
+  Navbar Styles START
+   ==================== */
+
+   .nav-container { 
+      background-color: rgb(2, 0, 0);
+      box-shadow: 0px 0px 5px 5px rbg(0, 0, 0, 0.6); 
+      font-size: 1.2rem;
+      font-family: "Gruppo", sans-serif;
+      font-weight: 400;
+        font-style: normal;
+        height: 60px;
+        width: 100%;
+        position: sticky;
+        top: 0;
+      }
+      
+
+      .navbar {
+        display: flex;
+        align-items: center; 
+        justify-content: center;
+        height: 100%;
+        width: 90%;
+        max-width: 1200px; 
+        margin: auto; 
+      }
+
+      .navbar ul {
+        display: flex; 
+      }
+
+      .nav-container .navbar {
+        justify-content: space-between; 
+      } 
+
+      .navbar ul li {
+        list-style-type: none; 
+      }
+
+      .nav-container .navbar ul li {
+        padding: 0px;
+        margin: 0 20px;
+      }
+/* ==================
+  Navbar Styles END
+   ==================== */
+       /* ==================
+  Footer Styles START
+   ==================== */
+.footer-container {
+    background-color:rgb(8, 0, 0);
+    height: 40px;
+    width: 100%;
+    padding: 20px 0px 10px 0px;
+}
+.footer-content {  
+  text-align: center;
+  color: white;
+  font-size: 0.8rem;
+    font-family: "Julius Sans One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+  /* ==================
+  Footer Styles END
+   ==================== */
