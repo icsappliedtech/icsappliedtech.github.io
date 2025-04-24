@@ -1,0 +1,477 @@
+/* ===================
+    Font Styles START
+    ================== */
+    
+ @import url('https://fonts.googleapis.com/css2?family=Gidole&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* FONT MENU GIDOLE CSS CLASS */
+
+.gidole-regular {
+    font-family: "Gidole", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+
+/* FONT BODY TEXT KANIT CSS Classes */
+
+.kanit-thin {
+  font-family: "Kanit", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.kanit-extralight {
+  font-family: "Kanit", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.kanit-light {
+  font-family: "Kanit", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.kanit-regular {
+  font-family: "Kanit", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.kanit-medium {
+  font-family: "Kanit", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.kanit-semibold {
+  font-family: "Kanit", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.kanit-bold {
+  font-family: "Kanit", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.kanit-extrabold {
+  font-family: "Kanit", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.kanit-black {
+  font-family: "Kanit", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.kanit-thin-italic {
+  font-family: "Kanit", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.kanit-extralight-italic {
+  font-family: "Kanit", sans-serif;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.kanit-light-italic {
+  font-family: "Kanit", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.kanit-regular-italic {
+  font-family: "Kanit", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.kanit-medium-italic {
+  font-family: "Kanit", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.kanit-semibold-italic {
+  font-family: "Kanit", sans-serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.kanit-bold-italic {
+  font-family: "Kanit", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.kanit-extrabold-italic {
+  font-family: "Kanit", sans-serif;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.kanit-black-italic {
+  font-family: "Kanit", sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+
+/* =================
+    Font Styles END
+    ================ */
+
+/* =======================
+  Background images START
+  ======================== */
+
+  body, html {
+    height: 100%;
+    margin: 0;
+  }
+
+  .bg-home {
+    background-image: url("../img/transilvania-5632013_1920.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+  .bg-sub {
+    background-image: url("../img/ocean-8283187_1920.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+
+/* =======================
+  Background images END
+  ======================== */
+
+/* ===============================
+  Heading & Paragraph Styles START
+  ================================ */
+
+  h1{font-size: 6rem;}
+  h2{font-size: 5rem;}
+  h3{font-size: 4rem;}
+  h4{font-size: 3rem;}
+  h5{font-size: 2em;}
+  h6{font-size: 1.6rem;}
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Gidole", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    padding: 0;
+    margin: 0;
+  }
+
+  p {
+    font-family: "Kanit", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1rem;
+    line-height: 1.75rem;
+    padding: 0;
+    margin: 0 0 20px 0;
+  }
+/* =============================
+  Heading & Paragraph Styles END
+  ============================== */
+
+  /* ==============
+  Link Styles START
+  ================== */
+
+  a {
+    text-decoration: none;
+    color: rgb(0, 247, 255);
+  }
+
+  a:hover {
+    color: blue;
+  }
+
+/* ==============
+  Link Styles END
+  =============== */
+
+/* ==============
+  Button Styles START
+  ================== */
+
+  .action_btn {
+    background-color: rgb(0, 247, 255);
+    box-shadow: 0px 0px 3px 3px rgb(0, 0, 0, 0.1);
+    font-family: "Kanit", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: rgb(255, 255, 255);
+    padding: 7px 17px 7px 17px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .action_btn:hover {
+    background-color: white;
+    color: rgb(0, 247, 255); 
+  }
+
+  /* ==============
+  Button Styles END
+  ================= */
+
+  /* ==================================
+  Home Page and Sub Page Containers START
+  ===================================== */
+
+    .homepage-container {
+      background-color: rgb(255, 255, 255, 0.0);
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .homepage-container h1 {
+      margin: 150px 0 -10px 0;
+    }
+
+    .subpage-container {
+      background-color: rgb(255, 255, 255, 0.9);
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .form-container {
+      width: 80%;
+      text-align: left;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .grid-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .grid-cards {
+      display: grid;
+      width: 100%;
+      grid-gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .grid-card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(0, 0, 0, 0.7);
+      color: white;
+      height: 100px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: "Kanit", sans-serif;
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    .grid-cards a:hover {
+      background-color: rgb(51, 118, 226);
+      border-radius: 10px;
+    }
+
+/* ====================================
+  Home Page and Sub Page Containers END
+  ===================================== */
+
+/* ===========================
+  Subpage Content Styles START
+  ============================ */
+  
+  .subpage-content {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .photo {
+    width: 100%;
+    border-radius: 10px;
+  }
+/* =========================
+  Subpage Content Styles END
+  ========================== */
+
+/* =========================
+  Contact Form Styles START
+  ========================== */
+
+  form {
+    font-size: 1rem;
+    line-height: 1.75;
+    font-family: "Kanit", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+  input[type=text], select {
+    width: 100%;
+    padding: 20px 20 px;
+    margin: 10px 0 20px 0px;
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 0.8rem;
+    line-height: 1.75;
+  }
+
+  input[type=email] {
+    width: 100%;
+    padding: 20px 20 px;
+    margin: 10px 0 20px 0px;
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 0.8rem;
+    line-height: 1.75;
+  }
+
+  textarea {
+    width:100%;
+    height: 150px;
+    padding: 20px 20px;
+    margin: 10px 0px 20px 0px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+    resize: none;
+    font-size: 0.8rem;
+    line-height: 1.75;
+  }
+
+  input[type=submit] {
+    width: 100%;
+    background-color: rgb(0, 247, 255);
+    box-shadow: 0px 0px 3px 3px rgb(0, 0, 0, 0.1);
+    font-family: "Kanit", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: rgb(255, 255, 255);
+    padding: 7px 17px 7px 17px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  input[type=submit]:hover {
+    background-color: white;
+    color:rgb(0, 247, 255) ;
+  }
+  
+
+
+ /* ====================
+  Contact Form Styles END
+  ======================= */
+
+/* ==================
+  Navbar Styles START
+  =================== */
+
+  .nav-container {
+    background-color: black;
+    box-shadow: 0px 0px 10px 10px rgb(0, 0, 0, 0.4);
+    font-size: 1.2rem;
+    font-family: "Kanit", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    height: 60px;
+    width: 100%;
+    position: sticky;
+    top: 0;
+  }
+
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  .navbar ul {
+    display: flex;
+  }
+
+  .nav-container .navbar {
+    justify-content: space-between;
+  }
+
+  .navbar ul li {
+    list-style-type: none;
+  }
+
+  .nav-container .navbar ul li {
+    padding: 0px;
+    margin: 0 20px;
+  }
+
+  /* ==============
+  Navbar Styles END
+  ================= */
+
+  /* ==================
+  Footer Styles START
+  =================== */
+
+  .footer-container {
+    background-color: black;
+    height: 40px;
+    width: 100%;
+    padding: 20px 0px 10px 0px;
+  }
+
+  .footer-content {
+    text-align: center;
+    color: white;
+    font-size: 0.8 rem;
+    font-family: "Kanit", sans-serif;
+    font-weight: 200;
+    font-style: italic;
+  }
+  /* ==============
+  Footer Styles END
+  ================= */
