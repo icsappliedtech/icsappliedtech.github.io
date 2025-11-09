@@ -1,0 +1,439 @@
+/*  ========================================
+             v Font Styles START v            */
+
+/* Import font styles from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Just+Another+Hand&family=Orbitron:wght@700&display=swap" rel="stylesheet');
+
+/* Font Classes for Website */
+
+.orbitron-bold {
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal
+}
+.just-another-hand-regular {
+  font-family: "Just Another Hand", cursive;
+  font-weight: 400;
+  font-style: normal
+}
+
+/*              ^ Font Styles END ^
+    ======================================== */
+
+
+
+
+/*  --------------------------------------------
+          v Background Images START v     */
+
+body{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh
+}
+
+.bg-home{
+  background-image: url("../img/lighthouse.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.bg-sub{
+  background-image: url("../img/lighthouse-8173576_1280.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed
+}
+
+/*          ^ Background Images END ^
+    -------------------------------------------- */
+
+/*  ========================================
+             v Link Styles START v            */
+
+a {
+  text-decoration: none;
+  color: black;
+  word-spacing: 5px
+}
+
+a:hover {color: limegreen}
+
+/*            ^ Link Styles END ^
+    ======================================== */
+
+/*  -------------------------------------------------
+          v Heading and Paragraph Styles START v     */
+
+h1 {font-size: 7.75rem}
+h2 {font-size: 5rem}
+h3 {font-size: 3.5rem}
+h4 {font-size: 3rem}
+h5 {font-size: 2rem}
+h6 {font-size: 1.75rem}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  padding: 0;
+  margin: 0
+}
+
+p {
+  font-family: "Just Another Hand", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.75rem;
+  line-height: 1;
+  padding: 0;
+  margin: 10px 0 12px 0;
+  word-spacing: 2px;
+  letter-spacing: 0.1rem
+}
+
+hr{border: 2px solid gray}
+
+/*         ^ Heading and Paragraph Styles END ^
+    ------------------------------------------------- */
+
+/*  ========================================
+             v Button Styles START v          */
+
+.action-btn {
+  background-color: darkslategray;
+  box-shadow: 0 0 5x 4px rgb(0,0,0,0.1.5);
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: italic;
+  text-decoration: none;
+  font-size: 1.3rem;
+  color: lime;
+  padding: 12px 22px 12px 22px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  cursor: pointer
+}
+
+.action-btn:hover {
+  background-color: palegoldenrod;
+  color: green
+}
+
+/*            ^ Button Styles END ^
+    ======================================== */
+
+/*  -----------------------------------------
+          v Navigation Bar Format START v     */
+
+.nav-container {
+  background-color: black;
+  box-shadow: 0 0 8px 7px rgb(0,0,0,0.4);
+  font-size: 1.2rem;
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  height: 60px;
+  width: 100%;
+  position: sticky;
+  top: 0
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 90%;
+  max-width: 1400px;
+  margin: auto
+}
+
+.navbar ul{display: flex}
+.nav-container .navbar {justify-content: space-between}
+
+.navbar ul li{list-style-type: none}
+.nav-container .navbar ul li{
+  padding: 0px;
+  margin: 0 10px
+}
+
+.navbar h2{
+  padding: 0px;
+  margin: 0 0
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none
+}
+.navbar a:hover {
+  color: green;
+}
+
+@media screen and (min-width: 390px) and (max-width: 787px) {
+  .nav-container {height: auto}
+
+  .nav-container .navbar {
+    flex-direction: column;
+  }
+}
+
+/*         ^ Navigation Bar Format END ^
+    ----------------------------------------- */
+
+/*  =============================================
+       v Home Page & Subpage Containers START v   */
+
+.homepage-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto 12px auto;
+  text-align: center;
+}
+.homepage-container h1 {margin: 90px 0 20px 0}
+.homepage-container p {
+  margin: 12px 0 15px 0;
+  font-size: 2.2rem;
+}
+
+
+
+.subpage-container {
+  background-color: rgb(255,255,255,0.5);
+  width: 90%;
+  max-width: 1200px;
+  padding: 0 0 30px 0;
+  margin: 22px auto 30px auto;
+  text-align: center;
+  border-radius: 22px;
+  flex-grow: 1
+}
+
+
+/*     ^ Home Page & Subpage Containers  END ^
+    ============================================ */
+
+/*  -----------------------------------------
+          v Subpage Content Style START v     */
+
+.subpage-content {
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+  text-align: center
+}
+
+.subpage-content h3 {
+  text-decoration: underline;
+  margin: 0 0 -8px 0
+}
+.subpage-container h5 {font-style: italic}
+
+
+.subpage-content ul {list-style: none;}
+
+.subpage-content li {
+  background-color: rgb(255,255,255,0.4);
+  border-radius: 10px;
+  font-family: "Just Another Hand", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.5rem;
+  letter-spacing: 0.1rem;
+  margin: 0 0 8px 0
+}
+
+.subpage-content li:hover {
+  font-weight: bolder
+}
+
+.subpage-content details {
+  background: rgb(255,255,255,0.4);
+  border: 2px solid white;
+  border-radius: 8px;
+  margin-bottom: 22px
+}
+
+.subpage-content summary {
+  padding: 20px;
+  font-family: "Orbitron", sans-serif;
+  font-weight: bold;
+  font-style: italic;
+  text-decoration: underline;
+  font-size: 2rem;
+  cursor: pointer;
+  list-style-type: none
+}
+
+summary:hover{background-color: rgb(255,255,255,0.7); border-radius: 8px}
+
+.subpage-content details p {
+  padding: 0 10px 0 10px;
+  font-family: "Just Another Hand", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.8rem;
+  letter-spacing: 0.1rem
+}
+
+/*          ^ Subpage Content Style END ^
+    ----------------------------------------- */
+
+/*  =============================================
+          v Footer Containers & Content START v   */
+
+.footer-container {
+  background-color: grey;
+  width: 100%;
+  height: 40px;
+  padding: 25px 0px 10px 0px
+}
+
+.footer-content {
+  text-align: center;
+  color: white;
+  font-size: 0.9rem;
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  font-style: normal
+}
+
+/*           ^ Footer Containers & Content END ^
+    ============================================ */
+
+/*  -----------------------------------------
+          v Photo Styles START v     */
+
+.photo {width: 75%; border-radius: 8px}
+
+/*          ^ Photo Styles END ^
+    ----------------------------------------- */
+
+/*  =============================================
+              v Grid Styles START v   */
+
+.grid-container {
+  display: flex;
+  justify-content: center;
+  padding: 25px 25px 25px 25px;
+  background-color: rgb(255,255,255,0.3);
+  border-radius: 10px
+}
+
+.grid-cards{
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-gap: 20px
+}
+
+.grid-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255,255,200,0.65);
+  height: 100px;
+  border-radius: 5px;
+  font-family: "Just Another Hand", cursive;
+  font-weight: 400;
+  font-style: normal;
+  text-decoration: underline 2px;
+  text-underline-offset: 2px;
+  font-size: 2.3rem
+}
+
+.grid-cards a:hover {
+  background-color: rgb(255,255,170,0.95);
+  border-radius: 10px;
+}
+
+/*              ^ Grid Styles END ^
+    ============================================ */
+
+/*  -----------------------------------------
+          v Form Styles START v     */
+
+.form-container {
+  padding: 10px 0 10px 0;
+  background-color: rgb(255,255,255,0.4);
+  border-radius: 6px;
+}
+
+form{
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1.7rem;
+  word-spacing: 2px;
+  letter-spacing: 0.1rem
+}
+form label{margin: 0 50px}
+
+.form-container input::placeholder{
+  font-family: "Just Another Hand", cursive;
+  font-weight: 400;
+  font-style: italic;
+  font-size: auto;
+  word-spacing: 2px;
+  letter-spacing: 0.1rem
+}
+
+input[type="text"], input[type="email"], select option{
+  width: 90%;
+  padding: 10px 5px 20px 5px;
+  margin: 0 0 30px 0;
+  display: inline-block;
+  box-sizing: border-box
+}
+
+select {
+  width: 80%;
+  padding: 10px 5px 20px 5px;
+  margin: 0 0 10px 0;
+}
+
+textarea {
+  width: 90%;
+  height: 40px;
+  padding: 8px 8px 8px 8px;
+  margin: 8px 8px 8px 8px;
+  box-sizing: border-box;
+  border: 1px solid black;
+  resize: none;
+  font-family: "Just Another Hand", cursive;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.7rem;
+  word-spacing: 2px;
+  letter-spacing: 0.1rem
+}
+
+input[type="button"] {
+  width: 30%;
+  padding: 8px 8px 8px 8px;
+  background-color: black;
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  color: white;
+  border: 4px solid white;
+  border-radius: 4px;
+}
+input[type="button"]:hover {
+  background-color: gray;
+}
+
+/*          ^ Form Styles END ^
+    ----------------------------------------- */
