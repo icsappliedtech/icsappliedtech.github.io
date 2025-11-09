@@ -1,0 +1,99 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Hannah: Contact Page</title>
+  <meta name="description" content="My First Website">
+  <meta name="author" content="Hannah">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Open Graph (for social sharing) -->
+  <meta property="og:title" content="My First Website">
+  <meta property="og:description" content="This is a class project for Applied Technologies class.">
+  <meta property="og:url" content="https://www.Hannah.com/studentwork">
+  <meta property="og:image" content="https://www.Hannahcode.com/tile.png">
+
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body class="bg-home">
+
+  <!-- Navbar -->
+  <div class="nav-container">
+    <div class="navbar">
+      <h6><a href="index.html">HANNAH</a></h6>
+      <nav>
+        <ul>
+          <li><a href="about.html">ABOUT</a></li>
+          <li><a href="school.html">SCHOOL</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="resources.html">RESOURCES</a></li>
+          <li><a href="contact.html" class="active">CONTACT</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Contact Content -->
+  <div class="subpage-container">
+    <h1>Contact!</h1>
+    <h5>Contact me for more information or just to say hi!</h5>
+
+    <div class="subpage-content">
+      <p>
+        Fill out the form below if you have questions or want to connect.  
+        I check submissions daily and usually respond within 48 hours if a reply is needed. Thank you!
+      </p>
+
+      <div class="form-container">
+        <form action="#" method="POST">
+          <label for="Name">Full Name:</label>
+          <input type="text" id="Name" name="Name" placeholder="Full Name" required>
+
+          <label for="Email">Your Email:</label>
+          <input type="email" id="Email" name="Email" placeholder="Your Email" required>
+
+          <label for="City">Your City:</label>
+          <input type="text" id="City" name="City" placeholder="Your City" required>
+
+          <label for="Region">Your Region:</label>
+          <select id="Region" name="Region" required>
+            <option value="">-- Select Region --</option>
+            <option>Africa</option>
+            <option>Asia</option>
+            <option>Australia</option>
+            <option>Europe</option>
+            <option>Central America</option>
+            <option>South America</option>
+          </select>
+
+          <label for="Message">Your Message:</label>
+          <textarea id="Message" name="Message" placeholder="Write your message here..."></textarea>
+
+          <input type="submit" value="SUBMIT" class="action-btn">
+        </form>
+      </div>
+
+      <hr>
+      <a href="index.html" class="action-btn">BACK HOME</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-container">
+    <div class="footer-content">
+      ©2025 All Rights Reserved
+    </div>
+  </div>
+
+  <!-- JavaScript Files -->
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
