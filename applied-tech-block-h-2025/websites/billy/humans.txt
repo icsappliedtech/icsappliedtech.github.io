@@ -1,0 +1,14 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Billy -- Student -- <twitter>
+
+# THANKS
+
+    Mr. Sean
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5, AjQuery, Modernizr, Normalize.css
