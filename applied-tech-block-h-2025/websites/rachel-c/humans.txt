@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Rachel-student
+
+# THANKS
+
+    Mr. Bro
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5
+    jQuery, Modernizr, Normalize.css

@@ -1,0 +1,528 @@
+/*======================================
+        Font Styles START
+        ============================*/
+
+/* import font styles from google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+/* fonts for website */
+.luxurious-roman-regular {
+  font-family: "Luxurious Roman", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+
+
+/* =============================
+   Font styles END
+   ===============================*/
+
+
+ /* =============================
+   Background Images START
+   ===============================*/
+
+
+
+ body {
+  height: 100%;
+  margin: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+ }
+
+
+ .bg-home {
+   background-image: url("../img/birds-7898729_1920.jpg");
+   height: 100%;
+   background-position: center;
+   background-repeat: none;
+   background-size: cover;
+   background-attachment: fixed;
+  
+ }
+ .bg-sub {
+   background-image: url("../img/birds-7898729_1920.jpg");
+   height: 100%;
+   background-position: center;
+   background-repeat: none;
+   background-size: cover;
+   background-attachment: fixed;
+ }
+
+body, html {
+  height: 100%;
+  margin: 0;
+  
+}
+
+
+
+a {
+  text-decoration: none;
+  color: skyblue;
+
+}
+
+a:hover {
+  color:white;
+}
+
+
+
+/*=====================================
+    Link styles END
+    ===========================*/
+
+/*=====================================
+    heading and Pargraph styles START
+    ===========================*/
+
+ h1{font-size: 6rem;}
+ h2{font-size: 5rem;}
+ h3{font-size: 4rem;}
+ h4{font-size: 3rem;}
+ h5{font-size: 2rem;}
+ h6{font-size: 1.6rem;}
+
+ h1, h2, h3, h4, h5, h6 {
+  font-family: "Luxurious Roman", serif;
+  font-weight: 400;
+  font-style: normal;
+  padding: 0;
+  margin: 0;
+ }
+
+ p {
+  font-family: "Luxurious Roman", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1rem;
+  line-height: 1.75;
+  padding: 0;
+  margin : 0;
+ }
+/*=================================
+   Heading and paragraph styles END
+   ==============================*/
+
+/*=================================
+    button styles START
+   ==============================*/
+
+.action-btn {
+  background-color: black;
+  box-shadow: 0px 0px 3px 3px rgb(0,0,0,0.1);
+  font-family: "Luxurious Roman", serif;
+  font-weight: 400;
+  font-style: normal;
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: white;
+  padding: 7px 17px 7 px 17px;
+  border: none;
+  outline: none;
+  border-radius: 7px;
+  cursor: pointer;
+
+}
+
+.action-btn:hover {
+  background-color: skyblue;
+  color: black;
+}
+
+/*=================================
+    button styles END
+   ==============================*/
+
+
+/*=================================
+    NAVBAR START
+   ==============================*/
+
+
+.nav-container {
+  background-color: black;
+  box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.4);
+  font-size: 1.2rem;
+  font-family: "Luxurious Roman", serif;
+  font-weight: 400;
+  font-style: normal;
+  height: 60px;
+  width: 100%;
+  position: sticky;
+  top: 0%;
+}
+
+
+.navbar {
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  height: 100%;
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.navbar ul {
+  display: flex;
+
+}
+
+.nav-container .navbar {
+  justify-content: space-between;
+}
+
+.navbar ul li {
+  list-style-type: none;
+
+}
+
+.nav-container .navbar ul li {
+  padding: 0px;
+  margin: 0 20px; 
+}
+
+.nav-contatiner h6 {
+  font-family: "Luxurious Roman", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.navbar h2 {
+  padding: 0px;
+  margin: 0;
+
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+
+}
+
+.navbar a:hover {
+  color: skyblue;
+}
+
+@media screen and (min-width: 390px)and(max-width: 787px)  {
+  .nav-container {
+    height: auto;
+  }
+
+    .nav-container .navbar {
+      flex-direction: column;
+
+    }
+  }
+  /*==========================================
+      Navbar END
+     ===============================*/
+
+  /*==========================================
+      Home/sub page container START
+     ===============================*/
+
+.homepage-container {
+  background-color: rgb(255, 255,255, 0.5);
+  width:90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+
+.homepage-container h1 {
+  margin: 150px 0 -10px 0;
+}
+
+
+.subpage-container {
+  background-color: rgb(255, 255, 255, 0.9);
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  flex-grow: 1;
+}
+
+ /*==========================================
+      Home/sub page container END
+     ===============================*/
+
+.photo {
+  width: 40%;
+  border-radius: 5%;
+}
+     
+
+
+/*=====================================================
+home/subpage container END
+==============================================*/
+
+/*=================================
+subpage content styles START
+===============================*/
+
+.subpage-content {
+  width:80%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  text-align:center;
+}
+
+
+/*=================================
+subpage content styles END
+===============================*/
+
+
+
+
+
+.footer-container {
+  background-color: rgb (0,0,0,0.8);
+  height: 40px;
+  width: 100%;
+  padding: 20px 0px 10px 0px;
+
+}
+
+.footer-content {
+  text-align: center;
+  color: black;
+  font-size: 0.8rem;
+  font-family: "Luxurious Roman", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+/*==============================
+footer styles END
+===============================*/
+
+/*==============================
+school blocks list styles START
+============================*/
+
+
+
+.grid-container {
+  display:flex;
+  justify-content: center;
+
+}
+
+.grid-cards {
+  display:grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+  
+
+}
+
+.grid-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(0,0,0,0.3);
+  color:white;
+  height: 100px;
+  border-radius: 10px;
+  font-size:1rem;
+
+}
+
+.grid-card a:hover {
+  background-color:rgb(0,0,0,0.2);
+  border-radius: 10px;
+}
+
+
+.subpage-content details {
+  background: #f9f9f9;
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+
+.subpage-content summary {
+  padding: 20px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: black;
+  cursor: pointer;
+  outline: none;
+  list-style-type: ' 🤔 '
+}
+
+.subpage-content summary:hover {
+  background-color: white;
+  border-radius: 10px;
+  color: skyblue;
+}
+
+.subpage-content details p {
+  padding: 10px;
+  margin-left: 20px;
+  line-height: 1.5;
+  color: rgb(45, 45, 45);
+}
+
+
+.subpage-content h2 {
+  font-size:1.5rem;
+  color: black;
+  padding-bottom: 5px;
+  margin-top: 1.5rem;
+}
+
+.subpage-content ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.subpage-content li {
+  background-color: rgba(190, 237, 255, 0.5);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 10px;
+  line-height: 1.5; 
+}
+
+.subpage-content li a {
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.subpage-content a:hover {
+  color: darkblue;
+  text-decoration: none;
+}
+
+
+/*===================================
+Subpage content styles END
+===================================*/
+
+/* =======================
+    Contact Form Styles START
+    ====================== */
+
+    form {
+      font-family: "Prata", serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    input[type=text], select {
+      width: 100%;
+      padding: 20px;
+      margin: 10px 0px 20px 0px;
+      display: inline-block;
+      border: 1px solid #000000;
+      border-radius: 10px;
+      box-sizing: border-box;
+      font-family: "Prata", serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    input[type=email] {
+      width: 100%;
+      padding: 20px;
+      margin: 10px 0px 20px 0px;
+      display: inline-block;
+      border: 1px solid #000000;
+      border-radius: 10px;
+      box-sizing: border-box;
+      font-family: "Prata", serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    textarea {
+      width: 100%;
+      height: 150px;
+      padding: 20px;
+      margin: 10px 0px 10px 0px;
+      box-sizing: border-box;
+      border: 1px solid #000000;
+      border-radius: 10px;
+      background-color: #f8f8f8;
+      resize: none;
+      font-family: "Prata", serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    input[type=submit] {
+      width: 100%;
+      background-color: #000000;
+      box-shadow: 0px 0px 3px 3px rgb(0, 0, 0, 0.1);
+      font-family: "Luxurious Roman", bold;
+      font-weight: 400;
+      font-style: normal;
+      text-decoration: none;
+      font-size: 1.2rem;
+      color: #ffffff;
+      padding: 7px 17px 7px 17px;
+      border: none;
+      outline: none;
+      border-radius: 7px;
+      cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+      background-color: skyblue;
+      color: #ffffff;
+}
+
+/* =======================
+    Contact Form Styles END
+    ====================== */
+
+/* =======================
+    Footer Styles START
+    ====================== */
+
+.footer-container {
+  background-color: rgb(0, 0, 0, 0.8);
+  height: 40px;
+  width: 100%;
+  padding: 20px 0px 10px 0px;
+}
+
+.footer-content {
+  text-align: center;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-family: "Prata", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* =======================
+    Footer Styles END
+    ====================== */
