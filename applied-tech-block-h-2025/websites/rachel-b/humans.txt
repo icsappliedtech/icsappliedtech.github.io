@@ -1,0 +1,17 @@
+# humanstxt.org/
+# The humans responsible &= technology colophon
+
+# TEAM
+
+    <Sarah> -- <immortal helper> -- <Facebook mom>
+
+# THANKS: 
+
+    <Annika and HADASSAH and SARAH RAHHHHHH>
+
+# TECHNOLOGY COLOPHON 
+
+#I love today 
+
+    CSS3, HTML5
+    Apache Server Configs, jQuery, Modernizr, Normalize.css
