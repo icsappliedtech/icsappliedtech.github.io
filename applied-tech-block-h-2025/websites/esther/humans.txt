@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    <Esther Pang> -- student 
+
+# THANKS
+
+    The greatest applied technology teacher, Mr. Jason
+
+# TECHNOLOGY COLOPHON
+
+   
+   CSS3, HTMLS jQuery, Modernizr, Normalize.css
