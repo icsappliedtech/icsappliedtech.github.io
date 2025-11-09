@@ -1,0 +1,13 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Taeyeon -- student 
+# THANKS
+
+    Mr. Tent
+
+# TECHNOLOGY COLOPHON
+
+ CSS3, Html5, jQuery, Modernizr, Normalize.css
