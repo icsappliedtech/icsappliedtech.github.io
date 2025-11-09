@@ -1,0 +1,443 @@
+/* ==========================
+   Font styles START
+========================== */
+@import url('https://fonts.googleapis.com/css2?family=Asap+Condensed:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+.merriweather-light { font-family: "Merriweather", serif; font-weight: 300; font-style: normal; }
+.merriweather-regular { font-family: "Merriweather", serif; font-weight: 400; font-style: normal; }
+.merriweather-bold { font-family: "Merriweather", serif; font-weight: 700; font-style: normal; }
+.asap-condensed-light { font-family: "Asap Condensed", sans-serif; font-weight: 300; }
+.asap-condensed-regular { font-family: "Asap Condensed", sans-serif; font-weight: 400; }
+.asap-condensed-medium { font-family: "Asap Condensed", sans-serif; font-weight: 500; }
+.asap-condensed-semibold { font-family: "Asap Condensed", sans-serif; font-weight: 600; }
+/* ==========================
+   Font styles END
+========================== */
+
+/* ==========================
+   Background Images START
+========================== */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.bg-home, .bg-sub {
+  background-image: url("../img/hot-air-balloon-9788005_1280.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+/* ==========================
+   Background Images END
+========================== */
+
+/* ==========================
+   Link Styles START
+========================== */
+a {
+  text-decoration: none;
+  color: #a70000;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #ff4d4d;
+  text-decoration: underline;
+}
+/* ==========================
+   Link Styles END
+========================== */
+
+/* ==========================
+   Heading and Paragraph styles START
+========================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Asap Condensed", sans-serif;
+  font-weight: 400;
+  color: #333366;
+  line-height: 1.5;
+  margin: 10px 0;
+  padding: 0;
+}
+
+h1 { font-size: 4rem; }
+h2 { font-size: 3.5rem; }
+h3 { font-size: 3rem; }
+h4 { font-size: 2.5rem; }
+h5 { font-size: 2rem; color: #666699; }
+h6 { font-size: 1rem; }
+
+p {
+  color: #333;
+  font-family: "Merriweather", serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 10px 0;
+}
+/* ==========================
+   Heading and Paragraph styles END
+========================== */
+
+/* ==========================
+   Button Styles START
+========================== */
+.action-btn {
+  background-color: #000;
+  color: #fff;
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  padding: 7px 17px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+  background-color: #ff4d4d;
+  color: #000;
+  transform: translateY(-2px);
+}
+/* ==========================
+   Button Styles END
+========================== */
+
+/* ==========================
+   Nav START
+========================== */
+.nav-container {
+  background-color: #000;
+  height: 60px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 1200px;
+  height: 100%;
+  margin: auto;
+}
+
+.navbar ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li {
+  list-style: none;
+  margin: 0 10px;
+}
+
+.navbar a {
+  color: #fff;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #ff4d4d;
+}
+/* ==========================
+   Nav END
+========================== */
+
+/* ==========================
+   Home/Subpage Containers
+========================== */
+.homepage-container, .subpage-container {
+  background-color: rgba(255,255,255,0.85);
+  border-radius: 15px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.homepage-container {
+  width: 90%;
+  max-width: 1200px;
+  background-color: rgba(255,255,255,0.5);
+}
+
+.subpage-container {
+  width: 85%;
+  max-width: 1100px;
+  flex-grow: 1;
+}
+/* ==========================
+   Grid Section
+========================== */
+.grid-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.grid-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.1rem;
+  cursor: pointer;
+  text-align: center;
+  background-color: rgba(0,0,0,0);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.grid-card:hover {
+  background-color: rgba(102,170,221,0.8);
+  transform: translateY(-5px);
+}
+/* ==========================
+   Return Button
+========================== */
+.return {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  color: #333366;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.return:hover {
+  color: #666699;
+  transform: translate(-50%, -50%) translateY(-5px);
+}
+/* ==========================
+   Subpage Content
+========================== */
+.subpage-content {
+  width: auto;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.photo {
+  width: 40%;
+  margin: 20px 0;
+  border-radius: 10px;
+}
+
+/* ====== FAQ Glow Added ====== */
+.subpage-content details {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  transition: all 0.3s ease, box-shadow 0.5s ease;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.subpage-content details:hover,
+.subpage-content details[open] {
+  box-shadow: 0 0 15px 3px rgba(102, 170, 221, 0.6);
+}
+
+.subpage-content summary {
+  padding: 20px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.subpage-content summary::before {
+  content: "❓ ";
+}
+
+.subpage-content details p {
+  padding: 10px 20px;
+  line-height: 1.5;
+  color: #333;
+  font-size: 1rem;
+}
+
+.subpage-content h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-top: 1.5rem;
+  border-bottom: 2px solid #ddd;
+  display: inline-block;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: border-color 0.3s ease;
+}
+
+.subpage-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.subpage-content li {
+  background-color: rgba(255,255,255,0.5);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.subpage-content li a {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #a70000;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.subpage-content li a:hover {
+  color: #ff4d4d;
+  text-decoration: underline;
+}
+
+
+/* ==========================
+   Subpage Content END
+========================== */
+
+
+/* ==========================
+  Contact Form Style START
+========================== */
+
+form {
+  font-family: "Asap Condensed", sans-serif;
+  font-weight: 400;
+  color: #333366;
+  line-height: 1.5;
+  margin: 10px 0;
+  padding: 0;
+}
+
+input[type=text],
+input[type=email],
+select,
+textarea {
+  width: 100%;
+  padding: 20px;
+  margin: 10px 0 1px 0;
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-family: "Asap Condensed", sans-serif;
+  font-size: 1rem;
+}
+textarea {
+  width: 100%;
+  height: 150px;
+  padding: 20px;
+  margin: 10px 0px 10px 0px;
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: white;
+  resize: none;
+  font-family: "Asap Condensed", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.75;
+}
+
+.action-btn {
+  background-color: #000;
+  color: #fff;
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  padding: 7px 17px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+input[type=submit]:hover{
+  background-color: #a70000;
+  color: #fff
+}
+
+/* ==========================
+  Contact Form Style END
+========================== */
+
+
+/* ==========================
+   Footer Styles
+========================== */
+.footer-container {
+  background-color: black;
+  width: 100%;
+  padding: 10px 0;
+  margin-top: auto;
+}
+
+.footer-content {
+  text-align: center;
+  color: #fff;
+  font-size: 0.9rem;
+  font-family: "Asap Condensed", sans-serif;
+  font-weight: 500;
+}
+
+/* ==========================
+   IMAGE hover on every page
+========================== */
+img {
+  transition: 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.03);
+  opacity: 0.9;
+}
+
+
+
+/* ==========================
+   Submit Button 
+========================== */
+input[type=submit] {
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+  background: white;
+  font-family: "Asap Condensed", sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background: #f2f2f2;
+}

@@ -1,0 +1,188 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Leo: Contact Page</title>
+  <meta name="description" content="Contact page for my website" />
+  <meta name="author" content="Leo" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/Styles.css" />
+  <style>
+
+
+
+    .form-container {
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .form-field {
+      flex: 1 1 100%;
+      min-width: 180px;
+    }
+
+    .form-field label {
+      display: block;
+      margin-bottom: 6px;
+      font-family: "Asap Condensed", sans-serif;
+      font-weight: 500;
+      color: #333366;
+    }
+
+    .form-field input[type="text"],
+    .form-field input[type="email"],
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #000;
+      border-radius: 10px;
+      box-sizing: border-box;
+      font-family: "Asap Condensed", sans-serif;
+      font-size: 1rem;
+    }
+
+    .form-field textarea {
+      height: 130px;
+      resize: vertical;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 16px;
+    }
+
+    .submit-btn {
+      background-color: #000;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 10px;
+      border: 1px solid #000;
+      cursor: pointer;
+      font-family: "Merriweather", serif;
+      font-weight: 300;
+    }
+
+    .submit-btn:hover {
+      background-color: #ff4d4d;
+      color: #000;
+    }
+
+    .back-wrap {
+      text-align: center;
+      margin-top: 18px;
+    }
+
+  
+  </style>
+</head>
+
+<body class="bg-sub">
+
+  <!-- NAVBAR -->
+  <div class="nav-container">
+    <div class="navbar">
+      <div class="logo"><a href="index.html">LEO</a></div>
+      <nav>
+        <ul>
+          <li><a href="about.html">ABOUT</a></li>
+          <li><a href="school.html">SCHOOL</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="resources.html">RESOURCES</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- CONTACT CONTENT -->
+  <div class="subpage-container">
+    <h1>Contact!</h1>
+    <h5>Contact me for more information or if you just want to get connected</h5>
+
+    <div class="subpage-content">
+      <p style="max-width:700px; margin: 0 auto 18px auto;">
+        Fill out the form below if you have questions or if you just want to connect. I check form submissions daily and typically respond within 48 hrs if a response is needed. Thank you.
+      </p>
+
+      <div class="form-container">
+        <form action="#" method="POST" novalidate>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="Name">Full Name</label>
+              <input id="Name" name="Name" type="text" placeholder="Full Name" required />
+            </div>
+
+            <div class="form-field">
+              <label for="Email">Email</label>
+              <input id="Email" name="Email" type="email" placeholder="Your Email" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="City">City</label>
+              <input id="City" name="City" type="text" placeholder="Your City" />
+            </div>
+
+            <div class="form-field">
+              <label for="Region">Region</label>
+              <select id="Region" name="Region" required>
+                <option value="">Choose region</option>
+                <option>Africa</option>
+                <option>Asia</option>
+                <option>Europe</option>
+                <option>North America</option>
+                <option>Central America</option>
+                <option>South America</option>
+                <option>Middle East</option>
+                <option>Oceania</option>
+                <option>Caribbean</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row" style="margin-top:10px;">
+            <div class="form-field" style="flex:1 1 100%;">
+              <label for="Message">Your Message</label>
+              <textarea id="Message" name="Message" placeholder="Your Message"></textarea>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <!-- Not required to be functional — just styled -->
+            <button type="submit" class="submit-btn">Submit</button>
+            <button type="reset" class="submit-btn" style="background:#fff; color:#000; border:1px solid #000;">Reset</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="back-wrap">
+        <a href="index.html" class="action-btn">BACK HOME</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-container">
+    <div class="footer-content">©2025 All Rights Reserved</div>
+  </div>
+
+</body>
+</html>

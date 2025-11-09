@@ -1,0 +1,166 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Leo: FAQ Page</title>
+  <meta name="description" content="FAQ page for my website">
+  <meta name="author" content="Leo">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/Styles.css">
+
+  <style>
+    /* FAQ specific style */
+    .subpage-container {
+      background-color: rgba(255, 255, 255, 0.85);
+      width: 85%;
+      max-width: 1100px;
+      margin: 40px auto 20px auto;
+      text-align: center;
+      border-radius: 15px;
+      flex-grow: 1;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      padding: 30px;
+    }
+
+    details {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      padding: 10px;
+      cursor: pointer;
+      text-align: center; /* center question */
+    }
+
+    summary {
+      font-weight: bold;
+      font-size: 1.1rem;
+      list-style: '❓';
+      text-align: center; /* center question text */
+      outline: none;
+    }
+
+    details p {
+      margin: 10px 0 0 0;
+      font-size: 1rem;
+      text-align: center; /* center answer text */
+    }
+
+    .action-btn {
+      background-color: #000;
+      color: #fff;
+      padding: 7px 17px;
+      border: none;
+      border-radius: 10px;
+      font-family: "Merriweather", serif;
+      cursor: pointer;
+      margin: 10px 5px;
+    }
+
+    .action-btn:hover {
+      background-color: red;
+      color: #000;
+    }
+  </style>
+</head>
+
+<body class="bg-sub">
+
+  <!-- NAVBAR -->
+  <div class="nav-container">
+    <div class="navbar">
+      <div class="logo"><a href="index.html">LEO</a></div>
+      <nav>
+        <ul>
+          <li><a href="about.html">ABOUT</a></li>
+          <li><a href="school.html">SCHOOL</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="resources.html">RESOURCES</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- FAQ CONTENT -->
+  <div class="subpage-container">
+    <h1>FAQ</h1>
+    <h5>Frequently Asked Questions</h5>
+
+    <details>
+      <summary>What is HTML?</summary>
+      <p>HTML is the language used to make websites and structure the content on a page.</p>
+    </details>
+
+    <details>
+      <summary>What is CSS?</summary>
+      <p>CSS is used to style websites and make them look nice with colors, fonts, and layout.</p>
+    </details>
+
+    <details>
+      <summary>What is the main difference between HTML and CSS?</summary>
+      <p>HTML creates the content, while CSS makes it look good.</p>
+    </details>
+
+    <details>
+      <summary>Why do we put CSS in a separate file?</summary>
+      <p>It helps keep the website organized and makes styling easier to manage.</p>
+    </details>
+
+    <details>
+      <summary>What is the difference between an H1 and a P tag?</summary>
+      <p>H1 is a heading, usually big and important. P is a paragraph for regular text.</p>
+    </details>
+
+    <details>
+      <summary>What does the 'alt' attribute do in an &lt;img&gt; tag?</summary>
+      <p>It shows a text description if the image doesn’t load, and helps with accessibility.</p>
+    </details>
+
+    <details>
+      <summary>How do I link to another page?</summary>
+      <p>You use the &lt;a href="page.html"&gt; link &lt;/a&gt; tag to go to another page.</p>
+    </details>
+
+    <details>
+      <summary>What is the difference between a 'class' and an 'ID' in CSS?</summary>
+      <p>A class can be used on many elements, an ID should only be used once per page.</p>
+    </details>
+
+    <details>
+      <summary>What is the difference between 'margin' and 'padding' in CSS?</summary>
+      <p>Margin is space outside an element; padding is space inside it.</p>
+    </details>
+
+    <details>
+      <summary>When should I use an &lt;ol&gt; instead of a &lt;ul&gt;?</summary>
+      <p>Use &lt;ol&gt; when order matters (like steps), &lt;ul&gt; for a simple list.</p>
+    </details>
+
+    <!-- Reset FAQ button -->
+    <button class="action-btn" onclick="closeAllDetails()">Reset FAQ</button>
+
+    <!-- Back Home button -->
+    <a href="index.html" class="action-btn">BACK HOME</a>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-container">
+    <div class="footer-content">©2025 All Rights Reserved</div>
+  </div>
+
+  <script>
+    function closeAllDetails() {
+      const allDetails = document.querySelectorAll('details');
+      allDetails.forEach(d => d.removeAttribute('open'));
+    }
+  </script>
+
+  <!-- I didn't write the footer and reset button btw -->
+
+</body>
+</html>

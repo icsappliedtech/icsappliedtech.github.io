@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Leo: School Page</title>
+  <meta name="description" content="School page for my website">
+  <meta name="author" content="Leo">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/Styles.css">
+
+  <style>
+    .subpage-container {
+      background-color: rgba(255,255,255,0.85);
+      width: 85%;
+      max-width: 1100px;
+      margin: 20px auto;
+      padding: 15px 20px;
+      text-align: center;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+    .subpage-content p {
+      font-size: 0.9rem;
+      line-height: 1.3;
+      margin: 5px 0;
+    }
+    .subpage-content h5 {
+      font-size: 1rem;
+      margin: 8px 0;
+    }
+    .photo {
+      width: 30%;
+      margin: 10px 0;
+      border-radius: 10px;
+    }
+    .grid-container { padding: 5px 0; }
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 10px;
+      max-width: 800px;
+      margin: auto;
+    }
+    .grid-card {
+      height: 60px;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      background-color: rgba(0,0,0,0.1);
+      color: #333366;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .grid-card:hover { background-color: rgba(102,170,221,0.8); transform: translateY(-2px); color:#fff; }
+  </style>
+</head>
+
+<body class="bg-sub">
+
+  <!-- NAVBAR -->
+  <div class="nav-container">
+    <div class="navbar">
+      <div class="logo"><a href="index.html">LEO</a></div>
+      <nav>
+        <ul>
+          <li><a href="about.html">ABOUT</a></li>
+          <li><a href="school.html">SCHOOL</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="resources.html">RESOURCES</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- SUBPAGE CONTENT -->
+  <div class="subpage-container">
+    <h1>School!</h1>
+    <h5>Here is a little bit about my school.</h5>
+
+    <div class="subpage-content">
+      <p>I have been attending ICS since grade 4. Since then, I have been learning, joining activities, having fun, and doing much more around the campus.</p>
+      <img src="img/school.jpg" alt="ICS" class="photo">
+      <hr>
+
+      <h5>Here are the classes I take:</h5>
+      <div class="grid-container">
+        <div class="grid-cards">
+          <a href="https://classroom.google.com/u/0/c/NzkwNDg1NDAxMTM4" target="_blank"><div class="grid-card">Algebra 1</div></a>
+          <a href="https://classroom.google.com/u/0/c/NzkwNDA2MTQ1NzM1" target="_blank"><div class="grid-card">English Composition</div></a>
+          <a href="https://classroom.google.com/u/0/c/NzkwNDk3ODE1MDg0" target="_blank"><div class="grid-card">Geography</div></a>
+          <a href="https://classroom.google.com/u/0/c/NzkwOTExNTk4OTg4" target="_blank"><div class="grid-card">ICP</div></a>
+          <a href="https://classroom.google.com/u/0/c/Nzg2MTk1MDkyNzU3" target="_blank"><div class="grid-card">Spanish 1</div></a>
+          <a href="https://classroom.google.com/u/0/c/Nzk0Njg5MzM4OTc3" target="_blank"><div class="grid-card">Band</div></a>
+          <a href="https://classroom.google.com/u/0/c/NzczNDQzMTQ0MzM5" target="_blank"><div class="grid-card">Thai</div></a>
+          <a href="https://classroom.google.com/u/0/c/NzkwMjkxMzk2ODcx" target="_blank"><div class="grid-card">Applied Tech</div></a>
+        </div>
+      </div>
+
+      <br>
+      <a href="index.html" class="action-btn">BACK HOME</a>
+    </div>
+  </div>
+<!--Favicon START-->
+<link rel="icon" href="img/favicon.ico">
+<!--Favicon END-->
+
+
+  <!-- FOOTER -->
+  <div class="footer-container">
+    <div class="footer-content">©2025 All Rights Reserved</div>
+  </div>
+
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
+<!-- END -->
