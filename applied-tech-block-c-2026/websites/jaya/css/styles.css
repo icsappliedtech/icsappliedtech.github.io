@@ -1,0 +1,485 @@
+/* =========================
+    Background Images START
+    ======================== */
+
+    body{
+        display:flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .bg-home{
+        background-image: url(../img/pexels-poppies-1836375_1920.jpg);
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
+    .bg-sub{
+        background-image: url(../img/abeijeman-tulips-5104497_1920.jpg);
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
+ /* =======================
+    Background Images END
+    ===================== */
+
+/* ======================
+    Font Styles START
+    ===================== */
+
+
+/* Import font styles from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Prata&display=swap');
+
+/* Font Classes for Website */
+.prata-regular {
+  font-family: "Prata", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.lato-regular {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.lato-bold {
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.lato-regular-italic {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.lato-bold-italic {
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* ======================
+    Font Styles END
+    ===================== */
+
+/* ======================
+    Link Styles START
+    ===================== */
+
+    a {
+        text-decoration: none;
+        color: #d56969;
+    }
+
+    a:hover {
+        color: #c76868;
+    }
+
+/* ======================
+    Link Styles END
+    ===================== */
+
+/* ===================================
+    Heading and Paragraph Styles START
+    ================================== */
+
+    h1 {font-size: 6rem;}
+    h2 {font-size: 5rem;}
+    h3 {font-size: 4rem;}
+    h4 {font-size: 3rem;}
+    h5 {font-size: 2rem;}
+    h6 {font-size: 1.6rem;}
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: "Prata", serif;
+        font-weight: 400;
+        font-style: normal;
+        padding: 0;
+        margin: 0;
+    }
+
+    p {
+        font-family: "Prata", serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 1rem;
+        line-height: 1.75;
+        padding: 0;
+        margin: 0 0 20px 0;
+    }
+
+  /* ===================================
+    Heading and Paragraph Styles END
+    ================================== */
+
+/* =====================
+    Button Styles START
+    =================== */
+
+    .action-btn {
+        background-color: hsl(0, 41%, 55%);
+        box-shadow: 0px 0px 3px 3px rgb(0, 0, 0, 0.2);
+        font-family: "Lato", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        text-decoration: none;
+        font-size: 1.2rem;
+        color: hwb(0 100% 0%);
+        padding: 7px 17px 7px 17px;
+        border: none;
+        border-radius: 7px;
+        cursor: pointer; 
+    }
+
+    .action-btn:hover {
+        background-color: hsla(0, 65%, 65%, 0.396);
+        color: hsl(0, 38%, 51%);
+    }
+
+    /* =====================
+    Button Styles END
+    =================== */
+
+    /* =====================
+    Navbar Styles START
+    =================== */
+
+    .nav-container {
+        background-color: lch(47.25% 39.16 25.05);
+        box-shadow: 0px 0px 10px 10px rgb(0, 0, 0, 0.4);
+        font-size: 1.2rem;
+        font-family: "Lato", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        height: 60px;
+        width: 100%;
+        position: sticky;
+        top: 0;
+    }
+
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 90%;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .navbar ul {
+        display: flex;
+    }
+
+    .nav-container .navbar {
+        justify-content: space-between;
+    }
+
+    .navbar ul li {
+        list-style-type: none;
+    }
+
+    .nav-container .navbar ul li {
+        padding: 0px;
+        margin: 0 20px;
+    }
+
+    .nav-container h6 {
+        font-family: "Lato", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    .navbar h2 {
+        padding: 0px;
+        margin: 0;
+    }
+
+    .navbar a {
+        color: hwb(0 100% 0%);
+        text-decoration: none;
+    }
+
+    .navbar a:hover {
+        color: #ec6a6a;
+    }
+
+    @media screen and (min-width: 390px) and (max-width: 787px) {
+        .nav-container {
+            height: auto;
+        }
+
+        .nav-container .navbar {
+            flex-direction: column;
+        }
+    }
+
+    /* =====================
+    Navbar Styles END
+    =================== */
+    
+     /* =========================
+    Page Containers Styles START
+    ============================ */
+
+    .homepage-container {
+        background-color:rgba(225, 132, 132, 0);
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .homepage-container h1 {
+        margin: 150px 0 -10px 0;
+    }
+
+        .subpage-container {
+        background-color:rgb(255, 255, 255, 0.5);
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+        flex-grow: 1; 
+    }
+
+        .grid-container {
+        display: flex;
+        justify-content: center;
+    }
+
+       .grid-cards {
+        display: grid;
+        width: 100%;
+        grid-gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+        .grid-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(183, 89, 89, 0.538);
+        color: #000000;
+        height: 100px;
+        border-radius: 10px;
+        font-size: 1.2rem;
+    }
+
+        .grid-cards a:hover {
+        background-color: rgb(0, 0, 0, 0.8);
+        border-radius: 10px;
+        color: #FFFFFF;
+    }
+
+    /* =========================
+    Page Containers Styles END
+    ============================ */ 
+
+      /* =========================
+    Subpage Content Styles START
+    ============================ */  
+
+     .subpage-content {
+        width: 80%;
+        height: 100%;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+    }
+
+     .photo {
+        width: 90%;
+        border-radius: 20px;
+    } 
+
+        .subpage-content details {
+        background: #f8b8b8b3;
+        border: 1px solid #dddddd;
+        border-radius: 10px;
+        margin-bottom: 5px;
+    }
+
+    .subpage-content summary {
+        padding: 20px;
+        font-weight: bold;
+        font-size: 1.1rem;
+        color: #333333;
+        cursor: pointer;
+        outline: none;
+        list-style-type: '🌸 ';
+        align-items: center;
+        text-align: center;
+    }
+
+    .subpage-content summary:hover {
+        background-color: #ec7979;
+        border-radius: 10px;
+    }
+
+    .subpage-content details p {
+        padding: 20px;
+        margin: 10px;
+        line-height: 1.5;
+        color: #ff9b9b;
+    }
+
+
+    .sub-content h2 {
+        font-size: 1.5rem;
+        color: #ff9797;
+        padding-bottom: 5px;
+        margin-top: 1.5rem;
+    }
+
+    .subpage-content ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .subpage-content li {
+    background-color: rgba(246, 171, 171, 0.71);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+    .subpage-content li a {
+        font-weight: bold;
+        font-size: 1.2 rem;
+        color: rgba(0, 0, 0, 0.758);
+        text-decoration: none;
+    }
+
+    .subpage-content li a:hover {
+        text-decoration: underline;
+        color: #ffffff;
+    }
+    
+
+    /* =========================
+    Subpage Content Styles END
+    ============================ */
+
+
+    /* ==========================
+    Contact form styles START
+    ============================= */
+
+    form {
+        font-family: "Prata", serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 1rem;
+        line-height: 1.75; 
+    }
+
+    input[type=text], select {
+        width: 100%;
+        padding: 20px;
+        margin: 10px 0px 20px 0px;
+        display: inline-block;
+        border: 1px solid #000000; 
+        border-radius: 10px;
+        box-sizing: border-box;
+        font-family: "Prata", serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 1rem;
+        line-height: 1.75; 
+    }
+
+    input[type=email] {
+        width: 100%;
+        padding: 20px;
+        margin: 10px 0px 20px 0px;
+        display: inline-block;
+        border: 1px solid #333333; 
+        border-radius: 10px;
+        box-sizing: border-box;
+        font-family: "Prata", serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 1rem;
+        line-height: 1.75; 
+    }
+
+    textarea{
+        width: 100%;
+        height: 150px;
+        padding: 20px;
+        margin: 10px 0px 20px 0px;
+        box-sizing: border-box;
+        border: 1px solid #333333; 
+        border-radius: 10px;
+        background-color: #ffffff88;
+        resize none;
+        box-sizing: border-box;
+        font-family: "Prata", serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 1rem;
+        line-height: 1.75; 
+    }
+
+    input[type=submit] {
+        background-color: hsla(0, 89%, 82%, 0.833);
+        box-shadow: 0px 0px 3px 3px rgb(0, 0, 0, 0.2);
+        font-family: "Lato", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        text-decoration: none;
+        font-size: 1.2rem;
+        color: hwb(0 0% 100% / 0.738);
+        padding: 7px 17px 7px 17px;
+        border: none;
+        border-radius: 7px;
+        cursor: pointer;
+    }
+
+    input[type=submit] :hover {
+        background-color: hsla(0, 100%, 79%, 0.396);
+        color: hsl(0, 100%, 74%);
+    }
+
+    /* ==========================
+    Contact form styles END
+    ============================= */
+
+    /* =========================
+    Footer Styles START
+    ============================ */
+    
+    .footer-container {
+        background-color: rgba(255, 255, 255, 0.6);
+        height: 20px;
+        width: 100%;
+        padding: 20px 0px 10px 0px;
+    }
+    
+    .footer-content {
+        text-align: center;
+        color: #000000;
+        font-size: 1.0rem;
+        font-family: "Prata", serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+    
+    /* =========================
+    Footer Styles END
+    ============================ */    

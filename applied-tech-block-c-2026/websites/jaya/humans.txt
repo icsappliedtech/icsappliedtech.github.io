@@ -1,0 +1,9 @@
+# The humans responsible for this website
+
+# Team
+	Jaya - student
+# Thanks
+	The applied tech class of C block 2026
+# Technology
+CSS3, HTML5
+Github Web server 
