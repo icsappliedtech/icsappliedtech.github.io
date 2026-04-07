@@ -1,0 +1,14 @@
+# ww.robotstxt.org/
+
+# Block access to specific sensitive folders
+User-agent: *
+Disallow: /admin/
+Disallow: /config/
+Disallow: /private/
+Disallow: /temp/
+
+# Allow all other bots to crawl everything else
+Allow: /
+
+# Host-specific sitemap https://www.mrjasoncode.com
+Sitemap: https://www.mrjasoncode.com/sitemap.xml
