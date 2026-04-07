@@ -1,0 +1,356 @@
+/* ======================
+   Google Fonts IMPORT
+   ====================== */
+@import url('https://fonts.googleapis.com/css2?family=Graduate&family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* =========================
+   Background Images START
+   ========================= */
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0; /* Ensuring no default margins */
+}
+
+.bg-home,
+.bg-sub {
+    background-image: url(../img/susannp4-background-1524540_1920.jpg);
+    min-height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* =========================
+   Background Images END
+   ========================= */
+
+/* ======================
+   Font Styles START
+   ====================== */
+
+/* Princetown-style replacement */
+.princetown-font, h1, h2, h3, h4, h5, h6, p, .footer-content {
+    font-family: "Graduate", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.lato-regular {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+}
+
+.lato-bold {
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+}
+
+/* ======================
+   Font Styles END
+   ====================== */
+
+/* ======================
+   Link Styles START
+   ====================== */
+
+a {
+    text-decoration: none;
+    color: #FFFF00; /* Updated to Yellow */
+}
+
+a:hover {
+    color: #FFFFFF;
+}
+
+/* ======================
+    Link Styles END
+    ===================== */
+
+/* ===================================
+    Heading and Paragraph Styles START
+    ================================== */
+
+h1 { font-size: 6rem; }
+h2 { font-size: 5rem; }
+h3 { font-size: 4rem; }
+h4 { font-size: 3rem; }
+h5 { font-size: 2rem; }
+h6 { font-size: 1.6rem; }
+
+h1, h2, h3, h4, h5, h6 {
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.75;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+hr {
+    border-top: 1px solid #313739;
+}
+
+/* ===================================
+    Heading and Paragraph Styles END
+    ================================== */
+    
+/* =====================
+    Button Styles START
+    =================== */
+
+.action-btn {
+    background-color: #FFFF00; /* Updated to Yellow */
+    box-shadow: 0px 0px 3px 3px rgb(0, 0, 0, 0.2);
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #313739; /* Dark text for contrast on yellow */
+    padding: 7px 17px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer; 
+    transition: 0.3s;
+}
+
+.action-btn:hover {
+    background-color: #FFFFFF;
+    color: #313739;
+}
+
+/* =====================
+    Button Styles END
+    =================== */
+
+/* =====================
+    Navbar Styles START
+    =================== */
+
+.nav-container {
+    background-color: #313739;
+    box-shadow: 0px 0px 10px 10px rgb(0, 0, 0, 0.4);
+    font-size: 1.2rem;
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    height: 60px;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.navbar ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul li {
+    margin: 0 20px;
+}
+
+.navbar a {
+    color: #FFFF00; /* Updated to Yellow */
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: #FFFFFF;
+}
+
+@media screen and (max-width: 787px) {
+    .nav-container {
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .navbar {
+        flex-direction: column;
+    }
+    
+    .navbar ul {
+        margin-top: 10px;
+    }
+}
+
+/* =====================
+    Navbar Styles END
+    =================== */
+
+/* =========================
+    Page Containers Styles START
+    ============================ */
+
+.homepage-container {
+    background-color: transparent;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.homepage-container h1 {
+    margin: 150px 0 -10px 0;
+}
+
+.subpage-container {
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.grid-cards {
+    display: grid;
+    width: 100%;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    margin-top: 20px;
+}
+
+.grid-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #FFFFFF;
+    height: 100px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+.grid-cards a:hover .grid-card {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #FFFF00; /* Yellow text on hover */
+}
+
+/* =========================
+    Page Containers Styles END
+    ============================ */
+
+ /* =========================
+    Subpage Content Styles START
+    ============================ */
+
+    .subpage-content {
+        width: 80%;
+        height: 100%;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .photo {
+        width: 90%;
+        border-radius: 20px;
+    }
+
+    .subpage-content details {
+        background: #f9f9f9;
+        border: 1px solid #dddddd;
+        border-radius: 10px;
+        margin-bottom: 5px;
+    }
+
+    .subpage-content summary {
+        padding: 20px;
+        font-weight: bold;
+        font-size: 1.1rem;
+        color: #333333;
+        cursor: pointer;
+        outline: none;
+        list-style-type: '😎 ';
+        align-items: center;
+        text-align: center;
+    }
+
+    .subpage-content summary:hover {
+        background-color: #f0f0f0;
+        border-radius: 10px;
+    }
+
+    .subpage-content details p {
+        padding: 20px;
+        margin: 10px;
+        line-height: 1.5;
+        color: #333333;
+    }
+
+    .subpage-content h2 {
+        font-size: 1.5rem;
+        color: #333333;
+        padding-bottom: 5px;
+        margin-top: 1.5rem;
+    }
+
+    .subpage-content ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .subpage-content li {
+        background-color: rgb(255, 255, 255, 0.5);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 10px;
+        line-height: 1.5;
+    }
+
+    .subpage-content li a {
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: red;
+        text-decoration: none;
+    }
+
+    .subpage-content li a:hover {
+        text-decoration: underline;
+        color: #333333;
+    }
+
+    /* =========================
+    Subpage Content Styles END
+    ============================ */
+
+/* =========================
+    Footer Styles START
+    ============================ */
+
+.footer-container {
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    padding: 20px 0;
+}
+
+.footer-content {
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 1.0rem;
+}
+
+/* =========================
+    Footer Styles END
+    ============================ */
