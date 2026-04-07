@@ -1,0 +1,15 @@
+# The humans responsible for this project are
+
+# Team
+
+	Nadia - Website Designer and Developer
+
+#Thanks
+
+	Mr. Jason Weimer
+
+# Technology Colophon
+
+	CSS3, HTML5
+	Apache Server Configs, jQuery, Modernizr, Normalize.css
+	
