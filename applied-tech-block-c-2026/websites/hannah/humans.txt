@@ -1,0 +1,11 @@
+# The humans responsible for this website 
+
+# Team 
+ 	Hannah - ICS student - @hannahrogers
+
+# Thanks 
+	The Applied Tech Class of C Block 2026 
+
+# Technology 
+	CSS3, HTML5
+	Github Web Server 
