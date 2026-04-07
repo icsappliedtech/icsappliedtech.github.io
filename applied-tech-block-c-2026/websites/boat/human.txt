@@ -1,0 +1,11 @@
+# The humans responsible for this website
+
+#Team
+  Mr Jason - Web Designer and Developer - @28boat_c@students.ics.ac.th
+
+#Thanks
+  The Applied Tech class of C Block 2026
+
+#Technology
+  CSS3, HTML5
+  Github Web Server
