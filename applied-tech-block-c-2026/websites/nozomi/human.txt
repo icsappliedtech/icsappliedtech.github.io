@@ -1,0 +1,11 @@
+# The humans responsible for this website
+
+#Team
+	Nozomi - Web Designer and Developer - @nxzomii.ch
+
+#Thanks
+	The Applied Tech Class of C Block 2026
+
+#Technology
+	CSS3, HTML5
+	Github Web Server 
