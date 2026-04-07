@@ -1,0 +1,13 @@
+# The humans responsible for this website
+
+# Team
+	Mitch - ICS student
+
+# Thanks
+
+	The Applied Tech class of C Block 2026 
+
+# Technology
+
+	CSS3, HTML5
+	Github Web Server
