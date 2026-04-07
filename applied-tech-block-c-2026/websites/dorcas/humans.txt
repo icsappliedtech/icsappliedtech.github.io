@@ -1,0 +1,9 @@
+# The humans responsible for this website
+
+#Team
+	Midnight/Dorcas - ICS Student
+#Thanks
+	The Applied Tech Class of C Block 2026
+#Technology
+	CSS3, HTML5
+	Github Web Server
