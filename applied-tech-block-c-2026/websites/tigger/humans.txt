@@ -1,0 +1,12 @@
+# The humans responsible for this website
+
+# Team
+	Tigger - Student - @28tigger_p@students.ics.ac.th
+
+# Thanks
+	
+	The Applied Tech class of C Block 2026
+
+#Technology
+	CSS3, HTML5
+	Github Web Server
