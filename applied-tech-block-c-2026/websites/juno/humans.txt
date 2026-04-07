@@ -1,0 +1,11 @@
+# The humans responsible for this website
+
+# Team
+	Juno - ICS student - @juno.dore
+
+# Thanks
+	The ICS Applied Tech class. C Block 2026.
+
+# Technology
+	CSS3, HTML5
+	Github Web Server
