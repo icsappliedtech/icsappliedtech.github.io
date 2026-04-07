@@ -1,0 +1,277 @@
+/* =========================
+   RESET / NORMALIZE (MODERN)
+========================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Media elements */
+img, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+/* Forms */
+button, input, select, textarea {
+    font: inherit;
+    margin: 0;
+}
+
+/* =========================
+   ROOT VARIABLES
+========================= */
+
+:root {
+    --primary: #0096c0;
+    --dark: #313739;
+    --light: #f5f7fa;
+    --white: #ffffff;
+}
+
+/* =========================
+   BASE STYLES
+========================= */
+
+body {
+    font-family: "Lato", sans-serif;
+    background-color: var(--light);
+    color: #222;
+}
+
+h1 {font-size: 6rem;}
+h2 {font-size: 5rem;}
+h3 {font-size: 4rem;}
+h4 {font-size: 3rem;}
+h5 {font-size: 2rem;}
+h6 {font-size: 1.6rem;}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Prata", serif;
+}
+
+p {
+    font-family: "Prata", serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+/* Selection */
+::selection {
+    background: #b3d4fc;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.section-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* =========================
+   BACKGROUNDS
+========================= */
+
+.bg-home,
+.bg-sub {
+    background-image: url("../img/swidaalba-mountain-3604825_1920.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* =========================
+   LINKS
+========================= */
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+a:hover {
+    color: var(--white);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.action-btn {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 8px 18px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: 0.3s ease;
+}
+
+.action-btn:hover {
+    background-color: var(--dark);
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.nav-container {
+    background-color: var(--dark);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.navbar ul {
+    display: flex;
+}
+
+.navbar li {
+    list-style: none;
+    margin: 0 20px;
+}
+
+.navbar a {
+    color: var(--primary);
+}
+
+.navbar a:hover {
+    color: var(--white);
+}
+
+/* Responsive navbar */
+@media (max-width: 787px) {
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 10px 0;
+    }
+}
+
+/* =========================
+   PAGE SECTIONS
+========================= */
+
+.homepage-container {
+    text-align: center;
+}
+
+.homepage-container h1 {
+    margin-top: 150px;
+}
+
+.subpage-content {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.photo {
+    width: 90%;
+    border-radius: 20px;
+    margin: 0 auto;
+}
+
+/* =========================
+   HELPERS (FROM BOILERPLATE)
+========================= */
+
+.hidden {
+    display: none !important;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.clearfix::before,
+.clearfix::after {
+    content: "";
+    display: table;
+}
+
+.clearfix::after {
+    clear: both;
+}
+
+/* Accessibility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer-container {
+    background-color: var(--dark);
+    color: var(--white);
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+}
+
+/* =========================
+   PRINT (LIGHT VERSION)
+========================= */
+
+@media print {
+    * {
+        background: #fff !important;
+        color: #000 !important;
+        box-shadow: none !important;
+    }
+}
