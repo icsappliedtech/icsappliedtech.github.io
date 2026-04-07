@@ -1,0 +1,11 @@
+# The humans responsible for this website 
+
+# Team 
+	Jonathan - ICS student
+
+# Thanks	
+	Applied tech class of 2026
+
+# Technology 
+	CSS3, HTML5
+	Github Web Server
