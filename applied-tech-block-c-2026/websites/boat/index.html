@@ -62,6 +62,285 @@
       <a href="about.html" class="action-btn">GET STARTED</a>
     </div>
 
+<style>
+    .mania-wrapper {
+        margin: 20px auto;
+        max-width: 450px;
+        background: #0a0a0a;
+        padding: 15px;
+        border: 3px solid #333;
+        border-radius: 15px;
+        font-family: 'Segoe UI', sans-serif;
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    #maniaCanvas {
+        background: #000;
+        display: block;
+        margin: 0 auto;
+        border-left: 2px solid #444;
+        border-right: 2px solid #444;
+    }
+
+    .ui-overlay {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        font-family: 'Courier New', Courier, monospace;
+    }
+
+    /* OVERLAYS */
+    #startScreen, #difficultyScreen, #gameOverScreen {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+    }
+
+    .hidden { display: none !important; }
+
+    .game-btn {
+        padding: 12px 35px;
+        margin: 6px;
+        background: transparent;
+        color: #00ffff;
+        border: 2px solid #00ffff;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+        width: 180px;
+        text-transform: uppercase;
+    }
+
+    .game-btn:hover {
+        background: #00ffff;
+        color: black;
+        box-shadow: 0 0 20px #00ffff;
+        transform: scale(1.05);
+    }
+
+    /* Difficulty Colors */
+    .btn-easy { color: #00ff88; border-color: #00ff88; }
+    .btn-easy:hover { background: #00ff88; }
+    .btn-med { color: #ffee00; border-color: #ffee00; }
+    .btn-med:hover { background: #ffee00; }
+    .btn-hard { color: #ff5500; border-color: #ff5500; }
+    .btn-hard:hover { background: #ff5500; }
+    .btn-extreme { color: #ff0044; border-color: #ff0044; text-shadow: 0 0 5px rgba(255,0,0,0.5); }
+    .btn-extreme:hover { background: #ff0044; }
+
+    @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+    .blink-text { animation: pulse 1.5s infinite; color: #888; margin-top: 25px; font-size: 0.8rem; }
+</style>
+
+<div class="mania-wrapper">
+    <div id="startScreen">
+        <h1 style="color:#ce52f0; letter-spacing: 4px; margin-bottom: 40px; font-size: 2.2rem;">PIANO MANIA</h1>
+        <button class="game-btn" style="width: 220px; font-size: 1.4rem;" onclick="showDifficulty()">Play Now</button>
+        <p style="color:#555; margin-top: 25px; font-size: 0.8rem;">CONTROLS: [A] [S] [D] [F]</p>
+    </div>
+
+    <div id="difficultyScreen" class="hidden">
+        <h3 style="color:#aaa; margin-bottom: 15px; font-weight: normal; letter-spacing: 2px; font-size: 1rem;">CHOOSE DIFFICULTY</h3>
+        <button class="game-btn btn-easy" onclick="initiateGame('easy')">Easy</button>
+        <button class="game-btn btn-med" onclick="initiateGame('medium')">Medium</button>
+        <button class="game-btn btn-hard" onclick="initiateGame('hard')">Hard</button>
+        <button class="game-btn btn-extreme" onclick="initiateGame('extreme')">Extreme</button>
+    </div>
+
+    <div id="gameOverScreen" class="hidden" onclick="showDifficulty()">
+        <h1 style="color:#ff4444; font-size: 3rem; margin: 0;">GAME OVER</h1>
+        <div style="padding: 20px; border-top: 1px solid #222; border-bottom: 1px solid #222; margin: 15px 0;">
+            <p style="margin: 5px;">SCORE: <span id="finalScore" style="color:#00ffff">0</span></p>
+            <p style="margin: 5px;">MAX COMBO: <span id="maxCombo" style="color:#ce52f0">0</span></p>
+        </div>
+        <div class="blink-text">CLICK ANYWHERE TO REPLAY</div>
+    </div>
+
+    <div class="ui-overlay">
+        <div style="text-align: left;">
+            <div id="maniaFeedback" style="font-size: 1.2rem; height: 1.5rem; font-weight: bold;">READY</div>
+            <div style="color: #ce52f0; font-size: 0.9rem;">COMBO: <span id="comboCount">0</span></div>
+        </div>
+        <div id="maniaScore" style="font-size: 1.8rem; font-weight: bold;">00000000</div>
+    </div>
+    
+    <canvas id="maniaCanvas" width="320" height="500"></canvas>
+</div>
+
+<script>
+    const mCanvas = document.getElementById("maniaCanvas");
+    const mCtx = mCanvas.getContext("2d");
+    const scoreEl = document.getElementById("maniaScore");
+    const feedEl = document.getElementById("maniaFeedback");
+    const comboEl = document.getElementById("comboCount");
+    
+    const startScreen = document.getElementById("startScreen");
+    const diffScreen = document.getElementById("difficultyScreen");
+    const overScreen = document.getElementById("gameOverScreen");
+
+    let mActive = false;
+    let mScore = 0;
+    let mCombo = 0;
+    let mMaxCombo = 0;
+    let mNotes = [];
+    let mFrame = 0;
+    let mNoteIdx = 0;
+    let mKeys = [false, false, false, false];
+    
+    let currentScrollSpeed = 6;
+    let spawnRateMultiplier = 1;
+
+    const baseSongMap = [0,60, 0,100, 2,140, 2,180, 3,220, 3,260, 2,300, 1,360, 1,400, 0,440, 0,480, 1,520, 1,560, 0,600, 2,660, 2,700, 1,740, 1,780, 0,820, 0,860, 1,900, 2,960, 2,1000, 1,1040, 1,1080, 0,1120, 0,1160, 1,1200, 0,1260, 0,1300, 2,1340, 2,1380, 3,1420, 3,1460, 2,1500, 1,1560, 1,1600, 0,1640, 0,1680, 1,1720, 1,1760, 0,1820];
+    let activeSongMap = [];
+
+    const JUDGMENT_LINE_Y = 430; 
+
+    function showDifficulty() {
+        startScreen.classList.add("hidden");
+        overScreen.classList.add("hidden");
+        diffScreen.classList.remove("hidden");
+    }
+
+    function initiateGame(diff) {
+        switch(diff) {
+            case 'easy': currentScrollSpeed = 5; spawnRateMultiplier = 1.2; break;
+            case 'medium': currentScrollSpeed = 8; spawnRateMultiplier = 1; break;
+            case 'hard': currentScrollSpeed = 12; spawnRateMultiplier = 0.7; break;
+            case 'extreme': currentScrollSpeed = 16; spawnRateMultiplier = 0.45; break;
+        }
+
+        activeSongMap = baseSongMap.map((val, idx) => {
+            return idx % 2 === 1 ? Math.floor(val * spawnRateMultiplier) : val;
+        });
+
+        mScore = 0; mCombo = 0; mMaxCombo = 0; mFrame = 0; mNoteIdx = 0; mNotes = [];
+        scoreEl.innerText = "00000000";
+        comboEl.innerText = "0";
+        feedEl.innerText = "GO!";
+        
+        diffScreen.classList.add("hidden");
+        mActive = true;
+        mLoop();
+    }
+
+    function drawStaticElements() {
+        const laneW = mCanvas.width / 4;
+        mCtx.fillStyle = "rgba(0, 255, 255, 0.1)";
+        mCtx.fillRect(0, JUDGMENT_LINE_Y - 20, mCanvas.width, 40);
+        mCtx.strokeStyle = "#00ffff"; 
+        mCtx.lineWidth = 5;
+        mCtx.beginPath();
+        mCtx.moveTo(0, JUDGMENT_LINE_Y);
+        mCtx.lineTo(mCanvas.width, JUDGMENT_LINE_Y);
+        mCtx.stroke();
+
+        for(let i=0; i<4; i++) {
+            const isMiddle = (i === 1 || i === 2);
+            mCtx.strokeStyle = "#222";
+            mCtx.strokeRect(i * laneW, 0, laneW, mCanvas.height);
+            if(mKeys[i]) {
+                mCtx.fillStyle = isMiddle ? "rgba(255, 215, 0, 0.2)" : "rgba(255, 102, 204, 0.2)";
+                mCtx.fillRect(i * laneW, 0, laneW, JUDGMENT_LINE_Y);
+                mCtx.fillStyle = isMiddle ? "#ffd700" : "#ff66cc";
+                mCtx.fillRect(i * laneW + 2, JUDGMENT_LINE_Y + 5, laneW - 4, 60);
+            } else {
+                mCtx.fillStyle = "#151515";
+                mCtx.fillRect(i * laneW + 2, JUDGMENT_LINE_Y + 5, laneW - 4, 60);
+            }
+            mCtx.fillStyle = "#444";
+            mCtx.font = "bold 16px monospace";
+            mCtx.textAlign = "center";
+            mCtx.fillText(['A','S','D','F'][i], i * laneW + laneW/2, JUDGMENT_LINE_Y + 40);
+        }
+    }
+
+    function mLoop() {
+        if(!mActive) return;
+        mCtx.fillStyle = "#000";
+        mCtx.fillRect(0, 0, mCanvas.width, mCanvas.height);
+        drawStaticElements();
+
+        if(mNoteIdx < activeSongMap.length && mFrame === activeSongMap[mNoteIdx+1]) {
+            mNotes.push({ lane: activeSongMap[mNoteIdx], y: -50, hit: false, missed: false });
+            mNoteIdx += 2;
+        }
+
+        for(let i = mNotes.length - 1; i >= 0; i--) {
+            let n = mNotes[i];
+            n.y += currentScrollSpeed;
+
+            if(!n.hit) {
+                const laneW = mCanvas.width / 4;
+                mCtx.fillStyle = (n.lane === 1 || n.lane === 2) ? "#ffffff" : "#ff66cc";
+                mCtx.fillRect(n.lane * laneW + 4, n.y, laneW - 8, 22);
+            }
+
+            if(n.y > JUDGMENT_LINE_Y + 45 && !n.hit && !n.missed) {
+                n.missed = true;
+                mCombo = 0;
+                comboEl.innerText = mCombo;
+                feedEl.innerText = "MISS";
+                feedEl.style.color = "#ff4444";
+            }
+            if(n.y > mCanvas.height || n.hit) mNotes.splice(i, 1);
+        }
+
+        scoreEl.innerText = mScore.toString().padStart(8, '0');
+        mFrame++;
+        requestAnimationFrame(mLoop);
+
+        if(mNoteIdx >= activeSongMap.length && mNotes.length === 0) {
+            mActive = false;
+            document.getElementById("finalScore").innerText = mScore;
+            document.getElementById("maxCombo").innerText = mMaxCombo;
+            overScreen.classList.remove("hidden");
+        }
+    }
+
+    window.addEventListener("keydown", (e) => {
+        let key = e.key.toLowerCase();
+        let l = -1;
+        if(key === 'a') l = 0; if(key === 's') l = 1; if(key === 'd') l = 2; if(key === 'f') l = 3;
+        if(l !== -1 && !mKeys[l] && mActive) {
+            mKeys[l] = true;
+            for(let n of mNotes) {
+                if(n.lane === l && !n.hit && !n.missed) {
+                    let diff = Math.abs(n.y - JUDGMENT_LINE_Y);
+                    if(diff < 65) {
+                        n.hit = true;
+                        mCombo++;
+                        if(mCombo > mMaxCombo) mMaxCombo = mCombo;
+                        comboEl.innerText = mCombo;
+                        if(diff < 20) { mScore += 300; feedEl.innerText = "PERFECT"; feedEl.style.color = "#00ffff"; }
+                        else if(diff < 45) { mScore += 150; feedEl.innerText = "GREAT"; feedEl.style.color = "#00ff00"; }
+                        else { mScore += 50; feedEl.innerText = "OKAY"; feedEl.style.color = "#ffff00"; }
+                        break;
+                    }
+                }
+            }
+        }
+    });
+
+    window.addEventListener("keyup", (e) => {
+        let key = e.key.toLowerCase();
+        if(key === 'a') mKeys[0] = false; if(key === 's') mKeys[1] = false;
+        if(key === 'd') mKeys[2] = false; if(key === 'f') mKeys[3] = false;
+    });
+</script>
+
 </body>
 
 </html>

@@ -78,11 +78,11 @@
 
     a {
         text-decoration: none;
-        color: #0096c0;
+        color: #148358;
     }
 
     a:hover {
-        color: #FFFFFF;
+        color: #23a791;
     }
 
 /* ======================
@@ -131,7 +131,7 @@
     =================== */
 
     .action-btn {
-        background-color: #0096c0;
+        background-color: #ce52f0;
         box-shadow: 0px 0px 3px 3px rgb(0, 0, 0, 0.2);
         font-family: "Lato", sans-serif;
         font-weight: 400;
@@ -159,8 +159,8 @@
     =================== */
 
     .nav-container {
-        background-color: #313739;
-        box-shadow: 0px 0px 10px 10px rgb(0, 0, 0, 0.4);
+        background-color: #151819;
+        box-shadow: 0px 0px 10px 10px rgba(102, 73, 73, 0.552);
         font-size: 1.2rem;
         font-family: "Lato", sans-serif;
         font-weight: 400;
@@ -210,7 +210,7 @@
     }
 
     .navbar a {
-        color: #0096c0;
+        color: #d669fd;
         text-decoration: none;
     }
 
@@ -237,7 +237,7 @@
     ============================ */
 
     .homepage-container {
-        background-color:rgb(255, 255, 255, 0.0);
+        background-color:rgba(255, 255, 255, 0);
         width: 90%;
         max-width: 1200px;
         margin: 0 auto;
@@ -305,7 +305,7 @@
     }
 
     .photo {
-        width: 90%;
+        width: 40%;
         border-radius: 20px;
     }
 
@@ -363,7 +363,7 @@
     .subpage-content li a {
         font-weight: bold;
         font-size: 1.2rem;
-        color: red;
+        color: rgb(255, 0, 208);
         text-decoration: none;
     }
 
