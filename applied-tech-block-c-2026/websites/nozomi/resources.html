@@ -37,6 +37,12 @@
 
 <body class="bg-sub">
 
+    <div id="loader-wrapper">
+      <div class="loader"></div>
+      <p>Loading...</p>
+  </div>
+
+
   <!-- NavBar -->
    <div class="nav-container">
     <div class="navbar">
@@ -50,6 +56,7 @@
           <li><a href="contact.html">CONTACT</a></li>
         </ul>
       </nav>
+            <button id="theme-toggle" class="theme-btn">🌙</button>
     </div>
    </div>
 
@@ -85,6 +92,32 @@
         
     </div>
 
+    <hr>
+<div class="subpage-content">
+    <h3>Take a Brain Break!</h3>
+    <p>Try to beat the computer in Rock, Paper, Scissors.</p>
+    
+    <div class="game-container">
+        <div class="game-buttons">
+            <button class="game-btn" onclick="playGame('🪨')">🪨 Rock</button>
+            <button class="game-btn" onclick="playGame('📄')">📄 Paper</button>
+            <button class="game-btn" onclick="playGame('✂️')">✂️ Scissors</button>
+        </div>
+        
+        <div class="result-box">
+            <p id="user-display">You: -</p>
+            <p id="computer-display">Computer: -</p>
+            <h4 id="game-status">Choose your weapon!</h4>
+        </div>
+    </div>
+</div>
+
+<div class="snake-game-container">
+    <h3 id="snake-status">Flowers: 0</h3>
+    <canvas id="snakeCanvas" width="400" height="400"></canvas>
+</div>
+
+
     <a href="index.html" class="action-btn">GO HOME</a>
    </div>
 
@@ -94,6 +127,9 @@
         </div>
    </div>
  
+<script src="script.js"></script>
+
+
 </body>
 
 </html>

@@ -1,3 +1,44 @@
+:root {
+    --bg-color: #fafafa;
+    --text-color: #333333;
+    --container-bg: rgba(255, 255, 255, 0.3);
+}
+
+/* 2. Define your "Dark Mode" colors */
+.dark-theme {
+    --bg-color: #1a1a1a;
+    --text-color: #f5f5f5;
+    --container-bg: rgba(0, 0, 0, 0.7);
+}
+
+/* 3. Use the variables in your existing classes */
+body {
+    background-color: var(--bg-color); /* Controlled by toggle */
+    color: var(--text-color);           /* Controlled by toggle */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+/* This makes the background image look darker in dark mode */
+.dark-theme .bg-home, 
+.dark-theme .bg-sub {
+    background-blend-mode: overlay;
+    background-color: rgba(0, 0, 0, 0.5); /* Adds a 50% black tint */
+}
+
+.dark-theme .grid-card {
+    background-color: rgba(255, 255, 255, 0.1); /* Makes the cards slightly lighter in dark mode */
+    border: 1px solid #f5f5f5;
+}
+
+/* Only targets the H2 headers when the body has the dark-mode class */
+body.dark-mode .subpage-content h2 {
+    color: #ffffff;
+}
+
+
 /* =============
     Background Images START
     ============== */
@@ -78,7 +119,7 @@
         ========================= */
 
      a {
-         text-deocration: none;
+         text-decoration: none;
          color: #f5cac3;
     }
 
@@ -251,7 +292,7 @@ Page containers Styles Start
 }
 
 .subpage-container {
-    background-color: rgb(255, 255, 255, 0.3);
+    background-color: var(--container-bg); /* This is the key! */
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
@@ -470,6 +511,7 @@ Footer Styles Start
     background-color: rgb(0, 0, 0, 0.8);
     height: 40px;
     width: 100%;
+    margin-top: 50px;
     padding: 20px 0px 10px 0px;
 }
 
@@ -486,3 +528,168 @@ Footer Styles Start
 /* ===========================
 Footer Styles End
 ============================== */
+
+
+.theme-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 20px; /* Gives it a little breathing room from the links */
+    transition: transform 0.2s ease;
+}
+
+.theme-btn:hover {
+    transform: scale(1.2); /* Makes the moon/sun pop when you hover! */
+}
+
+/* The background covering the whole screen */
+#loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff; /* Use #1a1a1a if you want it dark by default */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Keeps it above everything else */
+    transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+/* The spinning circle */
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #d1ebed;
+    border-top: 5px solid #f5d9f5; /* You can change this color! */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* The actual animation logic */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Class to hide the loader */
+.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.game-container {
+    background-color: rgba(255, 255, 255, 0.1); /* Slight see-through effect */
+    border: 2px solid var(--accent-color); /* Use your site's main color */
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.game-btn {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+    background-color: #3a5a40;
+    color: white;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.game-btn:hover {
+    transform: translateY(-3px);
+    background-color: #2980b9;
+}
+
+.result-box {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+#game-status {
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin-top: 10px;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 5px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid #3498db;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.cell:hover {
+    background-color: rgba(52, 152, 219, 0.2);
+}
+
+/* Dark mode compatibility */
+body.dark-mode .cell {
+    color: white;
+    border-color: #ffffff;
+}
+
+#final-announcement {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 50px;
+    animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.snake-game-container {
+    text-align: center;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#snake-status {
+    color: #ff69b4; /* Hot pink for visibility */
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+#snakeCanvas {
+    display: block;
+    margin: 0 auto;
+    background-color: #ffe4e1; /* Light pink */
+    border: 8px solid #ffb6c1; /* Soft pink border */
+    border-radius: 20px; /* Extra rounded for cuteness */
+    box-shadow: 0 10px 25px rgba(255, 182, 193, 0.3);
+    cursor: crosshair;
+}
+
+/* Ensure the canvas doesn't look weird in Dark Mode */
+body.dark-mode #snakeCanvas {
+    border-color: #ffffff;
+    background-color: #ffe4e1; /* Keeps the pink vibe even in dark mode */
+}
