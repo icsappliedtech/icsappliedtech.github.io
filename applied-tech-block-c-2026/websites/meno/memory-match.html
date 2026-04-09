@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Meno: Memory Match</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .game-container {
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            perspective: 1000px; /* Needed for 3D flip effect */
+        }
+        .memory-card {
+            height: 100px;
+            background-color: #313739;
+            border: 2px solid #FFFF00;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: transparent; /* Hide the emoji initially */
+            transition: transform 0.6s, background-color 0.3s;
+            transform-style: preserve-3d;
+        }
+        .memory-card.flipped {
+            background-color: #FFFFFF;
+            color: #313739;
+            transform: rotateY(180deg);
+        }
+        .memory-card.matched {
+            background-color: #FFFF00;
+            color: #313739;
+            cursor: default;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body class="bg-sub">
+    <div class="subpage-container">
+        <h1>Memory Match</h1>
+        <p>Find the matching pairs!</p>
+        
+        <div class="game-container">
+            <div class="memory-grid" id="grid">
+                </div>
+        </div>
+
+        <br>
+        <button class="action-btn" onclick="resetGame()">RESET</button>
+        <a href="games.html" class="action-btn">BACK TO GAMES</a>
+    </div>
+
+    <script>
+        const emojis = ['🎨', '🎨', '🖌️', '🖌️', '🖼️', '🖼️', '✏️', '✏️', '🌈', '🌈', '🎭', '🎭', '✒️', '✒️', '📐', '📐'];
+        let flippedCards = [];
+        let matchedPairs = 0;
+
+        function shuffle(array) {
+            return array.sort(() => Math.random() - 0.5);
+        }
+
+        function createBoard() {
+            const grid = document.getElementById('grid');
+            const shuffledEmojis = shuffle([...emojis]);
+            grid.innerHTML = '';
+            
+            shuffledEmojis.forEach((emoji, index) => {
+                const card = document.createElement('div');
+                card.classList.add('memory-card');
+                card.dataset.emoji = emoji;
+                card.innerHTML = emoji;
+                card.addEventListener('click', flipCard);
+                grid.appendChild(card);
+            });
+        }
+
+        function flipCard() {
+            if (flippedCards.length < 2 && !this.classList.contains('flipped')) {
+                this.classList.add('flipped');
+                flippedCards.push(this);
+
+                if (flippedCards.length === 2) {
+                    checkMatch();
+                }
+            }
+        }
+
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            if (card1.dataset.emoji === card2.dataset.emoji) {
+                card1.classList.add('matched');
+                card2.classList.add('matched');
+                matchedPairs++;
+                flippedCards = [];
+                if (matchedPairs === emojis.length / 2) {
+                    setTimeout(() => alert("Masterpiece Complete! All pairs found."), 500);
+                }
+            } else {
+                setTimeout(() => {
+                    card1.classList.remove('flipped');
+                    card2.classList.remove('flipped');
+                    flippedCards = [];
+                }, 1000);
+            }
+        }
+
+        function resetGame() {
+            matchedPairs = 0;
+            flippedCards = [];
+            createBoard();
+        }
+
+        createBoard();
+    </script>
+</body>
+</html>

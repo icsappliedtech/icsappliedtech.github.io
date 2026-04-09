@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Meno: Art History Quiz</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .quiz-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 600px;
+            margin: 20px auto;
+            color: #313739;
+        }
+        .art-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 3px solid #313739;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .option-btn {
+            background-color: #313739;
+            color: #FFFF00;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: "Lato", sans-serif;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .option-btn:hover {
+            background-color: #FFFF00;
+            color: #313739;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body class="bg-sub">
+    <div class="subpage-container">
+        <h1>Art History Quiz</h1>
+        
+        <div class="quiz-container" id="quiz">
+            <h2 id="question-text">Who painted this?</h2>
+            <img id="art-display" class="art-image" src="" alt="Famous Painting">
+            
+            <div class="options" id="options-bin">
+                </div>
+            
+            <div id="result"></div>
+        </div>
+
+        <br>
+        <a href="games.html" class="action-btn">BACK TO GAMES</a>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/600px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg",
+                options: ["Van Gogh", "Monet", "Picasso", "Dalí"],
+                answer: "Van Gogh"
+            },
+            {
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/402px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg",
+                options: ["Michelangelo", "Leonardo da Vinci", "Raphael", "Donatello"],
+                answer: "Leonardo da Vinci"
+            },
+            {
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tsunami_by_hokusai_19th_century.jpg/600px-Tsunami_by_hokusai_19th_century.jpg",
+                options: ["Hokusai", "Hiroshige", "Utamaro", "Kuniyoshi"],
+                answer: "Hokusai"
+            }
+        ];
+
+        let currentQuestion = 0;
+
+        function loadQuestion() {
+            const q = quizData[currentQuestion];
+            document.getElementById("art-display").src = q.image;
+            const optionsBin = document.getElementById("options-bin");
+            optionsBin.innerHTML = "";
+            document.getElementById("result").innerText = "";
+
+            q.options.forEach(opt => {
+                const btn = document.createElement("button");
+                btn.innerText = opt;
+                btn.className = "option-btn";
+                btn.onclick = () => checkAnswer(opt);
+                optionsBin.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(choice) {
+            const result = document.getElementById("result");
+            if (choice === quizData[currentQuestion].answer) {
+                result.style.color = "green";
+                result.innerText = "Correct! 🎨";
+                setTimeout(() => {
+                    currentQuestion++;
+                    if (currentQuestion < quizData[currentQuestion-1] ? quizData.length : 0) {
+                         // Logic to loop or end
+                    }
+                    if (currentQuestion < quizData.length) {
+                        loadQuestion();
+                    } else {
+                        document.getElementById("quiz").innerHTML = "<h2>You're a Master Artist!</h2><p>You finished the quiz.</p>";
+                    }
+                }, 1500);
+            } else {
+                result.style.color = "red";
+                result.innerText = "Try again! 🤔";
+            }
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>
