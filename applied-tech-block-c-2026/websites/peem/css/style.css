@@ -111,7 +111,7 @@
          font-family: "Prata", serif;
          font-weight: 400;
          font-style: normal;
-         font-size: lrem;
+         font-size: 1rem;
          line-height: 1.75;
          padding: 0;
          margin: 0 0 20px 0;
@@ -478,3 +478,52 @@
     /* =========================
     Footer Styles END
     ============================ */
+
+/* =========================
+    Minecraft Footer Cube (Right Side)
+   ========================= */
+
+/* Container to push the cube to the right */
+.cube-alignment-wrapper {
+    width: 100%;
+    text-align: right;
+    padding-right: 40px; /* Adjust this to move it further from the edge */
+    margin-bottom: 10px; /* Space between cube and copyright line */
+    box-sizing: border-box;
+}
+
+.cube-viewport-simple {
+    display: inline-block; /* Allows text-align to move it */
+    width: 64px;
+    height: 64px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+#minecraft-cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: rotateX(-25deg) rotateY(25deg); 
+}
+
+.cube-face {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    background-size: cover;
+    image-rendering: pixelated;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border: 1px solid rgba(0,0,0,);
+}
+
+/* Face Images */
+.front  { transform: rotateY(  0deg) translateZ(32px); background-image: url('../img/grass.jpg'); }
+.back   { transform: rotateY(180deg) translateZ(32px); background-image: url('../img/red.jpg'); }
+.right  { transform: rotateY( 90deg) translateZ(32px); background-image: url('../img/lava.jpg'); }
+.left   { transform: rotateY(-90deg) translateZ(32px); background-image: url('../img/cobb.jpg'); }
+.top    { transform: rotateX( 90deg) translateZ(32px); background-image: url('../img/skulk.jpg'); }
+.bottom { transform: rotateX(-90deg) translateZ(32px); background-image: url('../img/nether.jpg'); }

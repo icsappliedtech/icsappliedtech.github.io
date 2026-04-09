@@ -71,12 +71,46 @@
       <a href="index.html" class="action-btn">GO HOME</a>
     </div>
 
+<div class="cube-alignment-wrapper">
+    <div class="cube-viewport-simple" onclick="rotateCube()">
+      <div id="minecraft-cube">
+        <div class="cube-face front"></div>
+        <div class="cube-face back"></div>
+        <div class="cube-face right"></div>
+        <div class="cube-face left"></div>
+        <div class="cube-face top"></div>
+        <div class="cube-face bottom"></div>
+      </div>
+    </div>
+</div>
+
     <div class="footer-container">
         <div class="footer-content">
             ©2026 All Rights Reserved
         </div>
     </div>
 
-</body>
+    </body>
 
 </html>
+
+<script>
+  let yRotation = 25; 
+  let xRotation = -25; 
+  let isUpsideDown = false;
+
+  function rotateCube() {
+    const cube = document.getElementById('minecraft-cube');
+    yRotation -= 90;
+    
+    if (!isUpsideDown) {
+        xRotation = 155; 
+        isUpsideDown = true;
+    } else {
+        xRotation = -25; 
+        isUpsideDown = false;
+    }
+    
+    cube.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
+  }
+</script>
