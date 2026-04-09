@@ -281,6 +281,17 @@
         font-size: 1.2rem;
     }
 
+.grid-card {
+    transition: all 0.3s ease; /* This makes the movement smooth, not jumpy */
+}
+
+.grid-card:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Darkens the card slightly */
+    transform: translateY(-10px);        /* Lifts the card up 10 pixels */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5); /* Adds a shadow underneath */
+    color: #0096c0;                      /* Changes text color to your brand blue */
+}
+
     .grid-cards a:hover {
         background-color: rgb(0, 0, 0, 0.8);
         border-radius: 10px;
