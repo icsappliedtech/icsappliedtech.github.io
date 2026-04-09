@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Dino Run | Mitch</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Ensuring the game fits your site's aesthetic */
+        #gameCanvas {
+            background-color: #f7f7f7;
+            display: block;
+            margin: 0 auto;
+            border-bottom: 2px solid #535353;
+            cursor: pointer;
+        }
+        .game-wrapper { text-align: center; padding: 20px; }
+        #startBtn {
+            padding: 15px 30px;
+            background: #535353;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.2s;
+        }
+        #startBtn:hover { background: #333; transform: scale(1.05); }
+        .score-display {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 28px;
+            color: #535353;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body class="bg-sub">
+
+    <div class="nav-container">
+        <div class="navbar">
+            <h6><a href="index.html">MITCH</a></h6>
+            <nav>
+                <ul>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="school.html">SCHOOL</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="resources.html">RESOURCES</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                    <li><a href="game.html">DINO GAME</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="subpage-container">
+        <div class="game-wrapper">
+            <h1 class="title">T-REX RUN</h1>
+            <button id="startBtn">START GAME</button>
+            <div id="scoreVal" class="score-display">00000</div>
+            
+            <canvas id="gameCanvas" width="600" height="200"></canvas>
+            
+            <p>Press <b>SPACE</b> to Jump | Speed increases every 5 points!</p>
+            <div class="btn-container">
+                <a href="index.html" class="action-btn">BACK HOME</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const startBtn = document.getElementById('startBtn');
+        const scoreDisplay = document.getElementById('scoreVal');
+
+        let gameActive = false;
+        let score = 0;
+        let frame = 0;
+        let obstacles = [];
+        let gameSpeed = 7; 
+
+        // Dino Object - Jump and Gravity now dynamic
+        let dino = { 
+            x: 50, y: 150, w: 40, h: 44, 
+            dy: 0, 
+            baseJump: -12, 
+            gravity: 0.6, 
+            grounded: false 
+        };
+
+        function drawDino() {
+            ctx.fillStyle = "#535353";
+            const x = dino.x;
+            const y = dino.y;
+            ctx.fillRect(x + 22, y, 22, 16);    
+            ctx.fillRect(x + 22, y + 16, 12, 4); 
+            ctx.fillRect(x, y + 18, 34, 18);    
+            ctx.fillRect(x + 10, y + 36, 6, 11); 
+            ctx.fillRect(x + 24, y + 36, 6, 11); 
+            ctx.fillRect(x + 36, y + 12, 8, 4);  
+            ctx.fillStyle = "#f7f7f7";
+            ctx.fillRect(x + 28, y + 4, 4, 4);
+        }
+
+        function drawCactus(x) {
+            ctx.fillStyle = "#535353";
+            const y = 155;
+            ctx.fillRect(x + 6, y, 8, 40);      
+            ctx.fillRect(x, y + 12, 6, 15);     
+            ctx.fillRect(x, y + 25, 12, 4);     
+            ctx.fillRect(x + 14, y + 8, 6, 15);  
+            ctx.fillRect(x + 8, y + 20, 10, 4);  
+        }
+
+        function gameLoop() {
+            if (!gameActive) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Ground
+            ctx.strokeStyle = "#535353";
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(0, 195); ctx.lineTo(600, 195); ctx.stroke();
+
+            // Dino Physics
+            dino.dy += dino.gravity;
+            dino.y += dino.dy;
+            if (dino.y + dino.h >= 195) {
+                dino.y = 195 - dino.h;
+                dino.dy = 0;
+                dino.grounded = true;
+            }
+
+            drawDino();
+
+            // Dynamic Spawning: Gap grows as speed grows
+            let spawnInterval = Math.floor(100 + (gameSpeed * 8)); 
+            if (frame % spawnInterval === 0) {
+                obstacles.push({ x: 700 });
+            }
+
+            for (let i = obstacles.length - 1; i >= 0; i--) {
+                obstacles[i].x -= gameSpeed;
+                drawCactus(obstacles[i].x);
+
+                // COLLISION FIX: Smaller hitboxes for fairness
+                let dinoHitbox = { x: dino.x + 5, y: dino.y + 5, w: dino.w - 10, h: dino.h - 5 };
+                let cactusHitbox = { x: obstacles[i].x + 4, y: 155, w: 12, h: 40 };
+
+                if (dinoHitbox.x < cactusHitbox.x + cactusHitbox.w && 
+                    dinoHitbox.x + dinoHitbox.w > cactusHitbox.x && 
+                    dinoHitbox.y < cactusHitbox.y + cactusHitbox.h &&
+                    dinoHitbox.y + dinoHitbox.h > cactusHitbox.y) {
+                    gameActive = false;
+                    alert("GAME OVER! Score: " + score);
+                    location.reload();
+                }
+
+                if (obstacles[i].x < -40) {
+                    obstacles.splice(i, 1);
+                    score++;
+                    scoreDisplay.innerText = score.toString().padStart(5, '0');
+                    if (score % 5 === 0) {
+                        gameSpeed += 0.5;
+                        // ADAPTIVE JUMP: Make jump stronger as game speeds up
+                        dino.baseJump -= 0.15; 
+                    }
+                }
+            }
+
+            frame++;
+            requestAnimationFrame(gameLoop);
+        }
+
+        startBtn.addEventListener('click', () => {
+            gameActive = true;
+            startBtn.style.display = 'none';
+            gameLoop();
+        });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.code === "Space" && dino.grounded) {
+                // Apply the adaptive jump force
+                dino.dy = dino.baseJump;
+                dino.grounded = false;
+            }
+        });
+    });
+</script>
