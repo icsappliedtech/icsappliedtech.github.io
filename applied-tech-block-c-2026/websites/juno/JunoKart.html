@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JUNO KART 2026</title>
+    <style>
+        body {
+            margin: 0;
+            background: #400c1d;
+            color: #89ffef;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+        }
+        canvas {
+            border: 4px solid #f11b62;
+            background: #222;
+            box-shadow: 0 0 20px #ff3183;
+            margin-top: 20px;
+        }
+        .ui {
+            margin-top: 10px;
+            text-align: center;
+        }
+        h1 { color: #f11b62; margin-bottom: 5px; }
+        .controls { font-size: 0.8rem; color: #008b8b; }
+        
+        /* Game Over Overlay */
+        #overlay {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(64, 12, 29, 0.9);
+            border: 3px solid #f11b62;
+            padding: 30px;
+            text-align: center;
+            z-index: 10;
+        }
+        #overlay h2 { color: #f11b62; font-size: 3rem; margin: 0; }
+        .restart-btn {
+            background: #ff3183;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-family: 'Courier New', monospace;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 1.2rem;
+        }
+        .restart-btn:hover { background: #89ffef; color: #400c1d; }
+    </style>
+</head>
+<body>
+
+    <h1>JUNO KART</h1>
+    <div class="ui">
+        <span id="score">Laps: 0</span> | 
+        <span id="speed">Speed: 0mph</span>
+    </div>
+
+    <div id="overlay">
+        <h2>GAME OVER</h2>
+        <p id="finalScore">Laps Completed: 0</p>
+        <button class="restart-btn" onclick="resetGame()">RESTART RACE</button>
+    </div>
+
+    <canvas id="gameCanvas" width="600" height="400"></canvas>
+
+    <div class="controls">
+        <p>Use <b>ARROW KEYS</b> to Drive | Avoid the Oil Spills!</p>
+        <a href="resources.html" style="color: #ff3183; text-decoration: none; font-weight: bold;">[ EXIT TO RESOURCES ]</a>
+    </div>
+
+<script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const scoreElement = document.getElementById('score');
+    const speedElement = document.getElementById('speed');
+    const overlay = document.getElementById('overlay');
+    const finalScoreText = document.getElementById('finalScore');
+
+    // Game Variables
+    let laps = 0;
+    let gameSpeed = 0;
+    const maxSpeed = 8;
+    let trackOffset = 0;
+    let isGameOver = false;
+    let obstacles = [];
+    
+    // Player Object
+    const player = {
+        x: canvas.width / 2 - 20,
+        y: canvas.height - 80,
+        w: 40,
+        h: 60,
+        color: '#f11b62' 
+    };
+
+    function spawnObstacle() {
+        if(isGameOver) return;
+        obstacles.push({
+            x: Math.random() * (canvas.width - 160) + 80,
+            y: -50,
+            w: 30,
+            h: 30
+        });
+    }
+
+    const keys = {};
+    window.addEventListener('keydown', e => keys[e.code] = true);
+    window.addEventListener('keyup', e => keys[e.code] = false);
+
+    function resetGame() {
+        laps = 0;
+        gameSpeed = 0;
+        obstacles = [];
+        player.x = canvas.width / 2 - 20;
+        isGameOver = false;
+        overlay.style.display = "none";
+        scoreElement.innerText = `Laps: 0`;
+    }
+
+    function update() {
+        if (isGameOver) return;
+
+        // Accelerate/Decelerate
+        if (keys['ArrowUp']) {
+            if (gameSpeed < maxSpeed) gameSpeed += 0.1;
+        } else {
+            if (gameSpeed > 0) gameSpeed -= 0.05;
+        }
+
+        // Steering
+        if (gameSpeed > 0.5) {
+            if (keys['ArrowLeft'] && player.x > 60) player.x -= 4;
+            if (keys['ArrowRight'] && player.x < canvas.width - 100) player.x += 4;
+        }
+
+        // Track Movement
+        trackOffset += gameSpeed;
+        if (trackOffset > 400) {
+            trackOffset = 0;
+            laps++;
+            scoreElement.innerText = `Laps: ${laps}`;
+        }
+
+        // Obstacle Spawning
+        if (Math.random() < 0.02) spawnObstacle();
+        
+        obstacles.forEach((obs, index) => {
+            obs.y += gameSpeed;
+            
+            // Collision Detection
+            if (player.x < obs.x + obs.w &&
+                player.x + player.w > obs.x &&
+                player.y < obs.y + obs.h &&
+                player.y + player.h > obs.y) {
+                
+                // TRIGGER GAME OVER
+                isGameOver = true;
+                gameSpeed = 0;
+                overlay.style.display = "block";
+                finalScoreText.innerText = `Laps Completed: ${laps}`;
+            }
+
+            if (obs.y > canvas.height) obstacles.splice(index, 1);
+        });
+
+        speedElement.innerText = `Speed: ${Math.round(gameSpeed * 10)}mph`;
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw Road
+        ctx.fillStyle = '#333';
+        ctx.fillRect(50, 0, canvas.width - 100, canvas.height);
+
+        // Draw Grass (Dark Green/Cyan)
+        ctx.fillStyle = '#008b8b';
+        ctx.fillRect(0, 0, 50, canvas.height);
+        ctx.fillRect(canvas.width - 50, 0, 50, canvas.height);
+
+        // Draw Moving Lane Lines
+        ctx.strokeStyle = 'white';
+        ctx.setLineDash([20, 20]);
+        ctx.lineDashOffset = -trackOffset;
+        ctx.beginPath();
+        ctx.moveTo(canvas.width / 2, 0);
+        ctx.lineTo(canvas.width / 2, canvas.height);
+        ctx.stroke();
+
+        // Draw Obstacles (Oil Spills)
+        ctx.fillStyle = '#89ffef'; 
+        obstacles.forEach(obs => {
+            ctx.beginPath();
+            ctx.arc(obs.x + 15, obs.y + 15, 15, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        // Draw Player Kart
+        ctx.fillStyle = player.color;
+        ctx.fillRect(player.x, player.y, player.w, player.h); 
+        ctx.fillStyle = 'black';
+        ctx.fillRect(player.x - 5, player.y + 5, 5, 15); 
+        ctx.fillRect(player.x + 40, player.y + 5, 5, 15);
+        ctx.fillRect(player.x - 5, player.y + 40, 5, 15);
+        ctx.fillRect(player.x + 40, player.y + 40, 5, 15);
+        
+        // Windshield
+        ctx.fillStyle = '#89ffef';
+        ctx.fillRect(player.x + 5, player.y + 10, 30, 10);
+    }
+
+    function gameLoop() {
+        update();
+        draw();
+        requestAnimationFrame(gameLoop);
+    }
+
+    gameLoop();
+</script>
+</body>
+</html>

@@ -2,32 +2,11 @@
 <html class="no-js" lang="eng">
 
 <head>
- 
- <!--sets the character encoding attribute for the HTML-->
   <meta charset="utf-8">
-
-<!-- Page Title -->
   <title>Juno: Contact</title>
-
-  <!-- page description and keywords -->
   <meta name="description" content="My first website for Applied Tech class at ICS. 2026.">
-  <meta name="keywords" content="applied technologies, ics, bangkok, thailand">
-
-
-  <!-- sets the initial zoom level in the browser when the page is first loaded -->
-    <meta name="author" content="Juno Dore">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- open graph(OG) meta tags control how URLs are displayed when shared on social media -->
-  <meta property="og:title" content="Juno: My First Website">
-  <meta property="og:type" content="This is a class project for Applied Technologies class.">
-  <meta property="og:url" content="https://www.mrjasoncode.com/studentwork">
-  <meta property="og:image" content="https://www.mrjasoncode.com/tile.png">
 
-
-  <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
-
-  <!-- Stylesheets we use for styling our website-->
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -37,8 +16,7 @@
 
 <body class="bg-sub">
 
-  <!-- NavBar -->
-   <div class="nav-container">
+  <div class="nav-container">
     <div class="navbar">
       <h6><a href="index.html">JUNO DORE</a></h6>
       <nav>
@@ -51,64 +29,58 @@
         </ul>
       </nav>
     </div>
-   </div>
+  </div>
 
-   <!-- Content -->
-    <div class="subpage-container">
-      <h1>Contact</h1>
-      <h5>Contact me for more information or if you want to connect.</h5>
+  <div class="subpage-container">
+    <h1>Contact</h1>
+    <h5>Contact me for more information or if you want to connect.</h5>
 
-      <div class="subpage-content">
+    <div class="subpage-content">
+      <p>You can fill out the form below. I check form submissions weekly and typically respond within 2 weeks if a response is needed. Thank you.</p>
 
-        <p>You can fill out the form below. I check form submissions weekly and typically respond wihthin 2 weeks if a response is needed. Thank you.</p>
+      <div class="form-container">
+        <form action="#" method="POST">
+          <label for="Name">Name:</label>
+          <input type="text" name="Name" placeholder="Full Name" required>
 
-        <div class="form-container">
-            <form action="#" method="POST">
-                <label for="Name">Name:</label>
-                <input type="text" name="Name" placeholder="Full Name" required>
-                <br>
+          <label for="Email">Email:</label>
+          <input type="email" name="Email" placeholder="Your Email" required>
 
-                <label for="Email">Email:</label>
-                <input type="email" name="Email" placeholder="Your Email" required>
-                <br>
+          <label for="City">City:</label>
+          <input type="text" name="City" placeholder="Your City" required>
 
-                <label for="City">City:</label>
-                <input type="text" name="City" placeholder="Your City" required>
-                <br>
+          <label for="Region">Region:</label>
+          <select name="Region" required>
+            <option value="" disabled selected>Choose Region:</option>
+            <option value="Africa">Africa</option>
+            <option value="Asia">Asia</option>
+            <option value="Australia">Australia</option>
+            <option value="Europe">Europe</option>
+            <option value="North America">North America</option>
+            <option value="Central America">Central America</option>
+            <option value="South America">South America</option>
+          </select>
 
-                <label for="Region">Region:</label>
-                <select name="Region">
-                    <option selected>Choose:</option>
-                    <option>Africa</option>
-                    <option>Asia</option>
-                    <option>Australia</option>
-                    <option>Europe</option>
-                    <option>North America</option>
-                    <option>Central America</option>
-                    <option>South America</option>
-                </select>
-                <br>
+          <label for="Message">Your Message:</label>
+          <textarea name="Message" placeholder="Your Message" required></textarea>
 
-                <label for="Message">Your Message:</label>
-                <textarea name="Message" placeholder="Your Message"></textarea>
-                <br>
-
-                <input type="submit" value="SUBMIT">
-            </form>
-        </div>
-        <hr>
-
+          <input type="submit" value="SUBMIT" class="action-btn">
+        </form>
       </div>
-
-      <a href="index.html" class="action-btn">GO HOME</a>
+      <hr>
     </div>
 
-    <div class="footer-container">
-        <div class="footer-content">
-            ©2026 All Rights Reserved
-        </div>
+    <a href="index.html" class="action-btn">GO HOME</a>
+  </div>
+
+  <div class="footer-container">
+    <div class="footer-content">
+      ©2026 All Rights Reserved
     </div>
+  </div>
+  
+  
+  
 
 </body>
-
 </html>

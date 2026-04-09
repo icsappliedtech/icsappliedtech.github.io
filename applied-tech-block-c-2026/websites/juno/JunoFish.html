@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Juno Fish</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+        body {
+            margin: 0;
+            background: #2a0813;
+            color: #89ffef;
+            font-family: 'VT323', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 { color: #ff3183; font-size: 3.5rem; margin: 0; text-shadow: 3px 3px #000; }
+        .ui-header { display: flex; gap: 30px; align-items: center; margin-bottom: 10px; }
+
+        canvas {
+            border: 6px solid #ff3183;
+            background: #87CEEB;
+            box-shadow: 0 0 40px rgba(255, 49, 131, 0.5);
+            image-rendering: pixelated;
+        }
+
+        .game-btn {
+            background: #ff3183;
+            color: white;
+            border: 4px solid #f11b62;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: 'VT323', monospace;
+            font-size: 1.5rem;
+        }
+        .game-btn:hover { background: #89ffef; color: #2a0813; }
+
+        .overlay {
+            display: none;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.95);
+            border: 4px solid #89ffef;
+            padding: 30px;
+            text-align: center;
+            z-index: 100;
+            width: 420px;
+        }
+
+        .inventory-list {
+            max-height: 350px;
+            overflow-y: auto;
+            margin-top: 10px;
+            border-top: 2px solid #89ffef;
+        }
+
+        .inventory-item {
+            border-bottom: 2px solid #333;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.4rem;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .rank-tag { font-size: 0.9rem; padding: 2px 6px; border-radius: 4px; margin-left: auto; }
+        .fish-icon { width: 50px; height: 35px; background: #111; border: 1px solid #444; }
+        
+        /* Style for the Exit Link */
+        .exit-link {
+            color: #ff3183;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+        .exit-link:hover { color: #89ffef; text-shadow: 0 0 5px #89ffef; }
+    </style>
+</head>
+<body>
+
+    <div class="ui-header">
+        <h1>JUNO FISH</h1>
+        <button class="game-btn" onclick="toggleInventory(true)">INVENTORY</button>
+        <a href="resources.html" class="exit-link">[ EXIT ]</a>
+    </div>
+
+    <canvas id="fishingCanvas" width="600" height="400"></canvas>
+    
+    <div style="margin-top: 15px;">
+        <button id="actionBtn" class="game-btn" onclick="handleActionButton()">CAST LINE</button>
+    </div>
+
+    <div id="catchOverlay" class="overlay">
+        <h2 id="catchStatus" style="color:#ff3183; font-size: 2.5rem;">CATCH!</h2>
+        <canvas id="fishArtCanvas" width="120" height="80" style="background:#111; border:2px solid #ff3183; margin:10px;"></canvas>
+        <h3 id="fishName" style="color:#89ffef; font-size: 2.2rem; margin: 5px 0;"></h3>
+        <p id="fishRarity" style="font-size: 1.5rem;"></p>
+        <div style="margin-top:20px;">
+            <button class="game-btn" onclick="closeCatchOverlay()">CONTINUE</button>
+        </div>
+    </div>
+
+    <div id="inventoryOverlay" class="overlay">
+        <h2 style="color:#89ffef; font-size: 2.5rem; margin-bottom: 5px;">COLLECTION</h2>
+        <p style="color: #666; margin: 0;">Sorted by Rarity</p>
+        <div id="inventoryList" class="inventory-list"></div>
+        <button class="game-btn" onclick="toggleInventory(false)" style="margin-top:20px;">BACK TO POND</button>
+    </div>
+
+<script>
+    const canvas = document.getElementById('fishingCanvas');
+    const ctx = canvas.getContext('2d');
+    const actionBtn = document.getElementById('actionBtn');
+    
+    let gameState = "IDLE";
+    let waterTime = 0;
+    let clouds = [{x: 50, y: 30, s: 0.2}, {x: 300, y: 60, s: 0.15}, {x: 500, y: 20, s: 0.25}];
+    let inventory = JSON.parse(localStorage.getItem('juno_fishing_v4')) || {};
+    let biteTime = 0;
+
+    const fishTypes = [
+        { rank: 5, name: "Juno's Guppy", rarity: "LEGENDARY", color: "#ffffff", pattern: "#89ffef", chance: 0.02 },
+        { rank: 4, name: "Void Bass", rarity: "EPIC", color: "#4b0082", pattern: "#222222", chance: 0.08 },
+        { rank: 3, name: "Royal Eel", rarity: "RARE", color: "#ffcc00", pattern: "#aa8800", chance: 0.15 },
+        { rank: 2, name: "Neon Perch", rarity: "UNCOMMON", color: "#ff00ff", pattern: "#880088", chance: 0.25 },
+        { rank: 1, name: "Cyan Carp", rarity: "COMMON", color: "#00ffff", pattern: "#008888", chance: 0.50 }
+    ];
+
+    function drawPixelFish(fctx, x, y, fish, scale=1) {
+        fctx.fillStyle = fish.color;
+        fctx.fillRect(x, y, 40*scale, 20*scale);
+        fctx.fillRect(x - 10*scale, y - 5*scale, 10*scale, 30*scale);
+        fctx.fillStyle = fish.pattern;
+        fctx.fillRect(x + 10*scale, y, 5*scale, 20*scale);
+        fctx.fillRect(x + 25*scale, y, 5*scale, 20*scale);
+        fctx.fillStyle = "white";
+        fctx.fillRect(x + 30*scale, y + 4*scale, 6*scale, 6*scale);
+        fctx.fillStyle = "black";
+        fctx.fillRect(x + 33*scale, y + 6*scale, 2*scale, 2*scale);
+    }
+
+    function draw() {
+        ctx.fillStyle = '#87CEEB'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'white';
+        clouds.forEach(c => {
+            c.x += c.s; if (c.x > 620) c.x = -50;
+            ctx.fillRect(c.x, c.y, 40, 15); ctx.fillRect(c.x + 10, c.y - 10, 20, 10);
+        });
+
+        waterTime += 0.03;
+        ctx.fillStyle = '#005f73'; ctx.fillRect(0, 250, canvas.width, 150);
+        for (let i = 0; i < 15; i++) {
+            let yPos = 260 + (i * 10);
+            let shift = Math.sin(waterTime + i) * 20;
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.4)'; ctx.fillRect((i * 50 + shift) % 600, yPos, 35, 2);
+            ctx.fillStyle = 'rgba(0, 255, 255, 0.2)'; ctx.fillRect(((i * 80) - shift) % 600, yPos + 5, 50, 4);
+        }
+
+        ctx.fillStyle = '#4a2c1d'; ctx.fillRect(50, 230, 150, 30);
+        ctx.fillStyle = '#2e1a10'; ctx.fillRect(60, 260, 10, 100); ctx.fillRect(180, 260, 10, 100);
+
+        const jX = 140; const jY = 165;
+        ctx.fillStyle = '#000'; ctx.fillRect(jX-22, jY+25, 10, 15); ctx.fillRect(jX+12, jY+25, 10, 15);
+        ctx.fillStyle = '#89ffef'; ctx.fillRect(jX-22, jY+22, 10, 4); ctx.fillRect(jX+12, jY+22, 10, 4);
+        ctx.fillStyle = '#f2bac5'; ctx.fillRect(jX-10, jY+15, 20, 25);
+        ctx.fillStyle = '#ff3183'; ctx.fillRect(jX-12, jY+40, 24, 25);
+        ctx.fillRect(jX-20, jY+10, 40, 8); ctx.fillRect(jX-12, jY, 24, 12);
+        
+        ctx.fillStyle = '#3d2b1f'; ctx.fillRect(jX + 10, jY + 45, 120, 4);
+        if (gameState !== "IDLE") {
+            ctx.strokeStyle = "white"; ctx.beginPath();
+            let shake = (gameState === "BITE") ? Math.sin(Date.now() * 0.2) * 5 : 0;
+            ctx.moveTo(jX + 130, jY + 47); ctx.lineTo(jX + 130 + shake, 320 + shake); ctx.stroke();
+            ctx.fillStyle = "#ff3183"; ctx.fillRect(jX + 127 + shake, 315 + shake, 6, 6);
+        }
+    }
+
+    function handleActionButton() {
+        if (gameState === "IDLE") {
+            gameState = "CASTING"; actionBtn.innerText = "WAITING...";
+            setTimeout(() => { gameState = "WAITING"; biteTime = Date.now() + (Math.random()*4000+1500); }, 800);
+        } else if (gameState === "BITE") { processCatch(); }
+    }
+
+    function processCatch() {
+        let roll = Math.random();
+        let cumulative = 0;
+        let fish;
+        for (let f of fishTypes) {
+            cumulative += f.chance;
+            if (roll <= cumulative) {
+                fish = f;
+                break;
+            }
+        }
+
+        inventory[fish.name] = (inventory[fish.name] || 0) + 1;
+        localStorage.setItem('juno_fishing_v4', JSON.stringify(inventory));
+        
+        document.getElementById('fishName').innerText = fish.name;
+        document.getElementById('fishRarity').innerText = fish.rarity;
+        document.getElementById('fishRarity').style.color = fish.color === "#ffffff" ? "#89ffef" : fish.color;
+        
+        const fctx = document.getElementById('fishArtCanvas').getContext('2d');
+        fctx.clearRect(0,0,120,80);
+        drawPixelFish(fctx, 40, 30, fish, 1.5);
+        
+        document.getElementById('catchOverlay').style.display = 'block';
+        gameState = "CELEBRATING";
+    }
+
+    function closeCatchOverlay() {
+        document.getElementById('catchOverlay').style.display = 'none';
+        gameState = "IDLE"; actionBtn.innerText = "CAST LINE";
+    }
+
+    function toggleInventory(show) {
+        let el = document.getElementById('inventoryOverlay');
+        let list = document.getElementById('inventoryList');
+        list.innerHTML = "";
+        
+        let caughtFish = Object.keys(inventory)
+            .map(name => fishTypes.find(f => f.name === name))
+            .sort((a, b) => b.rank - a.rank);
+        
+        caughtFish.forEach(fishData => {
+            let item = document.createElement('div');
+            item.className = "inventory-item";
+            let iconId = "icon_" + fishData.name.replace(/\s|'/g, '');
+            
+            item.innerHTML = `
+                <canvas id="${iconId}" width="50" height="35" class="fish-icon"></canvas>
+                <div style="text-align: left">
+                    <div style="color: white; font-size: 1.5rem;">${fishData.name}</div>
+                    <div style="color: ${fishData.color}; font-size: 0.9rem;">${fishData.rarity}</div>
+                </div>
+                <div class="rank-tag" style="border: 1px solid ${fishData.color}">QTY: ${inventory[fishData.name]}</div>
+            `;
+            list.appendChild(item);
+            
+            let ictx = document.getElementById(iconId).getContext('2d');
+            drawPixelFish(ictx, 12, 8, fishData, 0.7);
+        });
+        
+        if (caughtFish.length === 0) {
+            list.innerHTML = "<p style='padding:20px; color:#666;'>Empty... go catch something!</p>";
+        }
+
+        el.style.display = show ? 'block' : 'none';
+    }
+
+    function loop() {
+        if (gameState === "WAITING" && Date.now() > biteTime) {
+            gameState = "BITE"; actionBtn.innerText = "PULL!";
+        }
+        draw(); requestAnimationFrame(loop);
+    }
+    loop();
+</script>
+</body>
+</html>
