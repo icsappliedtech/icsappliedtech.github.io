@@ -2,6 +2,28 @@
   Background Images START
   ====================== */
 
+  
+  
+  ::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: blueviolet; 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #602760; 
+}
+  
+  
+  
+  
   body {
     display: flex;
     flex-direction: column;
@@ -10,7 +32,12 @@
 
   .bg-home  {
     background-image: url(../img/randyrooi-sky-956976_1920.jpg);
-    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    place-items: center;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -19,7 +46,12 @@
 
   .bg-sub {
      background-image: url(../img/aekphoto-backgrounds-4251120_1920.jpg);
-    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    place-items: center;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -138,11 +170,16 @@ Button Style START
        border: none;
        border-radius: 7px;
        cursor: pointer;
+ 
    }
      
    .action-btn:hover {
-    background-color: blueviolet;
+    background-color: rgb(221, 156, 226);
     color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(255, 181, 253, 0.6);
+
+
    }
       
        /* ===========================
@@ -154,7 +191,7 @@ Button Style START
        ========================== */
      
        .nav-container {
-        background-color: antiquewhite;
+        background-color: rgb(255, 86, 204);
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         font-size: 1.2rem;
         font-family: "Lato", sans-serif;
@@ -164,6 +201,10 @@ Button Style START
         width: 100%;
         position: sticky;
         top: 0;
+        background: rgba(255, 255, 255, 0.1); 
+       backdrop-filter: blur(15px);
+       -webkit-backdrop-filter: blur(15px);
+       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
       }
       
       .navbar {
@@ -207,13 +248,13 @@ Button Style START
      }
 
      .navbar a {
-        color: indigo;
+        color: rgb(71, 9, 74);
         text-decoration: none;
 
      }
 
      .navbar a:hover {
-          color: rgb(255, 171, 252);
+          color: rgb(251, 251, 251);
      }
      
      @media screen and (min-width: 390px) and (max-width: 787px) {
@@ -234,17 +275,32 @@ Button Style START
        ========================== */
 
        .homepage-container {
-          background-color: rgb(255, 255, 255,0.0);
-          width: 90%;
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 20px;
-          text-align: center;
-     
+         margin: auto;
+         width: 90%;
+         max-width: 550px;
+         padding: 50px;
+         text-align: center;
+         background: rgba(255, 255, 255, 0.15);
+         backdrop-filter: blur(18px);
+         -webkit-backdrop-filter: blur(18px);
+         border: 1px solid rgba(255,255,255,0.4);
+         border-right: 1px solid rgba(255,255,255,0.2);
+         border-bottom: 1px solid rgba(255,255,255,0.2);
+         border-radius: 24px;
+         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+         text-align: center;
+         animation: fadeInUp 1s ease-out;
+
        }
 
       .homepage-container h1 {
-         margin: 150px 0 -10px 0;
+         margin: 0 0 10px 0;
+         text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+         color: rgb(93, 0, 96)
       }
        
 
@@ -275,7 +331,7 @@ Button Style START
         justify-content: center;
         align-items: center;
         background-color: rgb(0,0,0,0.5);
-        color: #a64195;
+        color: #ffffff;
         height: 100px;
         border-radius: 10px;
         font-size: 1.2rem;
@@ -288,7 +344,7 @@ Button Style START
       }
 
       hr {
-         border-top: 1px solid rgb(92, 44, 96);
+         border-top: 1px solid rgb(255, 255, 255);
       }
 
           /* ===========================
@@ -343,14 +399,14 @@ Button Style START
             padding: 20px;
             margin: 10x;
             line-height: 1.5;
-            color:#a64195;
+            color:#ffffff;
             
 
       }
 
       .subpage-container h2 {
           font-size: 1.5rem;
-          color: #a64195;
+          color: #000000;
           padding-bottom:5px;
           margin-top: 1.5rem;
 
@@ -374,7 +430,7 @@ Button Style START
         .subpage-content li a {
            font-weight: bold;
            font-size: 1.2rem;
-           color: #a64195;
+           color: #9145a0;
            text-decoration: none;
 
         }
@@ -495,4 +551,45 @@ Button Style START
 
         }
 
-   
+
+        .orb {
+          position:absolute;
+          width: 300px;
+          height: 300px;
+          border-radius: 50%;
+          filter: blur(80px);
+          z-index: -1;
+          animation: float 20s infinite alternate;
+        }
+        
+        .orb-1 {
+          background: rgba(213, 89, 230, 0.4);
+          top: 10%;
+          left: 10%;
+        }
+
+        .orb-2 {
+          background: rgba(236, 114, 183, 0.3);
+          bottom: 20%;
+          right: 15%;
+          animation-delay: -5s;
+
+        }
+
+        @keyframes float {
+          from { transform: translate(0,0); }
+          to { transform: translate(100px, 50px);}
+        }
+
+
+        @keyframes fadeInUp {
+          from{
+            opacity: 0;
+            transform: translateY(30px);
+          }
+
+          to{
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
