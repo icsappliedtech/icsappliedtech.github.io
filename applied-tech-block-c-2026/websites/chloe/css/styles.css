@@ -1,3 +1,22 @@
+/* Custom Scrollbar */
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #fff0f6; /* Very light pink */
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(#f89fcd, #fb3f97);
+    border-radius: 10px;
+    border: 3px solid #fff0f6;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #fb3f97;
+}
 /* ==========================
     Background Images START
     ========================= */
@@ -9,7 +28,7 @@
     }
 
     .bg-home {
-        background-image: url(../img/neelam279-bumblebee-10171989_1920.jpg);
+        background-image: url(../img/valerialu-cherry-blossoms-6153384.jpg);
         height: 100%;
         background-position: center;
         background-repeat: no-repeat;
@@ -37,6 +56,11 @@
 
 /* Import font styles from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Prata&display=swap');
+
+::selection {
+    background-color: #f89fcd;
+    color: white
+}
 
 /* Font Classes for Website */
 .prata-regular {
@@ -94,10 +118,35 @@
     Heading and Paragraph Styles START
     ================================== */
 
-    h1 {font-size: 6rem;}
-    h2 {font-size: 5rem;}
-    h3 {font-size: 4rem;}
-    h4 {font-size: 3rem;}
+    h1 {
+        font-size: clamp(3rem, 10vw, 6rem);
+        font-family: "Prata", serif;
+        color: #e884b3;
+        text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.5); 
+        letter-spacing: -1px;
+        line-height: 1.1;
+        margin-bottom: 20px;
+        transition: all 0.5s ease;
+    }
+    
+    h2 {
+        color: #fb3f97; 
+        font-family: "Prata", serif;
+        transition: color 0.3s ease;
+    }
+
+    h3 {
+        color: #fb3f97;
+        font-family: "Prata", serif;
+        transition: color 0.3s ease;
+    }
+
+    h4 {
+        color: #fb3f97; 
+        font-family: "Prata", serif;
+        transition: color 0.3s ease;
+    }
+
     h5 {font-size: 2rem;}
     h6 {font-size: 1.6rem;}
 
@@ -170,6 +219,7 @@
         width: 100%;
         position: sticky;
         top: 0;
+        z-index: 100;
     }
 
     .navbar {
@@ -193,6 +243,26 @@
     .navbar ul li {
         list-style-type: none;
     }
+
+    .navbar ul li a {
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.navbar ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #FFFFFF;
+    transition: width 0.3s ease;
+}
+
+.navbar ul li a:hover::after {
+    width: 100%;
+}
 
     .nav-container .navbar ul li {
         padding: 0px;
@@ -238,7 +308,7 @@
     ============================ */
 
     .homepage-container {
-        background-color:rgba(241, 101, 169, 0);
+        background-color:rgba(242, 82, 159, 0);
         width: 90%;
         max-width: 1200px;
         margin: 0 auto;
@@ -251,13 +321,18 @@
     }
 
     .subpage-container {
-        background-color:rgb(255, 255, 255, 0.5);
-        width: 90%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-        text-align: center;
-        flex-grow: 1;
+    background-color: rgba(255, 255, 255, 0.4); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center;
+    flex-grow: 1;
     }
 
     .grid-container {
@@ -270,23 +345,50 @@
         width: 100%;
         grid-gap: 20px;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        position: relative;
+        overflow: hidden;
     }
 
     .grid-card {
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #f93f93;
+        background-color: #fea8fa;
         color: #FFFFFF;
         height: 100px;
         border-radius: 10px;
         font-size: 1.2rem;
+        background: rgba(131, 185, 236, 0.892);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: transform 0.3s ease;
+        background: 0.3s ease;
+    }
+
+    .grid-card::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: rgba(255, 255, 255, 0.1);
+        transform: rotate(45deg);
+        transition: all 0.5s;
+        pointer-events: none;
+    }
+
+    .grid-card:hover::before {
+        left: 100%;
+        top: 100%;
     }
 
     .grid-cards a:hover {
-        background-color: #fe9ed4;
+        background-color: #ee4fd6;
         border-radius: 10px;
         color: #FFFFFF;
+        transform: translateY(-5px);
+        background: rgb(246, 88, 154);
     }
 
     /* =========================
@@ -307,7 +409,14 @@
 
     .photo {
         width: 90%;
-        border-radius: 20px;
+        border-radius: 60% 40% 70% 30% / 30% 60% 40% 70%;
+        box-shadow: 0 15px 35px rgba(251, 63, 151, 0.2);
+        transition: all 0.8s ease-in-out;
+    }
+
+    .photo:hover {
+            border-radius: 40% 60% 30% 70% / 60% 30% 70% 40%; 
+            transform: rotate(2deg) scale(1.02);
     }
 
     .subpage-content details {
@@ -479,5 +588,6 @@
     /* =========================
     Footer Styles END
     ============================ */
+
 
 
