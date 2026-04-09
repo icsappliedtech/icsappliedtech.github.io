@@ -487,3 +487,122 @@
     /* =========================
     Footer Styles END
     ============================ */
+
+    /* =========================================
+   Global & Page Styles (Core Setup) START
+   ========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+h1 { margin-bottom: 0.5rem; color: #1a1a1a; }
+header p { color: #666; font-size: 1.1rem; }
+
+    /* =========================================
+   Global & Page Styles (Core Setup) END
+   ========================================= */
+
+/* =========================================
+   CSS Grid Container Styles (Responsiveness) START
+   ========================================= */
+.grid-container {
+    display: grid;
+    width: 100%;
+    max-width: 1100px; 
+    margin: 0 auto; /* This centers the grid horizontally */
+    grid-gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    padding: 2rem; /* Adds some breathing room on the sides for mobile */
+}
+/* =========================================
+   CSS Grid Container Styles (Responsiveness) END
+   ========================================= */
+
+/* =========================================
+   Card Flip Mechanics (The Core Logic) START
+   ========================================= */
+
+/* The outer wrapper sets up the 3D space */
+.card-wrapper {
+    background-color: transparent;
+    height: 350px; 
+    perspective: 1000px; 
+}
+
+/* This is the container that *actually rotates* */
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 15px;
+}
+
+/* Trigger the rotation on hover of the parent */
+.card-wrapper:hover .card-inner {
+    transform: rotateY(180deg); 
+}
+
+
+.card-front, .card-back {
+    position: absolute; 
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    backface-visibility: hidden; 
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+/* --- Front Face Styles --- */
+.card-front {
+    background-color: #0096c0; 
+    color: white;
+}
+
+.card-front h2 {
+    font-size: 4rem;
+    opacity: 0.3;
+    margin-bottom: 1rem;
+}
+
+/* --- Back Face Styles --- */
+.card-back {
+    background-color: #313739; 
+    color: white;
+    transform: rotateY(180deg); 
+}
+
+.card-back h3 { margin-bottom: 1rem; color: #c29100; /* Gold accent */ }
+.card-back p { font-size: 0.95rem; line-height: 1.6; }
+
+/* =========================================
+   Card Flip Mechanics (The Core Logic) END
+   ========================================= */
