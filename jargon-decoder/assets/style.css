@@ -173,6 +173,33 @@ input, select, textarea {
   font-weight: 600;
 }
 
+/* Master Reset Button */
+.master-reset-btn {
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-soft);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin-left: var(--gap-sm);
+  font-family: inherit;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.master-reset-btn:hover {
+  background: var(--ink);
+  color: var(--yellow);
+  border-color: var(--ink);
+}
+.master-reset-btn:active {
+  transform: scale(0.97);
+}
+
 /* ============================================================ */
 /* HERO                                                           */
 /* ============================================================ */

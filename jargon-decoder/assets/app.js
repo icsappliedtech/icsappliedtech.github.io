@@ -1935,6 +1935,81 @@
         switchTab(tab);
       });
     });
+
+    // Master reset button
+    const resetBtn = document.getElementById('master-reset');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        if (confirm('Reset the entire app and start over? This will clear any searches, filters, and the Health Check progress.')) {
+          masterReset();
+        }
+      });
+    }
+  }
+
+  function masterReset() {
+    // Clear all Decode tab state
+    const decodeSearch = document.getElementById('decode-search');
+    if (decodeSearch) decodeSearch.value = '';
+    const searchDropdown = document.getElementById('search-dropdown');
+    if (searchDropdown) {
+      searchDropdown.innerHTML = '';
+      searchDropdown.classList.remove('active');
+    }
+    const decodeResult = document.getElementById('decode-result');
+    if (decodeResult) decodeResult.innerHTML = '';
+    ['filter-cluster', 'filter-type', 'filter-status'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+
+    // Clear Encode tab state
+    ['comp-1', 'comp-2', 'comp-3'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+    ['encode-type', 'encode-cluster'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+    const encodeResult = document.getElementById('encode-result');
+    if (encodeResult) encodeResult.innerHTML = '';
+
+    // Clear Browse tab state
+    const browseSearch = document.getElementById('browse-search');
+    if (browseSearch) browseSearch.value = '';
+    const browseStatus = document.getElementById('browse-status');
+    if (browseStatus) browseStatus.value = '';
+    renderBrowse();
+
+    // Clear Health Check state
+    HEALTH_ANSWERS = {};
+    HEALTH_MODE = 'quick';
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === 'quick'));
+    document.querySelectorAll('.health-panel').forEach(p => {
+      p.classList.toggle('active', p.id === 'health-quick');
+    });
+    renderHealth();
+    const healthResult = document.getElementById('health-result');
+    if (healthResult) healthResult.innerHTML = '';
+
+    // Go back to Decode tab (home)
+    switchTab('decode');
+
+    // Brief visual feedback
+    showResetConfirmation();
+  }
+
+  function showResetConfirmation() {
+    const msg = document.createElement('div');
+    msg.textContent = '✓ Reset complete';
+    msg.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#0a0a0a;color:#fbc02d;padding:12px 24px;border-radius:6px;font-weight:600;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:Georgia,serif;animation:fadeIn 0.2s ease';
+    document.body.appendChild(msg);
+    setTimeout(() => {
+      msg.style.opacity = '0';
+      msg.style.transition = 'opacity 0.3s ease';
+      setTimeout(() => msg.remove(), 300);
+    }, 1500);
   }
 
   function switchTab(tab) {
