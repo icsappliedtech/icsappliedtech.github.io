@@ -1,0 +1,332 @@
+/* styles.css */
+
+/* --- MINIMALIST DASHBOARD THEME --- */
+:root {
+    --black: #000000;
+    --white: #ffffff;
+    --yellow: #FFCC00;
+    --light-gray: #f4f4f4;
+    --border: 1px solid var(--black);
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--white);
+    color: var(--black);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Top Navigation/Header */
+.header {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.header h1 span {
+    color: var(--yellow);
+}
+
+/* 3-Column Dashboard Layout */
+.dashboard-container {
+    display: flex;
+    height: calc(100vh - 54px); /* Subtract header height */
+    width: 100%;
+}
+
+/* PANEL 1: Filters (Left) */
+.panel-filters {
+    width: 250px;
+    background-color: var(--light-gray);
+    border-right: var(--border);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.filter-section {
+    margin-bottom: 30px;
+}
+
+.reset-btn {
+    background-color: var(--black);
+    color: var(--white);
+    border: 2px solid var(--black);
+    padding: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    width: 100%;
+    transition: all 0.2s;
+}
+
+.reset-btn:hover {
+    background-color: var(--yellow);
+    color: var(--black);
+}
+
+.filter-title {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    border-bottom: 2px solid var(--black);
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+.category-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    padding: 8px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 500;
+    border-left: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+.category-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.category-btn.active {
+    background-color: var(--yellow);
+    border-left: 3px solid var(--black);
+    font-weight: bold;
+}
+
+.alpha-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+}
+
+.alpha-btn {
+    background: var(--white);
+    border: var(--border);
+    padding: 8px 0;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.alpha-btn:hover {
+    background-color: var(--light-gray);
+}
+
+.alpha-btn.active {
+    background-color: var(--yellow);
+    border-color: var(--black);
+}
+
+/* PANEL 2: List (Middle) */
+.panel-list {
+    width: 350px;
+    border-right: var(--border);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white);
+}
+
+.search-container {
+    padding: 20px;
+    border-bottom: var(--border);
+    background-color: var(--white);
+}
+
+.search-box {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--black);
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+    background-color: var(--light-gray);
+    transition: background-color 0.2s;
+}
+
+.search-box:focus {
+    background-color: var(--white);
+    border-color: var(--yellow);
+}
+
+.word-counter {
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #666;
+}
+
+.list-scroll {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.category-header {
+    background-color: var(--black);
+    color: var(--yellow);
+    padding: 8px 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: sticky;
+    top: 0;
+}
+
+.word-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.word-list li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.1s;
+}
+
+.word-list li:hover {
+    background-color: var(--light-gray);
+}
+
+.word-list li.active {
+    background-color: var(--yellow);
+    font-weight: bold;
+    border-left: 5px solid var(--black);
+    padding-left: 15px;
+}
+
+.empty-state {
+    padding: 30px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+/* PANEL 3: Detail (Right) */
+.panel-detail {
+    flex-grow: 1;
+    padding: 60px;
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+}
+
+.placeholder-text {
+    color: #999;
+    font-size: 24px;
+    font-weight: 300;
+    margin-top: 20%;
+    text-align: center;
+}
+
+#definitionBox {
+    display: none;
+    max-width: 800px;
+}
+
+.category-tag {
+    display: inline-block;
+    background-color: var(--black);
+    color: var(--yellow);
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.def-title {
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--black);
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.def-text {
+    font-size: 22px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 40px;
+    padding-left: 20px;
+    border-left: 4px solid var(--yellow);
+}
+
+/* Alternatives Section */
+.alternatives-container {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: var(--border);
+}
+
+.alternatives-label {
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.alt-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.alt-tag {
+    background-color: var(--white);
+    border: 2px solid var(--black);
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 3px 3px 0px var(--yellow);
+    cursor: pointer; /* Makes the mouse a pointer finger */
+    transition: all 0.1s;
+}
+
+/* Add a hover effect so users know they can click it */
+.alt-tag:hover {
+    background-color: var(--black);
+    color: var(--yellow);
+    box-shadow: 3px 3px 0px var(--light-gray);
+}
+
+/* Custom Scrollbar to match minimal theme */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--light-gray); border-left: var(--border); }
+::-webkit-scrollbar-thumb { background: var(--black); }

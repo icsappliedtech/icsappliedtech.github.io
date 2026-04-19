@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate Jargon Decoder</title>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="header">
+        <h1>Jargon <span>Dictionary</span></h1>
+    </header>
+
+    <div class="dashboard-container">
+        
+        <div class="panel-filters">
+            
+            <button class="reset-btn" onclick="resetApp()">Reset Dashboard</button>
+
+            <div class="filter-section">
+                <span class="filter-title">Category</span>
+                <div id="categoryFilters">
+                    <button class="category-btn active" onclick="setCategory('All')">All Categories</button>
+                    <button class="category-btn" onclick="setCategory('Direction')">Direction</button>
+                    <button class="category-btn" onclick="setCategory('People')">People</button>
+                    <button class="category-btn" onclick="setCategory('Resources')">Resources</button>
+                    <button class="category-btn" onclick="setCategory('Process')">Process</button>
+                    <button class="category-btn" onclick="setCategory('Results')">Results</button>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <span class="filter-title">Alphabet</span>
+                <div class="alpha-grid" id="alphaFilters">
+                    <button class="alpha-btn active" onclick="setLetter('All')" style="grid-column: span 5;">ALL</button>
+                    </div>
+            </div>
+        </div>
+
+        <div class="panel-list">
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-box" placeholder="Search jargon or alternative..." onkeyup="handleSearch()">
+                <div id="wordCounter" class="word-counter">Showing 0 words</div>
+            </div>
+            
+            <div class="list-scroll" id="listContainer">
+                </div>
+        </div>
+
+        <div class="panel-detail">
+            <div id="placeholderText" class="placeholder-text">Select a term from the list.</div>
+            
+            <div id="definitionBox">
+                <span class="category-tag" id="termCategory">Category</span>
+                <div class="def-title" id="termTitle">Term</div>
+                <div class="def-text" id="termDefinition">Definition goes here.</div>
+                
+                <div class="alternatives-container">
+                    <span class="alternatives-label">Also known as / Relates to:</span>
+                    <div class="alt-tags" id="termAlternatives">
+                        </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>
