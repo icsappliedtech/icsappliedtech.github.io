@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Add New Jargon</title>
+    
+    <link rel="stylesheet" href="../styles.css">
+
+    <style>
+	/* Re-enable native scrolling for the admin page */
+        body {
+            overflow-y: auto !important;
+            height: auto !important;
+        }
+	
+        /* Specific styles for the Admin Form */
+        .admin-wrapper {
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+            /* Removed internal scrolling (height & overflow) to let the whole page scroll normally */
+            padding-bottom: 80px; /* Added a little padding at the bottom so it doesn't hug the edge */
+        }
+
+        .admin-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            border-bottom: 4px solid var(--yellow);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"], 
+        select, 
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--black);
+            font-size: 16px;
+            font-family: inherit;
+            background-color: var(--light-gray);
+            box-sizing: border-box;
+            transition: all 0.2s;
+        }
+
+        input[type="text"]:focus, 
+        select:focus, 
+        textarea:focus {
+            background-color: var(--white);
+            border-color: var(--yellow);
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .helper-text {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            display: block;
+        }
+
+        /* Nested Interactive Cheat Sheet Styles */
+        .cheat-sheet {
+            margin-top: 15px;
+            background-color: var(--white);
+            border: 2px dashed #ccc;
+        }
+
+        .cheat-sheet-summary {
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--black);
+            text-transform: uppercase;
+            padding: 12px;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fafafa;
+            transition: background-color 0.2s;
+        }
+
+        .cheat-sheet-summary:hover {
+            background-color: #eee;
+        }
+
+        .cheat-sheet-summary::after {
+            content: '▼';
+            font-size: 10px;
+            color: #666;
+        }
+
+        .cheat-sheet[open] .cheat-sheet-summary::after {
+            content: '▲';
+        }
+
+        .cheat-sheet-body {
+            padding: 15px;
+            border-top: 1px dashed #ccc;
+        }
+
+        .help-dropdown {
+            margin-bottom: 5px;
+        }
+
+        .help-dropdown summary {
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 8px;
+            background-color: var(--light-gray);
+            border: 1px solid transparent;
+            transition: all 0.2s;
+            list-style: none; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .help-dropdown summary::after {
+            content: '+';
+            font-weight: bold;
+            color: var(--black);
+        }
+
+        .help-dropdown[open] summary::after {
+            content: '-';
+        }
+
+        .help-dropdown summary:hover {
+            background-color: var(--yellow);
+            border-color: var(--black);
+        }
+
+        .help-content {
+            padding: 12px;
+            font-size: 13px;
+            line-height: 1.5;
+            background-color: #fafafa;
+            border-left: 4px solid var(--yellow);
+            border-bottom: 1px solid #eee;
+            border-right: 1px solid #eee;
+        }
+
+        .help-content em {
+            display: block;
+            margin-top: 5px;
+            color: #555;
+        }
+
+        .action-btn {
+            background-color: var(--black);
+            color: var(--yellow);
+            border: 2px solid var(--black);
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-right: 10px;
+        }
+
+        .action-btn:hover {
+            background-color: var(--yellow);
+            color: var(--black);
+        }
+
+        /* Generated Code Section */
+        .output-section {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: var(--border);
+            display: none;
+        }
+
+        .code-box {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            border-left: 5px solid var(--yellow);
+            white-space: pre-wrap;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>Jargon <span>Admin</span></h1>
+        <a href="../index.html" style="color: var(--white); text-decoration: none; font-weight: bold;">← Back to Dictionary</a>
+    </header>
+
+    <div class="admin-wrapper">
+        <div class="admin-title">Add New Term</div>
+
+        <form id="addTermForm">
+            <div class="form-group">
+                <label for="termName">Jargon Term</label>
+                <input type="text" id="termName" placeholder="e.g., Boil the ocean" required>
+            </div>
+
+            <div class="form-group">
+                <label for="termCategory">Category</label>
+                <select id="termCategory" required>
+                    <option value="" disabled selected>Select a category...</option>
+                    <option value="Direction">Direction</option>
+                    <option value="People">People</option>
+                    <option value="Resources">Resources</option>
+                    <option value="Process">Process</option>
+                    <option value="Results">Results</option>
+                </select>
+
+                <details class="cheat-sheet">
+                    <summary class="cheat-sheet-summary">Need help picking a category? (Click for Cheat Sheet)</summary>
+                    
+                    <div class="cheat-sheet-body">
+                        <details class="help-dropdown">
+                            <summary>Direction</summary>
+                            <div class="help-content">
+                                Terms related to strategy, vision, goals, and leadership.
+                                <em>Ask yourself: Does this word describe <b>where</b> the company is going? (e.g., "Pivot," "North Star")</em>
+                            </div>
+                        </details>
+                        
+                        <details class="help-dropdown">
+                            <summary>People</summary>
+                            <div class="help-content">
+                                Terms related to roles, relationships, communication, and team dynamics.
+                                <em>Ask yourself: Is this about <b>who</b> is doing the work or talking? (e.g., "Touch base," "Bandwidth")</em>
+                            </div>
+                        </details>
+
+                        <details class="help-dropdown">
+                            <summary>Resources</summary>
+                            <div class="help-content">
+                                Terms related to time, money, budgets, tools, and assets.
+                                <em>Ask yourself: Is this about the <b>things</b> the company spends or uses? (e.g., "Burn rate," "Tech debt")</em>
+                            </div>
+                        </details>
+
+                        <details class="help-dropdown">
+                            <summary>Process</summary>
+                            <div class="help-content">
+                                Terms related to workflows, methods, rules, and daily operations.
+                                <em>Ask yourself: Does this describe <b>how</b> the actual work is getting done? (e.g., "Streamline," "Agile")</em>
+                            </div>
+                        </details>
+
+                        <details class="help-dropdown">
+                            <summary>Results</summary>
+                            <div class="help-content">
+                                Terms related to outcomes, metrics, deliverables, and evaluating success.
+                                <em>Ask yourself: Is this about measuring <b>what</b> was achieved? (e.g., "Bottom line," "ROI")</em>
+                            </div>
+                        </details>
+                    </div>
+                </details>
+                </div>
+
+            <div class="form-group">
+                <label for="termDef">Definition</label>
+                <textarea id="termDef" placeholder="What does this actually mean?" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="termAlts">Alternatives (Optional)</label>
+                <input type="text" id="termAlts" placeholder="e.g., Overcomplicate, Go overboard, Waste time">
+                <span class="helper-text">Separate multiple alternatives with a comma.</span>
+            </div>
+
+            <button type="submit" class="action-btn">Generate Code</button>
+            <button type="button" class="action-btn" style="background-color: var(--white); color: var(--black);" onclick="document.getElementById('addTermForm').reset(); document.getElementById('outputSection').style.display='none'; document.getElementById('errorMessage').style.display='none';">Clear Form</button>
+        </form>
+
+        <div class="output-section" id="outputSection">
+            <label>Success! Copy this code into your data.js file:</label>
+            <div class="code-box" id="codeOutput"></div>
+            <button class="action-btn" onclick="copyCode()">Copy to Clipboard</button>
+            <span id="copyMessage" style="color: green; font-weight: bold; margin-left: 10px; display: none;">Copied!</span>
+        </div>
+
+        <div id="errorMessage" style="color: red; font-weight: bold; margin-top: 20px; display: none; padding: 15px; border: 2px solid red; background-color: #ffe6e6;">
+            Wait! This term already exists in your dictionary.
+        </div>
+    </div>
+
+    <script src="../data.js"></script>
+
+    <script>
+        document.getElementById('addTermForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent page reload
+
+            // Hide previous messages
+            document.getElementById('outputSection').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+
+            // Get values from form
+            const term = document.getElementById('termName').value.trim();
+            
+            // --- THE DUPLICATE CHECK ---
+            const doesExist = jargonData.some(item => item.term.toLowerCase() === term.toLowerCase());
+            
+            if (doesExist) {
+                document.getElementById('errorMessage').style.display = 'block';
+                return; 
+            }
+
+            const category = document.getElementById('termCategory').value;
+            const def = document.getElementById('termDef').value.trim();
+            const altsInput = document.getElementById('termAlts').value.trim();
+
+            // Format alternatives into an array
+            let altsArray = [];
+            if (altsInput) {
+                altsArray = altsInput.split(',').map(alt => `"${alt.trim()}"`);
+            }
+
+            // Generate the JavaScript object text
+            let codeString = `    {\n`;
+            codeString += `        term: "${term}",\n`;
+            codeString += `        category: "${category}",\n`;
+            codeString += `        def: "${def}",\n`;
+            
+            if (altsArray.length > 0) {
+                codeString += `        alternatives: [${altsArray.join(', ')}]\n`;
+            } else {
+                codeString += `        alternatives: []\n`;
+            }
+            codeString += `    },`;
+
+            // Display the code
+            document.getElementById('codeOutput').textContent = codeString;
+            document.getElementById('outputSection').style.display = 'block';
+            
+            // Scroll the window down to the output section
+            document.getElementById('outputSection').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        function copyCode() {
+            const code = document.getElementById('codeOutput').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const msg = document.getElementById('copyMessage');
+                msg.style.display = 'inline-block';
+                setTimeout(() => { msg.style.display = 'none'; }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
