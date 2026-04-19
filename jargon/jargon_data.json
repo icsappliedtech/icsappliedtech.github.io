@@ -1,0 +1,1831 @@
+{
+  "metadata": {
+    "title": "The Words We Use",
+    "subtitle": "The Hidden Formulas Behind Organizational Jargon",
+    "author": "Jason Weimer",
+    "version": "1.0",
+    "total_entries": 85,
+    "core_entries": 60,
+    "alternative_entries": 25,
+    "clusters": [
+      "Direction",
+      "People",
+      "Resources",
+      "Process",
+      "Results"
+    ],
+    "formula_types": [
+      {
+        "type": "Additive",
+        "notation": "j = x + y + z",
+        "description": "All components required, equal weight. Remove any one and the word does not hold."
+      },
+      {
+        "type": "Combination",
+        "notation": "j = x + y + (a + b)",
+        "description": "Grouped sub-components act as a single unit. The relationship inside the parentheses matters."
+      },
+      {
+        "type": "Exponential",
+        "notation": "j = x + y^2",
+        "description": "One component carries disproportionate weight. Small changes to it have outsized effects."
+      },
+      {
+        "type": "Multiplied",
+        "notation": "j = (x + y) x z",
+        "description": "A multiplier transforms everything. If the multiplier is zero, the formula produces zero."
+      },
+      {
+        "type": "Refinement",
+        "notation": "j = (x - y) + z",
+        "description": "Something must be removed before the word holds. Subtraction comes first."
+      },
+      {
+        "type": "Ratio",
+        "notation": "j = x / y",
+        "description": "The word describes a relationship. Remove the denominator and the numerator is meaningless."
+      }
+    ],
+    "master_formula": {
+      "expression": "Organizational health = (Clarity + Capability + Resources + Efficiency + Accountability) x Consistency",
+      "type": "Multiplied",
+      "note": "One component from each cluster. Multiplied by Consistency. If Consistency is zero, the formula produces zero."
+    }
+  },
+  "entries": [
+    {
+      "word": "Vision",
+      "cluster": "Direction",
+      "status": "core",
+      "formula_type": "Combination",
+      "formula": "Vision = purpose + ambition + (time + possibility)",
+      "components": [
+        "purpose",
+        "ambition",
+        "time",
+        "possibility"
+      ],
+      "definition": "A description of where an organization wants to be at some point in the future.",
+      "what_it_really_means": "A vision is a promise about the future that no one will be held to. Most vision statements describe an outcome so broad and distant that accountability becomes impossible. A vision that could be measured is a commitment. A vision that cannot be measured is an aspiration.",
+      "why": "Purpose and ambition are the parts that get written into the statement. Time and possibility are the parts that get left vague. An organization with clear purpose, strong ambition, an honest timeframe, and a realistic assessment of what is possible has a vision worth following.",
+      "alternatives": [
+        "Our goal in three years",
+        "Where we are trying to get to",
+        "What we are building toward",
+        "The outcome we are working toward"
+      ]
+    },
+    {
+      "word": "Mission",
+      "cluster": "Direction",
+      "status": "core",
+      "formula_type": "Additive",
+      "formula": "Mission = purpose + values + direction",
+      "components": [
+        "purpose",
+        "values",
+        "direction"
+      ],
+      "definition": "A formal statement of the organization's purpose, values, and goals, describing what it does, who it serves, and why it exists.",
+      "what_it_really_means": "The most expensive sentence in most organizations. Workshopped, revised, approved by committee, printed on cards. Yet few can recite it from memory.",
+      "why": "All three components are required and carry equal weight. Purpose and values without direction is a philosophy. Direction without values is a plan. Values and direction without purpose is a job description.",
+      "alternatives": [
+        "What we do and why",
+        "Our purpose in plain language",
+        "Why this organization exists",
+        "What we are here to accomplish"
+      ]
+    },
+    {
+      "word": "Strategy",
+      "cluster": "Direction",
+      "status": "core",
+      "formula_type": "Multiplied",
+      "formula": "Strategy = goals + (resources x priorities)",
+      "components": [
+        "goals",
+        "resources",
+        "priorities"
+      ],
+      "definition": "A plan of action designed to achieve long-term goals, taking into account available resources, competitive environment, and organizational capabilities.",
+      "what_it_really_means": "What organizations call a plan when they want it to sound more considered. Resources times priorities. Not resources plus priorities. Abundant resources with no clear priorities produce nothing. Clear priorities with no resources produce frustration.",
+      "why": "Real strategy requires saying no to things that are good in order to say yes to things that are better. A strategy that includes everything is not a strategy. It is a wish list.",
+      "alternatives": [
+        "Our plan",
+        "How we intend to get there",
+        "What we decided to focus on",
+        "What we are and are not doing this year"
+      ]
+    },
+    {
+      "word": "Alignment",
+      "cluster": "Direction",
+      "status": "core",
+      "formula_type": "Combination",
+      "formula": "Alignment = shared direction + (common language + agreed priorities)",
+      "components": [
+        "shared direction",
+        "common language",
+        "agreed priorities"
+      ],
+      "definition": "A state of agreement or coordination in which individuals, teams, or organizational units share direction, priorities, and understanding.",
+      "what_it_really_means": "Alignment is what organizations call agreement when the agreement has not actually been reached yet. The room nods. Everyone leaves with different understandings of what was agreed.",
+      "why": "Common language and agreed priorities are grouped because shared direction is not enough by itself. Two people can agree on the direction and disagree on everything about how to get there. The grouped components are what make the direction operational.",
+      "alternatives": [
+        "We agree on where this is going",
+        "Same page, same priorities, same language",
+        "Everyone understanding the same thing",
+        "Shared direction with shared definitions"
+      ]
+    },
+    {
+      "word": "Roadmap",
+      "cluster": "Direction",
+      "status": "core",
+      "formula_type": "Combination",
+      "formula": "Roadmap = milestones + sequence + (ownership + timeline)",
+      "components": [
+        "milestones",
+        "sequence",
+        "ownership",
+        "timeline"
+      ],
+      "definition": "A strategic document outlining the sequence of steps, milestones, and timeframes required to achieve a specific goal or vision over time.",
+      "what_it_really_means": "What organizations present when they need to signal that a plan exists. Most roadmaps have milestones and sequence but skip ownership and timeline.",
+      "why": "Milestones and sequence are easy to put on a slide. Ownership and timeline are grouped because they are the parts that create accountability. A milestone without an owner belongs to everyone. Which means it belongs to no one.",
+      "alternatives": [
+        "Our plan with dates and people attached",
+        "The sequence of what happens when",
+        "Who does what and when",
+        "A plan with owners"
+      ]
+    },
+    {
+      "word": "Goal",
+      "cluster": "Direction",
+      "status": "core",
+      "formula_type": "Additive",
+      "formula": "Goal = desired outcome + timeframe + ownership",
+      "components": [
+        "desired outcome",
+        "timeframe",
+        "ownership"
+      ],
+      "definition": "A specific result that an individual, team, or organization intends to achieve within a defined period, used to focus effort and measure progress.",
+      "what_it_really_means": "What organizations say when they want to sound purposeful without committing to the precision that would make the purpose testable. A goal without a timeframe is an intention. An intention with no owner is a hope.",
+      "why": "All three components must be present. A goal that cannot be evaluated cannot be failed. That vagueness is protective. The test for a real goal is simple: can you write it in one sentence that includes what will be achieved, by when, and by whom?",
+      "alternatives": [
+        "What we are trying to achieve by when",
+        "A specific outcome with a name on it and a date",
+        "The result we are committing to",
+        "What success looks like and when we expect to see it"
+      ]
+    },
+    {
+      "word": "Initiative",
+      "cluster": "Direction",
+      "status": "core",
+      "formula_type": "Combination",
+      "formula": "Initiative = intent + (resources + timeline)",
+      "components": [
+        "intent",
+        "resources",
+        "timeline"
+      ],
+      "definition": "A planned activity, project, or program designed to advance a specific aim within an organization.",
+      "what_it_really_means": "What organizations call a project when they want to signal importance. Most organizations have more active initiatives than they have people to run them. When everything is an initiative, nothing is.",
+      "why": "Goals are not in this formula because by the time an initiative is launched, the goal has already been set. That work belongs to Strategy and Direction. An initiative is not where you decide what you are trying to achieve. It is how you pursue it.",
+      "alternatives": [
+        "A project with resources and a deadline",
+        "Something we are actively working on",
+        "A funded effort with a timeline",
+        "What we said yes to"
+      ]
+    },
+    {
+      "word": "Pivot",
+      "cluster": "Direction",
+      "status": "core",
+      "formula_type": "Multiplied",
+      "formula": "Pivot = recognition + (new direction x urgency)",
+      "components": [
+        "recognition",
+        "new direction",
+        "urgency"
+      ],
+      "definition": "A significant, intentional change in direction, strategy, or business model in response to new information, conditions, or results.",
+      "what_it_really_means": "What organizations call a change of direction when they want it to sound bold and deliberate. A real pivot requires recognition that something is not working, a new direction, and urgency to execute on it.",
+      "why": "All three components must be present. Recognition without urgency is denial dressed up as deliberation. A new direction without recognition is drift. Urgency without a new direction is panic.",
+      "alternatives": [
+        "We saw it was not working and changed course",
+        "A real change in direction",
+        "Fast, deliberate, and necessary",
+        "The moment we admitted the old way was not working"
+      ]
+    },
+    {
+      "word": "Priority",
+      "cluster": "Direction",
+      "status": "core",
+      "formula_type": "Ratio",
+      "formula": "Priority = most important item / competing demands",
+      "components": [
+        "most important item",
+        "competing demands"
+      ],
+      "definition": "Something that is regarded as more important than other things and therefore given attention or resources before others.",
+      "what_it_really_means": "The most abused word in organizational vocabulary. Specifically, abused in the plural. The word comes from the Latin prioritas, meaning first. First is singular. Organizations that list seven strategic priorities have listed seven things they would like to do. That is a wish list.",
+      "why": "The denominator is the honest part. What is competing with this? What will not get done if this gets done? Without that question, priority is a word that promotes something without committing to what gets demoted.",
+      "alternatives": [
+        "The one thing that comes first",
+        "What gets attention when something else has to wait",
+        "What we are doing instead of the other options",
+        "First, not just important"
+      ]
+    },
+    {
+      "word": "Mandate",
+      "cluster": "Direction",
+      "status": "core",
+      "formula_type": "Additive",
+      "formula": "Mandate = authority + directive + accountability",
+      "components": [
+        "authority",
+        "directive",
+        "accountability"
+      ],
+      "definition": "An authoritative command, order, or instruction to carry out a specific action, policy, or responsibility.",
+      "what_it_really_means": "Authority and directive are present but accountability is missing. In that absence, the word mandate is being borrowed. Not earned.",
+      "why": "The word carries historical weight from government and military contexts where mandates came with real consequences. Organizations use it for the weight without committing to the accountability that makes the weight legitimate.",
+      "alternatives": [
+        "An instruction from someone with authority",
+        "A directive with consequences",
+        "Do this, with consequences",
+        "An order that will be enforced"
+      ]
+    },
+    {
+      "word": "Transformation",
+      "cluster": "Direction",
+      "status": "extended",
+      "formula_type": "Multiplied",
+      "formula": "Transformation = (awareness + vision) x commitment",
+      "components": [
+        "awareness",
+        "vision",
+        "commitment"
+      ],
+      "definition": "A fundamental change in an organization's form, structure, operations, or culture, typically driven by strategic repositioning or response to external change.",
+      "what_it_really_means": "Organizations use this word for any significant change. Real transformation requires awareness of why change is needed, a vision of the new state, and commitment to execute through the discomfort.",
+      "why": "Commitment is the multiplier. Awareness and vision without commitment produce a strategy document. Commitment without awareness produces change for its own sake. All three must be present.",
+      "alternatives": [
+        "Fundamental change, executed",
+        "Becoming something different",
+        "A change that sticks",
+        "New state, not just new language"
+      ]
+    },
+    {
+      "word": "Disruption",
+      "cluster": "Direction",
+      "status": "extended",
+      "formula_type": "Multiplied",
+      "formula": "Disruption = (innovation + timing) x market impact",
+      "components": [
+        "innovation",
+        "timing",
+        "market impact"
+      ],
+      "definition": "A significant change in a market, industry, or organization, typically caused by a new technology, business model, or approach that displaces established practices.",
+      "what_it_really_means": "A word that Clayton Christensen gave a precise meaning and that organizations have since used to describe almost any change. Real disruption requires an innovation, the right timing for it, and actual market impact.",
+      "why": "Market impact is the multiplier because an innovation that does not change the market is not disruptive. It is just new. The timing component is why most disruption attempts fail. The innovation was right but the market was not ready.",
+      "alternatives": [
+        "We changed what the industry looks like",
+        "New way that displaced the old way",
+        "The thing that made the incumbents uncomfortable",
+        "A real change in the market"
+      ]
+    },
+    {
+      "word": "Culture",
+      "cluster": "People",
+      "status": "core",
+      "formula_type": "Multiplied",
+      "formula": "Culture = (values + behaviors) x consistency",
+      "components": [
+        "values",
+        "behaviors",
+        "consistency"
+      ],
+      "definition": "The shared values, beliefs, norms, and behaviors that characterize an organization and shape how its members interact and work together.",
+      "what_it_really_means": "What organizations describe in their handbooks and what employees experience daily. These are often not the same thing. Strong values and behaviors mean nothing if the multiplier is zero.",
+      "why": "Consistency is the multiplier. This is why organizations with strong stated values can still have toxic cultures. If consistency is absent, the rest of the formula produces nothing. Zero times anything is zero.",
+      "alternatives": [
+        "How we actually behave here",
+        "What we do, not what we say",
+        "The real pattern of this place",
+        "How we treat each other consistently"
+      ]
+    },
+    {
+      "word": "Engagement",
+      "cluster": "People",
+      "status": "core",
+      "formula_type": "Combination",
+      "formula": "Engagement = motivation + (belonging + purpose)",
+      "components": [
+        "motivation",
+        "belonging",
+        "purpose"
+      ],
+      "definition": "The emotional commitment, involvement, and enthusiasm that employees have toward their work, their team, and their organization.",
+      "what_it_really_means": "What organizations measure in annual surveys and struggle to improve. Engagement is not a program. It is the product of motivation plus the combined effect of belonging and purpose.",
+      "why": "Belonging and purpose are grouped because one without the other does not produce engagement. Belonging without purpose is a social club. Purpose without belonging is isolation in service of a goal.",
+      "alternatives": [
+        "People who want to be here",
+        "Motivated, connected, and doing meaningful work",
+        "Actually invested in the outcome",
+        "Present in more than attendance"
+      ]
+    },
+    {
+      "word": "Synergy",
+      "cluster": "People",
+      "status": "core",
+      "formula_type": "Exponential",
+      "formula": "Synergy = reliable output + collaboration + results that build on each other^2",
+      "components": [
+        "reliable output",
+        "collaboration",
+        "results that build on each other"
+      ],
+      "definition": "The combined effect of people or teams working together that produces an outcome greater than the sum of their individual contributions.",
+      "what_it_really_means": "One of the most abused words in organizational vocabulary. Real synergy requires reliable output, collaboration, and results that compound over time.",
+      "why": "Results that build on each other is the squared component. The more of it that is present, the more it compounds. Collaboration without compounding results is a meeting. Shared output that does not build on itself is a one-time result.",
+      "alternatives": [
+        "Work that compounds over time",
+        "Results that build on what came before",
+        "Real compounding effect from working together",
+        "Better together, measurably"
+      ]
+    },
+    {
+      "word": "Empowerment",
+      "cluster": "People",
+      "status": "core",
+      "formula_type": "Combination",
+      "formula": "Empowerment = authority + (resources + trust)",
+      "components": [
+        "authority",
+        "resources",
+        "trust"
+      ],
+      "definition": "The practice of giving individuals or teams the authority, resources, and confidence to make decisions and take action.",
+      "what_it_really_means": "What organizations announce when they want to signal modern management. Often the authority is granted without the resources or the trust that would make it real.",
+      "why": "Resources and trust are grouped because one without the other produces authority in name only. Authority with resources but no trust is micromanaged autonomy. Authority with trust but no resources is being set up to fail.",
+      "alternatives": [
+        "You can decide and you have what you need",
+        "Real authority with real support",
+        "Deciding and doing, trusted to do it",
+        "Authority that is actually usable"
+      ]
+    },
+    {
+      "word": "Talent",
+      "cluster": "People",
+      "status": "core",
+      "formula_type": "Multiplied",
+      "formula": "Talent = skill + (potential x drive)",
+      "components": [
+        "skill",
+        "potential",
+        "drive"
+      ],
+      "definition": "The combination of natural aptitude, learned capability, and personal drive that enables someone to perform exceptionally well in a given role.",
+      "what_it_really_means": "What organizations use to describe high-performing individuals. Skill is the current capability. Potential times drive is what separates someone who is good now from someone who will keep getting better.",
+      "why": "Potential without drive is wasted. Drive without potential is determination without the raw material to build on. The multiplier makes this clear: either being zero produces zero development.",
+      "alternatives": [
+        "Good now, getting better",
+        "Skilled and driven",
+        "Real capability with real growth",
+        "Someone who will keep developing"
+      ]
+    },
+    {
+      "word": "Retention",
+      "cluster": "People",
+      "status": "core",
+      "formula_type": "Refinement",
+      "formula": "Retention = (value offered - friction) + belonging",
+      "components": [
+        "value offered",
+        "friction",
+        "belonging"
+      ],
+      "definition": "The rate at which an organization keeps its employees over time, and the practices designed to reduce unwanted turnover.",
+      "what_it_really_means": "What organizations measure when people leave and what they try to improve after the fact. Real retention requires subtracting the friction before adding the belonging.",
+      "why": "The Refinement type means subtraction comes first. An organization cannot retain people by adding perks while leaving the friction in place. Remove the reasons people want to leave before adding reasons for them to stay.",
+      "alternatives": [
+        "Reasons to stay minus reasons to leave",
+        "Why people actually remain here",
+        "Keeping good people by removing what pushes them out",
+        "Real reasons to stay, not just perks"
+      ]
+    },
+    {
+      "word": "Buy-in",
+      "cluster": "People",
+      "status": "core",
+      "formula_type": "Multiplied",
+      "formula": "Buy-in = understanding + (agreement x commitment)",
+      "components": [
+        "understanding",
+        "agreement",
+        "commitment"
+      ],
+      "definition": "The acceptance and active support of a plan, decision, or change by the individuals or groups expected to implement or follow it.",
+      "what_it_really_means": "What managers say they need and often try to skip. Understanding plus agreement times commitment. Agreement without commitment is polite assent. Commitment without agreement is compliance.",
+      "why": "The multiplier is what most buy-in conversations miss. An organization can achieve understanding and agreement and still have no buy-in if commitment is absent. Commitment is the component that requires something from the person.",
+      "alternatives": [
+        "Understanding plus willingness to act",
+        "Agreement that will actually translate to action",
+        "Real support, not polite nodding",
+        "Commitment, not just acceptance"
+      ]
+    },
+    {
+      "word": "Collaboration",
+      "cluster": "People",
+      "status": "core",
+      "formula_type": "Combination",
+      "formula": "Collaboration = shared goals + (communication + mutual respect)",
+      "components": [
+        "shared goals",
+        "communication",
+        "mutual respect"
+      ],
+      "definition": "The act of two or more people or groups working together toward a common goal, sharing information, responsibility, and effort.",
+      "what_it_really_means": "What organizations celebrate and what often does not happen. Shared goals are necessary but not sufficient. Without communication and mutual respect, collaboration devolves into parallel work with meetings attached.",
+      "why": "Communication and mutual respect are grouped because one without the other undermines the work. Communication without respect produces hostility. Respect without communication produces isolation. Both must be present.",
+      "alternatives": [
+        "Working together toward the same thing",
+        "Real joint effort, not parallel work",
+        "Shared goals with shared respect",
+        "Together in substance, not just in meetings"
+      ]
+    },
+    {
+      "word": "Morale",
+      "cluster": "People",
+      "status": "core",
+      "formula_type": "Multiplied",
+      "formula": "Morale = (belonging + purpose) x consistency of leadership",
+      "components": [
+        "belonging",
+        "purpose",
+        "consistency of leadership"
+      ],
+      "definition": "The confidence, enthusiasm, and discipline of a person or group at a particular time, especially in relation to their work and the organization they are part of.",
+      "what_it_really_means": "The word organizations reach for after it has already dropped. Morale is rarely discussed when it is high. It surfaces when something has gone wrong and the effect on the people inside needs a name.",
+      "why": "Consistency of leadership is the multiplier. Not inspirational leadership. Not visible leadership. Consistent leadership. Does the same standard apply to everyone? When the answer is no, morale drops, and no amount of free lunch puts it back.",
+      "alternatives": [
+        "How the team is feeling about the work",
+        "Whether people want to be here right now",
+        "The confidence level on this team",
+        "What the atmosphere is actually like"
+      ]
+    },
+    {
+      "word": "Communication",
+      "cluster": "People",
+      "status": "core",
+      "formula_type": "Combination",
+      "formula": "Communication = clarity + (right audience + right timing)",
+      "components": [
+        "clarity",
+        "right audience",
+        "right timing"
+      ],
+      "definition": "The process of exchanging information, ideas, or feelings between individuals or groups, using spoken, written, or other means, with the intent of achieving shared understanding.",
+      "what_it_really_means": "The word organizations use to describe the problem when they cannot identify the cause. We have a communication problem. Poor communication led to this. These sentences describe that communication was involved. They do not say which component failed.",
+      "why": "Right audience and right timing are grouped because one without the other produces communication that lands in the wrong place or at the wrong moment. Clear communication delivered to the wrong audience is not communication. It is transmission.",
+      "alternatives": [
+        "Who needs to know what and when",
+        "Clear message to the right people at the right time",
+        "The right information to the right person before it is too late",
+        "Shared understanding, not just transmission"
+      ]
+    },
+    {
+      "word": "Onboarding",
+      "cluster": "People",
+      "status": "extended",
+      "formula_type": "Combination",
+      "formula": "Onboarding = information + (tools + relationships)",
+      "components": [
+        "information",
+        "tools",
+        "relationships"
+      ],
+      "definition": "The process of integrating a new employee or member into an organization, including the provision of information, tools, and relationships they need to become effective in their role.",
+      "what_it_really_means": "What organizations call the first few weeks of a new employee's experience when they want it to sound designed rather than improvised. Most onboarding is heavily weighted toward information. Relationships come last, if at all.",
+      "why": "Tools and relationships are grouped because one without the other produces a new employee who can access the systems but does not know who to ask for help, or who knows everyone but cannot do the work.",
+      "alternatives": [
+        "Getting someone up to speed",
+        "The first few weeks done properly",
+        "Making sure new people have what they need",
+        "Introduction to the work and the people"
+      ]
+    },
+    {
+      "word": "Accountability",
+      "cluster": "People",
+      "status": "extended",
+      "formula_type": "Multiplied",
+      "formula": "Accountability = responsibility + (consequences x visibility)",
+      "components": [
+        "responsibility",
+        "consequences",
+        "visibility"
+      ],
+      "definition": "The obligation of an individual or organization to answer for their actions, decisions, and results, and to accept the consequences of them.",
+      "what_it_really_means": "One of the most frequently invoked words in organizational life, and one of the most consistently incomplete. Responsibility without consequences is just responsibility with a better name.",
+      "why": "Consequences times visibility. The multiplier collapses if either is zero. Consequences without visibility produce private accountability that nobody sees. Visibility without consequences produces public observation with no teeth.",
+      "alternatives": [
+        "Responsible, with consequences, and everyone knows it",
+        "Actually answering for the outcome",
+        "Real ownership with real stakes",
+        "Consequences that are both present and visible"
+      ]
+    },
+    {
+      "word": "Bandwidth",
+      "cluster": "Resources",
+      "status": "core",
+      "formula_type": "Combination",
+      "formula": "Bandwidth = time + (attention + energy)",
+      "components": [
+        "time",
+        "attention",
+        "energy"
+      ],
+      "definition": "The capacity of an individual, team, or organization to take on additional work or responsibilities, including the time, attention, and energy available.",
+      "what_it_really_means": "A word borrowed from networking and applied to human capacity. Organizations use it to sound technical when saying no to additional work.",
+      "why": "Attention and energy are grouped because time alone does not equal capacity. Someone with hours available but no attention or energy does not have bandwidth. They have a calendar.",
+      "alternatives": [
+        "How much I can actually take on right now",
+        "Time plus attention plus energy",
+        "My real capacity",
+        "What I can absorb without dropping something else"
+      ]
+    },
+    {
+      "word": "Budget",
+      "cluster": "Resources",
+      "status": "core",
+      "formula_type": "Ratio",
+      "formula": "Budget = available funds / allocated priorities",
+      "components": [
+        "available funds",
+        "allocated priorities"
+      ],
+      "definition": "A financial plan that allocates available funds across specific activities, departments, or priorities over a defined period.",
+      "what_it_really_means": "Not an amount. A relationship. A budget is not what the organization has. It is how what it has has been matched against what has been decided matters.",
+      "why": "The denominator is what makes the budget meaningful. Available funds without allocated priorities is a pile of money. Allocated priorities without available funds is a wish list.",
+      "alternatives": [
+        "Money matched against priorities",
+        "What we have versus what matters",
+        "Funded decisions about what to pursue",
+        "Allocation of limited resources"
+      ]
+    },
+    {
+      "word": "Allocation",
+      "cluster": "Resources",
+      "status": "core",
+      "formula_type": "Ratio",
+      "formula": "Allocation = available resources / competing priorities",
+      "components": [
+        "available resources",
+        "competing priorities"
+      ],
+      "definition": "The distribution of available resources across different activities, projects, departments, or priorities.",
+      "what_it_really_means": "The act of dividing what you have among things that are all asking for more. Strong allocation requires honesty about the denominator. How many things are actually competing for this.",
+      "why": "The denominator is the honest part. Organizations love to report what was allocated. They report less often what was not allocated and why.",
+      "alternatives": [
+        "How we divide what we have",
+        "Resources matched against requests",
+        "Where we put the money, time, and people",
+        "Real distribution across real demands"
+      ]
+    },
+    {
+      "word": "Leverage",
+      "cluster": "Resources",
+      "status": "core",
+      "formula_type": "Multiplied",
+      "formula": "Leverage = (effort + positioning) x impact",
+      "components": [
+        "effort",
+        "positioning",
+        "impact"
+      ],
+      "definition": "The use of a relatively small input to produce a significantly larger output, typically through strategic positioning or multiplication of effect.",
+      "what_it_really_means": "What organizations claim when they want to justify effort with small return by pointing to the potential multiplier. Real leverage requires actual impact, not theoretical impact.",
+      "why": "Impact is the multiplier. Effort and positioning without real impact is just work done in a hopeful direction. Leverage is proven, not claimed.",
+      "alternatives": [
+        "Small effort, big result",
+        "Positioned to multiply",
+        "Real multiplier effect",
+        "Where effort produces disproportionate return"
+      ]
+    },
+    {
+      "word": "Optimization",
+      "cluster": "Resources",
+      "status": "core",
+      "formula_type": "Refinement",
+      "formula": "Optimization = (current performance - inefficiency) + targeted improvement",
+      "components": [
+        "current performance",
+        "inefficiency",
+        "targeted improvement"
+      ],
+      "definition": "The process of making something as effective, efficient, or productive as possible by refining its performance, removing waste, and adjusting inputs.",
+      "what_it_really_means": "What organizations call improvement when they want it to sound more precise. Real optimization is a Refinement formula. Subtraction first, then targeted improvement.",
+      "why": "You cannot optimize by adding alone. The inefficiencies in the current system must be identified and removed before the targeted improvement produces real gain. Adding improvement on top of inefficiency just adds layers.",
+      "alternatives": [
+        "Making it better by cutting what is not working",
+        "Remove the waste, then improve",
+        "Real improvement, not just additions",
+        "Refined performance"
+      ]
+    },
+    {
+      "word": "Headcount",
+      "cluster": "Resources",
+      "status": "core",
+      "formula_type": "Ratio",
+      "formula": "Headcount = people available / work to be done",
+      "components": [
+        "people available",
+        "work to be done"
+      ],
+      "definition": "The total number of people employed by an organization or working within a specific team, department, or project at a given time.",
+      "what_it_really_means": "The word organizations use when they want to discuss people as a number rather than a capacity. An organization can have adequate headcount on paper and insufficient headcount in practice if the work has grown faster than the roster.",
+      "why": "The denominator is the honest test. People available divided by work to be done. An organization that measures headcount without measuring workload has half the information it needs.",
+      "alternatives": [
+        "The number of people and whether it is enough",
+        "Staff levels relative to the work",
+        "How many people we have and what they need to cover",
+        "People available against work required"
+      ]
+    },
+    {
+      "word": "Asset",
+      "cluster": "Resources",
+      "status": "core",
+      "formula_type": "Ratio",
+      "formula": "Asset = value generated / cost to maintain",
+      "components": [
+        "value generated",
+        "cost to maintain"
+      ],
+      "definition": "A resource owned or controlled by an organization that is expected to produce economic value or benefit over time.",
+      "what_it_really_means": "A word that organizations apply too broadly. Something is only an asset if it generates more value than it costs to maintain. Otherwise it is a liability being called an asset.",
+      "why": "The ratio tests honesty. Value generated over cost to maintain. Any asset where the ratio is less than one is not functioning as an asset.",
+      "alternatives": [
+        "Something that generates more value than it costs",
+        "What pays for itself and then some",
+        "A real asset, not a legacy cost",
+        "Productive resource, net positive"
+      ]
+    },
+    {
+      "word": "Capital",
+      "cluster": "Resources",
+      "status": "core",
+      "formula_type": "Combination",
+      "formula": "Capital = financial assets + (human assets + intellectual assets)",
+      "components": [
+        "financial assets",
+        "human assets",
+        "intellectual assets"
+      ],
+      "definition": "The total resources, financial and non-financial, that an organization has available to invest, deploy, or build upon in pursuit of its objectives.",
+      "what_it_really_means": "What organizations count when they want to understand their full capability. Financial capital is visible and counted. Human and intellectual capital are grouped because both are harder to measure and both travel together.",
+      "why": "The grouped components reflect that human and intellectual capital compound together. Skilled people create intellectual property. Intellectual property attracts skilled people. Treating them separately misses the relationship.",
+      "alternatives": [
+        "What we can invest or deploy",
+        "Money, people, and know-how",
+        "Full resource picture",
+        "The real capability pool"
+      ]
+    },
+    {
+      "word": "Capacity",
+      "cluster": "Resources",
+      "status": "core",
+      "formula_type": "Combination",
+      "formula": "Capacity = available resources + (time + capability)",
+      "components": [
+        "available resources",
+        "time",
+        "capability"
+      ],
+      "definition": "The maximum amount of work, output, or activity that an organization, team, or individual can handle within a given period.",
+      "what_it_really_means": "A word that sounds like it means the same as bandwidth but is broader. Capacity includes the resources, time, and capability required to take on work. Missing any one of those is missing capacity.",
+      "why": "Time and capability are grouped because one without the other does not produce output. Time without capability is waste. Capability without time is theory.",
+      "alternatives": [
+        "What we can actually handle",
+        "Resources plus time plus skill",
+        "Our real ceiling",
+        "Full capacity, not theoretical capacity"
+      ]
+    },
+    {
+      "word": "Sustainability",
+      "cluster": "Resources",
+      "status": "core",
+      "formula_type": "Multiplied",
+      "formula": "Sustainability = current resources + (practices x longevity)",
+      "components": [
+        "current resources",
+        "practices",
+        "longevity"
+      ],
+      "definition": "The ability to maintain operations, outputs, or conditions over time without depleting the resources or support required to do so.",
+      "what_it_really_means": "Used in environmental, financial, and operational contexts. The common thread is whether what is happening now can continue. Practices times longevity is what makes the difference between a program that runs out and one that keeps running.",
+      "why": "The multiplier is longevity. Current resources plus good practices without longevity produce a good quarter. Sustainability is the compound effect of good practices applied over time.",
+      "alternatives": [
+        "Able to keep going without running out",
+        "Built to last",
+        "Practices that compound over time",
+        "Real long-term viability"
+      ]
+    },
+    {
+      "word": "Opportunity Cost",
+      "cluster": "Resources",
+      "status": "extended",
+      "formula_type": "Ratio",
+      "formula": "Opportunity Cost = value of best alternative / value of chosen path",
+      "components": [
+        "value of best alternative",
+        "value of chosen path"
+      ],
+      "definition": "The value of the next-best alternative that is given up when a particular choice is made; the cost of one option measured against another.",
+      "what_it_really_means": "An economics concept that has made its way into organizational vocabulary. Every choice to pursue one thing is a choice not to pursue something else. The ratio forces honesty about what was given up.",
+      "why": "The denominator is the choice you made. The numerator is what you chose not to do. If the ratio is greater than one, the alternative was more valuable than the path chosen. That is the honest version of every allocation decision.",
+      "alternatives": [
+        "What we gave up by choosing this",
+        "The better thing we did not do",
+        "Real cost of this decision",
+        "The alternative we walked away from"
+      ]
+    },
+    {
+      "word": "Workload",
+      "cluster": "Resources",
+      "status": "extended",
+      "formula_type": "Ratio",
+      "formula": "Workload = tasks assigned / capacity to complete them",
+      "components": [
+        "tasks assigned",
+        "capacity to complete them"
+      ],
+      "definition": "The amount of work assigned to or expected from a person or team within a given period, typically assessed in relation to available time, capacity, and resources.",
+      "what_it_really_means": "The resource word that most directly affects the people doing the work. Organizations measure what gets assigned. They do not measure the denominator: the actual capacity of the person being assigned the work.",
+      "why": "The ratio exposes the standard workload management failure. A person with twenty tasks assigned and capacity for twelve has a workload problem. The organization believes workload is being managed because the assignments were made.",
+      "alternatives": [
+        "How much has been assigned versus how much can actually get done",
+        "Tasks versus capacity",
+        "What is on this person's plate and whether it fits",
+        "The honest version of bandwidth"
+      ]
+    },
+    {
+      "word": "Workflow",
+      "cluster": "Process",
+      "status": "core",
+      "formula_type": "Combination",
+      "formula": "Workflow = sequence + (accountability + clear handoffs)",
+      "components": [
+        "sequence",
+        "accountability",
+        "clear handoffs"
+      ],
+      "definition": "The defined sequence of steps, tasks, and responsibilities required to complete a process or deliver an outcome.",
+      "what_it_really_means": "What organizations document and rarely maintain. The sequence is the easy part. Accountability and clear handoffs are what determine whether the workflow actually produces consistent output.",
+      "why": "Accountability and clear handoffs are grouped because both are required at every transition point. A sequence without accountability is a process that stalls at handoffs. A sequence without clear handoffs is a process that produces different results depending on who is involved.",
+      "alternatives": [
+        "How work actually moves through",
+        "The real sequence with real owners",
+        "Clear steps with clear handoffs",
+        "Documented and accountable process"
+      ]
+    },
+    {
+      "word": "Efficiency",
+      "cluster": "Process",
+      "status": "core",
+      "formula_type": "Combination",
+      "formula": "Efficiency = speed + quality + (accuracy + consistency)",
+      "components": [
+        "speed",
+        "quality",
+        "accuracy",
+        "consistency"
+      ],
+      "definition": "The ability to produce results with the minimum expenditure of time, effort, and resources, while maintaining the quality and reliability of output.",
+      "what_it_really_means": "The word that started this book. Four components, not two. Speed and quality alone produce good drinks sometimes. Accuracy and consistency are what make the operation work every time.",
+      "why": "Accuracy and consistency are grouped because one without the other produces the wrong result. Accuracy without consistency is luck. Consistency without accuracy is reliable failure. Strip the parentheses and the relationship is lost.",
+      "alternatives": [
+        "Fast, right, and reliable",
+        "Quality output every time",
+        "Speed that does not compromise accuracy",
+        "Consistent, accurate, and quick"
+      ]
+    },
+    {
+      "word": "Streamline",
+      "cluster": "Process",
+      "status": "core",
+      "formula_type": "Refinement",
+      "formula": "Streamline = (current steps - waste) + clarity",
+      "components": [
+        "current steps",
+        "waste",
+        "clarity"
+      ],
+      "definition": "To simplify or improve a process by removing unnecessary steps, redundancies, or inefficiencies.",
+      "what_it_really_means": "What organizations attempt by adding things to an already complicated process. The word itself demands subtraction. You cannot streamline by adding more layers.",
+      "why": "The Refinement formula is explicit. Subtract first, then add clarity. Organizations that skip the subtraction step produce more complicated processes with better labels. That is not streamlining.",
+      "alternatives": [
+        "Remove what does not need to be there",
+        "Cut the waste, then clarify",
+        "Simpler because we subtracted",
+        "Less steps, clearer purpose"
+      ]
+    },
+    {
+      "word": "Bottleneck",
+      "cluster": "Process",
+      "status": "core",
+      "formula_type": "Multiplied",
+      "formula": "Bottleneck = constraint x (downstream impact + visibility)",
+      "components": [
+        "constraint",
+        "downstream impact",
+        "visibility"
+      ],
+      "definition": "A point in a process where capacity is restricted, causing delays or backups that affect the overall flow of work.",
+      "what_it_really_means": "The step in the process where work accumulates. Fixing the bottleneck requires identifying it, understanding its downstream impact, and making it visible to the people who can address it.",
+      "why": "The multiplier is downstream impact plus visibility. A constraint without visibility stays hidden. A constraint without downstream impact is not actually a bottleneck. It is just a slow step.",
+      "alternatives": [
+        "Where the work piles up",
+        "The constraint that slows everything",
+        "Real blockage with real consequences",
+        "The slowest step that matters"
+      ]
+    },
+    {
+      "word": "Delegation",
+      "cluster": "Process",
+      "status": "core",
+      "formula_type": "Refinement",
+      "formula": "Delegation = (task - ambiguity) + clear ownership",
+      "components": [
+        "task",
+        "ambiguity",
+        "clear ownership"
+      ],
+      "definition": "The process of assigning responsibility and authority for a specific task or decision to another person, while the delegator retains overall accountability for the outcome.",
+      "what_it_really_means": "What managers say when they are handing something to someone else and hoping it works out. Real delegation requires removing ambiguity before transferring the task.",
+      "why": "The Refinement type means removal comes first. Remove the ambiguity before assigning the task. A task assigned without clear answers to what, who, and how is not delegation. It is transfer of stress from one person to another.",
+      "alternatives": [
+        "Give this to someone with clear instructions",
+        "Assign this with the authority to complete it",
+        "Make this someone else's responsibility clearly",
+        "Hand this over properly"
+      ]
+    },
+    {
+      "word": "Escalation",
+      "cluster": "Process",
+      "status": "core",
+      "formula_type": "Additive",
+      "formula": "Escalation = identified problem + appropriate level + defined action",
+      "components": [
+        "identified problem",
+        "appropriate level",
+        "defined action"
+      ],
+      "definition": "The process of referring a problem, complaint, or situation to a higher authority or a more specialized resource when it cannot be resolved at the current level.",
+      "what_it_really_means": "One of the most universally experienced processes in any organization. Every person in a hierarchical structure has either escalated something or received an escalation.",
+      "why": "All three components are required equally. An identified problem without the appropriate level goes to the wrong person. The appropriate level without a defined action means the problem arrives without a path to resolution. Without an identified problem, someone is escalating noise.",
+      "alternatives": [
+        "Take this to the next level with a clear description",
+        "This needs someone with more authority to resolve",
+        "Pass this up with what you have tried and what you need",
+        "Not my level to decide"
+      ]
+    },
+    {
+      "word": "SOP",
+      "cluster": "Process",
+      "status": "core",
+      "formula_type": "Additive",
+      "formula": "SOP = documented steps + assigned ownership + expected outcome",
+      "components": [
+        "documented steps",
+        "assigned ownership",
+        "expected outcome"
+      ],
+      "definition": "Standard Operating Procedure. A documented set of instructions that describes how a recurring task or process should be performed to ensure consistency and compliance.",
+      "what_it_really_means": "What organizations create after something goes wrong. A real SOP has all three components. Most written SOPs have documented steps and nothing else.",
+      "why": "All three must be present. Documented steps without assigned ownership is a document nobody follows. Assigned ownership without an expected outcome is responsibility for nothing specific. Documentation without purpose is bureaucracy.",
+      "alternatives": [
+        "Written steps with a real owner and a real outcome",
+        "The documented way we do this",
+        "Standard process, with accountability",
+        "Repeatable procedure that actually repeats"
+      ]
+    },
+    {
+      "word": "Feedback Loop",
+      "cluster": "Process",
+      "status": "core",
+      "formula_type": "Multiplied",
+      "formula": "Feedback Loop = (action + observation) x responsiveness",
+      "components": [
+        "action",
+        "observation",
+        "responsiveness"
+      ],
+      "definition": "A cyclical process in which the outputs or results of an action are observed and used to inform subsequent actions, enabling adjustment and improvement over time.",
+      "what_it_really_means": "What organizations say they have when they hold quarterly review meetings. A real feedback loop requires action, observation, and responsiveness. Most have the first two and not the third.",
+      "why": "Responsiveness is the multiplier. Action and observation without responsiveness is just monitoring. The loop requires that the observation actually changes the next action. Without that, nothing loops.",
+      "alternatives": [
+        "Act, observe, respond, repeat",
+        "A loop that actually loops",
+        "Observation that changes what we do",
+        "Real responsive cycle"
+      ]
+    },
+    {
+      "word": "Standardization",
+      "cluster": "Process",
+      "status": "core",
+      "formula_type": "Multiplied",
+      "formula": "Standardization = consistency + (documentation x adoption)",
+      "components": [
+        "consistency",
+        "documentation",
+        "adoption"
+      ],
+      "definition": "The process of establishing uniform procedures, specifications, or practices to ensure consistent quality, efficiency, and compatibility across an organization.",
+      "what_it_really_means": "What organizations pursue when they have grown past the point where everyone can just know how things are done. Real standardization requires that the documentation is adopted, not just published.",
+      "why": "Documentation times adoption is the multiplier. Documentation without adoption is a file on a server. Adoption without documentation is a shared practice that leaves when people leave. Both must be present.",
+      "alternatives": [
+        "Same way, everywhere",
+        "Documented and actually followed",
+        "Consistent practice across the organization",
+        "Real uniformity, not theoretical uniformity"
+      ]
+    },
+    {
+      "word": "Automation",
+      "cluster": "Process",
+      "status": "core",
+      "formula_type": "Refinement",
+      "formula": "Automation = (manual steps - human intervention) + reliable execution",
+      "components": [
+        "manual steps",
+        "human intervention",
+        "reliable execution"
+      ],
+      "definition": "The use of technology, systems, or processes to perform tasks or functions with minimal human involvement.",
+      "what_it_really_means": "What organizations pursue when they want to reduce errors and increase speed. Real automation requires removing human intervention, not just layering technology on top of it.",
+      "why": "The Refinement type means removal comes first. You cannot automate by adding. The manual steps that require human intervention must be identified and replaced with reliable execution. Otherwise the automation breaks the moment a human is not there.",
+      "alternatives": [
+        "Done by the system, reliably",
+        "Removed the manual step entirely",
+        "Runs without needing a person",
+        "Automated and actually working"
+      ]
+    },
+    {
+      "word": "Continuous Improvement",
+      "cluster": "Process",
+      "status": "extended",
+      "formula_type": "Multiplied",
+      "formula": "Continuous Improvement = (current state + feedback) x (action x time)",
+      "components": [
+        "current state",
+        "feedback",
+        "action",
+        "time"
+      ],
+      "definition": "An ongoing effort to improve products, services, or processes through incremental and iterative changes over time, often associated with methodologies like Kaizen or Lean.",
+      "what_it_really_means": "A concept from manufacturing that has spread across organizational vocabulary. Real continuous improvement is compound: feedback leads to action, action produces new current state, new current state generates new feedback, and the cycle compounds over time.",
+      "why": "Action times time is the compound multiplier. A single round of feedback and action is improvement. Continuous improvement is the compounding effect of that cycle repeating over time without stopping.",
+      "alternatives": [
+        "Getting better, on purpose, over time",
+        "Steady compound improvement",
+        "Never stopping the feedback cycle",
+        "Small changes that compound"
+      ]
+    },
+    {
+      "word": "Break-Even Point",
+      "cluster": "Process",
+      "status": "extended",
+      "formula_type": "Ratio",
+      "formula": "Break-Even Point = fixed costs / (revenue per unit - variable cost per unit)",
+      "components": [
+        "fixed costs",
+        "revenue per unit",
+        "variable cost per unit"
+      ],
+      "definition": "The point at which total revenue equals total costs, resulting in neither profit nor loss; the minimum level of activity required to cover all costs.",
+      "what_it_really_means": "A financial concept absorbed into organizational vocabulary. The ratio is specific. Fixed costs divided by the contribution margin per unit. Below this number, the operation loses money. Above it, profit begins.",
+      "why": "The ratio is useful precisely because it is specific. It tells you the minimum operational level required to justify the fixed cost. Without it, scaling decisions are guesses.",
+      "alternatives": [
+        "The point where costs equal revenue",
+        "Minimum level to justify the fixed cost",
+        "Where it starts paying for itself",
+        "The volume required to cover costs"
+      ]
+    },
+    {
+      "word": "KPI",
+      "cluster": "Results",
+      "status": "core",
+      "formula_type": "Multiplied",
+      "formula": "KPI = metric + (frequency x decision relevance)",
+      "components": [
+        "metric",
+        "frequency",
+        "decision relevance"
+      ],
+      "definition": "Key Performance Indicator. A quantifiable measure used to evaluate the success of an activity, process, or organization in achieving specific objectives.",
+      "what_it_really_means": "What organizations publish on dashboards and rarely use for decisions. A real KPI is measured frequently enough and relevant enough that decisions actually change based on what it shows.",
+      "why": "The multiplier is frequency times decision relevance. A metric measured annually is historical. A metric measured daily but disconnected from decisions is noise. Both frequency and relevance must be present.",
+      "alternatives": [
+        "The number we actually watch",
+        "Measurement that drives decisions",
+        "What we track because it changes what we do",
+        "Real key performance indicator, not just a reported number"
+      ]
+    },
+    {
+      "word": "Metric",
+      "cluster": "Results",
+      "status": "core",
+      "formula_type": "Ratio",
+      "formula": "Metric = measured output / defined baseline",
+      "components": [
+        "measured output",
+        "defined baseline"
+      ],
+      "definition": "A quantifiable measure used to track, assess, or compare performance, progress, or results over time.",
+      "what_it_really_means": "A word organizations apply to any number they report. A real metric has a defined baseline. Without the denominator, the numerator is just a number.",
+      "why": "The ratio is what produces meaning. Measured output divided by defined baseline tells you whether the number is good, bad, or neutral. Without the baseline, the output is information without context.",
+      "alternatives": [
+        "A number against a baseline",
+        "Measurement with meaning",
+        "Compared to something we agreed on",
+        "Real metric, not just a data point"
+      ]
+    },
+    {
+      "word": "ROI",
+      "cluster": "Results",
+      "status": "core",
+      "formula_type": "Ratio",
+      "formula": "ROI = value returned / cost invested",
+      "components": [
+        "value returned",
+        "cost invested"
+      ],
+      "definition": "Return on Investment. A measure of the profitability or value generated from an investment, typically expressed as a ratio or percentage of return relative to cost.",
+      "what_it_really_means": "The most cited ratio in business conversations and the most frequently reported without a defined denominator. A return without a cost is not a return. It is a number someone wants to be true.",
+      "why": "The ratio is the whole point. Both sides must be defined and honest. Value returned without cost invested produces an incomplete picture. Cost invested without value returned is just spend.",
+      "alternatives": [
+        "What we got back versus what we put in",
+        "Real return compared to real cost",
+        "Profit relative to investment",
+        "Net value against total spend"
+      ]
+    },
+    {
+      "word": "Target",
+      "cluster": "Results",
+      "status": "core",
+      "formula_type": "Combination",
+      "formula": "Target = desired result + (timeframe + measurement method)",
+      "components": [
+        "desired result",
+        "timeframe",
+        "measurement method"
+      ],
+      "definition": "A specific, measurable result that an individual, team, or organization aims to achieve within a defined period, used as a benchmark for performance.",
+      "what_it_really_means": "What organizations set to focus effort. A real target has all three components. A desired result without a timeframe or measurement method is a direction with a number attached.",
+      "why": "Timeframe and measurement method are grouped because one without the other produces a target that cannot be confirmed. Both must be explicit before the target is set, not negotiated after the result is known.",
+      "alternatives": [
+        "What we are aiming for and how we will know",
+        "A number with a date and a measurement method",
+        "The specific result we are committing to",
+        "Something we can hit or miss"
+      ]
+    },
+    {
+      "word": "Outcome",
+      "cluster": "Results",
+      "status": "core",
+      "formula_type": "Multiplied",
+      "formula": "Outcome = action + (intended result x measurability)",
+      "components": [
+        "action",
+        "intended result",
+        "measurability"
+      ],
+      "definition": "The result or consequence of an action, process, or decision, particularly as it relates to achieving a desired state or goal.",
+      "what_it_really_means": "What organizations report on when they want to signal results. A real outcome requires both the intended result and the ability to measure it.",
+      "why": "Intended result times measurability is the multiplier. An action that produces an intended result that cannot be measured is an outcome in theory only. Measurability without an intended result is observation without purpose.",
+      "alternatives": [
+        "The measurable result of the action",
+        "What actually happened and how we know",
+        "Real outcome with real evidence",
+        "Intended and measured result"
+      ]
+    },
+    {
+      "word": "Impact",
+      "cluster": "Results",
+      "status": "core",
+      "formula_type": "Multiplied",
+      "formula": "Impact = output + (reach x significance)",
+      "components": [
+        "output",
+        "reach",
+        "significance"
+      ],
+      "definition": "The measurable effect or influence that an action, program, or organization has on its environment, stakeholders, or objectives.",
+      "what_it_really_means": "The most aspirationally used word in organizational reporting. Real impact requires output and reach and significance. Output without reach is a rehearsal. Reach without significance is breadth without depth.",
+      "why": "Reach times significance is the multiplier. An output that reaches many people but means nothing to them is not impact. It is exposure. An output that is significant to a few people but does not reach anyone is isolated meaning.",
+      "alternatives": [
+        "What actually changed because of this",
+        "Real reach with real significance",
+        "Measurable effect on people",
+        "Output that matters and reaches"
+      ]
+    },
+    {
+      "word": "Benchmark",
+      "cluster": "Results",
+      "status": "core",
+      "formula_type": "Ratio",
+      "formula": "Benchmark = current performance / comparison standard",
+      "components": [
+        "current performance",
+        "comparison standard"
+      ],
+      "definition": "A point of reference against which performance can be measured, compared, or evaluated.",
+      "what_it_really_means": "A word organizations use to sound comparative. A real benchmark has a defined comparison standard. Without the denominator, the benchmark is just an internal number described as a comparison.",
+      "why": "The ratio tells you whether the current performance is good relative to something. Without the comparison standard, there is nothing to compare against. The denominator is what makes the benchmark meaningful.",
+      "alternatives": [
+        "Compared to an agreed standard",
+        "Performance relative to a reference point",
+        "Where we stand against a defined measure",
+        "Real comparison, not just a number"
+      ]
+    },
+    {
+      "word": "Objective",
+      "cluster": "Results",
+      "status": "core",
+      "formula_type": "Combination",
+      "formula": "Objective = desired result + (timeline + measurable indicator)",
+      "components": [
+        "desired result",
+        "timeline",
+        "measurable indicator"
+      ],
+      "definition": "A specific and measurable result that an organization or individual aims to accomplish within a defined period, supporting broader goals or strategy.",
+      "what_it_really_means": "A more formal version of a goal, often used in planning frameworks like MBO or OKR. A real objective has a timeline and a measurable indicator alongside the desired result.",
+      "why": "Timeline and measurable indicator are grouped because one without the other produces an objective that cannot be evaluated. The grouped components are what make the objective testable.",
+      "alternatives": [
+        "A specific, measurable, timed result",
+        "What we are accomplishing by when and how we will know",
+        "The testable version of a goal",
+        "Measurable objective, not aspirational objective"
+      ]
+    },
+    {
+      "word": "Performance",
+      "cluster": "Results",
+      "status": "core",
+      "formula_type": "Multiplied",
+      "formula": "Performance = output + (quality x consistency)",
+      "components": [
+        "output",
+        "quality",
+        "consistency"
+      ],
+      "definition": "The execution of tasks, responsibilities, or functions, measured against defined standards, expectations, or outcomes.",
+      "what_it_really_means": "What organizations evaluate in performance reviews and struggle to define consistently. Real performance requires output and the combined effect of quality and consistency.",
+      "why": "Quality times consistency is the multiplier. High quality occasionally is not performance. High consistency at low quality is not performance. Both must be present for output to count as real performance.",
+      "alternatives": [
+        "Consistent quality output",
+        "How well, how reliably, how much",
+        "Real performance, not just activity",
+        "Output that holds up over time"
+      ]
+    },
+    {
+      "word": "Value",
+      "cluster": "Results",
+      "status": "core",
+      "formula_type": "Refinement",
+      "formula": "Value = (benefit - cost) + stakeholder perception",
+      "components": [
+        "benefit",
+        "cost",
+        "stakeholder perception"
+      ],
+      "definition": "The worth, usefulness, or importance of something, measured in terms of benefit received relative to cost expended, and as perceived by relevant stakeholders.",
+      "what_it_really_means": "One of the most invoked words in business with one of the least consistent definitions. Real value requires subtracting the cost from the benefit, then accounting for how stakeholders actually perceive the result.",
+      "why": "The Refinement type means subtraction first. Benefit minus cost is the objective component. Stakeholder perception is what determines whether the net benefit is seen as valuable. Value is not just math. It is math plus perception.",
+      "alternatives": [
+        "Benefit minus cost, as people see it",
+        "Net worth, perceived by those it affects",
+        "Real value, not claimed value",
+        "What stakeholders actually consider worthwhile"
+      ]
+    },
+    {
+      "word": "Triple Bottom Line",
+      "cluster": "Results",
+      "status": "extended",
+      "formula_type": "Additive",
+      "formula": "Triple Bottom Line = financial performance + social impact + environmental responsibility",
+      "components": [
+        "financial performance",
+        "social impact",
+        "environmental responsibility"
+      ],
+      "definition": "A framework for measuring organizational performance across three dimensions: financial, social, and environmental, often summarized as people, planet, and profit.",
+      "what_it_really_means": "An accounting framework that expanded the definition of organizational performance beyond profit. All three components carry equal weight in the formula. In practice, most organizations weight them unevenly and report accordingly.",
+      "why": "The Additive formula requires all three. Strong financial performance without social or environmental accountability is conventional profit. Strong social and environmental performance without financial viability is charity. The framework requires all three.",
+      "alternatives": [
+        "Profit, people, and planet measured together",
+        "Three-part accounting of performance",
+        "Full organizational impact",
+        "Beyond just financial results"
+      ]
+    },
+    {
+      "word": "Value Creation",
+      "cluster": "Results",
+      "status": "extended",
+      "formula_type": "Multiplied",
+      "formula": "Value Creation = (output quality + stakeholder benefit) x long-term sustainability",
+      "components": [
+        "output quality",
+        "stakeholder benefit",
+        "long-term sustainability"
+      ],
+      "definition": "The process by which an organization generates increased worth or benefit for its stakeholders, shareholders, customers, or society over time.",
+      "what_it_really_means": "A term that has expanded to cover any activity an organization claims as valuable. Real value creation requires output quality, stakeholder benefit, and the sustainability that makes both compound over time.",
+      "why": "Long-term sustainability is the multiplier. High-quality output that benefits stakeholders this quarter without being sustainable is a transaction. Value creation is the compound effect of quality and benefit over time.",
+      "alternatives": [
+        "Building lasting worth for stakeholders",
+        "Real value, sustained",
+        "Quality benefit that compounds",
+        "Durable value, not just a single transaction"
+      ]
+    },
+    {
+      "word": "Purpose",
+      "cluster": "Direction",
+      "status": "alternative",
+      "formula_type": "Additive",
+      "formula": "Purpose = reason + meaning + direction",
+      "components": [
+        "reason",
+        "meaning",
+        "direction"
+      ],
+      "definition": "The fundamental reason an organization or activity exists, typically expressing its intended contribution or effect.",
+      "what_it_really_means": "A word closely related to Mission. Where Mission is a statement, Purpose is the underlying reason. All three components must be present for a purpose to be more than a slogan.",
+      "why": "Reason without meaning is mechanical. Meaning without direction is philosophy. Direction without reason is a plan without context.",
+      "alternatives": [
+        "Why we exist",
+        "The reason behind the work",
+        "Meaningful direction",
+        "What we are here for"
+      ]
+    },
+    {
+      "word": "Objective (Alt)",
+      "cluster": "Direction",
+      "status": "alternative",
+      "formula_type": "Combination",
+      "formula": "Objective (Alt) = intended achievement + (scope + timeframe)",
+      "components": [
+        "intended achievement",
+        "scope",
+        "timeframe"
+      ],
+      "definition": "A specific target or intention an organization or individual intends to accomplish. Distinct from the Results-cluster Objective entry.",
+      "what_it_really_means": "Used in the Direction context, an objective is a mid-level target between Vision and Goal. It is less aspirational than Vision, less specific than Goal.",
+      "why": "Scope and timeframe are grouped because one without the other produces an objective that cannot be evaluated. Scope without timeframe is ambitious but untimed. Timeframe without scope is a deadline without a target.",
+      "alternatives": [
+        "What we aim to achieve within a defined scope and time",
+        "Directional target",
+        "Mid-level goal with boundaries",
+        "Specific but still strategic"
+      ]
+    },
+    {
+      "word": "Plan",
+      "cluster": "Direction",
+      "status": "alternative",
+      "formula_type": "Additive",
+      "formula": "Plan = sequence + resources + owners",
+      "components": [
+        "sequence",
+        "resources",
+        "owners"
+      ],
+      "definition": "A detailed proposal for achieving an objective, typically including actions, resources, and a timeline.",
+      "what_it_really_means": "The practical, operational version of strategy. All three components are required. A plan without owners is a wish. A plan without resources is a fantasy. A plan without sequence is a list.",
+      "why": "All three carry equal weight. Remove any one and the plan stops functioning as a plan.",
+      "alternatives": [
+        "Steps, resources, and people",
+        "Practical path to the goal",
+        "A real operational plan",
+        "Operational roadmap"
+      ]
+    },
+    {
+      "word": "Focus",
+      "cluster": "Direction",
+      "status": "alternative",
+      "formula_type": "Refinement",
+      "formula": "Focus = (all possibilities - distractions) + chosen direction",
+      "components": [
+        "all possibilities",
+        "distractions",
+        "chosen direction"
+      ],
+      "definition": "The deliberate concentration of attention, effort, or resources on a specific objective or area.",
+      "what_it_really_means": "What organizations claim to have and often lack. The Refinement formula shows why. Focus requires subtracting the distractions before adding the chosen direction. Most organizations add priorities without ever subtracting.",
+      "why": "Subtraction comes first. You cannot focus by adding more priorities. You focus by removing what does not serve the chosen direction.",
+      "alternatives": [
+        "Chose one thing and dropped the rest",
+        "Real concentration, not claimed focus",
+        "Removed the noise, kept the signal",
+        "One direction, everything else set aside"
+      ]
+    },
+    {
+      "word": "Course Correct",
+      "cluster": "Direction",
+      "status": "alternative",
+      "formula_type": "Combination",
+      "formula": "Course Correct = recognition + (adjustment + continued momentum)",
+      "components": [
+        "recognition",
+        "adjustment",
+        "continued momentum"
+      ],
+      "definition": "A deliberate adjustment in direction or approach made in response to new information, without abandoning the overall strategy.",
+      "what_it_really_means": "A softer version of Pivot. Where a pivot signals a full change of direction, a course correction preserves the overall direction while making a specific adjustment.",
+      "why": "Adjustment and continued momentum are grouped because adjustment without continued momentum is a full stop. Continued momentum without adjustment is denial that anything needs to change.",
+      "alternatives": [
+        "Adjusted course, kept going",
+        "Recognized and corrected",
+        "Small change, same destination",
+        "Kept moving but took a different angle"
+      ]
+    },
+    {
+      "word": "Trust",
+      "cluster": "People",
+      "status": "alternative",
+      "formula_type": "Exponential",
+      "formula": "Trust = reliability + consistency^2",
+      "components": [
+        "reliability",
+        "consistency"
+      ],
+      "definition": "The confidence one person or group has in the reliability, integrity, and consistency of another.",
+      "what_it_really_means": "The most foundational and least measurable element of any organization. The Exponential formula shows why. Consistency is squared because it compounds. Small changes in consistency have outsized effects on trust.",
+      "why": "One reliable act does not produce trust. Reliable acts over time, consistently, produce trust. Remove the consistency and the reliability is just a moment.",
+      "alternatives": [
+        "Reliable over time, consistently",
+        "Earned through repeated reliability",
+        "Confidence that compounds",
+        "Consistency that people can count on"
+      ]
+    },
+    {
+      "word": "Recognition",
+      "cluster": "People",
+      "status": "alternative",
+      "formula_type": "Combination",
+      "formula": "Recognition = acknowledgment + (specificity + timeliness)",
+      "components": [
+        "acknowledgment",
+        "specificity",
+        "timeliness"
+      ],
+      "definition": "The formal or informal acknowledgment of an individual's contributions, achievements, or behaviors.",
+      "what_it_really_means": "What organizations do poorly most of the time. Real recognition is specific and timely. Generic recognition delivered late is a checkbox exercise.",
+      "why": "Specificity and timeliness are grouped because one without the other undermines the acknowledgment. Specific but late is historical. Timely but generic is empty.",
+      "alternatives": [
+        "Acknowledged specifically and quickly",
+        "Real recognition, not a form letter",
+        "Named the thing, right when it happened",
+        "Specific praise, timely delivery"
+      ]
+    },
+    {
+      "word": "Belonging",
+      "cluster": "People",
+      "status": "alternative",
+      "formula_type": "Combination",
+      "formula": "Belonging = acceptance + (contribution + safety)",
+      "components": [
+        "acceptance",
+        "contribution",
+        "safety"
+      ],
+      "definition": "The sense of being an integral, accepted, and valued member of a group or organization.",
+      "what_it_really_means": "A word that describes something hard to manufacture. Real belonging requires acceptance combined with the ability to contribute safely.",
+      "why": "Contribution and safety are grouped because one without the other undermines belonging. Contribution without safety is performative. Safety without contribution is passive membership.",
+      "alternatives": [
+        "Accepted, contributing, and safe",
+        "Real membership, not just inclusion",
+        "Able to contribute and be yourself",
+        "Welcomed and useful"
+      ]
+    },
+    {
+      "word": "Teamwork",
+      "cluster": "People",
+      "status": "alternative",
+      "formula_type": "Combination",
+      "formula": "Teamwork = shared effort + (coordination + mutual support)",
+      "components": [
+        "shared effort",
+        "coordination",
+        "mutual support"
+      ],
+      "definition": "The combined, coordinated effort of a group of people working toward a common goal.",
+      "what_it_really_means": "A word that appears on posters and rarely defined. Real teamwork requires shared effort combined with coordination and mutual support. Shared effort alone is just parallel work.",
+      "why": "Coordination and mutual support are grouped because one without the other produces dysfunction. Coordination without support is orchestrated indifference. Support without coordination is goodwill without direction.",
+      "alternatives": [
+        "Working together with real support",
+        "Coordinated and mutually supportive",
+        "Real teamwork, not just colocated work",
+        "Combined effort that actually combines"
+      ]
+    },
+    {
+      "word": "Leadership",
+      "cluster": "People",
+      "status": "alternative",
+      "formula_type": "Multiplied",
+      "formula": "Leadership = direction + (example x trust)",
+      "components": [
+        "direction",
+        "example",
+        "trust"
+      ],
+      "definition": "The act of guiding, influencing, or directing a group of people toward a shared objective, through vision, example, and relationship.",
+      "what_it_really_means": "One of the most invoked words in organizational life. Real leadership requires direction combined with example times trust. Example without trust is performance. Trust without example is popularity.",
+      "why": "Example times trust is the multiplier. Direction alone is management. Direction plus example without trust is instruction people follow grudgingly. Direction plus trust without example is delegation without demonstration.",
+      "alternatives": [
+        "Direction, lived, and trusted",
+        "Leads by example and is trusted for it",
+        "Real leadership, not just authority",
+        "Guiding through example and earned trust"
+      ]
+    },
+    {
+      "word": "Funding",
+      "cluster": "Resources",
+      "status": "alternative",
+      "formula_type": "Combination",
+      "formula": "Funding = capital + (source + sustainability)",
+      "components": [
+        "capital",
+        "source",
+        "sustainability"
+      ],
+      "definition": "The financial resources allocated to support an organization, project, or activity, including their origin and continuity.",
+      "what_it_really_means": "Capital with additional requirements around where it comes from and how long it will last. Source and sustainability are grouped because one without the other undermines the funding.",
+      "why": "Source without sustainability is one-time money. Sustainability without a reliable source is wishful thinking.",
+      "alternatives": [
+        "Real money from a real source that will last",
+        "Sustained capital",
+        "Funded and continuing",
+        "Reliable funding stream"
+      ]
+    },
+    {
+      "word": "Infrastructure",
+      "cluster": "Resources",
+      "status": "alternative",
+      "formula_type": "Additive",
+      "formula": "Infrastructure = systems + tools + maintenance",
+      "components": [
+        "systems",
+        "tools",
+        "maintenance"
+      ],
+      "definition": "The underlying systems, facilities, tools, and services required for an organization to function.",
+      "what_it_really_means": "What organizations build, use, and often fail to maintain. All three components are required. Systems without maintenance break. Tools without systems produce inconsistent output. Maintenance without tools or systems is theater.",
+      "why": "Additive formula means all three carry equal weight. Most organizations invest in the first two and underinvest in the third.",
+      "alternatives": [
+        "The systems and tools that actually work",
+        "Maintained operational foundation",
+        "Real infrastructure, not just equipment",
+        "Working systems kept working"
+      ]
+    },
+    {
+      "word": "Inventory",
+      "cluster": "Resources",
+      "status": "alternative",
+      "formula_type": "Ratio",
+      "formula": "Inventory = stock on hand / expected demand",
+      "components": [
+        "stock on hand",
+        "expected demand"
+      ],
+      "definition": "The goods, materials, or resources held by an organization for use, sale, or future deployment.",
+      "what_it_really_means": "A word with precise operational meaning. The ratio tells you whether the inventory is adequate, excessive, or insufficient. Without the denominator, inventory is just a number.",
+      "why": "Stock without demand forecasting is accumulation. Demand forecasting without stock is planning without execution. The ratio is what makes inventory management meaningful.",
+      "alternatives": [
+        "Stock matched to demand",
+        "What we have versus what we need",
+        "Inventory level against expected use",
+        "Operational stock"
+      ]
+    },
+    {
+      "word": "Staffing",
+      "cluster": "Resources",
+      "status": "alternative",
+      "formula_type": "Ratio",
+      "formula": "Staffing = people in role / role requirements",
+      "components": [
+        "people in role",
+        "role requirements"
+      ],
+      "definition": "The process and outcome of placing the right number of appropriately skilled people in roles required to perform organizational work.",
+      "what_it_really_means": "Adjacent to Headcount but more specific. Headcount is raw numbers. Staffing is whether those numbers match what the roles actually require.",
+      "why": "The denominator is role requirements, not abstract capacity. An organization can be fully staffed on paper and understaffed in practice if the people in role do not match what the role requires.",
+      "alternatives": [
+        "Right people in the right roles",
+        "Staff levels matched to role needs",
+        "Real staffing, not just role coverage",
+        "Capable staff, sufficient numbers"
+      ]
+    },
+    {
+      "word": "Shortage",
+      "cluster": "Resources",
+      "status": "alternative",
+      "formula_type": "Refinement",
+      "formula": "Shortage = expected supply - actual supply",
+      "components": [
+        "expected supply",
+        "actual supply"
+      ],
+      "definition": "A situation in which the available supply of a resource is insufficient to meet demand or expectations.",
+      "what_it_really_means": "The gap between what was expected and what is available. The Refinement formula makes it explicit. Shortage is a subtraction.",
+      "why": "The word only holds meaning when both the expected supply and the actual supply are defined. Otherwise shortage is just a complaint.",
+      "alternatives": [
+        "Gap between expected and actual",
+        "Less than what was needed",
+        "Real shortfall",
+        "The difference, measured"
+      ]
+    },
+    {
+      "word": "Cadence",
+      "cluster": "Process",
+      "status": "alternative",
+      "formula_type": "Combination",
+      "formula": "Cadence = regularity + (predictability + adjustment)",
+      "components": [
+        "regularity",
+        "predictability",
+        "adjustment"
+      ],
+      "definition": "The rhythmic pattern at which meetings, reviews, or process cycles occur, balancing consistency with responsiveness.",
+      "what_it_really_means": "A word from music applied to organizational rhythm. Real cadence requires regularity combined with both predictability and the ability to adjust.",
+      "why": "Predictability and adjustment are grouped because one without the other breaks the cadence. Predictability without adjustment is rigidity. Adjustment without predictability is chaos.",
+      "alternatives": [
+        "Regular rhythm with room to adjust",
+        "Predictable cycle that can flex",
+        "Real cadence, not just scheduled meetings",
+        "Rhythmic, adjustable pattern"
+      ]
+    },
+    {
+      "word": "Handoff",
+      "cluster": "Process",
+      "status": "alternative",
+      "formula_type": "Additive",
+      "formula": "Handoff = completed work + clear ownership transfer + documented state",
+      "components": [
+        "completed work",
+        "clear ownership transfer",
+        "documented state"
+      ],
+      "definition": "The transfer of responsibility, information, or work from one person, team, or process step to another.",
+      "what_it_really_means": "The point in every process where things go wrong. Real handoffs require all three components. Completed work without clear ownership transfer is abandonment. Clear ownership transfer without documented state is a mystery.",
+      "why": "All three are required. Remove any one and the handoff fails.",
+      "alternatives": [
+        "Finished, transferred, and documented",
+        "Real handoff, not just a pass",
+        "Clean transition between steps",
+        "Ownership moved, state clear"
+      ]
+    },
+    {
+      "word": "Compliance",
+      "cluster": "Process",
+      "status": "alternative",
+      "formula_type": "Multiplied",
+      "formula": "Compliance = adherence to rules x verification",
+      "components": [
+        "adherence to rules",
+        "verification"
+      ],
+      "definition": "The act of following established rules, regulations, standards, or procedures, typically with evidence of adherence.",
+      "what_it_really_means": "What organizations claim after an audit. Real compliance requires both adherence and verification. Adherence without verification is self-reported. Verification without adherence is exposure.",
+      "why": "The multiplier is verification. Without it, compliance is just what people say they do.",
+      "alternatives": [
+        "Following rules and being able to prove it",
+        "Verified adherence",
+        "Real compliance, not claimed compliance",
+        "Documented rule-following"
+      ]
+    },
+    {
+      "word": "Due Diligence",
+      "cluster": "Process",
+      "status": "alternative",
+      "formula_type": "Additive",
+      "formula": "Due Diligence = research + verification + documentation",
+      "components": [
+        "research",
+        "verification",
+        "documentation"
+      ],
+      "definition": "The thorough investigation and examination of facts, risks, or conditions before entering into an agreement or making a significant decision.",
+      "what_it_really_means": "A legal and business term that has expanded into general organizational use. All three components are required. Research without verification is assumption. Verification without documentation is memory.",
+      "why": "Additive formula. All three carry equal weight. Any one missing undermines the diligence.",
+      "alternatives": [
+        "Checked thoroughly and documented",
+        "Real investigation before deciding",
+        "Researched, verified, recorded",
+        "Thorough pre-decision review"
+      ]
+    },
+    {
+      "word": "Checklist",
+      "cluster": "Process",
+      "status": "alternative",
+      "formula_type": "Additive",
+      "formula": "Checklist = defined items + completion status + accountability",
+      "components": [
+        "defined items",
+        "completion status",
+        "accountability"
+      ],
+      "definition": "A documented list of items or steps to be completed, used to ensure nothing is missed in a process.",
+      "what_it_really_means": "One of the simplest and most effective process tools when used properly. All three components are required. A list without completion tracking is a document. Tracking without accountability is an exercise.",
+      "why": "Additive. All three carry equal weight. The checklist breaks when any one component is missing.",
+      "alternatives": [
+        "Items, status, and who is responsible",
+        "Real checklist with real accountability",
+        "Tracked list of what needs doing",
+        "Operational checklist, not just a document"
+      ]
+    },
+    {
+      "word": "Milestone",
+      "cluster": "Results",
+      "status": "alternative",
+      "formula_type": "Additive",
+      "formula": "Milestone = significant event + measurable achievement + timing",
+      "components": [
+        "significant event",
+        "measurable achievement",
+        "timing"
+      ],
+      "definition": "A notable point or achievement within a project or timeline, marking progress toward a larger goal.",
+      "what_it_really_means": "A marker of progress. Real milestones have all three components. A significant event without measurable achievement is a celebration. Measurable achievement without timing is history.",
+      "why": "Additive formula. All three are required. Remove any one and the milestone is not a milestone.",
+      "alternatives": [
+        "A marked point of measurable progress",
+        "Real milestone, not just a moment",
+        "Progress marker with evidence",
+        "Timed, measured achievement"
+      ]
+    },
+    {
+      "word": "Scorecard",
+      "cluster": "Results",
+      "status": "alternative",
+      "formula_type": "Combination",
+      "formula": "Scorecard = metrics + (targets + actual performance)",
+      "components": [
+        "metrics",
+        "targets",
+        "actual performance"
+      ],
+      "definition": "A structured report that displays key performance metrics alongside targets and actual results to assess organizational or individual performance.",
+      "what_it_really_means": "A dashboard with more structure. Real scorecards show metrics, targets, and actual performance together. Metrics without targets are numbers. Targets without actual performance are wishes.",
+      "why": "Targets and actual performance are grouped because the comparison between them is what makes the scorecard meaningful. Metrics alone show a number. The comparison shows performance.",
+      "alternatives": [
+        "Metrics with targets and actuals",
+        "Real scorecard, not a dashboard dump",
+        "Performance against what we committed to",
+        "Comparison-based performance view"
+      ]
+    },
+    {
+      "word": "Baseline",
+      "cluster": "Results",
+      "status": "alternative",
+      "formula_type": "Additive",
+      "formula": "Baseline = initial measurement + defined context + documented time",
+      "components": [
+        "initial measurement",
+        "defined context",
+        "documented time"
+      ],
+      "definition": "A documented starting point used as a reference for comparing future performance, changes, or results.",
+      "what_it_really_means": "The reference point every metric needs. Real baselines require all three components. A measurement without context is a number. Context without time is unclear. Time without measurement is unusable.",
+      "why": "Additive. All three required to produce a useful baseline.",
+      "alternatives": [
+        "The documented starting point",
+        "Real baseline, not just a first number",
+        "Reference measurement with context and date",
+        "Foundational measurement"
+      ]
+    },
+    {
+      "word": "Forecast",
+      "cluster": "Results",
+      "status": "alternative",
+      "formula_type": "Combination",
+      "formula": "Forecast = historical data + (assumptions + projection method)",
+      "components": [
+        "historical data",
+        "assumptions",
+        "projection method"
+      ],
+      "definition": "A prediction or estimate of future performance, conditions, or results, based on historical data and analytical methods.",
+      "what_it_really_means": "What organizations produce and then often ignore. Real forecasts require historical data combined with documented assumptions and a defensible projection method.",
+      "why": "Assumptions and projection method are grouped because one without the other undermines the forecast. Assumptions without a method are guesses. Method without documented assumptions is math applied to unstated premises.",
+      "alternatives": [
+        "Projected result based on data and stated assumptions",
+        "Real forecast, not a guess",
+        "Data-driven projection with documented method",
+        "Defensible prediction"
+      ]
+    },
+    {
+      "word": "Success",
+      "cluster": "Results",
+      "status": "alternative",
+      "formula_type": "Combination",
+      "formula": "Success = outcome + (defined criteria + sustained result)",
+      "components": [
+        "outcome",
+        "defined criteria",
+        "sustained result"
+      ],
+      "definition": "The achievement of a desired outcome, measured against defined criteria and sustained over time.",
+      "what_it_really_means": "One of the most subjective words organizations use. Real success requires outcome plus defined criteria plus sustained result. Without defined criteria, success is a feeling. Without sustained result, success is a moment.",
+      "why": "Defined criteria and sustained result are grouped because one without the other undermines the claim. Criteria without sustainability is success for a quarter. Sustainability without criteria is continuation without direction.",
+      "alternatives": [
+        "Achieved against defined criteria and holding",
+        "Real, sustained success",
+        "Measurable, lasting outcome",
+        "Outcome that lasted against what we defined"
+      ]
+    }
+  ]
+}
