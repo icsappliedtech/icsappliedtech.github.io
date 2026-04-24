@@ -395,6 +395,16 @@ audio {
   border-radius: 10px;
 }
 
+.grid-item-video-vertical {
+  width: 300px;
+  background: rgba(255, 255, 255, 0.1);
+  /* background-color: #f2f2f2; */
+  padding: 20px;
+  text-align: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
 .grid-item-2column {
   width: 300px;
   background: rgba(255, 255, 255, 0.1);
@@ -427,6 +437,13 @@ audio {
 }
 
 .grid-container .grid-item-video p {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.grid-container .grid-item-video-vertical p {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
   font-size: 1rem;
@@ -479,6 +496,9 @@ audio {
     grid-template-columns: repeat(2, 1fr); /* 2 columns in smaller screens */
   }
   .grid-container-video {
+    grid-template-columns: 1fr; /* 1 column in small screens */
+  }
+   .grid-container-video-vertical {
     grid-template-columns: 1fr; /* 1 column in small screens */
   }
   .grid-container-2column {
