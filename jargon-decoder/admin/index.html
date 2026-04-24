@@ -25,12 +25,8 @@
   color: var(--text-soft);
   margin-top: 4px;
 }
-.admin-form {
-  background: var(--bg);
-}
-.form-row {
-  margin-bottom: 20px;
-}
+.admin-form { background: var(--bg); }
+.form-row { margin-bottom: 20px; }
 .form-row label {
   display: block;
   font-size: 12px;
@@ -86,9 +82,7 @@
   gap: 8px;
   align-items: center;
 }
-.list-item-row input {
-  flex: 1;
-}
+.list-item-row input { flex: 1; }
 .remove-btn {
   padding: 10px 14px;
   background: #f5f5f5;
@@ -98,10 +92,7 @@
   font-size: 14px;
   cursor: pointer;
 }
-.remove-btn:hover {
-  background: #fef0f0;
-  color: #a00;
-}
+.remove-btn:hover { background: #fef0f0; color: #a00; }
 .add-btn {
   padding: 8px 14px;
   background: var(--bg-soft);
@@ -118,6 +109,46 @@
   color: var(--ink);
   background: var(--yellow-soft);
 }
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.checkbox-row input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.checkbox-row label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  text-transform: none;
+  letter-spacing: 0;
+  margin: 0;
+  cursor: pointer;
+}
+.checkbox-row .form-help { margin: 0; }
+.primary-row {
+  display: none;
+  margin-bottom: 20px;
+}
+.primary-row.visible { display: block; }
+.alt-notice {
+  padding: 12px 16px;
+  background: var(--yellow-soft);
+  border-left: 3px solid var(--yellow);
+  font-size: 13px;
+  margin-bottom: 20px;
+  display: none;
+  line-height: 1.6;
+}
+.alt-notice.visible { display: block; }
 .actions {
   display: flex;
   gap: 12px;
@@ -157,11 +188,7 @@
   display: none;
 }
 .output-block.active { display: block; }
-.output-block h3 {
-  color: var(--yellow);
-  font-family: Georgia, serif;
-  margin-bottom: 12px;
-}
+.output-block h3 { color: var(--yellow); font-family: Georgia, serif; margin-bottom: 12px; }
 .output-block pre {
   background: #000;
   color: var(--yellow);
@@ -234,11 +261,11 @@
 
   <div class="admin-header">
     <h1>Add a new jargon word</h1>
-    <p>Fill in the form. Generate the JSON. Paste it into jargon_data.json and re-upload.</p>
+    <p>Fill in the form. Generate the JSON. Add it to jargon-data.json, then run sync_data.py.</p>
   </div>
 
   <div class="instructions">
-    <strong>How this works.</strong> This form generates a properly formatted JSON entry that can be added to your <code>jargon_data.json</code> file. The form does not edit the file directly — it creates the entry you paste in. After pasting, re-upload <code>jargon_data.json</code> to your site and the new word will appear automatically in the tool.
+    <strong>How this works.</strong> This form generates a properly formatted JSON entry for <code>jargon-data.json</code>. The form does not edit the file directly — it creates the entry you paste in. After adding the entry, run <code>python3 sync_data.py</code> from the jargon-decoder folder to regenerate the companion data files. Then re-upload the folder to your site.
   </div>
 
   <form class="admin-form" id="admin-form" onsubmit="return false;">
@@ -250,12 +277,24 @@
       </div>
       <div class="form-row">
         <label>Status</label>
-        <select id="status" required>
+        <select id="status" required onchange="handleStatusChange()">
           <option value="core">Core</option>
           <option value="extended">Extended</option>
           <option value="alternative">Alternative</option>
         </select>
       </div>
+    </div>
+
+    <!-- Alternative redirect notice -->
+    <div class="alt-notice" id="alt-notice">
+      <strong>Alternative entry.</strong> Alternative entries point to a primary word. Fill in the Primary Word field below. The formula, components, and plain-language alternatives fields are optional for redirect-style alternatives — leave them blank if this entry is a simple redirect.
+    </div>
+
+    <!-- Primary field (shown for alternative entries) -->
+    <div class="form-row primary-row" id="primary-row">
+      <label>Primary word <span style="color:var(--text-light);font-weight:400;text-transform:none;letter-spacing:0">(the word this redirects to)</span></label>
+      <input type="text" id="primary" placeholder="e.g. Leadership">
+      <div class="form-help">The exact word name as it appears in jargon-data.json.</div>
     </div>
 
     <div class="form-row-split">
@@ -270,8 +309,9 @@
         </select>
       </div>
       <div class="form-row">
-        <label>Formula type</label>
-        <select id="formula_type" required>
+        <label>Formula type <span style="color:var(--text-light);font-weight:400;text-transform:none;letter-spacing:0">(leave blank for redirect alternatives)</span></label>
+        <select id="formula_type">
+          <option value="">— None —</option>
           <option value="Additive">Additive (x + y + z)</option>
           <option value="Combination">Combination (x + y + (a + b))</option>
           <option value="Exponential">Exponential (x + y²)</option>
@@ -283,13 +323,13 @@
     </div>
 
     <div class="form-row">
-      <label>Formula expression</label>
-      <input type="text" id="formula" placeholder="e.g. j = beliefs + (expectations × resilience)" required>
-      <div class="form-help">Write the formula as it appears in the book. Use <strong>j</strong> for the jargon word on the left side: <code>j = components combined with the operators</code>.</div>
+      <label>Formula expression <span style="color:var(--text-light);font-weight:400;text-transform:none;letter-spacing:0">(leave blank for redirect alternatives)</span></label>
+      <input type="text" id="formula" placeholder="e.g. Mindset = beliefs + (expectations × resilience)">
+      <div class="form-help">Write the formula with the word name on the left: <code>Word = components</code>. For redirect alternatives, enter <code>See: Primary Word</code>.</div>
     </div>
 
     <div class="form-row">
-      <label>Components</label>
+      <label>Components <span style="color:var(--text-light);font-weight:400;text-transform:none;letter-spacing:0">(leave blank for redirect alternatives)</span></label>
       <div class="components-wrap" id="components-wrap">
         <div class="list-item-row">
           <input type="text" class="component-input" placeholder="e.g. beliefs">
@@ -310,16 +350,16 @@
 
     <div class="form-row">
       <label>What it really means</label>
-      <textarea id="what_it_really_means" placeholder="The honest version — how the word gets used in practice, not what the dictionary says..." required></textarea>
+      <textarea id="what_it_really_means" placeholder="The honest version — how the word gets used in practice..." required></textarea>
     </div>
 
     <div class="form-row">
-      <label>Why the formula is shaped this way</label>
-      <textarea id="why" placeholder="Explanation of the formula type and why these components are grouped / multiplied / etc..." required></textarea>
+      <label>Why the formula is shaped this way <span style="color:var(--text-light);font-weight:400;text-transform:none;letter-spacing:0">(for redirects: explain why it points to the primary)</span></label>
+      <textarea id="why" placeholder="Explanation of the formula type, or why this word points to the primary..." required></textarea>
     </div>
 
     <div class="form-row">
-      <label>Plain-language alternatives</label>
+      <label>Plain-language alternatives <span style="color:var(--text-light);font-weight:400;text-transform:none;letter-spacing:0">(leave blank for redirect alternatives)</span></label>
       <div class="alternatives-wrap" id="alternatives-wrap">
         <div class="list-item-row">
           <input type="text" class="alternative-input" placeholder="Alternative phrase 1">
@@ -333,6 +373,16 @@
       <button type="button" class="add-btn" onclick="addAlternative()">+ Add alternative</button>
     </div>
 
+    <div class="form-row">
+      <div class="checkbox-row">
+        <input type="checkbox" id="is_metaphor">
+        <div>
+          <label for="is_metaphor">This word is a metaphor</label>
+          <div class="form-help">Check this if the word borrows its meaning from another domain — sports, nature, military, medicine, etc. Examples: Bottleneck, Runway, Sprint, Viral Growth.</div>
+        </div>
+      </div>
+    </div>
+
     <div class="actions">
       <button type="button" class="btn-generate" onclick="generateJSON()">Generate JSON</button>
       <button type="button" class="btn-reset" onclick="resetForm()">Reset form</button>
@@ -340,28 +390,34 @@
   </form>
 
   <div class="output-block" id="output-block">
-    <h3>Ready to add to jargon_data.json</h3>
+    <h3>Ready to add to jargon-data.json</h3>
     <p style="color:#bbb;font-size:14px;margin-bottom:16px;">
-      Copy the JSON below and paste it into the <code>"entries"</code> array of your <code>jargon_data.json</code> file. Make sure to add a comma after the previous entry.
+      Copy the JSON below and paste it into the <code>"entries"</code> array of <code>jargon-data.json</code>. Add a comma after the previous entry. Then run <code>python3 sync_data.py</code> to rebuild the data files.
     </p>
     <pre id="output-json"></pre>
     <div class="output-actions">
       <button class="output-btn" onclick="copyJSON()">Copy to clipboard</button>
       <button class="output-btn output-btn-secondary" onclick="downloadJSON()">Download as .json snippet</button>
     </div>
-    <div class="success-message" id="success-msg">Copied. Now paste it into jargon_data.json.</div>
+    <div class="success-message" id="success-msg">Copied. Now paste it into jargon-data.json and run sync_data.py.</div>
   </div>
 </div>
 
 <script>
+function handleStatusChange() {
+  const status = document.getElementById('status').value;
+  const isAlt = status === 'alternative';
+  document.getElementById('alt-notice').classList.toggle('visible', isAlt);
+  document.getElementById('primary-row').classList.toggle('visible', isAlt);
+}
+
 function addComponent() {
   const wrap = document.getElementById('components-wrap');
   const row = document.createElement('div');
   row.className = 'list-item-row';
   row.innerHTML = `
     <input type="text" class="component-input" placeholder="Another component">
-    <button type="button" class="remove-btn" onclick="removeComponent(this)">Remove</button>
-  `;
+    <button type="button" class="remove-btn" onclick="removeComponent(this)">Remove</button>`;
   wrap.appendChild(row);
 }
 function removeComponent(btn) {
@@ -374,46 +430,77 @@ function addAlternative() {
   row.className = 'list-item-row';
   row.innerHTML = `
     <input type="text" class="alternative-input" placeholder="Another alternative">
-    <button type="button" class="remove-btn" onclick="removeAlternative(this)">Remove</button>
-  `;
+    <button type="button" class="remove-btn" onclick="removeAlternative(this)">Remove</button>`;
   wrap.appendChild(row);
 }
 function removeAlternative(btn) {
   const wrap = document.getElementById('alternatives-wrap');
   if (wrap.children.length > 1) btn.parentElement.remove();
 }
+
 function generateJSON() {
-  const word = document.getElementById('word').value.trim();
-  const cluster = document.getElementById('cluster').value;
-  const status = document.getElementById('status').value;
-  const formula_type = document.getElementById('formula_type').value;
-  const formula = document.getElementById('formula').value.trim();
-  const definition = document.getElementById('definition').value.trim();
+  const word        = document.getElementById('word').value.trim();
+  const cluster     = document.getElementById('cluster').value;
+  const status      = document.getElementById('status').value;
+  const formula_type_raw = document.getElementById('formula_type').value;
+  const formula_type = formula_type_raw || null;
+  const formula     = document.getElementById('formula').value.trim();
+  const definition  = document.getElementById('definition').value.trim();
   const what_it_really_means = document.getElementById('what_it_really_means').value.trim();
-  const why = document.getElementById('why').value.trim();
+  const why         = document.getElementById('why').value.trim();
+  const primary_raw = document.getElementById('primary').value.trim();
+  const primary     = primary_raw || null;
+  const is_metaphor = document.getElementById('is_metaphor').checked;
 
-  const components = Array.from(document.querySelectorAll('.component-input'))
-    .map(i => i.value.trim())
-    .filter(Boolean);
+  const components  = Array.from(document.querySelectorAll('.component-input'))
+    .map(i => i.value.trim()).filter(Boolean);
   const alternatives = Array.from(document.querySelectorAll('.alternative-input'))
-    .map(i => i.value.trim())
-    .filter(Boolean);
+    .map(i => i.value.trim()).filter(Boolean);
 
-  if (!word || !formula || !definition || !what_it_really_means || !why || components.length === 0 || alternatives.length === 0) {
-    alert('Please fill in all required fields including at least one component and one alternative.');
+  if (!word || !definition || !what_it_really_means || !why) {
+    alert('Please fill in all required text fields (word, definition, what it really means, why).');
     return;
   }
 
-  const entry = {
-    word, cluster, status, formula_type, formula,
-    components, definition, what_it_really_means, why, alternatives
-  };
+  const isRedirectAlt = status === 'alternative' && primary;
+
+  if (status === 'alternative' && !primary) {
+    if (components.length === 0 || alternatives.length === 0) {
+      alert('For a full alternative entry, add at least one component and one alternative. Or fill in the Primary Word field to create a redirect alternative.');
+      return;
+    }
+  }
+
+  // Build entry
+  const entry = { word, cluster, status };
+
+  if (isRedirectAlt) {
+    entry.primary = primary;
+    entry.formula_type = formula_type;
+    entry.formula = formula || (primary ? `See: ${primary}` : '');
+    entry.components = components;
+    entry.definition = definition;
+    entry.what_it_really_means = what_it_really_means;
+    entry.why = why;
+    entry.alternatives = alternatives;
+  } else {
+    entry.formula_type = formula_type;
+    entry.formula = formula;
+    entry.components = components;
+    entry.definition = definition;
+    entry.what_it_really_means = what_it_really_means;
+    entry.why = why;
+    entry.alternatives = alternatives;
+  }
+
+  entry.is_metaphor = is_metaphor;
 
   const json = JSON.stringify(entry, null, 2);
   document.getElementById('output-json').textContent = json + ',';
   document.getElementById('output-block').classList.add('active');
   document.getElementById('output-block').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+
 function copyJSON() {
   const text = document.getElementById('output-json').textContent;
   navigator.clipboard.writeText(text).then(() => {
@@ -438,6 +525,8 @@ function downloadJSON() {
 function resetForm() {
   if (!confirm('Clear the form?')) return;
   document.getElementById('admin-form').reset();
+  document.getElementById('alt-notice').classList.remove('visible');
+  document.getElementById('primary-row').classList.remove('visible');
   document.getElementById('components-wrap').innerHTML = `
     <div class="list-item-row">
       <input type="text" class="component-input" placeholder="e.g. beliefs">
@@ -446,8 +535,7 @@ function resetForm() {
     <div class="list-item-row">
       <input type="text" class="component-input" placeholder="e.g. expectations">
       <button type="button" class="remove-btn" onclick="removeComponent(this)">Remove</button>
-    </div>
-  `;
+    </div>`;
   document.getElementById('alternatives-wrap').innerHTML = `
     <div class="list-item-row">
       <input type="text" class="alternative-input" placeholder="Alternative phrase 1">
@@ -456,8 +544,7 @@ function resetForm() {
     <div class="list-item-row">
       <input type="text" class="alternative-input" placeholder="Alternative phrase 2">
       <button type="button" class="remove-btn" onclick="removeAlternative(this)">Remove</button>
-    </div>
-  `;
+    </div>`;
   document.getElementById('output-block').classList.remove('active');
 }
 </script>
