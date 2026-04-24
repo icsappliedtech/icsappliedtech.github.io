@@ -528,7 +528,14 @@ audio {
 /* Responsive Video */
 .responsive-video {
   position: relative;
-  padding-bottom: 56.25%; /* Aspect Ratio 16:9 */
+  padding-bottom: 56.25%; /* Aspect Ratio 16:9 (9/16*100=56.25%) */
+  padding-top: 25px;
+  height: 0;
+}
+
+.responsive-video-vertical {
+  position: relative;
+  padding-bottom: 177.77%; /* Aspect Ratio 9:16 (16/9*100=177.77%) */
   padding-top: 25px;
   height: 0;
 }
