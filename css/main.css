@@ -540,7 +540,8 @@ audio {
   height: 0;
 }
 
-.responsive-video iframe {
+.responsive-video iframe, 
+.responsive-video-vertical iframe {
   position: absolute;
   top: 0;
   left: 0;
