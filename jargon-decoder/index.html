@@ -161,16 +161,23 @@
     <section class="tab-panel" id="tab-frameworks">
       <div class="panel-header">
         <h3 class="panel-title">Frameworks &amp; Standards</h3>
-        <p class="panel-sub">Named frameworks, accounting standards, and professional tools. These have fixed, established meanings — they are the vocabulary of practice, not jargon to be decoded.</p>
+        <p class="panel-sub">Named frameworks, accounting standards, and professional tools. These have fixed, established meanings — they are the vocabulary of practice, not jargon to be decoded. Click any card to expand it.</p>
       </div>
 
       <div class="fw-controls">
-        <div class="search-wrap">
+        <div class="fw-filter-tabs" id="fw-filter-tabs">
+          <button class="fw-filter-tab active" data-subtype="">All</button>
+          <button class="fw-filter-tab" data-subtype="Framework">Frameworks</button>
+          <button class="fw-filter-tab" data-subtype="Accounting & Finance">Accounting &amp; Finance</button>
+          <button class="fw-filter-tab" data-subtype="Quality & Process">Quality &amp; Process</button>
+          <button class="fw-filter-tab" data-subtype="Audit & Legal">Audit &amp; Legal</button>
+          <button class="fw-filter-tab" data-subtype="Digital & Marketing">Digital &amp; Marketing</button>
+        </div>
+        <div class="search-wrap fw-search-wrap">
           <input type="text" id="fw-search" class="search-input" placeholder="Search frameworks and standards..." autocomplete="off">
         </div>
       </div>
 
-      <div id="fw-result" class="decode-result"></div>
       <div id="fw-grid" class="fw-grid"></div>
     </section>
 
