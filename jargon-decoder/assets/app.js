@@ -13,6 +13,8 @@
   let HEALTH_MODE = 'quick';
   let HEALTH_ANSWERS = {};
   let FW_SEARCH_QUERY = '';
+  let FW_SUBTYPE_FILTER = '';
+  let FW_OPEN_WORD = null;
   let OPEN_CLUSTER = null; // tracks which browse cluster is open
 
   // Cluster questions
@@ -615,6 +617,8 @@
   // ==== FRAMEWORKS & STANDARDS TAB ============================
   function setupFrameworks() {
     if (!FW_DATA) return;
+
+    // Search input
     const input = document.getElementById('fw-search');
     if (input) {
       input.addEventListener('input', () => {
@@ -622,6 +626,18 @@
         renderFrameworksList();
       });
     }
+
+    // Sub-type filter tabs
+    document.querySelectorAll('.fw-filter-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.fw-filter-tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        FW_SUBTYPE_FILTER = btn.dataset.subtype;
+        FW_OPEN_WORD = null;
+        renderFrameworksList();
+      });
+    });
+
     renderFrameworksList();
   }
 
@@ -629,12 +645,20 @@
     if (!FW_DATA) return;
     let entries = [...FW_DATA.entries];
 
+    if (FW_SUBTYPE_FILTER) {
+      entries = entries.filter(e => e.subtype === FW_SUBTYPE_FILTER);
+    }
+
     if (FW_SEARCH_QUERY) {
       entries = entries.filter(e =>
         e.word.toLowerCase().includes(FW_SEARCH_QUERY) ||
         (e.acronym && e.acronym.toLowerCase().includes(FW_SEARCH_QUERY)) ||
         e.definition.toLowerCase().includes(FW_SEARCH_QUERY)
       );
+      // When searching, open the first match automatically
+      if (entries.length > 0 && !FW_OPEN_WORD) {
+        FW_OPEN_WORD = entries[0].word;
+      }
     }
 
     entries.sort((a, b) => a.word.localeCompare(b.word));
@@ -647,85 +671,83 @@
       return;
     }
 
-    grid.innerHTML = entries.map(e => `
-      <button class="fw-card" data-word="${escapeAttr(e.word)}">
-        <div class="fw-card-word">${escapeHtml(e.word)}</div>
-        ${e.acronym ? `<div class="fw-card-acronym">${escapeHtml(e.acronym)}</div>` : ''}
-        ${e.origin ? `<div class="fw-card-origin">${escapeHtml(e.origin)}</div>` : ''}
-      </button>`).join('');
+    grid.innerHTML = entries.map(e => {
+      const isOpen = FW_OPEN_WORD === e.word;
 
-    grid.querySelectorAll('.fw-card').forEach(card => {
-      card.addEventListener('click', () => selectFramework(card.dataset.word));
-    });
-  }
+      const componentsBlock = e.components && e.components.length > 0 ? `
+        <div class="result-section">
+          <div class="section-label">Components</div>
+          <div class="components-list">
+            ${e.components.map(c => `<span class="component-chip">${escapeHtml(c)}</span>`).join('')}
+          </div>
+        </div>` : '';
 
-  function selectFramework(word) {
-    if (!FW_DATA) return;
-    const entry = FW_DATA.entries.find(e => e.word === word);
-    if (!entry) return;
-    document.getElementById('fw-search').value = word;
-    renderFrameworkResult(entry);
-    scrollToEl(document.getElementById('fw-result'));
-  }
+      const relatedBlock = e.related && e.related.length > 0 ? `
+        <div class="result-section">
+          <div class="section-label">Related in the decoder</div>
+          <div class="fw-related-list">
+            ${e.related.map(r => {
+              const exists = DATA && DATA.entries.some(d => d.word === r);
+              return exists
+                ? `<button class="fw-related-link" data-word="${escapeAttr(r)}">${escapeHtml(r)}</button>`
+                : `<span class="fw-related-plain">${escapeHtml(r)}</span>`;
+            }).join('')}
+          </div>
+        </div>` : '';
 
-  function renderFrameworkResult(entry) {
-    const componentsBlock = entry.components && entry.components.length > 0 ? `
-      <div class="result-section">
-        <div class="section-label">Components</div>
-        <div class="components-list">
-          ${entry.components.map(c => `<span class="component-chip">${escapeHtml(c)}</span>`).join('')}
-        </div>
-      </div>` : '';
-
-    const relatedBlock = entry.related && entry.related.length > 0 ? `
-      <div class="result-section">
-        <div class="section-label">Related in the decoder</div>
-        <div class="fw-related-list">
-          ${entry.related.map(r => {
-            const exists = DATA && DATA.entries.some(e => e.word === r);
-            return exists
-              ? `<button class="fw-related-link" data-word="${escapeAttr(r)}">${escapeHtml(r)}</button>`
-              : `<span class="fw-related-plain">${escapeHtml(r)}</span>`;
-          }).join('')}
-        </div>
-      </div>` : '';
-
-    const html = `
-      <div class="result-card result-card-framework">
-        <div class="result-header">
-          <div class="result-word-block">
-            <div class="result-word">${escapeHtml(entry.word)}</div>
-            <div class="result-tags">
-              <span class="tag tag-framework">Framework &amp; Standard</span>
-              ${entry.acronym ? `<span class="tag tag-acronym">${escapeHtml(entry.acronym)}</span>` : ''}
+      return `
+        <div class="fw-card-wrap ${isOpen ? 'open' : ''}" data-word="${escapeAttr(e.word)}">
+          <button class="fw-card fw-card-trigger" data-word="${escapeAttr(e.word)}">
+            <div class="fw-card-top">
+              <div>
+                <div class="fw-card-word">${escapeHtml(e.word)}</div>
+                ${e.acronym ? `<div class="fw-card-acronym">${escapeHtml(e.acronym)}</div>` : ''}
+              </div>
+              <div class="fw-card-right">
+                <span class="fw-card-subtype">${escapeHtml(e.subtype)}</span>
+                <span class="fw-card-chevron">${isOpen ? '▲' : '▼'}</span>
+              </div>
+            </div>
+          </button>
+          <div class="fw-card-detail">
+            <div class="fw-card-detail-inner">
+              ${e.origin ? `
+              <div class="fw-origin-block">
+                <span class="fw-origin-label">Origin</span>
+                <span class="fw-origin-text">${escapeHtml(e.origin)}</span>
+              </div>` : ''}
+              <div class="result-section">
+                <div class="section-label">Definition</div>
+                <div class="section-content">${escapeHtml(e.definition)}</div>
+              </div>
+              ${componentsBlock}
+              <div class="result-section">
+                <div class="section-label">Used for</div>
+                <div class="section-content">${escapeHtml(e.used_for)}</div>
+              </div>
+              ${relatedBlock}
             </div>
           </div>
-        </div>
+        </div>`;
+    }).join('');
 
-        ${entry.origin ? `
-        <div class="fw-origin-block">
-          <span class="fw-origin-label">Origin</span>
-          <span class="fw-origin-text">${escapeHtml(entry.origin)}</span>
-        </div>` : ''}
+    // Card click — toggle open
+    grid.querySelectorAll('.fw-card-trigger').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const word = btn.dataset.word;
+        FW_OPEN_WORD = FW_OPEN_WORD === word ? null : word;
+        renderFrameworksList();
+        if (FW_OPEN_WORD) {
+          setTimeout(() => {
+            const openCard = grid.querySelector(`.fw-card-wrap.open`);
+            if (openCard) scrollToEl(openCard);
+          }, 50);
+        }
+      });
+    });
 
-        <div class="result-section">
-          <div class="section-label">Definition</div>
-          <div class="section-content">${escapeHtml(entry.definition)}</div>
-        </div>
-
-        ${componentsBlock}
-
-        <div class="result-section">
-          <div class="section-label">Used for</div>
-          <div class="section-content">${escapeHtml(entry.used_for)}</div>
-        </div>
-
-        ${relatedBlock}
-      </div>`;
-
-    document.getElementById('fw-result').innerHTML = html;
-
-    document.querySelectorAll('.fw-related-link').forEach(btn => {
+    // Related links — jump to jargon decoder
+    grid.querySelectorAll('.fw-related-link').forEach(btn => {
       btn.addEventListener('click', () => {
         switchTab('decode');
         setTimeout(() => selectDecodeWord(btn.dataset.word), 100);

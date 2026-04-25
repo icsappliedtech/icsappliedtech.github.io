@@ -1330,49 +1330,142 @@ input, select, textarea {
 }
 
 /* ============================================================ */
-/* NEW — FRAMEWORKS & STANDARDS TAB                              */
+/* FRAMEWORKS & STANDARDS TAB                                    */
 /* ============================================================ */
 .fw-controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
   margin-bottom: var(--gap-lg);
 }
-.fw-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: var(--gap-sm);
-  margin-top: var(--gap);
+.fw-filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
-.fw-card {
+.fw-filter-tab {
+  padding: 7px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
   background: var(--bg);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-soft);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.fw-filter-tab:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.fw-filter-tab.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--yellow);
+}
+.fw-search-wrap {
+  max-width: 480px;
+}
+.fw-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Card wrap — the accordion container */
+.fw-card-wrap {
   border: 1px solid var(--line);
   border-radius: var(--r);
-  padding: var(--gap) var(--gap-md);
+  overflow: hidden;
+  transition: box-shadow 0.15s ease;
+}
+.fw-card-wrap.open {
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  border-color: var(--ink);
+}
+
+/* Card trigger — the clickable header row */
+.fw-card {
+  width: 100%;
+  background: var(--bg);
+  border: none;
   cursor: pointer;
   text-align: left;
-  transition: all 0.15s ease;
-  border-left: 3px solid transparent;
+  padding: 0;
+  transition: background 0.15s ease;
 }
-.fw-card:hover {
-  border-left-color: var(--yellow);
-  background: var(--yellow-soft);
-  transform: translateY(-1px);
+.fw-card-trigger {
+  display: block;
+  width: 100%;
+}
+.fw-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  gap: 12px;
+}
+.fw-card:hover .fw-card-top,
+.fw-card-wrap.open .fw-card .fw-card-top {
+  background: var(--ink);
+}
+.fw-card:hover .fw-card-word,
+.fw-card-wrap.open .fw-card .fw-card-word {
+  color: var(--yellow);
+}
+.fw-card:hover .fw-card-acronym,
+.fw-card-wrap.open .fw-card .fw-card-acronym,
+.fw-card:hover .fw-card-subtype,
+.fw-card-wrap.open .fw-card .fw-card-subtype,
+.fw-card:hover .fw-card-chevron,
+.fw-card-wrap.open .fw-card .fw-card-chevron {
+  color: #aaa;
 }
 .fw-card-word {
   font-family: var(--font-serif);
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--ink);
-  margin-bottom: 3px;
+  margin-bottom: 2px;
+  transition: color 0.15s ease;
 }
 .fw-card-acronym {
   font-size: 12px;
   color: var(--text-soft);
   line-height: 1.4;
-  margin-bottom: 3px;
+  transition: color 0.15s ease;
 }
-.fw-card-origin {
+.fw-card-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.fw-card-subtype {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-light);
+  transition: color 0.15s ease;
+}
+.fw-card-chevron {
   font-size: 11px;
   color: var(--text-light);
-  font-style: italic;
+  transition: color 0.15s ease;
+}
+
+/* Expanded detail area */
+.fw-card-detail {
+  display: none;
+  border-top: 1px solid var(--line);
+}
+.fw-card-wrap.open .fw-card-detail {
+  display: block;
+}
+.fw-card-detail-inner {
+  padding: 24px;
+  background: var(--bg);
 }
 
 /* Framework detail card */
