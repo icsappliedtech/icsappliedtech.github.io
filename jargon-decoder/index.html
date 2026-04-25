@@ -3,8 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Words We Use — Jargon Decoder</title>
-<meta name="description" content="Decode and encode organizational jargon using the formula system from The Words We Use by Jason Weimer.">
+<title>Jargon Decoder — Decode Organizational Jargon | The Words We Use by Jason Weimer</title>
+<meta name="description" content="Decode organizational jargon using the formula system from The Words We Use by Jason Weimer. 983 business jargon words decoded across five clusters — Direction, People, Resources, Process, and Results.">
+<meta name="keywords" content="organizational jargon, business jargon decoder, jargon decoder, workplace jargon, corporate jargon, The Words We Use, Jason Weimer, business language, management jargon">
+<meta name="author" content="Jason Weimer">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://jasonweimer.com/jargon-decoder">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Jargon Decoder — The Words We Use by Jason Weimer">
+<meta property="og:description" content="Decode organizational jargon using the formula system from The Words We Use. 983 words decoded across five clusters. Find out what the word actually requires.">
+<meta property="og:url" content="https://jasonweimer.com/jargon-decoder">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Words We Use">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jargon Decoder — The Words We Use by Jason Weimer">
+<meta name="twitter:description" content="Decode organizational jargon using the formula system from The Words We Use. 983 words. 5 clusters. 6 formula types.">
+<meta name="twitter:site" content="@jasonweimer">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Jargon Decoder",
+      "url": "https://jasonweimer.com/jargon-decoder",
+      "description": "Decode organizational jargon using the formula system from The Words We Use by Jason Weimer.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Any",
+      "author": {
+        "@type": "Person",
+        "name": "Jason Weimer",
+        "url": "https://jasonweimer.com"
+      }
+    },
+    {
+      "@type": "Book",
+      "name": "The Words We Use: The Hidden Formulas Behind Organizational Jargon",
+      "author": {
+        "@type": "Person",
+        "name": "Jason Weimer",
+        "url": "https://jasonweimer.com"
+      },
+      "url": "https://a.co/d/0dFYB1Zx",
+      "description": "A formula system for decoding organizational jargon across five clusters — Direction, People, Resources, Process, and Results."
+    }
+  ]
+}
+</script>
+
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -22,13 +74,18 @@
       </div>
     </div>
     <nav class="site-nav">
-      <a href="#browse" class="nav-link" data-tab="browse">Browse</a>
       <a href="#decode" class="nav-link active" data-tab="decode">Decode</a>
+      <a href="#browse" class="nav-link" data-tab="browse">Browse</a>
       <a href="#encode" class="nav-link" data-tab="encode">Encode</a>
-      <a href="#frameworks" class="nav-link" data-tab="frameworks">Frameworks</a>
       <a href="#health" class="nav-link" data-tab="health">Health Check</a>
       <a href="#book" class="nav-link" data-tab="book">Book</a>
-      <a href="#about" class="nav-link" data-tab="about">About</a>
+      <div class="nav-more">
+        <button class="nav-more-btn" id="nav-more-btn">More ▾</button>
+        <div class="nav-more-dropdown" id="nav-more-dropdown">
+          <a href="#frameworks" class="nav-more-item" data-tab="frameworks">Frameworks</a>
+          <a href="#about" class="nav-more-item" data-tab="about">About</a>
+        </div>
+      </div>
     </nav>
   </div>
 </header>
@@ -39,7 +96,7 @@
 <section class="hero" id="hero">
   <div class="container">
     <h2 class="hero-title">Every word has a formula.</h2>
-    <p class="hero-sub">983 organizational jargon words decoded. 78 frameworks and standards referenced. 6 formula types. 5 clusters. Find out what the word actually requires — or encode plain language into the jargon that fits it.</p>
+    <p class="hero-sub">Hundreds of organizational words decoded. Scores of frameworks referenced. 6 formula types. 5 clusters. Decode jargon into its components. Encode plain language into jargon. Get an organizational health check.</p>
     <div class="hero-stats">
       <div class="stat"><div class="stat-num">983</div><div class="stat-label">jargon words</div></div>
       <div class="stat"><div class="stat-num">78</div><div class="stat-label">frameworks</div></div>
@@ -63,11 +120,17 @@
       </div>
 
       <div class="decode-controls">
-        <div class="search-wrap">
-          <input type="text" id="decode-search" class="search-input" placeholder="Try typing: accountability, synergy, pivot..." autocomplete="off">
-          <div class="search-dropdown" id="search-dropdown"></div>
+        <div class="decode-search-row">
+          <div class="search-wrap">
+            <input type="text" id="decode-search" class="search-input" placeholder="Try typing: accountability, synergy, pivot..." autocomplete="off">
+            <div class="search-dropdown" id="search-dropdown"></div>
+          </div>
+          <button class="filters-toggle" id="filters-toggle" aria-expanded="false">
+            <span class="filters-toggle-label">Filters</span>
+            <span class="filters-toggle-icon">▾</span>
+          </button>
         </div>
-        <div class="decode-filters">
+        <div class="decode-filters" id="decode-filters" hidden>
           <select class="filter-select" id="filter-cluster">
             <option value="">All clusters</option>
           </select>
@@ -96,7 +159,13 @@
     <section class="tab-panel" id="tab-encode">
       <div class="panel-header">
         <h3 class="panel-title">Encode plain language into jargon</h3>
-        <p class="panel-sub">Type three observable behaviors, apply a formula type, and see which jargon words your components produce.</p>
+        <p class="panel-sub">Enter up to three components, the observable behaviours or conditions behind a situation, and find which jargon words they produce. Not sure where to start? Pick a scenario or grab words from the bank below.</p>
+      </div>
+
+      <!-- Starter scenarios -->
+      <div class="encode-scenarios">
+        <div class="encode-scenarios-label">Start with a scenario</div>
+        <div class="encode-scenarios-list" id="encode-scenarios-list"></div>
       </div>
 
       <div class="encode-form">
@@ -134,13 +203,23 @@
       </div>
 
       <div id="encode-result" class="encode-result"></div>
+
+      <!-- Word bank -->
+      <div class="word-bank" id="word-bank">
+        <div class="word-bank-header">
+          <div class="word-bank-title">Component word bank</div>
+          <div class="word-bank-tabs" id="word-bank-tabs"></div>
+          <p class="word-bank-instruction">↑ Pick a cluster, then click any word below to drop it into the next empty field above.</p>
+        </div>
+        <div class="word-bank-words" id="word-bank-words"></div>
+      </div>
     </section>
 
     <!-- ============= BROWSE TAB ============= -->
     <section class="tab-panel" id="tab-browse">
       <div class="panel-header">
-        <h3 class="panel-title">Browse all 983 words</h3>
-        <p class="panel-sub">983 words organized across five clusters. Use the search or filter to narrow the list, then click a cluster bar to open it and explore the words inside.</p>
+        <h3 class="panel-title">Browse all words</h3>
+        <p class="panel-sub">Use the search or filter to narrow the list, then click a cluster bar to open it and explore the words inside.</p>
       </div>
 
       <div class="browse-filters">
@@ -185,7 +264,7 @@
     <section class="tab-panel" id="tab-health">
       <div class="panel-header">
         <h3 class="panel-title">Organizational Health Check</h3>
-        <p class="panel-sub">The master formula applied to your organization. Answer five questions honestly and one final question that multiplies everything.</p>
+        <p class="panel-sub">The master formula applied to your organization. Organizations can fail because one or more of five components are missing. This diagnostic tool names them. Answer honestly and find out the health of your organization.</p>
       </div>
 
       <div class="master-formula-display">
@@ -210,7 +289,11 @@
       <!-- Hero block -->
       <div class="book-hero">
         <div class="book-hero-image">
-          <div class="book-cover-placeholder">
+          <img src="images/the-words-we-use-cover.png"
+               alt="The Words We Use — The Hidden Formulas Behind Organizational Jargon by Jason Weimer"
+               class="book-cover-img"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="book-cover-placeholder" style="display:none;">
             <div class="book-cover-inner">
               <div class="book-cover-j">j</div>
               <div class="book-cover-title">The Words We Use</div>
@@ -285,8 +368,14 @@
       <!-- Two column: image + quote -->
       <div class="book-split">
         <div class="book-split-image">
-          <div class="book-image-placeholder book-image-placeholder--tall">
-            <span>Author photo</span>
+          <img src="images/jason-weimer-author.jpg"
+               alt="Jason Weimer — Author of The Words We Use"
+               class="book-author-img"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="book-author-placeholder" style="display:none;">
+            <div class="book-author-placeholder-initial">JW</div>
+            <div class="book-author-placeholder-label">Jason Weimer</div>
+            <div class="book-author-placeholder-sub">Author · Educator · Podcast Host</div>
           </div>
         </div>
         <div class="book-split-text">
@@ -312,22 +401,47 @@
         <div class="book-section-label">Inside the book</div>
         <div class="book-previews">
           <div class="book-preview-card">
-            <div class="book-image-placeholder">
-              <span>Sample entry</span>
+            <img src="images/book-sample-entry.png"
+                 alt="Sample entry from The Words We Use showing the formula system"
+                 class="book-preview-img"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="book-preview-content-block book-preview-formula" style="display:none;">
+              <div class="bpcb-label">Formula type: Multiplied</div>
+              <div class="bpcb-formula">Accountability = responsibility × (consequences + visibility)</div>
+              <div class="bpcb-chips">
+                <span>responsibility</span>
+                <span>consequences</span>
+                <span>visibility</span>
+              </div>
             </div>
             <div class="book-preview-label">The formula system</div>
             <p class="book-preview-text">Each entry shows the official definition, what the word actually means in practice, the formula, and why it is shaped that way.</p>
           </div>
           <div class="book-preview-card">
-            <div class="book-image-placeholder">
-              <span>The five clusters</span>
+            <img src="images/book-five-clusters.png"
+                 alt="The five clusters from The Words We Use — Direction, People, Resources, Process, Results"
+                 class="book-preview-img"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="book-preview-content-block book-preview-clusters" style="display:none;">
+              <div class="bpcb-cluster-list">
+                <div class="bpcb-cluster-item"><span class="bpcb-cluster-num">01</span>Direction</div>
+                <div class="bpcb-cluster-item"><span class="bpcb-cluster-num">02</span>People</div>
+                <div class="bpcb-cluster-item"><span class="bpcb-cluster-num">03</span>Resources</div>
+                <div class="bpcb-cluster-item"><span class="bpcb-cluster-num">04</span>Process</div>
+                <div class="bpcb-cluster-item"><span class="bpcb-cluster-num">05</span>Results</div>
+              </div>
             </div>
             <div class="book-preview-label">Five clusters</div>
             <p class="book-preview-text">Direction, People, Resources, Process, and Results. Every organizational word belongs to one of these five questions.</p>
           </div>
           <div class="book-preview-card">
-            <div class="book-image-placeholder">
-              <span>Story pages</span>
+            <img src="images/book-story-pages.png"
+                 alt="Personal story pages from The Words We Use"
+                 class="book-preview-img"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="book-preview-content-block book-preview-story" style="display:none;">
+              <div class="bpcb-quote-mark">"</div>
+              <div class="bpcb-quote-text">The word had been used. The formula had not.</div>
             </div>
             <div class="book-preview-label">Personal stories</div>
             <p class="book-preview-text">Each cluster opens with real stories that show where jargon breaks down — and what it costs when it does.</p>
@@ -380,14 +494,6 @@
         <p class="about-section-intro">Named frameworks, accounting standards, and professional tools sit outside the five clusters. They have fixed, established meanings — not jargon to be decoded, but vocabulary every professional encounters. They are organized into five categories.</p>
         <div id="fw-categories-grid" class="fw-categories-grid"></div>
 
-        <div class="about-footer">
-          <p>Tool built by Jason Weimer. Data current as of Q2 2026. Based on the forthcoming book <em>The Words We Use</em>.</p>
-          <p class="about-links">
-            <a href="https://jasonweimer.com" target="_blank">jasonweimer.com</a>
-            <span>·</span>
-            <a href="https://mrjasoncode.com" target="_blank">mrjasoncode.com</a>
-          </p>
-        </div>
       </div>
     </section>
 
@@ -400,11 +506,11 @@
 <footer class="site-footer">
   <div class="container">
     <nav class="footer-nav">
-      <a href="#browse" class="footer-nav-link" data-tab="browse">Browse</a>
       <a href="#decode" class="footer-nav-link" data-tab="decode">Decode</a>
+      <a href="#browse" class="footer-nav-link" data-tab="browse">Browse</a>
       <a href="#encode" class="footer-nav-link" data-tab="encode">Encode</a>
-      <a href="#frameworks" class="footer-nav-link" data-tab="frameworks">Frameworks</a>
       <a href="#health" class="footer-nav-link" data-tab="health">Health Check</a>
+      <a href="#frameworks" class="footer-nav-link" data-tab="frameworks">Frameworks</a>
       <a href="#book" class="footer-nav-link" data-tab="book">Book</a>
       <a href="#about" class="footer-nav-link" data-tab="about">About</a>
     </nav>
