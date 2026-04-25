@@ -13,6 +13,7 @@
   let HEALTH_MODE = 'quick';
   let HEALTH_ANSWERS = {};
   let FW_SEARCH_QUERY = '';
+  let OPEN_CLUSTER = null; // tracks which browse cluster is open
 
   // Cluster questions
   const CLUSTER_QUESTIONS = {
@@ -116,12 +117,22 @@
 
   // ==== TAB NAVIGATION ========================================
   function setupTabs() {
-    document.querySelectorAll('.nav-link').forEach(link => {
+    document.querySelectorAll('.nav-link, .footer-nav-link').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         switchTab(link.dataset.tab);
       });
     });
+
+    const brandBtn = document.getElementById('brand-mark-btn');
+    if (brandBtn) {
+      brandBtn.addEventListener('click', () => {
+        document.getElementById('decode-search').value = '';
+        document.getElementById('decode-result').innerHTML = '';
+        document.getElementById('search-dropdown').classList.remove('active');
+        switchTab('decode');
+      });
+    }
   }
 
   function switchTab(tab) {
@@ -223,7 +234,8 @@
     } else {
       renderDecodeResult(entry);
     }
-    document.getElementById('decode-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    renderQuickpick(entry.word);
+    scrollToEl(document.getElementById('decode-result'));
   }
 
   function renderDecodeResult(entry) {
@@ -345,8 +357,16 @@
     });
   }
 
-  function renderQuickpick() {
-    const picks = ['Accountability', 'Synergy', 'Alignment', 'Efficiency', 'Strategy', 'Impact', 'Pivot', 'Culture'];
+  function renderQuickpick(excludeWord) {
+    // Pool: core entries only — gives the best variety
+    const pool = DATA.entries.filter(e => e.status === 'core' && e.word !== excludeWord);
+    // Fisher-Yates shuffle, take 8
+    const shuffled = pool.slice();
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    const picks = shuffled.slice(0, 8).map(e => e.word);
     const container = document.getElementById('quickpick-tags');
     container.innerHTML = picks.map(w =>
       `<button class="quickpick-tag" data-word="${escapeAttr(w)}">${escapeHtml(w)}</button>`
@@ -504,7 +524,12 @@
     const q = document.getElementById('browse-search').value.trim().toLowerCase();
     const sf = document.getElementById('browse-status').value;
     const grid = document.getElementById('browse-grid');
+
+    // When searching or filtering, open all matching clusters automatically
+    const isFiltering = q || sf;
+
     let html = '';
+    let totalVisible = 0;
 
     DATA.metadata.clusters.forEach((cluster, idx) => {
       let entries = DATA.entries.filter(e => e.cluster === cluster);
@@ -518,41 +543,50 @@
       if (q) entries = entries.filter(e => e.word.toLowerCase().includes(q));
       if (entries.length === 0) return;
 
+      totalVisible++;
+
       entries.sort((a, b) => {
         const order = { core: 0, extended: 1, alternative: 2 };
         if (order[a.status] !== order[b.status]) return order[a.status] - order[b.status];
         return a.word.localeCompare(b.word);
       });
 
+      const isOpen = isFiltering || OPEN_CLUSTER === cluster;
+
       html += `
-        <div class="cluster-section">
-          <div class="cluster-header">
+        <div class="cluster-accordion ${isOpen ? 'open' : ''}" data-cluster="${escapeAttr(cluster)}">
+          <button class="cluster-accordion-header" data-cluster="${escapeAttr(cluster)}">
             <div class="cluster-header-left">
               <span class="cluster-num">Part ${idx + 1}</span>
               <span class="cluster-name">${cluster}</span>
               <span class="cluster-question">${CLUSTER_QUESTIONS[cluster]}</span>
             </div>
-            <span class="cluster-count">${entries.length} word${entries.length !== 1 ? 's' : ''}</span>
-          </div>
-          <div class="cluster-words">
-            ${entries.map(e => {
-              const isRedirect = e.status === 'alternative' && e.primary;
-              const typeLabel = isRedirect
-                ? `→ ${escapeHtml(e.primary)}`
-                : (e.formula_type || 'Alternative');
-              const metaphorDot = e.is_metaphor
-                ? `<span class="word-card-status-dot dot-metaphor" title="Metaphor"></span>`
-                : '';
-              return `
-                <button class="word-card" data-word="${escapeAttr(e.word)}">
-                  <div class="word-card-title">
-                    <span class="word-card-status-dot dot-${e.status}"></span>
-                    ${metaphorDot}
-                    ${escapeHtml(e.word)}
-                  </div>
-                  <div class="word-card-type">${typeLabel}</div>
-                </button>`;
-            }).join('')}
+            <div class="cluster-header-right">
+              <span class="cluster-count">${entries.length} word${entries.length !== 1 ? 's' : ''}</span>
+              <span class="cluster-chevron">${isOpen ? '▲' : '▼'}</span>
+            </div>
+          </button>
+          <div class="cluster-accordion-body">
+            <div class="cluster-words">
+              ${entries.map(e => {
+                const isRedirect = e.status === 'alternative' && e.primary;
+                const typeLabel = isRedirect
+                  ? `→ ${escapeHtml(e.primary)}`
+                  : (e.formula_type || 'Alternative');
+                const metaphorDot = e.is_metaphor
+                  ? `<span class="word-card-status-dot dot-metaphor" title="Metaphor"></span>`
+                  : '';
+                return `
+                  <button class="word-card" data-word="${escapeAttr(e.word)}">
+                    <div class="word-card-title">
+                      <span class="word-card-status-dot dot-${e.status}"></span>
+                      ${metaphorDot}
+                      ${escapeHtml(e.word)}
+                    </div>
+                    <div class="word-card-type">${typeLabel}</div>
+                  </button>`;
+              }).join('')}
+            </div>
           </div>
         </div>`;
     });
@@ -560,6 +594,16 @@
     if (!html) html = '<div class="encode-empty">No words match your filter.</div>';
     grid.innerHTML = html;
 
+    // Accordion click handlers
+    grid.querySelectorAll('.cluster-accordion-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const cluster = header.dataset.cluster;
+        OPEN_CLUSTER = OPEN_CLUSTER === cluster ? null : cluster;
+        renderBrowse();
+      });
+    });
+
+    // Word card click handlers
     grid.querySelectorAll('.word-card').forEach(card => {
       card.addEventListener('click', () => {
         switchTab('decode');
@@ -621,7 +665,7 @@
     if (!entry) return;
     document.getElementById('fw-search').value = word;
     renderFrameworkResult(entry);
-    document.getElementById('fw-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    scrollToEl(document.getElementById('fw-result'));
   }
 
   function renderFrameworkResult(entry) {
@@ -834,7 +878,7 @@
 
     const resultEl = document.getElementById('health-result');
     resultEl.innerHTML = html;
-    resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    scrollToEl(resultEl);
   }
 
   function generateDiagnosis(answers, base, final) {
@@ -890,6 +934,15 @@
       sel.appendChild(el);
     });
   }
+  function scrollToEl(el) {
+    if (!el) return;
+    const header = document.querySelector('.site-header');
+    const headerHeight = header ? header.offsetHeight : 0;
+    const PADDING = 20;
+    const top = el.getBoundingClientRect().top + window.pageYOffset - headerHeight - PADDING;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
@@ -898,6 +951,9 @@
   }
 
   // ==== START =================================================
+  const yearEl = document.getElementById('footer-year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
