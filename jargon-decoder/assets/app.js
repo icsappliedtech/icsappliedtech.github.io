@@ -110,6 +110,7 @@
     setupFrameworks();
     setupHealth();
     setupAbout();
+    setupBottomSections();
 
     const hash = window.location.hash.replace('#', '');
     if (hash && document.getElementById('tab-' + hash)) {
@@ -125,6 +126,24 @@
         switchTab(link.dataset.tab);
       });
     });
+
+    // More dropdown
+    const moreBtn = document.getElementById('nav-more-btn');
+    const moreDropdown = document.getElementById('nav-more-dropdown');
+    if (moreBtn && moreDropdown) {
+      moreBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        moreDropdown.classList.toggle('open');
+      });
+      document.addEventListener('click', () => moreDropdown.classList.remove('open'));
+      moreDropdown.querySelectorAll('.nav-more-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.preventDefault();
+          moreDropdown.classList.remove('open');
+          switchTab(item.dataset.tab);
+        });
+      });
+    }
 
     const brandBtn = document.getElementById('brand-mark-btn');
     if (brandBtn) {
@@ -143,6 +162,10 @@
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'tab-' + tab));
     const hero = document.getElementById('hero');
     if (hero) hero.style.display = tab === 'decode' ? 'block' : 'none';
+    // Highlight More button if a collapsed tab is active
+    const moreBtn = document.getElementById('nav-more-btn');
+    const collapsedTabs = ['frameworks', 'about'];
+    if (moreBtn) moreBtn.classList.toggle('active', collapsedTabs.includes(tab));
     window.scrollTo({ top: 0, behavior: 'smooth' });
     history.replaceState(null, null, '#' + tab);
   }
@@ -168,6 +191,19 @@
         if (input.value.trim()) handleDecodeSearch(input.value);
       });
     });
+
+    // Filters toggle
+    const toggleBtn = document.getElementById('filters-toggle');
+    const filtersEl = document.getElementById('decode-filters');
+    if (toggleBtn && filtersEl) {
+      toggleBtn.addEventListener('click', () => {
+        const isOpen = !filtersEl.hidden;
+        filtersEl.hidden = isOpen;
+        toggleBtn.setAttribute('aria-expanded', !isOpen);
+        toggleBtn.classList.toggle('active', !isOpen);
+        toggleBtn.querySelector('.filters-toggle-icon').textContent = isOpen ? '▾' : '▴';
+      });
+    }
 
     renderQuickpick();
   }
@@ -368,7 +404,7 @@
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-    const picks = shuffled.slice(0, 8).map(e => e.word);
+    const picks = shuffled.slice(0, 12).map(e => e.word);
     const container = document.getElementById('quickpick-tags');
     container.innerHTML = picks.map(w =>
       `<button class="quickpick-tag" data-word="${escapeAttr(w)}">${escapeHtml(w)}</button>`
@@ -379,6 +415,110 @@
   }
 
   // ==== ENCODE TAB ============================================
+  // ==== ENCODE DATA ===========================================
+  const ENCODE_SCENARIOS = [
+    {
+      label: 'My team isn\'t aligned',
+      cluster: 'Direction',
+      components: ['shared direction', 'consistent communication', 'agreed priorities']
+    },
+    {
+      label: 'We\'re moving too slowly',
+      cluster: 'Process',
+      components: ['decision speed', 'removal of blockers', 'clear ownership']
+    },
+    {
+      label: 'Results aren\'t sticking',
+      cluster: 'Results',
+      components: ['accountability', 'visible consequences', 'consistent follow-through']
+    },
+    {
+      label: 'People aren\'t engaged',
+      cluster: 'People',
+      components: ['meaningful work', 'recognition', 'psychological safety']
+    },
+    {
+      label: 'We don\'t have enough resources',
+      cluster: 'Resources',
+      components: ['budget constraints', 'competing priorities', 'capacity gaps']
+    },
+    {
+      label: 'We keep repeating mistakes',
+      cluster: 'Process',
+      components: ['root cause analysis', 'lessons learned', 'corrective action']
+    },
+    {
+      label: 'Strategy isn\'t translating to action',
+      cluster: 'Direction',
+      components: ['clear goals', 'ownership', 'measurable milestones']
+    },
+    {
+      label: 'Culture feels broken',
+      cluster: 'People',
+      components: ['trust', 'shared values', 'behavioural consistency']
+    },
+    {
+      label: 'We\'re losing good people',
+      cluster: 'People',
+      components: ['career growth', 'competitive compensation', 'sense of belonging']
+    },
+    {
+      label: 'Our meetings are a waste of time',
+      cluster: 'Process',
+      components: ['clear agenda', 'right people in the room', 'decisions that stick']
+    },
+    {
+      label: 'We\'re spending money in the wrong places',
+      cluster: 'Resources',
+      components: ['resource allocation', 'return on investment', 'strategic priorities']
+    },
+    {
+      label: 'No one knows what success looks like',
+      cluster: 'Results',
+      components: ['defined targets', 'shared metrics', 'progress visibility']
+    }
+  ];
+
+  const WORD_BANK = {
+    Direction: [
+      'clear vision', 'shared goals', 'strategic alignment', 'long-term thinking',
+      'prioritisation', 'decision-making clarity', 'change readiness', 'innovation culture',
+      'risk appetite', 'competitive positioning', 'market awareness', 'purpose',
+      'transformation agenda', 'north star', 'strategic intent', 'roadmap',
+      'scenario planning', 'stakeholder alignment', 'mission clarity', 'growth strategy'
+    ],
+    People: [
+      'trust', 'psychological safety', 'collaboration', 'clear ownership',
+      'capability building', 'recognition', 'engagement', 'feedback culture',
+      'diverse perspectives', 'leadership clarity', 'team cohesion', 'accountability',
+      'talent development', 'succession planning', 'coaching', 'communication',
+      'inclusion', 'empowerment', 'morale', 'conflict resolution'
+    ],
+    Resources: [
+      'budget', 'headcount', 'technology', 'time',
+      'capital allocation', 'data access', 'tools and systems', 'cash flow',
+      'intellectual property', 'vendor relationships', 'infrastructure', 'capacity',
+      'return on investment', 'cost reduction', 'procurement', 'supply chain',
+      'financial planning', 'asset management', 'funding', 'operational efficiency'
+    ],
+    Process: [
+      'clear steps', 'consistent execution', 'quality control', 'speed',
+      'root cause analysis', 'automation', 'documentation', 'decision speed',
+      'cross-functional coordination', 'continuous improvement', 'risk management', 'agile delivery',
+      'governance', 'change management', 'workflow', 'compliance',
+      'project management', 'escalation path', 'standardisation', 'testing'
+    ],
+    Results: [
+      'measurable outcomes', 'accountability', 'tracking mechanisms', 'customer satisfaction',
+      'revenue growth', 'efficiency gains', 'data-driven decisions', 'performance metrics',
+      'forecast accuracy', 'return on investment', 'retention', 'conversion rate',
+      'net promoter score', 'market share', 'profit margin', 'employee satisfaction',
+      'delivery on time', 'quality scores', 'cost savings', 'growth rate'
+    ]
+  };
+
+  let WORD_BANK_ACTIVE_CLUSTER = 'Direction';
+
   function setupEncode() {
     populateSelect('encode-type', DATA.metadata.formula_types.map(t => ({ value: t.type, label: t.type + ' (' + t.notation + ')' })));
     populateSelect('encode-cluster', DATA.metadata.clusters.map(c => ({ value: c, label: c + ' — ' + CLUSTER_QUESTIONS[c] })));
@@ -391,6 +531,81 @@
         if (e.key === 'Enter') runEncode();
       });
     });
+
+    renderScenarios();
+    renderWordBank();
+  }
+
+  function renderScenarios() {
+    const list = document.getElementById('encode-scenarios-list');
+    if (!list) return;
+    list.innerHTML = ENCODE_SCENARIOS.map(s => `
+      <button class="scenario-btn" data-label="${escapeAttr(s.label)}"
+              data-c1="${escapeAttr(s.components[0])}"
+              data-c2="${escapeAttr(s.components[1])}"
+              data-c3="${escapeAttr(s.components[2])}"
+              data-cluster="${escapeAttr(s.cluster)}">
+        <span class="scenario-btn-label">${escapeHtml(s.label)}</span>
+        <span class="scenario-btn-cluster">${escapeHtml(s.cluster)}</span>
+      </button>`).join('');
+
+    list.querySelectorAll('.scenario-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById('comp-1').value = btn.dataset.c1;
+        document.getElementById('comp-2').value = btn.dataset.c2;
+        document.getElementById('comp-3').value = btn.dataset.c3;
+        document.getElementById('encode-cluster').value = btn.dataset.cluster;
+        // Highlight selected scenario
+        list.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        runEncode();
+        scrollToEl(document.getElementById('encode-result'));
+      });
+    });
+  }
+
+  function renderWordBank() {
+    const tabsEl = document.getElementById('word-bank-tabs');
+    const wordsEl = document.getElementById('word-bank-words');
+    if (!tabsEl || !wordsEl) return;
+
+    // Cluster tabs
+    tabsEl.innerHTML = Object.keys(WORD_BANK).map(cluster => `
+      <button class="word-bank-tab ${cluster === WORD_BANK_ACTIVE_CLUSTER ? 'active' : ''}"
+              data-cluster="${escapeAttr(cluster)}">${escapeHtml(cluster)}</button>`).join('');
+
+    tabsEl.querySelectorAll('.word-bank-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        WORD_BANK_ACTIVE_CLUSTER = tab.dataset.cluster;
+        renderWordBank();
+      });
+    });
+
+    // Words for active cluster
+    const words = WORD_BANK[WORD_BANK_ACTIVE_CLUSTER] || [];
+    wordsEl.innerHTML = words.map(w => `
+      <button class="word-bank-word" data-word="${escapeAttr(w)}">${escapeHtml(w)}</button>`
+    ).join('');
+
+    wordsEl.querySelectorAll('.word-bank-word').forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Fill next empty component field
+        const fields = ['comp-1', 'comp-2', 'comp-3'];
+        const target = fields.find(id => !document.getElementById(id).value.trim());
+        if (target) {
+          document.getElementById(target).value = btn.dataset.word;
+          btn.classList.add('used');
+          setTimeout(() => btn.classList.remove('used'), 600);
+        } else {
+          // All full — flash all fields to signal
+          fields.forEach(id => {
+            const el = document.getElementById(id);
+            el.classList.add('flash');
+            setTimeout(() => el.classList.remove('flash'), 500);
+          });
+        }
+      });
+    });
   }
 
   function clearEncode() {
@@ -398,6 +613,8 @@
     document.getElementById('encode-type').value = '';
     document.getElementById('encode-cluster').value = '';
     document.getElementById('encode-result').innerHTML = '';
+    // Clear active scenario highlight
+    document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
   }
 
   function runEncode() {
@@ -815,13 +1032,13 @@
           <span class="health-question-cluster">Consistency</span>
         </div>
         <div class="health-question-title">Consistency</div>
-        <div class="health-question-text">Do all five components above hold on an ordinary Tuesday — not just on the best day?</div>
+        <div class="health-question-text">Do all five components above hold during an ordinary week, not just on the best day?</div>
         ${isDeep ? '<div class="health-question-deep-text">Consistency is what separates organizational health from good days. An organization that achieves all five components inconsistently has not achieved any of them. It has demonstrated them occasionally. If Consistency is zero, the formula produces zero. This is not a metaphor. It is the math.</div>' : ''}
         <div class="health-answers">
           ${[
-            { val: 4, label: 'Every Tuesday' },
-            { val: 3, label: 'Most Tuesdays' },
-            { val: 2, label: 'Some Tuesdays' },
+            { val: 4, label: 'Every week' },
+            { val: 3, label: 'Most weeks' },
+            { val: 2, label: 'Some weeks' },
             { val: 1, label: 'Rarely' },
             { val: 0, label: 'Good days only' }
           ].map(ans => `
@@ -831,7 +1048,7 @@
         </div>
       </div>
 
-      <button id="health-submit-btn" class="health-submit" ${isReadyToSubmit() ? '' : 'disabled'}>
+      <button class="health-submit health-submit-btn" ${isReadyToSubmit() ? '' : 'disabled'}>
         Calculate Organizational Health
       </button>`;
 
@@ -845,7 +1062,8 @@
       });
     });
 
-    const submitBtn = document.getElementById('health-submit-btn');
+    // Fix: scope submit button to the active panel, not document-wide
+    const submitBtn = panel.querySelector('.health-submit-btn');
     if (submitBtn) submitBtn.addEventListener('click', renderHealthResult);
   }
 
@@ -860,6 +1078,7 @@
                + HEALTH_ANSWERS.efficiency + HEALTH_ANSWERS.accountability;
     const final = base * HEALTH_ANSWERS.consistency;
     const maxScore = 20 * 4;
+    const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
     const components = [
       { key: 'clarity',       label: 'Clarity',       cluster: 'Direction' },
@@ -872,11 +1091,24 @@
     const diagnosis = generateDiagnosis(HEALTH_ANSWERS, base, final);
 
     const html = `
-      <div class="health-result-card">
+      <div class="health-result-card" id="health-report">
+
+        <div class="health-report-header">
+          <div class="health-report-brand">
+            <span class="health-report-j">j</span>
+            <div class="health-report-brand-text">
+              <div class="health-report-title">Organizational Health Report</div>
+              <div class="health-report-sub">The Words We Use — Jason Weimer</div>
+            </div>
+          </div>
+          <div class="health-report-date">${today}</div>
+        </div>
+
         <div class="health-score-display">
           <div class="health-score-num">${final}</div>
           <div class="health-score-label">Organizational Health Score — out of ${maxScore}</div>
         </div>
+
         <div class="health-breakdown">
           ${components.map(c => {
             const val = HEALTH_ANSWERS[c.key];
@@ -894,8 +1126,26 @@
             <div class="health-row-value">× ${HEALTH_ANSWERS.consistency}</div>
           </div>
         </div>
+
         <div class="health-diagnosis">${diagnosis}</div>
-        <button class="health-reset" onclick="location.reload()">Start over</button>
+
+        <div class="health-formula-reminder">
+          <div class="health-formula-reminder-label">The master formula</div>
+          <div class="health-formula-reminder-expr">Organizational Health = (Clarity + Capability + Resources + Efficiency + Accountability) × Consistency</div>
+        </div>
+
+        <div class="health-report-footer">
+          <div>Generated by the Jargon Decoder — jasonweimer.com/jargon-decoder</div>
+          <div>Based on <em>The Words We Use</em> by Jason Weimer</div>
+        </div>
+
+        <div class="health-result-actions no-print">
+          <button class="health-print-btn" onclick="printHealthReport()">
+            ↓ Save or print this report
+          </button>
+          <button class="health-reset" onclick="window.resetHealthCheck()">Start over</button>
+        </div>
+
       </div>`;
 
     const resultEl = document.getElementById('health-result');
@@ -909,19 +1159,36 @@
       resources: answers.resources, efficiency: answers.efficiency,
       accountability: answers.accountability
     };
-    const weakest = Object.entries(comps).sort((a, b) => a[1] - b[1])[0];
+    const sorted = Object.entries(comps).sort((a, b) => a[1] - b[1]);
+    const lowestScore = sorted[0][1];
+    const weakest = sorted[0];
     const weakestName = weakest[0].charAt(0).toUpperCase() + weakest[0].slice(1);
+
+    // Check if all five components scored the same (a tie)
+    const allEqual = Object.values(comps).every(v => v === lowestScore);
 
     if (answers.consistency === 0) {
       return `<strong>Consistency is zero.</strong> The formula produced zero regardless of how well the other components scored. This is not a metaphor. An organization that achieves all five components inconsistently has not achieved any of them. It has demonstrated them occasionally. Before working on any other component, Consistency is the work.`;
     } else if (final >= 60) {
-      return `<strong>Strong organizational health.</strong> All five components are substantially present and Consistency is multiplying rather than collapsing them. This is a rare result. Keep the Consistency multiplier protected — it is what separates your organization from lucky ones. The weakest component was <strong>${weakestName}</strong>. That is where the next round of focused work lives.`;
+      const weakestLine = allEqual
+        ? `All five components scored equally. Maintain what is working and protect the Consistency multiplier — it is what separates your organization from lucky ones.`
+        : `The weakest component was <strong>${weakestName}</strong>. That is where the next round of focused work lives. Keep the Consistency multiplier protected.`;
+      return `<strong>Strong organizational health.</strong> All five components are substantially present and Consistency is multiplying rather than collapsing them. This is a rare result. ${weakestLine}`;
     } else if (final >= 30) {
-      return `<strong>Moderate organizational health.</strong> The base score of ${base} out of 20 suggests most components are partially present. Consistency is multiplying at ${answers.consistency} out of 4. The honest question is whether Consistency is the bottleneck or whether <strong>${weakestName}</strong> is the weaker signal the multiplier is amplifying. Most organizations at this level benefit from fixing the weakest component first and protecting Consistency second.`;
+      const weakestLine = allEqual
+        ? `All five components scored equally. Consistency is the primary lever — strengthening it will amplify every component simultaneously.`
+        : `The honest question is whether Consistency is the bottleneck or whether <strong>${weakestName}</strong> is the weaker signal the multiplier is amplifying. Most organizations at this level benefit from fixing the weakest component first and protecting Consistency second.`;
+      return `<strong>Moderate organizational health.</strong> The base score of ${base} out of 20 suggests most components are partially present. Consistency is multiplying at ${answers.consistency} out of 4. ${weakestLine}`;
     } else if (final >= 10) {
-      return `<strong>Low organizational health.</strong> Either multiple components are weak or Consistency is collapsing what would otherwise be stronger scores. The weakest component is <strong>${weakestName}</strong>. That is the honest place to start. Do not try to fix all five at once. Pick one, restore it, then move to the next.`;
+      const weakestLine = allEqual
+        ? `All five components scored equally low. Pick one to focus on first. Restore it before moving to the next.`
+        : `The weakest component is <strong>${weakestName}</strong>. That is the honest place to start. Do not try to fix all five at once. Pick one, restore it, then move to the next.`;
+      return `<strong>Low organizational health.</strong> Either multiple components are weak or Consistency is collapsing what would otherwise be stronger scores. ${weakestLine}`;
     } else {
-      return `<strong>Critical organizational health.</strong> The score suggests fundamental issues across multiple components compounded by low Consistency. The weakest named component is <strong>${weakestName}</strong>. Before pursuing strategy, initiatives, or transformation, the basics require repair. That is not a criticism of the organization. It is a starting point.`;
+      const weakestLine = allEqual
+        ? `All five components need attention. Start with whichever one, if improved, would have the most immediate effect on daily operations.`
+        : `The weakest named component is <strong>${weakestName}</strong>. Before pursuing strategy, initiatives, or transformation, the basics require repair. That is not a criticism of the organization. It is a starting point.`;
+      return `<strong>Critical organizational health.</strong> The score suggests fundamental issues across multiple components compounded by low Consistency. ${weakestLine}`;
     }
   }
 
@@ -949,26 +1216,31 @@
     const FW_CATEGORIES = [
       {
         name: 'Frameworks',
+        subtype: 'Framework',
         description: 'Named strategic and organizational frameworks — tools designed to structure thinking, planning, and decision-making. From the Ansoff Matrix to the Balanced Scorecard.',
         examples: ['Ansoff Matrix', 'BCG Matrix', 'SWOT', 'OKR', 'Design Thinking', 'Kotter Model']
       },
       {
         name: 'Accounting & Finance',
+        subtype: 'Accounting & Finance',
         description: 'The financial standards, ratios, and accounting concepts that govern how organizations record, report, and evaluate their financial performance.',
         examples: ['EBITDA', 'GAAP', 'IFRS', 'Depreciation', 'Net Present Value', 'Zero-Based Budgeting']
       },
       {
         name: 'Quality & Process',
+        subtype: 'Quality & Process',
         description: 'Tools and methodologies for measuring, improving, and controlling the quality of processes and outputs — rooted in manufacturing, engineering, and operations.',
         examples: ['5 Whys', 'DMAIC', 'Control Chart', 'Kanban', 'A3 Report', 'VOC']
       },
       {
         name: 'Audit & Legal',
+        subtype: 'Audit & Legal',
         description: 'Standards and instruments that govern formal review, compliance, and contractual obligations — including audit opinion types and procurement tools.',
         examples: ['Unqualified Opinion', 'Qualified Opinion', 'Adverse Opinion', 'SLA', 'RFP']
       },
       {
         name: 'Digital & Marketing',
+        subtype: 'Digital & Marketing',
         description: 'Measurement and optimization frameworks used in digital channels — from search visibility to conversion testing.',
         examples: ['SEO', 'SEM', 'A/B Testing']
       }
@@ -976,7 +1248,7 @@
 
     const fwCatHtml = FW_CATEGORIES.map(cat => {
       const count = FW_DATA
-        ? FW_DATA.entries.filter(e => e.subtype === cat.name).length
+        ? FW_DATA.entries.filter(e => e.subtype === cat.subtype).length
         : null;
       return `
         <div class="fw-cat-card">
@@ -991,6 +1263,272 @@
         </div>`;
     }).join('');
     document.getElementById('fw-categories-grid').innerHTML = fwCatHtml;
+  }
+
+  // ==== BOOK CTA (injected into all non-book tabs) ============
+  function setupBottomSections() {
+    const TABS = ['decode','encode','browse','frameworks','health','about'];
+
+    // 1 — Share this tool
+    const SHARE_HTML = `
+      <div class="bottom-section share-section">
+        <div class="share-inner">
+          <div class="share-text">
+            <div class="share-label">Know someone who speaks too much jargon?</div>
+            <h3 class="share-title">Share this tool with a friend.</h3>
+          </div>
+          <div class="share-actions">
+            <button class="share-btn share-btn-main" id="share-btn">
+              <span class="share-btn-icon">↗</span>
+              Share this tool
+            </button>
+            <button class="share-btn share-btn-copy" id="copy-link-btn">
+              <span class="share-btn-icon">⎘</span>
+              <span id="copy-link-label">Copy link</span>
+            </button>
+          </div>
+        </div>
+      </div>`;
+
+    // 2 — Stay in the loop
+    const EMAIL_HTML = `
+      <div class="bottom-section email-capture">
+        <div class="email-capture-inner">
+          <div class="email-capture-text">
+            <div class="email-capture-label">Stay in the loop</div>
+            <p class="email-capture-sub">No spam. Updates only. Unsubscribe anytime.</p>
+          </div>
+          <form class="email-capture-form"
+                action="https://app.kit.com/forms/9367995/subscriptions"
+                method="post"
+                target="_blank">
+            <div class="email-capture-fields">
+              <div class="email-capture-field">
+                <label>First name</label>
+                <input type="text" name="fields[first_name]" placeholder="Your first name" autocomplete="given-name" required>
+              </div>
+              <div class="email-capture-field">
+                <label>Email address</label>
+                <input type="email" name="email_address" placeholder="you@example.com" autocomplete="email" required>
+              </div>
+              <button type="submit" class="email-capture-btn">Subscribe</button>
+            </div>
+          </form>
+        </div>
+      </div>`;
+
+    // 3 — Buy book
+    const BOOK_HTML = `
+      <div class="bottom-section tab-book-cta">
+        <div class="tab-book-cta-cover">
+          <img src="images/the-words-we-use-cover.png"
+               alt="The Words We Use by Jason Weimer"
+               class="tab-cta-cover-img"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="tab-cta-cover-fallback" style="display:none;">
+            <div class="tab-cta-j">j</div>
+            <div class="tab-cta-cover-title">The Words We Use</div>
+            <div class="tab-cta-cover-sub">The Hidden Formulas Behind Organizational Jargon</div>
+          </div>
+        </div>
+        <div class="tab-book-cta-body">
+          <div class="tab-book-cta-heading">
+            <div class="tab-book-cta-eyebrow">The book for people who think clearly.</div>
+            <h3 class="tab-book-cta-title">Own the one-of-a-kind formula book.</h3>
+          </div>
+          <p class="tab-book-cta-desc">Some of the most popular organizational jargon words decoded across five clusters. Six formula types. Every word broken down into its components so you know exactly what it requires. For anyone who has ever sat in a meeting and wondered what was actually being said. Written by Jason Weimer.</p>
+          <div class="book-cta-buttons">
+            <a href="https://buy.stripe.com/placeholder" target="_blank" class="book-btn book-btn-primary">
+              <span class="book-btn-icon">↓</span>
+              <div class="book-btn-text">
+                <span class="book-btn-label">Buy the digital edition</span>
+                <span class="book-btn-note">PDF — instant download</span>
+              </div>
+            </a>
+            <a href="https://a.co/d/0dFYB1Zx" target="_blank" class="book-btn book-btn-secondary">
+              <span class="book-btn-icon">📦</span>
+              <div class="book-btn-text">
+                <span class="book-btn-label">Buy the printed edition</span>
+                <span class="book-btn-note">Available on Amazon</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>`;
+
+    TABS.forEach(tab => {
+      const panel = document.getElementById('tab-' + tab);
+      if (!panel) return;
+      panel.insertAdjacentHTML('beforeend', SHARE_HTML + EMAIL_HTML + BOOK_HTML);
+    });
+
+    // Share button logic — Web Share API with clipboard fallback
+    document.querySelectorAll('#share-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const shareData = {
+          title: 'The Words We Use — Jargon Decoder',
+          text: 'Decode organizational jargon using the formula system from The Words We Use by Jason Weimer.',
+          url: 'https://jasonweimer.com/jargon-decoder'
+        };
+        if (navigator.share) {
+          try { await navigator.share(shareData); } catch (e) {}
+        } else {
+          copyToClipboard('https://jasonweimer.com/jargon-decoder', btn.closest('.share-section').querySelector('#copy-link-label'));
+        }
+      });
+    });
+
+    // Copy link button logic
+    document.querySelectorAll('#copy-link-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        copyToClipboard('https://jasonweimer.com/jargon-decoder', btn.querySelector('#copy-link-label'));
+      });
+    });
+  }
+
+  function copyToClipboard(text, labelEl) {
+    navigator.clipboard.writeText(text).then(() => {
+      if (labelEl) {
+        const orig = labelEl.textContent;
+        labelEl.textContent = 'Copied!';
+        setTimeout(() => labelEl.textContent = orig, 2000);
+      }
+    }).catch(() => {
+      // Fallback for older browsers
+      const el = document.createElement('textarea');
+      el.value = text;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      if (labelEl) {
+        const orig = labelEl.textContent;
+        labelEl.textContent = 'Copied!';
+        setTimeout(() => labelEl.textContent = orig, 2000);
+      }
+    });
+  }
+
+  // ==== PRINT HEALTH REPORT ==================================
+  function printHealthReport() {
+    const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+    const base = HEALTH_ANSWERS.clarity + HEALTH_ANSWERS.capability + HEALTH_ANSWERS.resources
+               + HEALTH_ANSWERS.efficiency + HEALTH_ANSWERS.accountability;
+    const final = base * HEALTH_ANSWERS.consistency;
+
+    const diagnosisEl = document.querySelector('.health-diagnosis');
+    const diagnosisHTML = diagnosisEl ? diagnosisEl.innerHTML : '';
+
+    const rowsHTML = [
+      { key: 'clarity',        label: 'Clarity' },
+      { key: 'capability',     label: 'Capability' },
+      { key: 'resources',      label: 'Resources' },
+      { key: 'efficiency',     label: 'Efficiency' },
+      { key: 'accountability', label: 'Accountability' }
+    ].map(c => `
+      <div class="row">
+        <div class="row-label">${c.label}</div>
+        <div class="bar-wrap"><div class="bar-fill" style="width:${(HEALTH_ANSWERS[c.key]/4)*100}%"></div></div>
+        <div class="row-val">${HEALTH_ANSWERS[c.key]} / 4</div>
+      </div>`).join('') + `
+      <div class="row consistency">
+        <div class="row-label">× Consistency</div>
+        <div class="bar-wrap"><div class="bar-fill dark" style="width:${(HEALTH_ANSWERS.consistency/4)*100}%"></div></div>
+        <div class="row-val">× ${HEALTH_ANSWERS.consistency}</div>
+      </div>`;
+
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Organizational Health Report</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#0a0a0a;background:#fff;padding:32px;font-size:13px;line-height:1.5;}
+  .header{display:flex;align-items:center;justify-content:space-between;padding-bottom:12px;margin-bottom:16px;border-bottom:3px solid #FBC02D;}
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand-j{width:36px;height:36px;background:#0a0a0a;color:#FBC02D;font-family:Georgia,serif;font-size:20px;font-style:italic;font-weight:900;display:flex;align-items:center;justify-content:center;border-radius:3px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .brand-title{font-size:14px;font-weight:700;}
+  .brand-sub{font-size:10px;color:#999;font-style:italic;}
+  .report-date{font-size:11px;color:#aaa;font-style:italic;}
+  .score-block{background:#0a0a0a;color:#fff;padding:14px 20px;margin-bottom:14px;display:flex;align-items:center;gap:18px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .score-num{font-size:48px;font-weight:900;color:#FBC02D;line-height:1;font-family:Georgia,serif;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .score-label{font-size:13px;color:#aaa;}
+  .score-max{font-size:11px;color:#666;margin-top:2px;}
+  .breakdown{margin-bottom:14px;}
+  .row{display:flex;align-items:center;gap:10px;padding:7px 10px;margin-bottom:3px;border-left:3px solid #FBC02D;background:#f9f9f9;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .row.consistency{border-left-color:#0a0a0a;background:#fff4c4;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .row-label{width:105px;font-size:12px;font-weight:600;flex-shrink:0;}
+  .bar-wrap{flex:1;height:9px;background:#e5e5e5;border-radius:2px;}
+  .bar-fill{height:100%;background:#FBC02D;border-radius:2px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .bar-fill.dark{background:#0a0a0a;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .row-val{width:32px;text-align:right;font-size:12px;font-weight:700;flex-shrink:0;}
+  .diagnosis{background:#f5f5f5;padding:12px 14px;font-size:12px;line-height:1.65;margin-bottom:12px;border-left:3px solid #0a0a0a;}
+  .formula-block{background:#0a0a0a;padding:10px 14px;margin-bottom:12px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .formula-label{font-size:8px;text-transform:uppercase;letter-spacing:0.12em;color:#666;margin-bottom:4px;}
+  .formula-text{font-family:'Courier New',monospace;font-size:10px;color:#FBC02D;line-height:1.5;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .footer{border-top:1px solid #eee;padding-top:8px;font-size:9px;color:#bbb;font-style:italic;}
+  @page{margin:0.4in;size:letter portrait;}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="brand">
+    <div class="brand-j">j</div>
+    <div><div class="brand-title">Organizational Health Report</div><div class="brand-sub">The Words We Use — Jason Weimer</div></div>
+  </div>
+  <div class="report-date">${today}</div>
+</div>
+<div class="score-block">
+  <div class="score-num">${final}</div>
+  <div><div class="score-label">Organizational Health Score</div><div class="score-max">out of 80</div></div>
+</div>
+<div class="breakdown">${rowsHTML}</div>
+<div class="diagnosis">${diagnosisHTML}</div>
+<div class="formula-block">
+  <div class="formula-label">The master formula</div>
+  <div class="formula-text">Organizational Health = (Clarity + Capability + Resources + Efficiency + Accountability) × Consistency</div>
+</div>
+<div class="footer">Generated by the Jargon Decoder — jasonweimer.com/jargon-decoder &nbsp;·&nbsp; Based on The Words We Use by Jason Weimer</div>
+</body>
+</html>`;
+
+    // Remove any existing print iframe
+    const existing = document.getElementById('health-print-frame');
+    if (existing) existing.remove();
+
+    const iframe = document.createElement('iframe');
+    iframe.id = 'health-print-frame';
+    iframe.style.cssText = 'position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;border:none;';
+    document.body.appendChild(iframe);
+
+    const doc = iframe.contentWindow.document;
+    doc.open();
+    doc.write(html);
+    doc.close();
+
+    let printed = false;
+    iframe.contentWindow.onload = function() {
+      if (printed) return;
+      printed = true;
+      iframe.contentWindow.focus();
+      iframe.contentWindow.print();
+    };
+
+    // Fallback if onload already fired
+    setTimeout(() => {
+      if (printed) return;
+      printed = true;
+      try { iframe.contentWindow.focus(); iframe.contentWindow.print(); } catch(e) {}
+    }, 500);
+  }
+
+  function resetHealthCheck() {
+    HEALTH_ANSWERS = {};
+    document.getElementById('health-result').innerHTML = '';
+    renderHealth();
+    scrollToEl(document.getElementById('tab-health'));
   }
 
   // ==== UTILS =================================================
@@ -1022,6 +1560,10 @@
   // ==== START =================================================
   const yearEl = document.getElementById('footer-year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // Expose functions called from inline HTML onclick attributes
+  window.printHealthReport = printHealthReport;
+  window.resetHealthCheck = resetHealthCheck;
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
