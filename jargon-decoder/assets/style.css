@@ -1965,3 +1965,70 @@ input, select, textarea {
   color: var(--yellow-dark);
   margin-bottom: 10px;
 }
+
+/* ============================================================ */
+/* ABOUT — FRAMEWORKS & STANDARDS CATEGORIES                     */
+/* ============================================================ */
+.about-section-intro {
+  font-size: 15px;
+  color: var(--text-soft);
+  line-height: 1.7;
+  margin-bottom: 20px;
+  max-width: 680px;
+}
+.fw-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--gap);
+  margin-bottom: var(--gap-lg);
+}
+.fw-cat-card {
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--ink);
+  border-radius: var(--r);
+  padding: var(--gap-md);
+}
+.fw-cat-card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.fw-cat-card-name {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.fw-cat-card-count {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-light);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 2px 9px;
+  flex-shrink: 0;
+}
+.fw-cat-card-desc {
+  font-size: 13px;
+  color: var(--text-soft);
+  line-height: 1.65;
+  margin-bottom: 14px;
+}
+.fw-cat-card-examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.fw-cat-example {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-soft);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 3px 8px;
+  font-style: italic;
+}

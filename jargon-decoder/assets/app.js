@@ -944,6 +944,53 @@
         <div class="cluster-card-q">${CLUSTER_QUESTIONS[c]}</div>
       </div>`).join('');
     document.getElementById('clusters-grid').innerHTML = clustersHtml;
+
+    // Frameworks & Standards categories
+    const FW_CATEGORIES = [
+      {
+        name: 'Frameworks',
+        description: 'Named strategic and organizational frameworks — tools designed to structure thinking, planning, and decision-making. From the Ansoff Matrix to the Balanced Scorecard.',
+        examples: ['Ansoff Matrix', 'BCG Matrix', 'SWOT', 'OKR', 'Design Thinking', 'Kotter Model']
+      },
+      {
+        name: 'Accounting & Finance',
+        description: 'The financial standards, ratios, and accounting concepts that govern how organizations record, report, and evaluate their financial performance.',
+        examples: ['EBITDA', 'GAAP', 'IFRS', 'Depreciation', 'Net Present Value', 'Zero-Based Budgeting']
+      },
+      {
+        name: 'Quality & Process',
+        description: 'Tools and methodologies for measuring, improving, and controlling the quality of processes and outputs — rooted in manufacturing, engineering, and operations.',
+        examples: ['5 Whys', 'DMAIC', 'Control Chart', 'Kanban', 'A3 Report', 'VOC']
+      },
+      {
+        name: 'Audit & Legal',
+        description: 'Standards and instruments that govern formal review, compliance, and contractual obligations — including audit opinion types and procurement tools.',
+        examples: ['Unqualified Opinion', 'Qualified Opinion', 'Adverse Opinion', 'SLA', 'RFP']
+      },
+      {
+        name: 'Digital & Marketing',
+        description: 'Measurement and optimization frameworks used in digital channels — from search visibility to conversion testing.',
+        examples: ['SEO', 'SEM', 'A/B Testing']
+      }
+    ];
+
+    const fwCatHtml = FW_CATEGORIES.map(cat => {
+      const count = FW_DATA
+        ? FW_DATA.entries.filter(e => e.subtype === cat.name).length
+        : null;
+      return `
+        <div class="fw-cat-card">
+          <div class="fw-cat-card-header">
+            <span class="fw-cat-card-name">${cat.name}</span>
+            ${count !== null ? `<span class="fw-cat-card-count">${count}</span>` : ''}
+          </div>
+          <div class="fw-cat-card-desc">${escapeHtml(cat.description)}</div>
+          <div class="fw-cat-card-examples">${cat.examples.map(e =>
+            `<span class="fw-cat-example">${escapeHtml(e)}</span>`
+          ).join('')}</div>
+        </div>`;
+    }).join('');
+    document.getElementById('fw-categories-grid').innerHTML = fwCatHtml;
   }
 
   // ==== UTILS =================================================
