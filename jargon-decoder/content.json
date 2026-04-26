@@ -20,17 +20,17 @@
   "health_subtitle": "The master formula applied to your organization. Organizations can fail because one or more of five components are missing. This diagnostic tool names them. Answer honestly and find out the health of your organization.",
 
   "frameworks_title": "Frameworks & Standards",
-  "frameworks_subtitle": "Named frameworks, accounting standards, and professional tools. These have fixed, established meanings — they are the vocabulary of practice, not jargon to be decoded. Click any card to expand it.",
+  "frameworks_subtitle": "Named frameworks, accounting standards, and professional tools. These have fixed, established meanings, they are the vocabulary of practice, not jargon to be decoded. Click any card to expand it.",
 
   "book_label": "The Book",
   "book_title": "The Words We Use",
   "book_subtitle": "The Hidden Formulas Behind Organizational Jargon",
   "book_byline": "By Jason Weimer",
-  "book_pitch": "Every piece of organizational jargon is a compression of simpler things. This book finds those simpler things, builds a formula for each one, and shows you what the word actually requires — so the next time someone says it in a meeting, you know exactly what they mean and whether they do too.",
+  "book_pitch": "Every piece of organizational jargon is a compression of simpler things. This book finds those simpler things, builds a formula for each one, and shows you what the word actually requires, so the next time someone says it in a meeting, you know exactly what they mean and whether they do too.",
   "book_stories_header": "Personal stories that reinforce why decoding jargon is vital for any organization.",
   "book_whats_inside_title": "A formula for every word that gets used without definition.",
-  "book_author_bio_1": "Jason Weimer is an author, educator, and podcast host based in Bangkok, Thailand, where he teaches at an international school and hosts the student marketing podcast Students Incorporated.",
-  "book_author_bio_2": "He has spent years inside organizations watching the same words used in different rooms to mean different things — and wrote this book to give those words a definition that holds.",
+  "book_author_bio_1": "Jason is an educator, author, and business owner based in Bangkok, Thailand. He teaches business and technology at an international school and hosts the Students Incorporated podcast show with his high school marketing class.",
+  "book_author_bio_2": "He has spent years inside organizations watching the same words used in different settings to mean different things. He wrote this book to give those words a definition that we can all agree on.",
   "book_pull_quote": "Once you have the formula, the word is no longer vague. It has components. It has weight and meaning. It can be tested and verified.",
   "book_pull_quote_attr": "— From the introduction",
 
@@ -38,9 +38,9 @@
   "about_intro_1": "This tool decodes organizational jargon using the formula system from The Words We Use: The Hidden Formulas Behind Organizational Jargon by Jason Weimer.",
   "about_intro_2": "Every piece of organizational jargon is a compression of simpler components. Find the simpler things and you have a formula. Once you have the formula, the word is no longer vague. It has components. It has weight and meaning. It can be tested and verified.",
   "about_clusters_heading": "Where the five clusters come from",
-  "about_clusters_desc": "The five clusters did not come from theory. They came from a mix of the principles of management and other organizational source domains. All organizational jargon belongs to one of these. When these were mapped against hundreds of jargon words, five clusters emerged. Every jargon word in every organization fits inside one of them. Note: the principle of Controlling applies across all five clusters — not just Results.",
+  "about_clusters_desc": "The five clusters did not come from theory. They came from a mix of the principles of management and other organizational source domains. All organizational jargon belongs to one of these. When these were mapped against hundreds of jargon words, five clusters emerged. Every jargon word in every organization fits inside one of them. Note: the principle of Controlling applies across all five clusters, not just Results.",
   "about_frameworks_heading": "Frameworks & Standards categories",
-  "about_frameworks_desc": "Named frameworks, accounting standards, and professional tools sit outside the five clusters. They have fixed, established meanings — not jargon to be decoded, but vocabulary every professional encounters. They are organized into five categories.",
+  "about_frameworks_desc": "Named frameworks, accounting standards, and professional tools sit outside the five clusters. They have fixed, established meanings, not jargon to be decoded, but vocabulary every professional encounters. They are organized into five categories.",
 
   "share_label": "Know someone who speaks too much jargon?",
   "share_title": "Share this tool with a friend.",
