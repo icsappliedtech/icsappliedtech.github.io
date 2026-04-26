@@ -1319,8 +1319,8 @@
 
     // 3 — Buy book
     const BOOK_HTML = `
-      <div class="bottom-section tab-book-cta">
-        <div class="tab-book-cta-cover">
+      <div class="bottom-section tab-waitlist-cta">
+        <div class="tab-waitlist-cover">
           <img src="images/the-words-we-use-cover.png"
                alt="The Words We Use by Jason Weimer"
                class="tab-cta-cover-img"
@@ -1331,35 +1331,33 @@
             <div class="tab-cta-cover-sub">The Hidden Formulas Behind Organizational Jargon</div>
           </div>
         </div>
-        <div class="tab-book-cta-body">
-          <div class="tab-book-cta-heading">
-            <div class="tab-book-cta-eyebrow">The book for people who think clearly.</div>
-            <h3 class="tab-book-cta-title">Own the one-of-a-kind formula book.</h3>
+        <div class="tab-waitlist-body">
+          <div class="tab-waitlist-heading">
+            <div class="tab-waitlist-eyebrow">The book is coming.</div>
+            <h3 class="tab-waitlist-title">Be the first to know when it launches.</h3>
           </div>
-          <p class="tab-book-cta-desc">Some of the most popular organizational jargon words decoded across five clusters. Six formula types. Every word broken down into its components so you know exactly what it requires. For anyone who has ever sat in a meeting and wondered what was actually being said. Written by Jason Weimer.</p>
-          <div class="book-cta-buttons">
-            <a href="https://buy.stripe.com/placeholder" target="_blank" class="book-btn book-btn-primary">
-              <span class="book-btn-icon">↓</span>
-              <div class="book-btn-text">
-                <span class="book-btn-label">Buy the digital edition</span>
-                <span class="book-btn-note">PDF — instant download</span>
+          <p class="tab-waitlist-desc">The Words We Use decodes the most popular organizational jargon words across five clusters using six formula types. Written by Jason Weimer. Join the waitlist and we will contact you first when the book is available.</p>
+          <form class="tab-waitlist-form"
+                action="https://app.kit.com/forms/9367995/subscriptions"
+                method="post"
+                target="_blank">
+            <div class="tab-waitlist-fields">
+              <div class="tab-waitlist-field">
+                <input type="text" name="fields[first_name]" placeholder="First name" autocomplete="given-name" required>
               </div>
-            </a>
-            <a href="https://a.co/d/0dFYB1Zx" target="_blank" class="book-btn book-btn-secondary">
-              <span class="book-btn-icon">📦</span>
-              <div class="book-btn-text">
-                <span class="book-btn-label">Buy the printed edition</span>
-                <span class="book-btn-note">Available on Amazon</span>
+              <div class="tab-waitlist-field">
+                <input type="email" name="email_address" placeholder="Email address" autocomplete="email" required>
               </div>
-            </a>
-          </div>
+              <button type="submit" class="tab-waitlist-btn">Put me on the waitlist</button>
+            </div>
+          </form>
         </div>
       </div>`;
 
     TABS.forEach(tab => {
       const panel = document.getElementById('tab-' + tab);
       if (!panel) return;
-      panel.insertAdjacentHTML('beforeend', SHARE_HTML + EMAIL_HTML + BOOK_HTML);
+      panel.insertAdjacentHTML('beforeend', BOOK_HTML + /* EMAIL_HTML + */ SHARE_HTML);
     });
 
     // Share button logic — Web Share API with clipboard fallback
