@@ -104,23 +104,17 @@
       }
     }
 
-    // Load content — window global first (file://), fetch fallback (server)
+    // Load content — fetch from server
     try {
-      let contentData = null;
-      if (typeof window.SITE_CONTENT !== 'undefined') {
-        contentData = window.SITE_CONTENT;
-      } else {
-        const r = await fetch('content.json');
-        contentData = await r.json();
-      }
-      CONTENT = contentData;
+      const r = await fetch('content.json');
+      CONTENT = await r.json();
       Object.entries(CONTENT).forEach(([key, value]) => {
         if (key.startsWith('_')) return;
         const el = document.getElementById('ct-' + key);
         if (el) el.textContent = value;
       });
     } catch (err) {
-      // content failed — static HTML text remains as-is
+      // content.json missing — static HTML text remains as-is
     }
 
     setupTabs();
