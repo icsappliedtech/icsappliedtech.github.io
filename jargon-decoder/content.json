@@ -20,17 +20,17 @@
   "health_subtitle": "The master formula applied to your organization. Organizations can fail because one or more of five components are missing. This diagnostic tool names them. Answer honestly and find out the health of your organization.",
 
   "frameworks_title": "Frameworks & Standards",
-  "frameworks_subtitle": "Named frameworks, accounting standards, and professional tools. These have fixed, established meanings, they are the vocabulary of practice, not jargon to be decoded. Click any card to expand it.",
+  "frameworks_subtitle": "Named frameworks, accounting standards, and professional tools. These have fixed, established meanings — they are the vocabulary of practice, not jargon to be decoded. Click any card to expand it.",
 
   "book_label": "The Book",
   "book_title": "The Words We Use",
   "book_subtitle": "The Hidden Formulas Behind Organizational Jargon",
   "book_byline": "By Jason Weimer",
-  "book_pitch": "Every piece of organizational jargon is a compression of simpler things. This book finds those simpler things, builds a formula for each one, and shows you what the word actually requires, so the next time someone says it in a meeting, you know exactly what they mean and whether they do too.",
+  "book_pitch": "Every piece of organizational jargon is a compression of simpler things. This book finds those simpler things, builds a formula for each one, and shows you what the word actually requires — so the next time someone says it in a meeting, you know exactly what they mean and whether they do too.",
   "book_stories_header": "Personal stories that reinforce why decoding jargon is vital for any organization.",
   "book_whats_inside_title": "A formula for every word that gets used without definition.",
-  "book_author_bio_1": "Jason is an educator, author, and business owner based in Bangkok, Thailand. He teaches business and technology at an international school and hosts the Students Incorporated podcast show with his high school marketing class.",
-  "book_author_bio_2": "He has spent years inside organizations watching the same words used in different settings to mean different things. He wrote this book to give those words a definition that we can all agree on.",
+  "book_author_bio_1": "Jason Weimer is an author, educator, and podcast host based in Bangkok, Thailand, where he teaches at an international school and hosts the student marketing podcast Students Incorporated.",
+  "book_author_bio_2": "He has spent years inside organizations watching the same words used in different rooms to mean different things — and wrote this book to give those words a definition that holds.",
   "book_pull_quote": "Once you have the formula, the word is no longer vague. It has components. It has weight and meaning. It can be tested and verified.",
   "book_pull_quote_attr": "— From the introduction",
 
@@ -38,9 +38,9 @@
   "about_intro_1": "This tool decodes organizational jargon using the formula system from The Words We Use: The Hidden Formulas Behind Organizational Jargon by Jason Weimer.",
   "about_intro_2": "Every piece of organizational jargon is a compression of simpler components. Find the simpler things and you have a formula. Once you have the formula, the word is no longer vague. It has components. It has weight and meaning. It can be tested and verified.",
   "about_clusters_heading": "Where the five clusters come from",
-  "about_clusters_desc": "The five clusters did not come from theory. They came from a mix of the principles of management and other organizational source domains. All organizational jargon belongs to one of these. When these were mapped against hundreds of jargon words, five clusters emerged. Every jargon word in every organization fits inside one of them. Note: the principle of Controlling applies across all five clusters, not just Results.",
+  "about_clusters_desc": "The five clusters did not come from theory. They came from a mix of the principles of management and other organizational source domains. All organizational jargon belongs to one of these. When these were mapped against hundreds of jargon words, five clusters emerged. Every jargon word in every organization fits inside one of them. Note: the principle of Controlling applies across all five clusters — not just Results.",
   "about_frameworks_heading": "Frameworks & Standards categories",
-  "about_frameworks_desc": "Named frameworks, accounting standards, and professional tools sit outside the five clusters. They have fixed, established meanings, not jargon to be decoded, but vocabulary every professional encounters. They are organized into five categories.",
+  "about_frameworks_desc": "Named frameworks, accounting standards, and professional tools sit outside the five clusters. They have fixed, established meanings — not jargon to be decoded, but vocabulary every professional encounters. They are organized into five categories.",
 
   "share_label": "Know someone who speaks too much jargon?",
   "share_title": "Share this tool with a friend.",
@@ -50,5 +50,38 @@
   "waitlist_desc": "The Words We Use decodes the most popular organizational jargon words across five clusters using six formula types. Written by Jason Weimer. Join the waitlist and we will contact you first when the book is available.",
 
   "email_label": "Stay in the loop",
-  "email_subtitle": "No spam. Updates only. Unsubscribe anytime."
+  "email_subtitle": "No spam. Updates only. Unsubscribe anytime.",
+
+  "decode_quickpick_label": "Or try one of these",
+
+  "health_formula_line": "Organizational health =",
+  "health_formula_note": "If Consistency is zero, the formula produces zero.",
+
+  "about_formula_types_heading": "The six formula types",
+  "about_clusters_grid_heading": "The five clusters",
+
+  "book_whats_inside_label": "What's inside",
+  "book_stat1_num": "60",
+  "book_stat1_text": "Organizational jargon words decoded across five clusters: Direction, People, Resources, Process, and Results.",
+  "book_stat2_num": "30",
+  "book_stat2_text": "Frameworks and standards referenced separately, from Ansoff to Zero-Based Budgeting.",
+  "book_stat3_num": "6",
+  "book_stat3_text": "Formula types that reveal how components combine: Additive, Combination, Exponential, Multiplied, Refinement, Ratio.",
+  "book_author_label": "About the author",
+  "book_author_name": "Jason Weimer",
+  "book_inside_label": "Inside the book",
+  "book_preview1_label": "The formula system",
+  "book_preview1_text": "Each entry shows the official definition, what the word actually means in practice, the formula, and why it is shaped that way.",
+  "book_preview2_label": "Five clusters",
+  "book_preview2_text": "Direction, People, Resources, Process, and Results. Every organizational word belongs to one of these five questions.",
+  "book_preview3_label": "Personal stories",
+  "book_preview3_text": "Each cluster opens with real stories that show where jargon breaks down — and what it costs when it does.",
+  "book_bottom_cta_title": "Ready to decode the words your organization uses?",
+
+  "book_story1_label": "Story 1",
+  "book_story1_text": "A leadership team spent three months debating a strategy no one had defined the same way. When they finally wrote it down, word by word, they discovered four different strategies in one room. The jargon had been doing the work of alignment. It was not working.",
+  "book_story2_label": "Story 2",
+  "book_story2_text": "A manager asked her team to be more accountable. Nobody disagreed. Six weeks later, nothing had changed. The word had been used. The formula had not. Accountability without assigned responsibility, visible consequences, and a measurement mechanism is just a word in a meeting.",
+  "book_story3_label": "Story 3",
+  "book_story3_text": "An organization launched a transformation. Eighteen months in, the consultants had left, the budget had been spent, and the operating model looked the same as it had before. The word transformation had carried enormous weight. The components it required had never been named."
 }
