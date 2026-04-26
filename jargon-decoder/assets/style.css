@@ -2897,3 +2897,14 @@ input, select, textarea {
 /* PRINT STYLES                                                   */
 /* ============================================================ */
 /* Print styles handled via dedicated print window in app.js */
+
+/* ============================================================ */
+/* ABOUT — CLUSTER LOGIC DIAGRAM                                 */
+/* ============================================================ */
+.cluster-logic-diagram {
+  margin: var(--gap) 0 var(--gap-lg);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: var(--gap-md);
+  background: var(--bg-soft);
+}
