@@ -7,8 +7,9 @@
   'use strict';
 
   // ==== STATE =================================================
-  let DATA = null;        // jargon-data.json
-  let FW_DATA = null;     // framework-standards-data.json
+  let DATA = null;
+  let FW_DATA = null;
+  let CONTENT = {};  // loaded from content.json
   let CURRENT_TAB = 'decode';
   let HEALTH_MODE = 'quick';
   let HEALTH_ANSWERS = {};
@@ -101,6 +102,19 @@
           </div>`;
         return;
       }
+    }
+
+    // Load content.json and inject text into ct- elements
+    try {
+      const r = await fetch('content.json');
+      CONTENT = await r.json();
+      Object.entries(CONTENT).forEach(([key, value]) => {
+        if (key.startsWith('_')) return;
+        const el = document.getElementById('ct-' + key);
+        if (el) el.textContent = value;
+      });
+    } catch (err) {
+      // content.json missing — static HTML text remains as-is
     }
 
     setupTabs();
@@ -1269,13 +1283,20 @@
   function setupBottomSections() {
     const TABS = ['decode','encode','browse','frameworks','health','about'];
 
+    const c = CONTENT;
+    const shareLabel = c.share_label || 'Know someone who speaks too much jargon?';
+    const shareTitle = c.share_title || 'Share this tool with a friend.';
+    const waitlistEyebrow = c.waitlist_eyebrow || 'The book is coming.';
+    const waitlistTitle = c.waitlist_title || 'Be the first to know when it launches.';
+    const waitlistDesc = c.waitlist_desc || 'Join the waitlist and we will contact you first when the book is available.';
+
     // 1 — Share this tool
     const SHARE_HTML = `
       <div class="bottom-section share-section">
         <div class="share-inner">
           <div class="share-text">
-            <div class="share-label">Know someone who speaks too much jargon?</div>
-            <h3 class="share-title">Share this tool with a friend.</h3>
+            <div class="share-label">${shareLabel}</div>
+            <h3 class="share-title">${shareTitle}</h3>
           </div>
           <div class="share-actions">
             <button class="share-btn share-btn-main" id="share-btn">
@@ -1333,10 +1354,10 @@
         </div>
         <div class="tab-waitlist-body">
           <div class="tab-waitlist-heading">
-            <div class="tab-waitlist-eyebrow">The book is coming.</div>
-            <h3 class="tab-waitlist-title">Be the first to know when it launches.</h3>
+            <div class="tab-waitlist-eyebrow">${waitlistEyebrow}</div>
+            <h3 class="tab-waitlist-title">${waitlistTitle}</h3>
           </div>
-          <p class="tab-waitlist-desc">The Words We Use decodes the most popular organizational jargon words across five clusters using six formula types. Written by Jason Weimer. Join the waitlist and we will contact you first when the book is available.</p>
+          <p class="tab-waitlist-desc">${waitlistDesc}</p>
           <form class="tab-waitlist-form"
                 action="https://app.kit.com/forms/9367995/subscriptions"
                 method="post"
