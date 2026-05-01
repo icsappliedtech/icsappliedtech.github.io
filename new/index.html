@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mr Jason Code</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    /* ============================================
+       THEME TOKENS
+       8  — Chalk + Deep Navy  (light)
+       D1 — Deep Navy Dark     (dark)
+    ============================================ */
+
+    :root, [data-theme="light"] {
+      --bg:          #FAFBFC;
+      --surface:     #FFFFFF;
+      --surface-2:   #EEF1F5;
+      --border:      #D9DFE8;
+      --border-dark: #BCC5D3;
+      --text:        #0B1320;
+      --text-2:      #3D4F68;
+      --text-3:      #8496AE;
+      --accent:      #1A3A6B;
+      --accent-dark: #0F2347;
+      --accent-light:#E8EFF8;
+      --accent-mid:  #C5D5EA;
+      --yellow:      #FFCB47;
+      --yellow-light:#FFF6D6;
+    }
+
+    [data-theme="dark"] {
+      --bg:          #0B1320;
+      --surface:     #111D2E;
+      --surface-2:   #1A2C42;
+      --border:      #1E3250;
+      --border-dark: #2A4468;
+      --text:        #E8EDF5;
+      --text-2:      #9AAEC8;
+      --text-3:      #4D6884;
+      --accent:      #4D87D6;
+      --accent-dark: #3A70BE;
+      --accent-light:#0F2347;
+      --accent-mid:  #1A3A6B;
+      --yellow:      #FFCB47;
+      --yellow-light:#2A2000;
+    }
+
+    /* ============================================
+       RESET & BASE
+    ============================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; border: none; background: none; }
+
+    /* ============================================
+       LAYOUT
+    ============================================ */
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 28px; }
+
+    /* ============================================
+       TYPOGRAPHY
+    ============================================ */
+    .font-display { font-family: 'Inter', sans-serif; }
+    .muted  { color: var(--text-2); }
+    .subtle { color: var(--text-3); }
+    .accent { color: var(--accent); }
+    .yellow { color: var(--yellow); }
+
+    /* ============================================
+       BADGES / TAGS
+    ============================================ */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+      line-height: 1.6;
+    }
+    .tag-navy   { background: var(--accent-light); color: var(--accent); }
+    .tag-yellow { background: var(--yellow-light);  color: #7A5800; }
+    .tag-slate  { background: var(--surface-2);     color: var(--text-2); }
+
+    [data-theme="dark"] .tag-yellow { color: var(--yellow); }
+
+    /* ============================================
+       BUTTONS
+    ============================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 11px 22px;
+      border-radius: 10px;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+      border: 2px solid transparent;
+    }
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+    .btn-primary:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text-2);
+      border-color: var(--border-dark);
+    }
+    .btn-outline:hover { border-color: var(--text); color: var(--text); }
+
+    .btn-accent {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    .btn-accent:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+
+    /* ============================================
+       CARD
+    ============================================ */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+    }
+    .card:hover {
+      box-shadow: 0 6px 24px rgba(11,19,32,0.10);
+      transform: translateY(-2px);
+      border-color: var(--border-dark);
+    }
+    [data-theme="dark"] .card:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+    }
+    .card-hover-accent:hover { border-color: var(--accent-mid); }
+
+    /* ============================================
+       SECTION EYEBROW
+    ============================================ */
+    .section-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 10px;
+    }
+    .section-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 18px;
+      height: 2px;
+      background: var(--yellow);
+      border-radius: 2px;
+    }
+
+    /* ============================================
+       DIVIDER
+    ============================================ */
+    hr.divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* ============================================
+       FADE IN
+    ============================================ */
+    .fade-in { animation: fadeUp 0.3s ease both; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================
+       ANNOUNCEMENT BAR
+    ============================================ */
+    .announcement-bar {
+      background: var(--accent);
+      color: #fff;
+      text-align: center;
+      padding: 9px 20px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    [data-theme="dark"] .announcement-bar { background: var(--surface-2); color: var(--text); }
+    .announcement-bar a {
+      color: var(--yellow);
+      margin-left: 8px;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+    .announcement-bar a:hover { opacity: 0.85; }
+
+    /* ============================================
+       NAV
+    ============================================ */
+    .nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+    .nav-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      gap: 16px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      transition: color 0.18s ease;
+      flex-shrink: 0;
+    }
+    .nav-logo:hover { color: var(--accent); }
+    .nav-logo-mark {
+      width: 32px; height: 32px;
+      background: var(--accent);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 800;
+      font-family: 'Inter', sans-serif;
+      color: #fff;
+      flex-shrink: 0;
+      transition: background 0.25s ease;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      list-style: none;
+    }
+    .nav-links button {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-2);
+      padding: 7px 13px;
+      border-radius: 8px;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+    .nav-links button:hover { background: var(--surface-2); color: var(--text); }
+    .nav-links button.nav-active {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Dark mode toggle */
+    .theme-toggle {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-2);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      transition: all 0.18s ease;
+      flex-shrink: 0;
+      font-size: 16px;
+    }
+    .theme-toggle:hover { border-color: var(--border-dark); color: var(--text); }
+
+    .nav-contact {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-2);
+      background: var(--surface-2);
+      border: 1px solid var(--border-dark);
+      padding: 8px 16px;
+      border-radius: 10px;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+    }
+    .nav-contact:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
+
+    .nav-mobile-btn {
+      display: none;
+      padding: 8px;
+      border-radius: 8px;
+      color: var(--text);
+    }
+    .nav-mobile-btn:hover { background: var(--surface-2); }
+    .nav-mobile-btn svg { width: 20px; height: 20px; }
+
+    .mobile-nav {
+      display: none;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      padding: 10px 16px 14px;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav button {
+      text-align: left;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-2);
+      padding: 10px 12px;
+      border-radius: 8px;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+    .mobile-nav button:hover { background: var(--surface-2); color: var(--text); }
+
+    /* ============================================
+       HOME
+    ============================================ */
+    .hero { padding: 72px 0 56px; }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 20px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 6px; height: 6px;
+      background: var(--yellow);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: clamp(44px, 7vw, 72px);
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+    .hero h1 .hl { color: var(--accent); }
+
+    .hero-body {
+      font-size: 17px;
+      color: var(--text-2);
+      line-height: 1.7;
+      max-width: 560px;
+      margin-bottom: 36px;
+    }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* Dept cards */
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .dept-card {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      cursor: pointer;
+    }
+    .dept-card-icon {
+      font-size: 26px;
+      width: 50px; height: 50px;
+      background: var(--surface-2);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.18s ease;
+    }
+    .dept-card:hover .dept-card-icon { background: var(--accent-light); }
+    .dept-card h3 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--text);
+    }
+    .dept-card p { font-size: 14px; color: var(--text-2); line-height: 1.6; flex: 1; }
+    .dept-card-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .quick-link-card {
+      padding: 22px 24px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      cursor: pointer;
+    }
+    .quick-link-icon {
+      width: 46px; height: 46px;
+      background: var(--surface-2);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+      transition: background 0.18s ease;
+    }
+    .quick-link-card:hover .quick-link-icon { background: var(--accent-light); }
+    .quick-link-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+    .quick-link-card p  { font-size: 13px; color: var(--text-2); }
+
+    /* ============================================
+       PAGE HEADER
+    ============================================ */
+    .page-header { padding: 52px 0 40px; }
+    .page-header h1 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: clamp(34px, 5vw, 52px);
+      letter-spacing: -0.025em;
+      margin-bottom: 12px;
+    }
+    .page-header p { font-size: 16px; color: var(--text-2); max-width: 520px; }
+
+    /* ============================================
+       STUDENT WORK HUB
+    ============================================ */
+    .sw-dept-card { border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; }
+    .sw-dept-header { padding: 24px 24px 18px; display: flex; align-items: center; gap: 12px; }
+    .sw-dept-body { padding: 0 16px 16px; flex: 1; display: flex; flex-direction: column; }
+    .sw-sem-btn {
+      width: 100%; text-align: left;
+      padding: 11px 12px;
+      border-radius: 8px;
+      font-size: 14px; font-weight: 500;
+      color: var(--text-2);
+      display: flex; justify-content: space-between; align-items: center;
+      transition: background 0.18s ease, color 0.18s ease;
+      margin-bottom: 3px;
+    }
+    .sw-sem-btn:hover { background: var(--accent-light); color: var(--accent); }
+    .sw-sem-btn .count { font-size: 12px; color: var(--text-3); }
+    .sw-dept-footer { padding: 12px 16px 16px; }
+    .sw-dept-footer button {
+      width: 100%; padding: 10px;
+      border-radius: 10px;
+      font-size: 13px; font-weight: 600;
+      background: var(--text); color: var(--bg);
+      transition: background 0.18s ease;
+    }
+    .sw-dept-footer button:hover { background: var(--accent); }
+
+    /* ============================================
+       CLASS PAGE
+    ============================================ */
+    .class-page-layout {
+      display: flex; gap: 32px;
+      padding: 40px 0 72px;
+      align-items: flex-start;
+    }
+    .sidebar { width: 230px; flex-shrink: 0; position: sticky; top: 80px; }
+    .sidebar-back {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 500;
+      color: var(--text-3);
+      margin-bottom: 24px;
+      transition: color 0.18s ease;
+    }
+    .sidebar-back:hover { color: var(--accent); }
+    .sidebar-section-label {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-3);
+      padding: 0 10px; margin-bottom: 6px;
+    }
+    .sidebar-link {
+      display: flex; align-items: center; gap: 8px;
+      width: 100%; text-align: left;
+      padding: 9px 10px;
+      border-radius: 8px;
+      font-size: 14px; font-weight: 500;
+      color: var(--text-2);
+      transition: background 0.18s ease, color 0.18s ease;
+      margin-bottom: 2px;
+    }
+    .sidebar-link:hover { background: var(--accent-light); color: var(--accent); }
+    .sidebar-link.active { background: var(--accent-light); color: var(--accent); font-weight: 600; }
+    .sidebar-link .count { margin-left: auto; font-size: 11px; color: var(--text-3); }
+    .sidebar-link.active .count { color: var(--accent); opacity: 0.6; }
+
+    .class-main { flex: 1; min-width: 0; }
+    .class-main-header { margin-bottom: 32px; }
+    .class-main-header .tags { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+    .class-main-header h1 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -0.02em; margin-bottom: 6px;
+    }
+
+    .section-heading {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 16px; font-weight: 600;
+      color: var(--text); margin-bottom: 16px;
+    }
+    .section-heading-bar { width: 4px; height: 20px; border-radius: 2px; flex-shrink: 0; }
+
+    /* Project grid */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 16px; margin-bottom: 40px;
+    }
+    .project-card { display: flex; flex-direction: column; border-radius: 16px; overflow: hidden; cursor: pointer; }
+    .project-thumb {
+      width: 100%; aspect-ratio: 16/10;
+      background: var(--surface-2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 30px; position: relative; overflow: hidden;
+    }
+    .project-thumb::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--accent); opacity: 0;
+      transition: opacity 0.18s ease;
+    }
+    .project-card:hover .project-thumb::after { opacity: 0.07; }
+    .project-body { padding: 14px; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    .project-type { font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-3); }
+    .project-title { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.35; }
+    .project-student { font-size: 12px; color: var(--accent); font-weight: 500; }
+    .project-desc { font-size: 12px; color: var(--text-2); line-height: 1.5; margin-top: 3px; }
+
+    /* Link grid */
+    .link-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+    .link-card {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 16px; border-radius: 12px; cursor: pointer;
+    }
+    .link-icon {
+      width: 40px; height: 40px;
+      background: var(--surface-2); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+      transition: background 0.18s ease;
+    }
+    .link-card:hover .link-icon { background: var(--accent-light); }
+    .link-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+    .link-card p  { font-size: 12px; color: var(--text-2); }
+
+    /* ============================================
+       SANDBOX
+    ============================================ */
+    .sandbox-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; }
+    .sandbox-card { padding: 24px; display: flex; flex-direction: column; gap: 12px; cursor: pointer; }
+    .sandbox-icon {
+      width: 48px; height: 48px; background: var(--surface-2);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; transition: background 0.18s ease;
+    }
+    .sandbox-card:hover .sandbox-icon { background: var(--accent-light); }
+    .sandbox-card h3 { font-size: 15px; font-weight: 600; }
+    .sandbox-card p  { font-size: 13px; color: var(--text-2); line-height: 1.55; flex: 1; }
+    .sandbox-open { font-size: 12px; font-weight: 600; color: var(--accent); }
+
+    /* ============================================
+       RESOURCES
+    ============================================ */
+    .resources-section { margin-bottom: 52px; }
+    .resources-section h2 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700; font-size: 22px; margin-bottom: 6px;
+    }
+    .resources-section .desc { font-size: 14px; color: var(--text-2); margin-bottom: 18px; }
+    .resource-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; }
+    .resource-card {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 16px; border-radius: 12px; cursor: pointer;
+    }
+    .resource-icon {
+      width: 44px; height: 44px; background: var(--surface-2);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0; transition: background 0.18s ease;
+    }
+    .resource-card:hover .resource-icon { background: var(--accent-light); }
+    .resource-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+    .resource-card p  { font-size: 12px; color: var(--text-2); }
+
+    /* ============================================
+       ABOUT
+    ============================================ */
+    .about-layout { max-width: 680px; padding: 52px 0 72px; }
+    .about-layout h1 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: clamp(34px, 5vw, 50px);
+      letter-spacing: -0.025em; line-height: 1.05; margin-bottom: 28px;
+    }
+    .about-layout h1 .hl { color: var(--accent); }
+    .about-body { display: flex; flex-direction: column; gap: 18px; margin-bottom: 40px; }
+    .about-body p { font-size: 15px; color: var(--text-2); line-height: 1.75; }
+    .about-classes { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 40px; }
+    .about-class-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px;
+    }
+    .about-class-card .icon { font-size: 22px; margin-bottom: 10px; }
+    .about-class-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 5px; }
+    .about-class-card p  { font-size: 13px; color: var(--text-2); }
+    .about-contact {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 20px; flex-wrap: wrap;
+    }
+    .about-contact h3 { font-size: 16px; font-weight: 600; margin-bottom: 3px; }
+    .about-contact p  { font-size: 14px; color: var(--text-2); }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    .footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+    .footer-inner {
+      max-width: 1140px; margin: 0 auto; padding: 0 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 20px; flex-wrap: wrap;
+    }
+    .footer-brand { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 14px; }
+    .footer-brand .mark {
+      width: 22px; height: 22px; background: var(--accent); border-radius: 5px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9px; font-weight: 800; color: #fff;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.25s ease;
+    }
+    .footer-meta { font-size: 12px; color: var(--text-3); text-align: center; }
+    .footer-links { display: flex; gap: 18px; }
+    .footer-links a { font-size: 13px; font-weight: 500; color: var(--text-2); transition: color 0.18s ease; }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ============================================
+       RESPONSIVE
+    ============================================ */
+    @media (max-width: 860px) {
+      .nav-links, .nav-contact { display: none; }
+      .nav-mobile-btn { display: flex; }
+      .hero { padding: 48px 0 40px; }
+      .grid-3, .grid-2 { grid-template-columns: 1fr; }
+      .class-page-layout { flex-direction: column; }
+      .sidebar { width: 100%; position: static; }
+      .about-classes { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announcement-bar">
+  📢 2nd Semester 2026 projects are now live.
+  <a href="#" onclick="navigate('student-work'); return false;">Browse student work →</a>
+</div>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="nav-inner">
+    <button class="nav-logo" onclick="navigate('home')">
+      <div class="nav-logo-mark">MJ</div>
+      Mr Jason Code
+    </button>
+    <nav>
+      <ul class="nav-links">
+        <li><button data-nav="home"         onclick="navigate('home')">Home</button></li>
+        <li><button data-nav="student-work" onclick="navigate('student-work')">Student Work</button></li>
+        <li><button data-nav="sandbox"      onclick="navigate('sandbox')">Sandbox</button></li>
+        <li><button data-nav="resources"    onclick="navigate('resources')">Resources</button></li>
+        <li><button data-nav="about"        onclick="navigate('about')">About</button></li>
+      </ul>
+    </nav>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()" title="Toggle dark mode">☀️</button>
+      <a href="mailto:jason_w@ics.ac.th?subject=Hello" class="nav-contact">Contact</a>
+      <button class="nav-mobile-btn" onclick="toggleMobileNav()">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobile-nav">
+    <button onclick="navigate('home'); closeMobileNav()">Home</button>
+    <button onclick="navigate('student-work'); closeMobileNav()">Student Work</button>
+    <button onclick="navigate('sandbox'); closeMobileNav()">Sandbox</button>
+    <button onclick="navigate('resources'); closeMobileNav()">Resources</button>
+    <button onclick="navigate('about'); closeMobileNav()">About</button>
+  </div>
+</header>
+
+<!-- APP -->
+<main id="app"></main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="mark">MJ</div>
+      Mr Jason Code
+    </div>
+    <p class="footer-meta">ICS Bangkok · Applied Technologies · Digital Media · Business · GitHub Pages</p>
+    <div class="footer-links">
+      <a href="#" onclick="navigate('about'); return false;">About</a>
+      <a href="#" onclick="navigate('student-work'); return false;">Work</a>
+      <a href="mailto:jason_w@ics.ac.th">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ====================================================
+   DATA
+==================================================== */
+const DATA = {
+  classes: [
+    {
+      id: 'digital-media', label: 'Digital Media', icon: '🎨',
+      tagClass: 'tag-navy', accentColor: 'var(--accent)',
+      desc: 'Photoshop, Illustrator, Figma, and visual storytelling.',
+      semesters: [
+        {
+          id: 'dm-fall-2025', label: 'Fall 2025',
+          projects: [
+            { title: 'Brand Identity Design',    student: 'Aisha K.',  type: 'Photoshop / Illustrator', desc: 'Complete brand system for a fictional Bangkok café — logo, color palette, and typography.' },
+            { title: 'Photo Manipulation Series',student: 'Marco T.',  type: 'Photoshop',               desc: '5-piece surrealist series combining photography and digital illustration.' },
+            { title: 'Movie Poster Redesign',    student: 'Priya S.',  type: 'Illustrator',             desc: 'Minimalist vector reimagining of three classic film posters.' },
+            { title: 'UX Case Study: MRT App',   student: 'James L.',  type: 'Figma',                   desc: 'End-to-end UX research and redesign of the Bangkok MRT mobile app.' },
+            { title: 'Digital Magazine Layout',  student: 'Sofia R.',  type: 'InDesign',                desc: '12-page digital magazine covering Southeast Asian street food culture.' },
+            { title: 'Social Media Campaign',    student: 'Ben W.',    type: 'Canva',                   desc: 'Coordinated 30-day campaign for a student-run fashion brand.' },
+          ],
+          links: [
+            { label: 'Adobe Creative Cloud', url: 'https://creativecloud.adobe.com', icon: '🖌️', desc: 'Photoshop, Illustrator, InDesign & more.' },
+            { label: 'Figma',      url: 'https://figma.com',        icon: '🔷', desc: 'Collaborative UI/UX design and prototyping.' },
+            { label: 'Unsplash',   url: 'https://unsplash.com',     icon: '📷', desc: 'Free high-resolution stock photography.' },
+            { label: 'Google Fonts', url: 'https://fonts.google.com', icon: '🔤', desc: 'Open-source fonts for any project.' },
+          ]
+        },
+        {
+          id: 'dm-spring-2025', label: 'Spring 2025',
+          projects: [
+            { title: 'Typography Poster Series', student: 'Lena M.', type: 'Illustrator', desc: '6 expressive typographic posters exploring emotion and form.' },
+            { title: 'Infographic: Climate Data',student: 'Omar F.', type: 'Canva',       desc: 'Visualizing 50 years of Bangkok climate data for a general audience.' },
+            { title: 'App Icon System',          student: 'Yuna C.', type: 'Figma',       desc: 'Cohesive suite of 20 app icons for a productivity platform.' },
+          ],
+          links: [
+            { label: 'Behance',    url: 'https://behance.net',  icon: '💼', desc: 'Design portfolio inspiration.' },
+            { label: 'Coolors.co', url: 'https://coolors.co',   icon: '🎨', desc: 'Fast color palette generation.' },
+          ]
+        }
+      ]
+    },
+    {
+      id: 'applied-tech', label: 'Applied Technologies', icon: '💻',
+      tagClass: 'tag-yellow', accentColor: 'var(--yellow)',
+      desc: 'HTML, CSS, JavaScript, APIs, and full web projects.',
+      semesters: [
+        {
+          id: 'at-fall-2025', label: 'Fall 2025',
+          projects: [
+            { title: 'Personal Portfolio Site',       student: 'Kai T.',   type: 'HTML / CSS / JS', desc: 'Fully responsive portfolio with projects, skills, and contact form.' },
+            { title: 'Weather Dashboard',             student: 'Nina B.',  type: 'JS / API',         desc: 'Real-time weather app using OpenWeather API with 5-day forecast.' },
+            { title: 'To-Do App with Local Storage',  student: 'Arjun P.', type: 'Vanilla JS',       desc: 'Task manager with categories, due dates, and persistent storage.' },
+            { title: 'Restaurant Landing Page',       student: 'Chloe D.', type: 'HTML / CSS',       desc: 'Pixel-perfect restaurant site with menu, gallery, and reservation form.' },
+            { title: 'JavaScript Quiz Engine',        student: 'Sam H.',   type: 'JavaScript',       desc: 'Dynamic quiz app with scoring, timer, and shareable results.' },
+            { title: 'CSS Art: Cityscape',            student: 'Mia K.',   type: 'CSS Only',          desc: 'Animated Bangkok cityscape built entirely with CSS.' },
+          ],
+          links: [
+            { label: 'MDN Web Docs', url: 'https://developer.mozilla.org', icon: '📚', desc: 'The gold-standard HTML, CSS, and JS reference.' },
+            { label: 'CodePen',  url: 'https://codepen.io',  icon: '🖊️', desc: 'Online editor for front-end experiments.' },
+            { label: 'GitHub',   url: 'https://github.com',  icon: '🐙', desc: 'Version control and project hosting.' },
+            { label: 'CSS-Tricks', url: 'https://css-tricks.com', icon: '✨', desc: 'Tips and tutorials for CSS.' },
+          ]
+        },
+        {
+          id: 'at-spring-2025', label: 'Spring 2025',
+          projects: [
+            { title: 'Interactive Story Game', student: 'Leo V.', type: 'HTML / JS',  desc: 'Branching text adventure with 12 unique endings in vanilla JS.' },
+            { title: 'Band Website',           student: 'Rin S.', type: 'HTML / CSS', desc: 'Multi-page site with embedded audio player and tour dates.' },
+            { title: 'Flashcard Study App',    student: 'Teo A.', type: 'JavaScript', desc: 'Spaced repetition app with custom deck creation and progress tracking.' },
+          ],
+          links: [
+            { label: 'W3Schools',      url: 'https://w3schools.com',     icon: '🌐', desc: 'Beginner-friendly web tutorials.' },
+            { label: 'Flexbox Froggy', url: 'https://flexboxfroggy.com', icon: '🐸', desc: 'Learn Flexbox through a fun game.' },
+          ]
+        }
+      ]
+    },
+    {
+      id: 'business', label: 'Business', icon: '📊',
+      tagClass: 'tag-slate', accentColor: 'var(--text-2)',
+      desc: 'Business plans, pitch decks, market research, and financial models.',
+      semesters: [
+        {
+          id: 'biz-fall-2025', label: 'Fall 2025',
+          projects: [
+            { title: 'Startup Business Plan',  student: 'Grace L.', type: 'Docs / Slides',  desc: 'Full business plan for a student-run sustainable clothing brand.' },
+            { title: 'Market Research Report', student: 'Ivan T.',  type: 'Sheets / Docs',  desc: 'Consumer survey and competitive analysis for a bubble tea concept.' },
+            { title: 'Pitch Deck: EdTech App', student: 'Anika R.', type: 'Canva / Slides', desc: '10-slide investor pitch deck for an AI-powered homework helper.' },
+            { title: 'Financial Projections',  student: 'Chris M.', type: 'Google Sheets',  desc: '3-year P&L and cash flow model for a food truck business.' },
+          ],
+          links: [
+            { label: 'Google Workspace', url: 'https://workspace.google.com', icon: '📋', desc: 'Docs, Sheets, Slides for collaborative work.' },
+            { label: 'Canva',       url: 'https://canva.com',        icon: '🎨', desc: 'Easy presentation and report design.' },
+            { label: 'Statista',    url: 'https://statista.com',     icon: '📊', desc: 'Market research and industry statistics.' },
+            { label: 'Investopedia', url: 'https://investopedia.com', icon: '💰', desc: 'Finance and business concepts explained.' },
+          ]
+        }
+      ]
+    }
+  ],
+
+  sandbox: [
+    { title: 'CSS Animation Playground', desc: 'Experiment with keyframes, transitions, and transforms live.',   icon: '🎬', tag: 'CSS' },
+    { title: 'JS DOM Explorer',          desc: 'Interactive demos for selecting and manipulating DOM elements.', icon: '🌳', tag: 'JS' },
+    { title: 'Color Palette Generator',  desc: 'Generate harmonious palettes and export as CSS variables.',      icon: '🎨', tag: 'Design' },
+    { title: 'Flexbox Visualizer',       desc: 'Live preview of all Flexbox properties with toggleable controls.',icon: '📐', tag: 'CSS' },
+    { title: 'API Fetch Tester',         desc: 'Make GET requests to any public API and inspect the response.',  icon: '🔗', tag: 'JS' },
+    { title: 'Typography Scale Builder', desc: 'Build a modular type scale and export CSS custom properties.',   icon: '🔤', tag: 'Design' },
+    { title: 'Grid Layout Builder',      desc: 'Visually create CSS Grid templates with live code output.',      icon: '▦',  tag: 'CSS' },
+    { title: 'Regex Tester',             desc: 'Write and test regular expressions with live match highlighting.',icon: '🔍', tag: 'Dev' },
+  ],
+
+  resources: {
+    design: [
+      { name: 'Figma',               url: 'https://figma.com',                   icon: '🔷', desc: 'Collaborative UI/UX design and prototyping.' },
+      { name: 'Adobe Creative Cloud', url: 'https://creativecloud.adobe.com',    icon: '🖌️', desc: 'Photoshop, Illustrator, InDesign, Premiere & more.' },
+      { name: 'Canva',               url: 'https://canva.com',                   icon: '✏️', desc: 'Easy drag-and-drop design for all skill levels.' },
+      { name: 'Coolors',             url: 'https://coolors.co',                  icon: '🎨', desc: 'Instant color palette generation.' },
+      { name: 'Unsplash',            url: 'https://unsplash.com',                icon: '📷', desc: 'Free beautiful stock photos.' },
+      { name: 'Google Fonts',        url: 'https://fonts.google.com',            icon: '🔤', desc: 'Open-source fonts for any web project.' },
+    ],
+    dev: [
+      { name: 'MDN Web Docs',   url: 'https://developer.mozilla.org', icon: '📚', desc: 'The gold standard for HTML, CSS, and JS.' },
+      { name: 'GitHub',         url: 'https://github.com',            icon: '🐙', desc: 'Version control and project hosting.' },
+      { name: 'CodePen',        url: 'https://codepen.io',            icon: '🖊️', desc: 'Browser-based code editor for quick experiments.' },
+      { name: 'Stack Overflow', url: 'https://stackoverflow.com',     icon: '🧱', desc: 'Community Q&A for every coding problem.' },
+      { name: 'Can I Use',      url: 'https://caniuse.com',           icon: '🌐', desc: 'Browser support tables for CSS and JS.' },
+      { name: 'CSS-Tricks',     url: 'https://css-tricks.com',        icon: '✨', desc: 'Tips, tricks, and tutorials for CSS.' },
+    ],
+    ai: [
+      { name: 'Claude',         url: 'https://claude.ai',                       icon: '🤖', desc: 'AI assistant for writing, coding, and research.' },
+      { name: 'ChatGPT',        url: 'https://chatgpt.com',                     icon: '💬', desc: "OpenAI's conversational AI for any task." },
+      { name: 'GitHub Copilot', url: 'https://github.com/features/copilot',    icon: '🧑‍💻', desc: 'AI pair programmer inside your code editor.' },
+      { name: 'Midjourney',     url: 'https://midjourney.com',                 icon: '🖼️', desc: 'AI image generation for creative projects.' },
+      { name: 'Perplexity',     url: 'https://perplexity.ai',                  icon: '🔎', desc: 'AI-powered research and answer engine.' },
+      { name: 'Runway ML',      url: 'https://runwayml.com',                   icon: '🎥', desc: 'AI video generation and editing tools.' },
+    ]
+  }
+};
+
+/* ====================================================
+   THEME
+==================================================== */
+const btn = document.getElementById('theme-btn');
+
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  btn.textContent = isDark ? '☀️' : '🌙';
+  localStorage.setItem('mjc-theme', isDark ? 'light' : 'dark');
+}
+
+// Restore saved theme
+(function() {
+  const saved = localStorage.getItem('mjc-theme');
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    btn.textContent = '🌙';
+  }
+})();
+
+/* ====================================================
+   ROUTER
+==================================================== */
+let route       = 'home';
+let activeClass = 'digital-media';
+let activeSem   = null;
+
+function navigate(r, classId, semId) {
+  route = r;
+  if (classId !== undefined) activeClass = classId;
+  if (semId   !== undefined) activeSem   = semId;
+  document.querySelectorAll('[data-nav]').forEach(b => {
+    b.classList.remove('nav-active');
+    const match = r === 'class-page' ? 'student-work' : r;
+    if (b.dataset.nav === match) b.classList.add('nav-active');
+  });
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ====================================================
+   RENDER
+==================================================== */
+function render() {
+  const views = { home: renderHome, 'student-work': renderStudentWork, 'class-page': renderClassPage, sandbox: renderSandbox, resources: renderResources, about: renderAbout };
+  document.getElementById('app').innerHTML = `<div class="fade-in">${(views[route] || renderHome)()}</div>`;
+}
+
+const iconArrow = `<svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>`;
+const iconBack  = `<svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>`;
+const iconExt   = `<svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>`;
+
+/* ====================================================
+   HOME
+==================================================== */
+function renderHome() {
+  return `
+  <div class="container">
+    <section class="hero">
+      <p class="hero-eyebrow">ICS Bangkok &nbsp;·&nbsp; Applied Technologies &nbsp;·&nbsp; Digital Media &nbsp;·&nbsp; Business</p>
+      <h1>Build it.<br>Design it.<br><span class="hl">Ship it.</span></h1>
+      <p class="hero-body">A gallery and resource hub for students in Applied Technologies, Digital Media, and Business. Browse student work, find tools, and explore what we're building each semester.</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary" onclick="navigate('student-work')">Browse Student Work ${iconArrow}</button>
+        <button class="btn btn-outline" onclick="navigate('resources')">View Resources</button>
+      </div>
+    </section>
+  </div>
+
+  <hr class="divider"/>
+
+  <div class="container">
+    <section style="padding: 48px 0 56px;">
+      <p class="section-eyebrow">Three disciplines</p>
+      <div class="grid-3">
+        ${DATA.classes.map(cls => `
+        <div class="card card-hover-accent dept-card" onclick="navigate('class-page','${cls.id}',null)">
+          <div class="dept-card-icon">${cls.icon}</div>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+            <h3>${cls.label}</h3>
+            <span class="tag ${cls.tagClass}">${cls.semesters.length} sems</span>
+          </div>
+          <p>${cls.desc}</p>
+          <div class="dept-card-link">View work ${iconArrow}</div>
+        </div>
+        `).join('')}
+      </div>
+    </section>
+  </div>
+
+  <hr class="divider"/>
+
+  <div class="container">
+    <section style="padding: 48px 0 72px;">
+      <p class="section-eyebrow">Quick access</p>
+      <div class="grid-2">
+        <div class="card quick-link-card card-hover-accent" onclick="navigate('sandbox')">
+          <div class="quick-link-icon">⚗️</div>
+          <div>
+            <h4>The Sandbox</h4>
+            <p class="muted">Interactive tools and coding experiments for class.</p>
+          </div>
+        </div>
+        <div class="card quick-link-card card-hover-accent" onclick="navigate('resources')">
+          <div class="quick-link-icon">📦</div>
+          <div>
+            <h4>Resources</h4>
+            <p class="muted">Design, dev, and AI tools curated for all three classes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>`;
+}
+
+/* ====================================================
+   STUDENT WORK HUB
+==================================================== */
+function renderStudentWork() {
+  return `
+  <div class="container">
+    <div class="page-header">
+      <p class="section-eyebrow">Browse by discipline</p>
+      <h1>Student Work</h1>
+      <p class="muted">Three disciplines, multiple semesters. Select a class to browse projects and resources.</p>
+    </div>
+    <div class="grid-3" style="padding-bottom:72px;align-items:start;">
+      ${DATA.classes.map(cls => `
+      <div class="card sw-dept-card">
+        <div class="sw-dept-header">
+          <span style="font-size:26px;">${cls.icon}</span>
+          <div>
+            <span class="tag ${cls.tagClass}" style="margin-bottom:4px;display:inline-block;">${cls.label}</span>
+            <p style="font-size:13px;color:var(--text-2);margin-top:2px;">${cls.semesters.reduce((a,s)=>a+s.projects.length,0)} projects total</p>
+          </div>
+        </div>
+        <div class="sw-dept-body">
+          ${cls.semesters.map(sem => `
+          <button class="sw-sem-btn" onclick="navigate('class-page','${cls.id}','${sem.id}')">
+            ${sem.label}
+            <span class="count">${sem.projects.length} projects →</span>
+          </button>
+          `).join('')}
+        </div>
+        <div class="sw-dept-footer">
+          <button onclick="navigate('class-page','${cls.id}',null)">View All Work →</button>
+        </div>
+      </div>
+      `).join('')}
+    </div>
+  </div>`;
+}
+
+/* ====================================================
+   CLASS PAGE
+==================================================== */
+function renderClassPage() {
+  const cls = DATA.classes.find(c => c.id === activeClass) || DATA.classes[0];
+  const sem = activeSem ? cls.semesters.find(s => s.id === activeSem) : cls.semesters[0];
+  if (!sem) return `<div class="container" style="padding:60px 0;text-align:center;color:var(--text-3);">No semester data.</div>`;
+
+  return `
+  <div class="container">
+    <div class="class-page-layout">
+      <aside class="sidebar">
+        <button class="sidebar-back" onclick="navigate('student-work')">${iconBack} All Classes</button>
+        <p class="sidebar-section-label">Department</p>
+        ${DATA.classes.map(c => `
+        <button class="sidebar-link ${c.id === cls.id ? 'active' : ''}" onclick="navigate('class-page','${c.id}',null)">
+          <span>${c.icon}</span> ${c.label}
+        </button>`).join('')}
+        <p class="sidebar-section-label" style="margin-top:20px;">Semesters</p>
+        ${cls.semesters.map(s => `
+        <button class="sidebar-link ${s.id === sem.id ? 'active' : ''}" onclick="navigate('class-page','${cls.id}','${s.id}')">
+          ${s.label} <span class="count">${s.projects.length}</span>
+        </button>`).join('')}
+      </aside>
+
+      <div class="class-main">
+        <div class="class-main-header">
+          <div class="tags">
+            <span class="tag ${cls.tagClass}">${cls.label}</span>
+            <span class="tag tag-slate">${sem.label}</span>
+          </div>
+          <h1>${cls.label}</h1>
+          <p class="muted">${sem.label} · ${sem.projects.length} student projects</p>
+        </div>
+
+        <div class="section-heading">
+          <div class="section-heading-bar" style="background:${cls.accentColor};"></div>
+          Project Gallery
+        </div>
+        <div class="project-grid">
+          ${sem.projects.map(p => `
+          <a href="#" class="card project-card card-hover-accent" onclick="return false;">
+            <div class="project-thumb">${cls.icon}</div>
+            <div class="project-body">
+              <p class="project-type">${p.type}</p>
+              <p class="project-title">${p.title}</p>
+              <p class="project-student">${p.student}</p>
+              <p class="project-desc">${p.desc}</p>
+            </div>
+          </a>`).join('')}
+        </div>
+
+        <div class="section-heading">
+          <div class="section-heading-bar" style="background:var(--border-dark);"></div>
+          Semester Link Library
+        </div>
+        <div class="link-grid">
+          ${sem.links.map(l => `
+          <a href="${l.url}" target="_blank" rel="noopener" class="card link-card card-hover-accent">
+            <div class="link-icon">${l.icon}</div>
+            <div>
+              <h4>${l.label}</h4>
+              <p>${l.desc}</p>
+            </div>
+            <div style="margin-left:auto;color:var(--text-3);flex-shrink:0;">${iconExt}</div>
+          </a>`).join('')}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ====================================================
+   SANDBOX
+==================================================== */
+function renderSandbox() {
+  const tagMap = { CSS:'tag-navy', JS:'tag-yellow', Design:'tag-navy', Dev:'tag-slate' };
+  return `
+  <div class="container">
+    <div class="page-header">
+      <p class="section-eyebrow">Interactive tools</p>
+      <h1>The Sandbox</h1>
+      <p class="muted">Tools, experiments, and interactive demos for class work. Click any card to open.</p>
+    </div>
+    <div class="sandbox-grid" style="padding-bottom:72px;">
+      ${DATA.sandbox.map(t => `
+      <div class="card sandbox-card card-hover-accent">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;">
+          <div class="sandbox-icon">${t.icon}</div>
+          <span class="tag ${tagMap[t.tag]||'tag-slate'}">${t.tag}</span>
+        </div>
+        <h3>${t.title}</h3>
+        <p>${t.desc}</p>
+        <span class="sandbox-open">Open tool →</span>
+      </div>`).join('')}
+    </div>
+  </div>`;
+}
+
+/* ====================================================
+   RESOURCES
+==================================================== */
+function renderResources() {
+  const sections = [
+    { key: 'design', label: '🎨 Design Tools',  desc: 'Visual design, prototyping, and creative software.' },
+    { key: 'dev',    label: '💻 Development',    desc: 'Code references, editors, and developer tools.' },
+    { key: 'ai',     label: '🤖 AI Tools',       desc: 'AI assistants, generators, and productivity tools.' },
+  ];
+  return `
+  <div class="container">
+    <div class="page-header">
+      <p class="section-eyebrow">Curated directory</p>
+      <h1>Resources</h1>
+      <p class="muted">Design, dev, and AI tools curated across all three disciplines.</p>
+    </div>
+    <div style="padding-bottom:72px;">
+      ${sections.map(sec => `
+      <div class="resources-section">
+        <h2>${sec.label}</h2>
+        <p class="desc">${sec.desc}</p>
+        <div class="resource-grid">
+          ${DATA.resources[sec.key].map(r => `
+          <a href="${r.url}" target="_blank" rel="noopener" class="card resource-card card-hover-accent">
+            <div class="resource-icon">${r.icon}</div>
+            <div>
+              <h4>${r.name}</h4>
+              <p>${r.desc}</p>
+            </div>
+            <div style="margin-left:auto;color:var(--text-3);flex-shrink:0;">${iconExt}</div>
+          </a>`).join('')}
+        </div>
+      </div>`).join('')}
+    </div>
+  </div>`;
+}
+
+/* ====================================================
+   ABOUT
+==================================================== */
+function renderAbout() {
+  return `
+  <div class="container">
+    <div class="about-layout">
+      <span class="tag tag-navy" style="margin-bottom:20px;display:inline-block;">About</span>
+      <h1>Teaching tech,<br><span class="hl">one build at a time.</span></h1>
+      <div class="about-body">
+        <p>Hi, I'm Mr Jason — a technology teacher at ICS Bangkok. I teach Applied Technologies, Digital Media, and Business, with a shared belief in learning by doing. Every semester, students ship real projects they're proud of.</p>
+        <p>This site is a gallery, a resource hub, and a living record of what we build together. Students can find links, tools, past projects for inspiration, and everything else they need for class.</p>
+        <p>My teaching philosophy is simple: give students real tools, real constraints, and real creative freedom. The work on this site speaks for itself.</p>
+      </div>
+      <div class="about-classes">
+        ${DATA.classes.map(cls => `
+        <div class="about-class-card">
+          <div class="icon">${cls.icon}</div>
+          <h3>${cls.label}</h3>
+          <p>${cls.desc}</p>
+        </div>`).join('')}
+      </div>
+      <div class="about-contact">
+        <div>
+          <h3>Get in touch</h3>
+          <p class="muted">Questions, feedback, or just want to say hi.</p>
+        </div>
+        <a href="mailto:jason_w@ics.ac.th?subject=Hello from mrjasoncode.com" class="btn btn-accent">Send an Email →</a>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ====================================================
+   MOBILE NAV
+==================================================== */
+function toggleMobileNav() { document.getElementById('mobile-nav').classList.toggle('open'); }
+function closeMobileNav()  { document.getElementById('mobile-nav').classList.remove('open'); }
+
+/* ====================================================
+   BOOT
+==================================================== */
+document.addEventListener('DOMContentLoaded', () => navigate('home'));
+</script>
+</body>
+</html>
