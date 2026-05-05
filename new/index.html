@@ -5,14 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mr Jason Code</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
   <style>
-    /* ============================================
-       THEME TOKENS
-       8  — Chalk + Deep Navy  (light)
-       D1 — Deep Navy Dark     (dark)
-    ============================================ */
-
+    /* ============================================================
+       THEME TOKENS — Chalk + Deep Navy (light) / Deep Navy (dark)
+    ============================================================ */
     :root, [data-theme="light"] {
       --bg:          #FAFBFC;
       --surface:     #FFFFFF;
@@ -28,6 +25,7 @@
       --accent-mid:  #C5D5EA;
       --yellow:      #FFCB47;
       --yellow-light:#FFF6D6;
+      --yellow-dark: #7A5800;
     }
 
     [data-theme="dark"] {
@@ -45,14 +43,14 @@
       --accent-mid:  #1A3A6B;
       --yellow:      #FFCB47;
       --yellow-light:#2A2000;
+      --yellow-dark: #FFCB47;
     }
 
-    /* ============================================
+    /* ============================================================
        RESET & BASE
-    ============================================ */
+    ============================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; scroll-behavior: smooth; }
-
     body {
       font-family: 'Noto Sans', sans-serif;
       background: var(--bg);
@@ -61,27 +59,25 @@
       line-height: 1.5;
       transition: background 0.25s ease, color 0.25s ease;
     }
-
     a { color: inherit; text-decoration: none; }
     button { cursor: pointer; font-family: inherit; border: none; background: none; }
+    svg { display: block; flex-shrink: 0; }
 
-    /* ============================================
+    /* ============================================================
        LAYOUT
-    ============================================ */
+    ============================================================ */
     .container { max-width: 1140px; margin: 0 auto; padding: 0 28px; }
 
-    /* ============================================
-       TYPOGRAPHY
-    ============================================ */
+    /* ============================================================
+       TYPOGRAPHY HELPERS
+    ============================================================ */
     .font-display { font-family: 'Inter', sans-serif; }
     .muted  { color: var(--text-2); }
     .subtle { color: var(--text-3); }
-    .accent { color: var(--accent); }
-    .yellow { color: var(--yellow); }
 
-    /* ============================================
-       BADGES / TAGS
-    ============================================ */
+    /* ============================================================
+       TAGS / BADGES
+    ============================================================ */
     .tag {
       display: inline-flex;
       align-items: center;
@@ -92,16 +88,16 @@
       padding: 3px 10px;
       border-radius: 100px;
       line-height: 1.6;
+      white-space: nowrap;
     }
     .tag-navy   { background: var(--accent-light); color: var(--accent); }
-    .tag-yellow { background: var(--yellow-light);  color: #7A5800; }
+    .tag-yellow { background: var(--yellow-light);  color: var(--yellow-dark); }
     .tag-slate  { background: var(--surface-2);     color: var(--text-2); }
-
     [data-theme="dark"] .tag-yellow { color: var(--yellow); }
 
-    /* ============================================
+    /* ============================================================
        BUTTONS
-    ============================================ */
+    ============================================================ */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -114,30 +110,16 @@
       white-space: nowrap;
       border: 2px solid transparent;
     }
-    .btn-primary {
-      background: var(--text);
-      color: var(--bg);
-      border-color: var(--text);
-    }
+    .btn-primary { background: var(--text); color: var(--bg); border-color: var(--text); }
     .btn-primary:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--text-2);
-      border-color: var(--border-dark);
-    }
+    .btn-outline { background: transparent; color: var(--text-2); border-color: var(--border-dark); }
     .btn-outline:hover { border-color: var(--text); color: var(--text); }
-
-    .btn-accent {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent);
-    }
+    .btn-accent { background: var(--accent); color: #fff; border-color: var(--accent); }
     .btn-accent:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
 
-    /* ============================================
+    /* ============================================================
        CARD
-    ============================================ */
+    ============================================================ */
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -149,14 +131,12 @@
       transform: translateY(-2px);
       border-color: var(--border-dark);
     }
-    [data-theme="dark"] .card:hover {
-      box-shadow: 0 6px 24px rgba(0,0,0,0.35);
-    }
+    [data-theme="dark"] .card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.35); }
     .card-hover-accent:hover { border-color: var(--accent-mid); }
 
-    /* ============================================
+    /* ============================================================
        SECTION EYEBROW
-    ============================================ */
+    ============================================================ */
     .section-eyebrow {
       display: flex;
       align-items: center;
@@ -171,29 +151,50 @@
     .section-eyebrow::before {
       content: '';
       display: inline-block;
-      width: 18px;
-      height: 2px;
+      width: 18px; height: 2px;
       background: var(--yellow);
       border-radius: 2px;
     }
 
-    /* ============================================
+    /* ============================================================
        DIVIDER
-    ============================================ */
+    ============================================================ */
     hr.divider { border: none; border-top: 1px solid var(--border); margin: 0; }
 
-    /* ============================================
+    /* ============================================================
        FADE IN
-    ============================================ */
+    ============================================================ */
     .fade-in { animation: fadeUp 0.3s ease both; }
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(10px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ============================================
+    /* ============================================================
+       LOADING STATE
+    ============================================================ */
+    .loading-screen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+      color: var(--text-3);
+      font-size: 14px;
+      gap: 10px;
+    }
+    .loading-dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 1.2s ease-in-out infinite;
+    }
+    .loading-dot:nth-child(2) { animation-delay: 0.2s; }
+    .loading-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes pulse { 0%, 80%, 100% { opacity: 0.2; } 40% { opacity: 1; } }
+
+    /* ============================================================
        ANNOUNCEMENT BAR
-    ============================================ */
+    ============================================================ */
     .announcement-bar {
       background: var(--accent);
       color: #fff;
@@ -211,9 +212,9 @@
     }
     .announcement-bar a:hover { opacity: 0.85; }
 
-    /* ============================================
+    /* ============================================================
        NAV
-    ============================================ */
+    ============================================================ */
     .nav {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
@@ -250,22 +251,17 @@
       background: var(--accent);
       border-radius: 8px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 800;
+      font-size: 10px; font-weight: 800;
       font-family: 'Inter', sans-serif;
+      letter-spacing: 0.02em;
       color: #fff;
       flex-shrink: 0;
       transition: background 0.25s ease;
+      user-select: none;
     }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2px;
-      list-style: none;
-    }
+    .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
     .nav-links button {
-      font-size: 14px;
-      font-weight: 500;
+      font-size: 14px; font-weight: 500;
       color: var(--text-2);
       padding: 7px 13px;
       border-radius: 8px;
@@ -277,8 +273,6 @@
       color: var(--accent);
       font-weight: 600;
     }
-
-    /* Dark mode toggle */
     .theme-toggle {
       width: 36px; height: 36px;
       border-radius: 8px;
@@ -288,13 +282,10 @@
       border: 1px solid var(--border);
       transition: all 0.18s ease;
       flex-shrink: 0;
-      font-size: 16px;
     }
     .theme-toggle:hover { border-color: var(--border-dark); color: var(--text); }
-
     .nav-contact {
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 13px; font-weight: 600;
       color: var(--text-2);
       background: var(--surface-2);
       border: 1px solid var(--border-dark);
@@ -304,60 +295,43 @@
       white-space: nowrap;
     }
     .nav-contact:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
-
     .nav-mobile-btn {
-      display: none;
-      padding: 8px;
-      border-radius: 8px;
-      color: var(--text);
+      display: none; padding: 8px;
+      border-radius: 8px; color: var(--text);
     }
     .nav-mobile-btn:hover { background: var(--surface-2); }
-    .nav-mobile-btn svg { width: 20px; height: 20px; }
-
     .mobile-nav {
       display: none;
       border-top: 1px solid var(--border);
       background: var(--surface);
       padding: 10px 16px 14px;
-      flex-direction: column;
-      gap: 2px;
+      flex-direction: column; gap: 2px;
     }
     .mobile-nav.open { display: flex; }
     .mobile-nav button {
-      text-align: left;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-2);
-      padding: 10px 12px;
+      text-align: left; font-size: 14px; font-weight: 500;
+      color: var(--text-2); padding: 10px 12px;
       border-radius: 8px;
       transition: background 0.18s ease, color 0.18s ease;
     }
     .mobile-nav button:hover { background: var(--surface-2); color: var(--text); }
 
-    /* ============================================
-       HOME
-    ============================================ */
+    /* ============================================================
+       HOME — HERO
+    ============================================================ */
     .hero { padding: 72px 0 56px; }
-
     .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--text-3);
-      margin-bottom: 20px;
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--text-3); margin-bottom: 20px;
     }
     .hero-eyebrow::before {
       content: '';
       display: inline-block;
       width: 6px; height: 6px;
-      background: var(--yellow);
-      border-radius: 50%;
+      background: var(--yellow); border-radius: 50%;
     }
-
     .hero h1 {
       font-family: 'Inter', sans-serif;
       font-weight: 800;
@@ -368,75 +342,55 @@
       margin-bottom: 22px;
     }
     .hero h1 .hl { color: var(--accent); }
-
     .hero-body {
-      font-size: 17px;
-      color: var(--text-2);
-      line-height: 1.7;
-      max-width: 560px;
-      margin-bottom: 36px;
+      font-size: 17px; color: var(--text-2);
+      line-height: 1.7; max-width: 560px; margin-bottom: 36px;
     }
     .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
 
-    /* Dept cards */
+    /* ============================================================
+       HOME — DEPT CARDS
+    ============================================================ */
     .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
     .dept-card {
       padding: 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+      display: flex; flex-direction: column; gap: 14px;
       cursor: pointer;
     }
     .dept-card-icon {
-      font-size: 26px;
       width: 50px; height: 50px;
       background: var(--surface-2);
       border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
-      transition: background 0.18s ease;
+      color: var(--text-2);
+      transition: background 0.18s ease, color 0.18s ease;
     }
-    .dept-card:hover .dept-card-icon { background: var(--accent-light); }
-    .dept-card h3 {
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 20px;
-      color: var(--text);
-    }
+    .dept-card:hover .dept-card-icon { background: var(--accent-light); color: var(--accent); }
+    .dept-card h3 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 20px; color: var(--text); }
     .dept-card p { font-size: 14px; color: var(--text-2); line-height: 1.6; flex: 1; }
-    .dept-card-link {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--accent);
-    }
+    .dept-card-link { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--accent); }
 
     .quick-link-card {
       padding: 22px 24px;
-      display: flex;
-      align-items: center;
-      gap: 18px;
+      display: flex; align-items: center; gap: 18px;
       cursor: pointer;
     }
     .quick-link-icon {
       width: 46px; height: 46px;
-      background: var(--surface-2);
-      border-radius: 10px;
+      background: var(--surface-2); border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 22px;
-      flex-shrink: 0;
-      transition: background 0.18s ease;
+      color: var(--text-2); flex-shrink: 0;
+      transition: background 0.18s ease, color 0.18s ease;
     }
-    .quick-link-card:hover .quick-link-icon { background: var(--accent-light); }
+    .quick-link-card:hover .quick-link-icon { background: var(--accent-light); color: var(--accent); }
     .quick-link-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
     .quick-link-card p  { font-size: 13px; color: var(--text-2); }
 
-    /* ============================================
+    /* ============================================================
        PAGE HEADER
-    ============================================ */
+    ============================================================ */
     .page-header { padding: 52px 0 40px; }
     .page-header h1 {
       font-family: 'Inter', sans-serif;
@@ -447,37 +401,103 @@
     }
     .page-header p { font-size: 16px; color: var(--text-2); max-width: 520px; }
 
-    /* ============================================
-       STUDENT WORK HUB
-    ============================================ */
-    .sw-dept-card { border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; }
-    .sw-dept-header { padding: 24px 24px 18px; display: flex; align-items: center; gap: 12px; }
-    .sw-dept-body { padding: 0 16px 16px; flex: 1; display: flex; flex-direction: column; }
+    /* ============================================================
+       STUDENT WORK — HUB PAGE
+    ============================================================ */
+    .sw-hub-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding-bottom: 72px;
+      align-items: start;
+    }
+
+    /* Department card on the hub */
+    .sw-dept-card {
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .sw-dept-header {
+      padding: 24px 24px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .sw-dept-header-icon {
+      width: 44px; height: 44px;
+      background: var(--surface-2);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-2);
+      flex-shrink: 0;
+    }
+    .sw-dept-header h3 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .sw-dept-header p { font-size: 12px; color: var(--text-3); }
+
+    /* Semester list inside hub card */
+    .sw-sem-list { padding: 10px 12px; flex: 1; }
     .sw-sem-btn {
       width: 100%; text-align: left;
-      padding: 11px 12px;
+      padding: 10px 12px;
       border-radius: 8px;
-      font-size: 14px; font-weight: 500;
+      font-size: 13px; font-weight: 500;
       color: var(--text-2);
       display: flex; justify-content: space-between; align-items: center;
       transition: background 0.18s ease, color 0.18s ease;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
     }
     .sw-sem-btn:hover { background: var(--accent-light); color: var(--accent); }
-    .sw-sem-btn .count { font-size: 12px; color: var(--text-3); }
-    .sw-dept-footer { padding: 12px 16px 16px; }
+    .sw-sem-btn.current-sem {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .sw-sem-meta {
+      display: flex; align-items: center; gap: 6px;
+    }
+    .sw-sem-count {
+      font-size: 11px;
+      color: var(--text-3);
+      background: var(--surface-2);
+      padding: 1px 7px;
+      border-radius: 100px;
+    }
+    .sw-sem-btn.current-sem .sw-sem-count {
+      background: var(--accent-mid);
+      color: var(--accent);
+    }
+    .sw-dept-footer { padding: 12px 16px 16px; border-top: 1px solid var(--border); }
     .sw-dept-footer button {
-      width: 100%; padding: 10px;
+      width: 100%;
+      padding: 10px 14px;
       border-radius: 10px;
       font-size: 13px; font-weight: 600;
       background: var(--text); color: var(--bg);
       transition: background 0.18s ease;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
     }
     .sw-dept-footer button:hover { background: var(--accent); }
 
-    /* ============================================
-       CLASS PAGE
-    ============================================ */
+    /* Total project count badge */
+    .sw-total-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11px; font-weight: 600;
+      color: var(--text-3);
+      margin-top: 2px;
+    }
+
+    /* ============================================================
+       STUDENT WORK — CLASS PAGE (sidebar layout)
+    ============================================================ */
     .class-page-layout {
       display: flex; gap: 32px;
       padding: 40px 0 72px;
@@ -511,7 +531,20 @@
     .sidebar-link:hover { background: var(--accent-light); color: var(--accent); }
     .sidebar-link.active { background: var(--accent-light); color: var(--accent); font-weight: 600; }
     .sidebar-link .count { margin-left: auto; font-size: 11px; color: var(--text-3); }
-    .sidebar-link.active .count { color: var(--accent); opacity: 0.6; }
+    .sidebar-link.active .count { color: var(--accent); opacity: 0.7; }
+    .sidebar-dept-icon {
+      width: 22px; height: 22px;
+      display: flex; align-items: center; justify-content: center;
+      color: currentColor; flex-shrink: 0;
+    }
+
+    /* Current semester indicator dot */
+    .sem-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--yellow);
+      flex-shrink: 0;
+    }
 
     .class-main { flex: 1; min-width: 0; }
     .class-main-header { margin-bottom: 32px; }
@@ -522,7 +555,6 @@
       font-size: clamp(28px, 4vw, 40px);
       letter-spacing: -0.02em; margin-bottom: 6px;
     }
-
     .section-heading {
       display: flex; align-items: center; gap: 10px;
       font-size: 16px; font-weight: 600;
@@ -541,21 +573,28 @@
       width: 100%; aspect-ratio: 16/10;
       background: var(--surface-2);
       display: flex; align-items: center; justify-content: center;
-      font-size: 30px; position: relative; overflow: hidden;
+      color: var(--text-3);
+      position: relative; overflow: hidden;
     }
+    .project-thumb img { width: 100%; height: 100%; object-fit: cover; }
     .project-thumb::after {
       content: ''; position: absolute; inset: 0;
       background: var(--accent); opacity: 0;
       transition: opacity 0.18s ease;
     }
-    .project-card:hover .project-thumb::after { opacity: 0.07; }
+    .project-card:hover .project-thumb::after { opacity: 0.06; }
     .project-body { padding: 14px; flex: 1; display: flex; flex-direction: column; gap: 4px; }
     .project-type { font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-3); }
     .project-title { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.35; }
     .project-student { font-size: 12px; color: var(--accent); font-weight: 500; }
     .project-desc { font-size: 12px; color: var(--text-2); line-height: 1.5; margin-top: 3px; }
+    .project-link-badge {
+      margin-top: 6px;
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 11px; font-weight: 600; color: var(--accent);
+    }
 
-    /* Link grid */
+    /* Link grid (semester links) */
     .link-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
     .link-card {
       display: flex; align-items: center; gap: 14px;
@@ -565,38 +604,47 @@
       width: 40px; height: 40px;
       background: var(--surface-2); border-radius: 8px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 18px; flex-shrink: 0;
-      transition: background 0.18s ease;
+      color: var(--text-2); flex-shrink: 0;
+      transition: background 0.18s ease, color 0.18s ease;
     }
-    .link-card:hover .link-icon { background: var(--accent-light); }
+    .link-card:hover .link-icon { background: var(--accent-light); color: var(--accent); }
     .link-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
     .link-card p  { font-size: 12px; color: var(--text-2); }
 
-    /* ============================================
+    /* ============================================================
        SANDBOX
-    ============================================ */
+    ============================================================ */
     .sandbox-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; }
     .sandbox-card { padding: 24px; display: flex; flex-direction: column; gap: 12px; cursor: pointer; }
     .sandbox-icon {
       width: 48px; height: 48px; background: var(--surface-2);
       border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 22px; transition: background 0.18s ease;
+      color: var(--text-2);
+      transition: background 0.18s ease, color 0.18s ease;
     }
-    .sandbox-card:hover .sandbox-icon { background: var(--accent-light); }
+    .sandbox-card:hover .sandbox-icon { background: var(--accent-light); color: var(--accent); }
+    .sandbox-card-top { display: flex; align-items: flex-start; justify-content: space-between; }
     .sandbox-card h3 { font-size: 15px; font-weight: 600; }
     .sandbox-card p  { font-size: 13px; color: var(--text-2); line-height: 1.55; flex: 1; }
-    .sandbox-open { font-size: 12px; font-weight: 600; color: var(--accent); }
+    .sandbox-open { font-size: 12px; font-weight: 600; color: var(--accent); display: flex; align-items: center; gap: 4px; }
 
-    /* ============================================
+    /* ============================================================
        RESOURCES
-    ============================================ */
+    ============================================================ */
     .resources-section { margin-bottom: 52px; }
-    .resources-section h2 {
+    .resources-section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+    .resources-section-header h2 {
       font-family: 'Inter', sans-serif;
-      font-weight: 700; font-size: 22px; margin-bottom: 6px;
+      font-weight: 700; font-size: 22px;
     }
-    .resources-section .desc { font-size: 14px; color: var(--text-2); margin-bottom: 18px; }
+    .resources-section-icon {
+      width: 36px; height: 36px;
+      background: var(--surface-2); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-2);
+    }
+    .resources-desc { font-size: 14px; color: var(--text-2); margin-bottom: 18px; }
     .resource-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; }
     .resource-card {
       display: flex; align-items: center; gap: 14px;
@@ -605,15 +653,16 @@
     .resource-icon {
       width: 44px; height: 44px; background: var(--surface-2);
       border-radius: 8px; display: flex; align-items: center; justify-content: center;
-      font-size: 20px; flex-shrink: 0; transition: background 0.18s ease;
+      color: var(--text-2); flex-shrink: 0;
+      transition: background 0.18s ease, color 0.18s ease;
     }
-    .resource-card:hover .resource-icon { background: var(--accent-light); }
+    .resource-card:hover .resource-icon { background: var(--accent-light); color: var(--accent); }
     .resource-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
     .resource-card p  { font-size: 12px; color: var(--text-2); }
 
-    /* ============================================
+    /* ============================================================
        ABOUT
-    ============================================ */
+    ============================================================ */
     .about-layout { max-width: 680px; padding: 52px 0 72px; }
     .about-layout h1 {
       font-family: 'Inter', sans-serif;
@@ -629,7 +678,12 @@
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 12px; padding: 20px;
     }
-    .about-class-card .icon { font-size: 22px; margin-bottom: 10px; }
+    .about-class-icon {
+      width: 36px; height: 36px;
+      background: var(--surface-2); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-2); margin-bottom: 12px;
+    }
     .about-class-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 5px; }
     .about-class-card p  { font-size: 13px; color: var(--text-2); }
     .about-contact {
@@ -641,9 +695,9 @@
     .about-contact h3 { font-size: 16px; font-weight: 600; margin-bottom: 3px; }
     .about-contact p  { font-size: 14px; color: var(--text-2); }
 
-    /* ============================================
+    /* ============================================================
        FOOTER
-    ============================================ */
+    ============================================================ */
     .footer {
       background: var(--surface);
       border-top: 1px solid var(--border);
@@ -659,8 +713,9 @@
     .footer-brand .mark {
       width: 22px; height: 22px; background: var(--accent); border-radius: 5px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 9px; font-weight: 800; color: #fff;
+      font-size: 8px; font-weight: 800; color: #fff;
       font-family: 'Inter', sans-serif;
+      letter-spacing: 0.02em;
       transition: background 0.25s ease;
     }
     .footer-meta { font-size: 12px; color: var(--text-3); text-align: center; }
@@ -668,14 +723,16 @@
     .footer-links a { font-size: 13px; font-weight: 500; color: var(--text-2); transition: color 0.18s ease; }
     .footer-links a:hover { color: var(--accent); }
 
-    /* ============================================
+    /* ============================================================
        RESPONSIVE
-    ============================================ */
+    ============================================================ */
     @media (max-width: 860px) {
       .nav-links, .nav-contact { display: none; }
       .nav-mobile-btn { display: flex; }
       .hero { padding: 48px 0 40px; }
-      .grid-3, .grid-2 { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .sw-hub-grid { grid-template-columns: 1fr; }
       .class-page-layout { flex-direction: column; }
       .sidebar { width: 100%; position: static; }
       .about-classes { grid-template-columns: 1fr; }
@@ -685,17 +742,14 @@
 </head>
 <body>
 
-<!-- ANNOUNCEMENT BAR -->
-<div class="announcement-bar">
-  📢 2nd Semester 2026 projects are now live.
-  <a href="#" onclick="navigate('student-work'); return false;">Browse student work →</a>
-</div>
+<!-- ANNOUNCEMENT BAR (rendered by JS from home.json) -->
+<div id="announcement-bar"></div>
 
 <!-- NAV -->
 <header class="nav">
   <div class="nav-inner">
     <button class="nav-logo" onclick="navigate('home')">
-      <div class="nav-logo-mark">MJ</div>
+      <div class="nav-logo-mark">MJC</div>
       Mr Jason Code
     </button>
     <nav>
@@ -708,10 +762,15 @@
       </ul>
     </nav>
     <div style="display:flex;align-items:center;gap:10px;">
-      <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()" title="Toggle dark mode">☀️</button>
-      <a href="mailto:jason_w@ics.ac.th?subject=Hello" class="nav-contact">Contact</a>
+      <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()" title="Toggle dark mode">
+        <!-- icon set by JS on load -->
+      </button>
+      <a href="mailto:jason_w@ics.ac.th?subject=Hello from mrjasoncode.com" class="nav-contact">Contact</a>
       <button class="nav-mobile-btn" onclick="toggleMobileNav()">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <!-- hamburger icon -->
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
       </button>
     </div>
   </div>
@@ -725,16 +784,22 @@
 </header>
 
 <!-- APP -->
-<main id="app"></main>
+<main id="app">
+  <div class="loading-screen">
+    <div class="loading-dot"></div>
+    <div class="loading-dot"></div>
+    <div class="loading-dot"></div>
+  </div>
+</main>
 
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <div class="mark">MJ</div>
+      <div class="mark">MJC</div>
       Mr Jason Code
     </div>
-    <p class="footer-meta">ICS Bangkok · Applied Technologies · Digital Media · Business · GitHub Pages</p>
+    <p class="footer-meta">ICS Bangkok · Applied Technologies · Digital Media · Business</p>
     <div class="footer-links">
       <a href="#" onclick="navigate('about'); return false;">About</a>
       <a href="#" onclick="navigate('student-work'); return false;">Work</a>
@@ -744,212 +809,195 @@
 </footer>
 
 <script>
-/* ====================================================
-   DATA
-==================================================== */
-const DATA = {
-  classes: [
-    {
-      id: 'digital-media', label: 'Digital Media', icon: '🎨',
-      tagClass: 'tag-navy', accentColor: 'var(--accent)',
-      desc: 'Photoshop, Illustrator, Figma, and visual storytelling.',
-      semesters: [
-        {
-          id: 'dm-fall-2025', label: 'Fall 2025',
-          projects: [
-            { title: 'Brand Identity Design',    student: 'Aisha K.',  type: 'Photoshop / Illustrator', desc: 'Complete brand system for a fictional Bangkok café — logo, color palette, and typography.' },
-            { title: 'Photo Manipulation Series',student: 'Marco T.',  type: 'Photoshop',               desc: '5-piece surrealist series combining photography and digital illustration.' },
-            { title: 'Movie Poster Redesign',    student: 'Priya S.',  type: 'Illustrator',             desc: 'Minimalist vector reimagining of three classic film posters.' },
-            { title: 'UX Case Study: MRT App',   student: 'James L.',  type: 'Figma',                   desc: 'End-to-end UX research and redesign of the Bangkok MRT mobile app.' },
-            { title: 'Digital Magazine Layout',  student: 'Sofia R.',  type: 'InDesign',                desc: '12-page digital magazine covering Southeast Asian street food culture.' },
-            { title: 'Social Media Campaign',    student: 'Ben W.',    type: 'Canva',                   desc: 'Coordinated 30-day campaign for a student-run fashion brand.' },
-          ],
-          links: [
-            { label: 'Adobe Creative Cloud', url: 'https://creativecloud.adobe.com', icon: '🖌️', desc: 'Photoshop, Illustrator, InDesign & more.' },
-            { label: 'Figma',      url: 'https://figma.com',        icon: '🔷', desc: 'Collaborative UI/UX design and prototyping.' },
-            { label: 'Unsplash',   url: 'https://unsplash.com',     icon: '📷', desc: 'Free high-resolution stock photography.' },
-            { label: 'Google Fonts', url: 'https://fonts.google.com', icon: '🔤', desc: 'Open-source fonts for any project.' },
-          ]
-        },
-        {
-          id: 'dm-spring-2025', label: 'Spring 2025',
-          projects: [
-            { title: 'Typography Poster Series', student: 'Lena M.', type: 'Illustrator', desc: '6 expressive typographic posters exploring emotion and form.' },
-            { title: 'Infographic: Climate Data',student: 'Omar F.', type: 'Canva',       desc: 'Visualizing 50 years of Bangkok climate data for a general audience.' },
-            { title: 'App Icon System',          student: 'Yuna C.', type: 'Figma',       desc: 'Cohesive suite of 20 app icons for a productivity platform.' },
-          ],
-          links: [
-            { label: 'Behance',    url: 'https://behance.net',  icon: '💼', desc: 'Design portfolio inspiration.' },
-            { label: 'Coolors.co', url: 'https://coolors.co',   icon: '🎨', desc: 'Fast color palette generation.' },
-          ]
-        }
-      ]
-    },
-    {
-      id: 'applied-tech', label: 'Applied Technologies', icon: '💻',
-      tagClass: 'tag-yellow', accentColor: 'var(--yellow)',
-      desc: 'HTML, CSS, JavaScript, APIs, and full web projects.',
-      semesters: [
-        {
-          id: 'at-fall-2025', label: 'Fall 2025',
-          projects: [
-            { title: 'Personal Portfolio Site',       student: 'Kai T.',   type: 'HTML / CSS / JS', desc: 'Fully responsive portfolio with projects, skills, and contact form.' },
-            { title: 'Weather Dashboard',             student: 'Nina B.',  type: 'JS / API',         desc: 'Real-time weather app using OpenWeather API with 5-day forecast.' },
-            { title: 'To-Do App with Local Storage',  student: 'Arjun P.', type: 'Vanilla JS',       desc: 'Task manager with categories, due dates, and persistent storage.' },
-            { title: 'Restaurant Landing Page',       student: 'Chloe D.', type: 'HTML / CSS',       desc: 'Pixel-perfect restaurant site with menu, gallery, and reservation form.' },
-            { title: 'JavaScript Quiz Engine',        student: 'Sam H.',   type: 'JavaScript',       desc: 'Dynamic quiz app with scoring, timer, and shareable results.' },
-            { title: 'CSS Art: Cityscape',            student: 'Mia K.',   type: 'CSS Only',          desc: 'Animated Bangkok cityscape built entirely with CSS.' },
-          ],
-          links: [
-            { label: 'MDN Web Docs', url: 'https://developer.mozilla.org', icon: '📚', desc: 'The gold-standard HTML, CSS, and JS reference.' },
-            { label: 'CodePen',  url: 'https://codepen.io',  icon: '🖊️', desc: 'Online editor for front-end experiments.' },
-            { label: 'GitHub',   url: 'https://github.com',  icon: '🐙', desc: 'Version control and project hosting.' },
-            { label: 'CSS-Tricks', url: 'https://css-tricks.com', icon: '✨', desc: 'Tips and tutorials for CSS.' },
-          ]
-        },
-        {
-          id: 'at-spring-2025', label: 'Spring 2025',
-          projects: [
-            { title: 'Interactive Story Game', student: 'Leo V.', type: 'HTML / JS',  desc: 'Branching text adventure with 12 unique endings in vanilla JS.' },
-            { title: 'Band Website',           student: 'Rin S.', type: 'HTML / CSS', desc: 'Multi-page site with embedded audio player and tour dates.' },
-            { title: 'Flashcard Study App',    student: 'Teo A.', type: 'JavaScript', desc: 'Spaced repetition app with custom deck creation and progress tracking.' },
-          ],
-          links: [
-            { label: 'W3Schools',      url: 'https://w3schools.com',     icon: '🌐', desc: 'Beginner-friendly web tutorials.' },
-            { label: 'Flexbox Froggy', url: 'https://flexboxfroggy.com', icon: '🐸', desc: 'Learn Flexbox through a fun game.' },
-          ]
-        }
-      ]
-    },
-    {
-      id: 'business', label: 'Business', icon: '📊',
-      tagClass: 'tag-slate', accentColor: 'var(--text-2)',
-      desc: 'Business plans, pitch decks, market research, and financial models.',
-      semesters: [
-        {
-          id: 'biz-fall-2025', label: 'Fall 2025',
-          projects: [
-            { title: 'Startup Business Plan',  student: 'Grace L.', type: 'Docs / Slides',  desc: 'Full business plan for a student-run sustainable clothing brand.' },
-            { title: 'Market Research Report', student: 'Ivan T.',  type: 'Sheets / Docs',  desc: 'Consumer survey and competitive analysis for a bubble tea concept.' },
-            { title: 'Pitch Deck: EdTech App', student: 'Anika R.', type: 'Canva / Slides', desc: '10-slide investor pitch deck for an AI-powered homework helper.' },
-            { title: 'Financial Projections',  student: 'Chris M.', type: 'Google Sheets',  desc: '3-year P&L and cash flow model for a food truck business.' },
-          ],
-          links: [
-            { label: 'Google Workspace', url: 'https://workspace.google.com', icon: '📋', desc: 'Docs, Sheets, Slides for collaborative work.' },
-            { label: 'Canva',       url: 'https://canva.com',        icon: '🎨', desc: 'Easy presentation and report design.' },
-            { label: 'Statista',    url: 'https://statista.com',     icon: '📊', desc: 'Market research and industry statistics.' },
-            { label: 'Investopedia', url: 'https://investopedia.com', icon: '💰', desc: 'Finance and business concepts explained.' },
-          ]
-        }
-      ]
-    }
-  ],
+/* ====================================================================
+   ICON LIBRARY — all icons are inline SVG, no emojis
+   Add new icons here as needed. Icons are referenced by name string.
+==================================================================== */
+const ICONS = {
+  /* Department / category icons */
+  code: `<svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>`,
+  palette: `<svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>`,
+  briefcase: `<svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>`,
+  flask: `<svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>`,
+  book: `<svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>`,
+  chip: `<svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1" stroke-width="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 9H5M7 12H5M7 15H5M17 9h2M17 12h2M17 15h2M9 7V5M12 7V5M15 7V5M9 19v-2M12 19v-2M15 19v-2"/></svg>`,
 
-  sandbox: [
-    { title: 'CSS Animation Playground', desc: 'Experiment with keyframes, transitions, and transforms live.',   icon: '🎬', tag: 'CSS' },
-    { title: 'JS DOM Explorer',          desc: 'Interactive demos for selecting and manipulating DOM elements.', icon: '🌳', tag: 'JS' },
-    { title: 'Color Palette Generator',  desc: 'Generate harmonious palettes and export as CSS variables.',      icon: '🎨', tag: 'Design' },
-    { title: 'Flexbox Visualizer',       desc: 'Live preview of all Flexbox properties with toggleable controls.',icon: '📐', tag: 'CSS' },
-    { title: 'API Fetch Tester',         desc: 'Make GET requests to any public API and inspect the response.',  icon: '🔗', tag: 'JS' },
-    { title: 'Typography Scale Builder', desc: 'Build a modular type scale and export CSS custom properties.',   icon: '🔤', tag: 'Design' },
-    { title: 'Grid Layout Builder',      desc: 'Visually create CSS Grid templates with live code output.',      icon: '▦',  tag: 'CSS' },
-    { title: 'Regex Tester',             desc: 'Write and test regular expressions with live match highlighting.',icon: '🔍', tag: 'Dev' },
-  ],
+  /* Tool / sandbox icons */
+  animation: `<svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+  flex: `<svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="6" width="5" height="12" rx="1" stroke-width="2"/><rect x="10" y="6" width="5" height="12" rx="1" stroke-width="2"/><rect x="17" y="6" width="4" height="12" rx="1" stroke-width="2"/></svg>`,
+  grid: `<svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1" stroke-width="2"/><rect x="13" y="3" width="8" height="8" rx="1" stroke-width="2"/><rect x="3" y="13" width="8" height="8" rx="1" stroke-width="2"/><rect x="13" y="13" width="8" height="8" rx="1" stroke-width="2"/></svg>`,
+  type: `<svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"/></svg>`,
+  link: `<svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>`,
+  search: `<svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>`,
 
-  resources: {
-    design: [
-      { name: 'Figma',               url: 'https://figma.com',                   icon: '🔷', desc: 'Collaborative UI/UX design and prototyping.' },
-      { name: 'Adobe Creative Cloud', url: 'https://creativecloud.adobe.com',    icon: '🖌️', desc: 'Photoshop, Illustrator, InDesign, Premiere & more.' },
-      { name: 'Canva',               url: 'https://canva.com',                   icon: '✏️', desc: 'Easy drag-and-drop design for all skill levels.' },
-      { name: 'Coolors',             url: 'https://coolors.co',                  icon: '🎨', desc: 'Instant color palette generation.' },
-      { name: 'Unsplash',            url: 'https://unsplash.com',                icon: '📷', desc: 'Free beautiful stock photos.' },
-      { name: 'Google Fonts',        url: 'https://fonts.google.com',            icon: '🔤', desc: 'Open-source fonts for any web project.' },
-    ],
-    dev: [
-      { name: 'MDN Web Docs',   url: 'https://developer.mozilla.org', icon: '📚', desc: 'The gold standard for HTML, CSS, and JS.' },
-      { name: 'GitHub',         url: 'https://github.com',            icon: '🐙', desc: 'Version control and project hosting.' },
-      { name: 'CodePen',        url: 'https://codepen.io',            icon: '🖊️', desc: 'Browser-based code editor for quick experiments.' },
-      { name: 'Stack Overflow', url: 'https://stackoverflow.com',     icon: '🧱', desc: 'Community Q&A for every coding problem.' },
-      { name: 'Can I Use',      url: 'https://caniuse.com',           icon: '🌐', desc: 'Browser support tables for CSS and JS.' },
-      { name: 'CSS-Tricks',     url: 'https://css-tricks.com',        icon: '✨', desc: 'Tips, tricks, and tutorials for CSS.' },
-    ],
-    ai: [
-      { name: 'Claude',         url: 'https://claude.ai',                       icon: '🤖', desc: 'AI assistant for writing, coding, and research.' },
-      { name: 'ChatGPT',        url: 'https://chatgpt.com',                     icon: '💬', desc: "OpenAI's conversational AI for any task." },
-      { name: 'GitHub Copilot', url: 'https://github.com/features/copilot',    icon: '🧑‍💻', desc: 'AI pair programmer inside your code editor.' },
-      { name: 'Midjourney',     url: 'https://midjourney.com',                 icon: '🖼️', desc: 'AI image generation for creative projects.' },
-      { name: 'Perplexity',     url: 'https://perplexity.ai',                  icon: '🔎', desc: 'AI-powered research and answer engine.' },
-      { name: 'Runway ML',      url: 'https://runwayml.com',                   icon: '🎥', desc: 'AI video generation and editing tools.' },
-    ]
-  }
+  /* Resource / link card icons */
+  docs: `<svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>`,
+  pen: `<svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>`,
+  image: `<svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>`,
+  layers: `<svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2l9 4.5-9 4.5-9-4.5L12 2zm0 9l9 4.5-9 4.5-9-4.5L12 11zm0 9l9-4.5-9-4.5-9 4.5L12 20z"/></svg>`,
+  star: `<svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>`,
+  circle: `<svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke-width="2"/></svg>`,
+  chart: `<svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>`,
+  check: `<svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+  github: `<svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>`,
+
+  /* UI chrome */
+  arrow: `<svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>`,
+  back: `<svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>`,
+  external: `<svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>`,
+  sun: `<svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>`,
+  moon: `<svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>`,
 };
 
-/* ====================================================
+function icon(name, size) {
+  const svg = ICONS[name] || ICONS.star;
+  if (!size) return svg;
+  return svg.replace(/width="\d+"/, `width="${size}"`).replace(/height="\d+"/, `height="${size}"`);
+}
+
+/* ====================================================================
+   DATA — loaded async from /data/*.json
+==================================================================== */
+let DATA = {};
+
+async function loadAllData() {
+  const files = ['home', 'studentwork', 'sandbox', 'resources', 'about'];
+  try {
+    const results = await Promise.all(
+      files.map(f =>
+        fetch(`data/${f}.json`)
+          .then(r => { if (!r.ok) throw new Error(`Failed: data/${f}.json`); return r.json(); })
+      )
+    );
+    files.forEach((f, i) => { DATA[f] = results[i]; });
+  } catch (err) {
+    console.error('Data load error:', err);
+    document.getElementById('app').innerHTML =
+      `<div style="padding:80px 28px;text-align:center;color:var(--text-2);">
+        <p style="font-size:15px;">Could not load site data. Make sure you're serving this from a web server (not file://).</p>
+        <p style="font-size:13px;margin-top:8px;color:var(--text-3);">Try: <code>npx serve .</code> or upload to GitHub Pages.</p>
+       </div>`;
+    return false;
+  }
+  return true;
+}
+
+/* ====================================================================
    THEME
-==================================================== */
-const btn = document.getElementById('theme-btn');
+==================================================================== */
+const themeBtn = document.getElementById('theme-btn');
+
+function setThemeIcon(isDark) {
+  themeBtn.innerHTML = isDark ? ICONS.moon : ICONS.sun;
+}
 
 function toggleTheme() {
-  const html = document.documentElement;
-  const isDark = html.getAttribute('data-theme') === 'dark';
-  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-  btn.textContent = isDark ? '☀️' : '🌙';
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  setThemeIcon(!isDark);
   localStorage.setItem('mjc-theme', isDark ? 'light' : 'dark');
 }
 
-// Restore saved theme
-(function() {
+(function initTheme() {
   const saved = localStorage.getItem('mjc-theme');
-  if (saved === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    btn.textContent = '🌙';
-  }
+  const isDark = saved === 'dark';
+  if (isDark) document.documentElement.setAttribute('data-theme', 'dark');
+  // Icon set after DOM ready
+  document.addEventListener('DOMContentLoaded', () => setThemeIcon(isDark));
 })();
 
-/* ====================================================
+/* ====================================================================
    ROUTER
-==================================================== */
-let route       = 'home';
-let activeClass = 'digital-media';
-let activeSem   = null;
+==================================================================== */
+let currentRoute   = 'home';
+let activeDeptId   = null;   // set when entering a class page
+let activeSemId    = null;   // set when entering a specific semester
 
-function navigate(r, classId, semId) {
-  route = r;
-  if (classId !== undefined) activeClass = classId;
-  if (semId   !== undefined) activeSem   = semId;
-  document.querySelectorAll('[data-nav]').forEach(b => {
-    b.classList.remove('nav-active');
-    const match = r === 'class-page' ? 'student-work' : r;
-    if (b.dataset.nav === match) b.classList.add('nav-active');
+function navigate(route, deptId, semId) {
+  currentRoute = route;
+  if (deptId !== undefined) activeDeptId = deptId;
+  if (semId  !== undefined) activeSemId  = semId;
+
+  // Update nav active states
+  document.querySelectorAll('[data-nav]').forEach(btn => {
+    btn.classList.remove('nav-active');
+    const match = (route === 'class-page') ? 'student-work' : route;
+    if (btn.dataset.nav === match) btn.classList.add('nav-active');
   });
+
   render();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-/* ====================================================
-   RENDER
-==================================================== */
+/* ====================================================================
+   RENDER DISPATCHER
+==================================================================== */
 function render() {
-  const views = { home: renderHome, 'student-work': renderStudentWork, 'class-page': renderClassPage, sandbox: renderSandbox, resources: renderResources, about: renderAbout };
-  document.getElementById('app').innerHTML = `<div class="fade-in">${(views[route] || renderHome)()}</div>`;
+  const views = {
+    'home':         renderHome,
+    'student-work': renderStudentWork,
+    'class-page':   renderClassPage,
+    'sandbox':      renderSandbox,
+    'resources':    renderResources,
+    'about':        renderAbout,
+  };
+  const viewFn = views[currentRoute] || renderHome;
+  document.getElementById('app').innerHTML = `<div class="fade-in">${viewFn()}</div>`;
 }
 
-const iconArrow = `<svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>`;
-const iconBack  = `<svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>`;
-const iconExt   = `<svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>`;
-
-/* ====================================================
+/* ====================================================================
    HOME
-==================================================== */
+==================================================================== */
 function renderHome() {
+  const { announcement, hero, quickLinks } = DATA.home;
+  const { departments } = DATA.studentwork;
+
+  // Announcement bar
+  const bar = document.getElementById('announcement-bar');
+  if (announcement && announcement.active) {
+    bar.style.display = '';
+    bar.innerHTML = `${announcement.message}
+      <a href="#" onclick="navigate('${announcement.linkTarget}'); return false;">${announcement.linkText}</a>`;
+  } else {
+    bar.style.display = 'none';
+  }
+
+  const headline = hero.headline.map((line, i) =>
+    i === hero.accentLineIndex ? `<span class="hl">${line}</span>` : line
+  ).join('<br>');
+
+  const deptCards = departments.map(dept => {
+    const totalProjects = dept.semesters.reduce((acc, s) => acc + s.projects.length, 0);
+    const semCount = dept.semesters.length;
+    return `
+    <div class="card card-hover-accent dept-card" onclick="navigate('class-page','${dept.id}',null)">
+      <div class="dept-card-icon">${icon(dept.icon)}</div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <h3>${dept.label}</h3>
+        <span class="tag ${dept.tagClass}">${semCount} sem${semCount !== 1 ? 's' : ''}</span>
+      </div>
+      <p>${dept.description}</p>
+      <div class="dept-card-link">View work ${ICONS.arrow}</div>
+    </div>`;
+  }).join('');
+
+  const quickLinkCards = quickLinks.map(ql => `
+    <div class="card quick-link-card card-hover-accent" onclick="navigate('${ql.target}')">
+      <div class="quick-link-icon">${icon(ql.icon)}</div>
+      <div>
+        <h4>${ql.title}</h4>
+        <p>${ql.desc}</p>
+      </div>
+    </div>`).join('');
+
   return `
   <div class="container">
     <section class="hero">
-      <p class="hero-eyebrow">ICS Bangkok &nbsp;·&nbsp; Applied Technologies &nbsp;·&nbsp; Digital Media &nbsp;·&nbsp; Business</p>
-      <h1>Design it.<br>Build it.<br><span class="hl">Show it.</span></h1>
-      <p class="hero-body">A gallery and resource center for students in business and technology. Browse student work, find tools, and explore what we're designing and building.</p>
+      <p class="hero-eyebrow">${hero.eyebrow}</p>
+      <h1>${headline}</h1>
+      <p class="hero-body">${hero.body}</p>
       <div class="hero-cta">
-        <button class="btn btn-primary" onclick="navigate('student-work')">Browse Student Work ${iconArrow}</button>
+        <button class="btn btn-primary" onclick="navigate('student-work')">Browse Student Work ${ICONS.arrow}</button>
         <button class="btn btn-outline" onclick="navigate('resources')">View Resources</button>
       </div>
     </section>
@@ -958,195 +1006,260 @@ function renderHome() {
   <hr class="divider"/>
 
   <div class="container">
-    <section style="padding: 48px 0 56px;">
+    <section style="padding:48px 0 56px;">
       <p class="section-eyebrow">Three disciplines</p>
-      <div class="grid-3">
-        ${DATA.classes.map(cls => `
-        <div class="card card-hover-accent dept-card" onclick="navigate('class-page','${cls.id}',null)">
-          <div class="dept-card-icon">${cls.icon}</div>
-          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-            <h3>${cls.label}</h3>
-            <span class="tag ${cls.tagClass}">${cls.semesters.length} sems</span>
-          </div>
-          <p>${cls.desc}</p>
-          <div class="dept-card-link">View work ${iconArrow}</div>
-        </div>
-        `).join('')}
-      </div>
+      <div class="grid-3">${deptCards}</div>
     </section>
   </div>
 
   <hr class="divider"/>
 
   <div class="container">
-    <section style="padding: 48px 0 72px;">
+    <section style="padding:48px 0 72px;">
       <p class="section-eyebrow">Quick access</p>
-      <div class="grid-2">
-        <div class="card quick-link-card card-hover-accent" onclick="navigate('sandbox')">
-          <div class="quick-link-icon">⚗️</div>
-          <div>
-            <h4>The Sandbox</h4>
-            <p class="muted">Interactive tools and coding experiments for class.</p>
-          </div>
-        </div>
-        <div class="card quick-link-card card-hover-accent" onclick="navigate('resources')">
-          <div class="quick-link-icon">📦</div>
-          <div>
-            <h4>Resources</h4>
-            <p class="muted">Design, dev, and AI tools curated for all three classes.</p>
-          </div>
-        </div>
-      </div>
+      <div class="grid-2">${quickLinkCards}</div>
     </section>
   </div>`;
 }
 
-/* ====================================================
-   STUDENT WORK HUB
-==================================================== */
+/* ====================================================================
+   STUDENT WORK — HUB
+   Shows all departments, with each semester listed and project counts.
+==================================================================== */
 function renderStudentWork() {
+  const { departments } = DATA.studentwork;
+
+  const deptCards = departments.map(dept => {
+    const totalProjects = dept.semesters.reduce((acc, s) => acc + s.projects.length, 0);
+    const currentSem = dept.semesters.find(s => s.current);
+
+    const semList = dept.semesters.map(sem => {
+      const isCurrent = sem.current;
+      return `
+      <button class="sw-sem-btn ${isCurrent ? 'current-sem' : ''}"
+              onclick="navigate('class-page','${dept.id}','${sem.id}')">
+        <span style="display:flex;align-items:center;gap:6px;">
+          ${isCurrent ? '<span class="sem-dot"></span>' : ''}
+          ${sem.label}
+        </span>
+        <span class="sw-sem-meta">
+          <span class="sw-sem-count">${sem.projects.length} projects</span>
+          ${ICONS.arrow}
+        </span>
+      </button>`;
+    }).join('');
+
+    return `
+    <div class="card sw-dept-card">
+      <div class="sw-dept-header">
+        <div class="sw-dept-header-icon">${icon(dept.icon)}</div>
+        <div>
+          <h3>${dept.label}</h3>
+          <p>${totalProjects} projects across ${dept.semesters.length} semester${dept.semesters.length !== 1 ? 's' : ''}</p>
+        </div>
+      </div>
+      <div class="sw-sem-list">${semList}</div>
+      <div class="sw-dept-footer">
+        <button onclick="navigate('class-page','${dept.id}',null)">
+          All ${dept.shortLabel} Work ${ICONS.arrow}
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+
   return `
   <div class="container">
     <div class="page-header">
       <p class="section-eyebrow">Browse by discipline</p>
       <h1>Student Work</h1>
-      <p class="muted">Three disciplines, multiple semesters. Select a class to browse projects and resources.</p>
+      <p class="muted">Select a class and semester to browse projects. The yellow dot marks the current semester.</p>
     </div>
-    <div class="grid-3" style="padding-bottom:72px;align-items:start;">
-      ${DATA.classes.map(cls => `
-      <div class="card sw-dept-card">
-        <div class="sw-dept-header">
-          <span style="font-size:26px;">${cls.icon}</span>
-          <div>
-            <span class="tag ${cls.tagClass}" style="margin-bottom:4px;display:inline-block;">${cls.label}</span>
-            <p style="font-size:13px;color:var(--text-2);margin-top:2px;">${cls.semesters.reduce((a,s)=>a+s.projects.length,0)} projects total</p>
-          </div>
-        </div>
-        <div class="sw-dept-body">
-          ${cls.semesters.map(sem => `
-          <button class="sw-sem-btn" onclick="navigate('class-page','${cls.id}','${sem.id}')">
-            ${sem.label}
-            <span class="count">${sem.projects.length} projects →</span>
-          </button>
-          `).join('')}
-        </div>
-        <div class="sw-dept-footer">
-          <button onclick="navigate('class-page','${cls.id}',null)">View All Work →</button>
-        </div>
-      </div>
-      `).join('')}
-    </div>
+    <div class="sw-hub-grid">${deptCards}</div>
   </div>`;
 }
 
-/* ====================================================
-   CLASS PAGE
-==================================================== */
+/* ====================================================================
+   CLASS PAGE — Sidebar + Project Gallery + Semester Links
+==================================================================== */
 function renderClassPage() {
-  const cls = DATA.classes.find(c => c.id === activeClass) || DATA.classes[0];
-  const sem = activeSem ? cls.semesters.find(s => s.id === activeSem) : cls.semesters[0];
-  if (!sem) return `<div class="container" style="padding:60px 0;text-align:center;color:var(--text-3);">No semester data.</div>`;
+  const { departments } = DATA.studentwork;
+  const dept = departments.find(d => d.id === activeDeptId) || departments[0];
+
+  // Default to the current semester, or the most recent
+  let sem;
+  if (activeSemId) {
+    sem = dept.semesters.find(s => s.id === activeSemId);
+  }
+  if (!sem) {
+    sem = dept.semesters.find(s => s.current) || dept.semesters[0];
+  }
+
+  if (!sem) {
+    return `<div class="container" style="padding:60px 0;text-align:center;color:var(--text-3);">No semester data found.</div>`;
+  }
+
+  // Sidebar: department switcher
+  const deptLinks = departments.map(d => `
+    <button class="sidebar-link ${d.id === dept.id ? 'active' : ''}"
+            onclick="navigate('class-page','${d.id}',null)">
+      <span class="sidebar-dept-icon">${icon(d.icon, 18)}</span>
+      ${d.shortLabel}
+    </button>`).join('');
+
+  // Sidebar: semester switcher for current dept
+  const semLinks = dept.semesters.map(s => `
+    <button class="sidebar-link ${s.id === sem.id ? 'active' : ''}"
+            onclick="navigate('class-page','${dept.id}','${s.id}')">
+      ${s.current ? '<span class="sem-dot"></span>' : ''}
+      ${s.label}
+      <span class="count">${s.projects.length}</span>
+    </button>`).join('');
+
+  // Project grid
+  const projects = sem.projects.map(p => {
+    const thumbContent = p.thumb
+      ? `<img src="${p.thumb}" alt="${p.title}" loading="lazy"/>`
+      : `<div style="opacity:0.25;">${icon(dept.icon, 32)}</div>`;
+
+    const linkBadge = p.url
+      ? `<span class="project-link-badge">${ICONS.external} View project</span>`
+      : '';
+
+    const Tag = p.url ? 'a' : 'div';
+    const linkAttr = p.url ? `href="${p.url}" target="_blank" rel="noopener"` : '';
+
+    return `
+    <${Tag} ${linkAttr} class="card project-card card-hover-accent">
+      <div class="project-thumb">${thumbContent}</div>
+      <div class="project-body">
+        <p class="project-type">${p.type}</p>
+        <p class="project-title">${p.title}</p>
+        <p class="project-student">${p.student}</p>
+        <p class="project-desc">${p.desc}</p>
+        ${linkBadge}
+      </div>
+    </${Tag}>`;
+  }).join('');
+
+  // Semester links
+  const linkCards = sem.links.map(l => `
+    <a href="${l.url}" target="_blank" rel="noopener" class="card link-card card-hover-accent">
+      <div class="link-icon">${icon(l.icon)}</div>
+      <div style="flex:1;min-width:0;">
+        <h4>${l.label}</h4>
+        <p>${l.desc}</p>
+      </div>
+      <div style="color:var(--text-3);flex-shrink:0;">${ICONS.external}</div>
+    </a>`).join('');
+
+  // Accent bar color per dept
+  const accentBarColor = dept.colorToken === 'yellow' ? 'var(--yellow)' : 'var(--accent)';
 
   return `
   <div class="container">
     <div class="class-page-layout">
+
       <aside class="sidebar">
-        <button class="sidebar-back" onclick="navigate('student-work')">${iconBack} All Classes</button>
+        <button class="sidebar-back" onclick="navigate('student-work')">
+          ${ICONS.back} All Classes
+        </button>
         <p class="sidebar-section-label">Department</p>
-        ${DATA.classes.map(c => `
-        <button class="sidebar-link ${c.id === cls.id ? 'active' : ''}" onclick="navigate('class-page','${c.id}',null)">
-          <span>${c.icon}</span> ${c.label}
-        </button>`).join('')}
+        ${deptLinks}
         <p class="sidebar-section-label" style="margin-top:20px;">Semesters</p>
-        ${cls.semesters.map(s => `
-        <button class="sidebar-link ${s.id === sem.id ? 'active' : ''}" onclick="navigate('class-page','${cls.id}','${s.id}')">
-          ${s.label} <span class="count">${s.projects.length}</span>
-        </button>`).join('')}
+        ${semLinks}
       </aside>
 
       <div class="class-main">
         <div class="class-main-header">
           <div class="tags">
-            <span class="tag ${cls.tagClass}">${cls.label}</span>
+            <span class="tag ${dept.tagClass}">${dept.label}</span>
             <span class="tag tag-slate">${sem.label}</span>
+            ${sem.current ? '<span class="tag tag-yellow">Current</span>' : ''}
           </div>
-          <h1>${cls.label}</h1>
-          <p class="muted">${sem.label} · ${sem.projects.length} student projects</p>
+          <h1>${dept.label}</h1>
+          <p class="muted">${sem.label} &nbsp;·&nbsp; ${sem.projects.length} student project${sem.projects.length !== 1 ? 's' : ''}</p>
         </div>
 
         <div class="section-heading">
-          <div class="section-heading-bar" style="background:${cls.accentColor};"></div>
+          <div class="section-heading-bar" style="background:${accentBarColor};"></div>
           Project Gallery
         </div>
-        <div class="project-grid">
-          ${sem.projects.map(p => `
-          <a href="#" class="card project-card card-hover-accent" onclick="return false;">
-            <div class="project-thumb">${cls.icon}</div>
-            <div class="project-body">
-              <p class="project-type">${p.type}</p>
-              <p class="project-title">${p.title}</p>
-              <p class="project-student">${p.student}</p>
-              <p class="project-desc">${p.desc}</p>
-            </div>
-          </a>`).join('')}
-        </div>
+        <div class="project-grid">${projects}</div>
 
-        <div class="section-heading">
+        ${sem.links.length > 0 ? `
+        <div class="section-heading" style="margin-top:8px;">
           <div class="section-heading-bar" style="background:var(--border-dark);"></div>
-          Semester Link Library
+          Semester Resources
         </div>
-        <div class="link-grid">
-          ${sem.links.map(l => `
-          <a href="${l.url}" target="_blank" rel="noopener" class="card link-card card-hover-accent">
-            <div class="link-icon">${l.icon}</div>
-            <div>
-              <h4>${l.label}</h4>
-              <p>${l.desc}</p>
-            </div>
-            <div style="margin-left:auto;color:var(--text-3);flex-shrink:0;">${iconExt}</div>
-          </a>`).join('')}
-        </div>
+        <div class="link-grid" style="margin-bottom:72px;">${linkCards}</div>
+        ` : ''}
       </div>
+
     </div>
   </div>`;
 }
 
-/* ====================================================
+/* ====================================================================
    SANDBOX
-==================================================== */
+==================================================================== */
 function renderSandbox() {
-  const tagMap = { CSS:'tag-navy', JS:'tag-yellow', Design:'tag-navy', Dev:'tag-slate' };
+  const { tools } = DATA.sandbox;
+  const tagMap = { CSS: 'tag-navy', JS: 'tag-yellow', Design: 'tag-navy', Dev: 'tag-slate', AI: 'tag-slate' };
+
+  const cards = tools.map(t => {
+    const cardInner = `
+    <div class="sandbox-card-top">
+      <div class="sandbox-icon">${icon(t.icon)}</div>
+      <span class="tag ${tagMap[t.tag] || 'tag-slate'}">${t.tag}</span>
+    </div>
+    <h3>${t.title}</h3>
+    <p>${t.desc}</p>
+    <span class="sandbox-open">Open tool ${ICONS.arrow}</span>`;
+
+    return t.url
+      ? `<a href="${t.url}" target="_blank" rel="noopener" class="card sandbox-card card-hover-accent">${cardInner}</a>`
+      : `<div class="card sandbox-card card-hover-accent">${cardInner}</div>`;
+  }).join('');
+
   return `
   <div class="container">
     <div class="page-header">
       <p class="section-eyebrow">Interactive tools</p>
       <h1>The Sandbox</h1>
-      <p class="muted">Tools, experiments, and interactive demos for class work. Click any card to open.</p>
+      <p class="muted">Tools, experiments, and interactive demos for class. Click any card to open.</p>
     </div>
-    <div class="sandbox-grid" style="padding-bottom:72px;">
-      ${DATA.sandbox.map(t => `
-      <div class="card sandbox-card card-hover-accent">
-        <div style="display:flex;align-items:flex-start;justify-content:space-between;">
-          <div class="sandbox-icon">${t.icon}</div>
-          <span class="tag ${tagMap[t.tag]||'tag-slate'}">${t.tag}</span>
-        </div>
-        <h3>${t.title}</h3>
-        <p>${t.desc}</p>
-        <span class="sandbox-open">Open tool →</span>
-      </div>`).join('')}
-    </div>
+    <div class="sandbox-grid" style="padding-bottom:72px;">${cards}</div>
   </div>`;
 }
 
-/* ====================================================
+/* ====================================================================
    RESOURCES
-==================================================== */
+==================================================================== */
 function renderResources() {
-  const sections = [
-    { key: 'design', label: '🎨 Design Tools',  desc: 'Visual design, prototyping, and creative software.' },
-    { key: 'dev',    label: '💻 Development',    desc: 'Code references, editors, and developer tools.' },
-    { key: 'ai',     label: '🤖 AI Tools',       desc: 'AI assistants, generators, and productivity tools.' },
-  ];
+  const { categories } = DATA.resources;
+
+  const sections = categories.map(cat => {
+    const items = cat.items.map(r => `
+      <a href="${r.url}" target="_blank" rel="noopener" class="card resource-card card-hover-accent">
+        <div class="resource-icon">${icon(r.icon)}</div>
+        <div style="flex:1;min-width:0;">
+          <h4>${r.name}</h4>
+          <p>${r.desc}</p>
+        </div>
+        <div style="color:var(--text-3);flex-shrink:0;">${ICONS.external}</div>
+      </a>`).join('');
+
+    return `
+    <div class="resources-section">
+      <div class="resources-section-header">
+        <div class="resources-section-icon">${icon(cat.icon, 18)}</div>
+        <h2>${cat.label}</h2>
+      </div>
+      <p class="resources-desc">${cat.desc}</p>
+      <div class="resource-grid">${items}</div>
+    </div>`;
+  }).join('');
+
   return `
   <div class="container">
     <div class="page-header">
@@ -1154,70 +1267,70 @@ function renderResources() {
       <h1>Resources</h1>
       <p class="muted">Design, dev, and AI tools curated across all three disciplines.</p>
     </div>
-    <div style="padding-bottom:72px;">
-      ${sections.map(sec => `
-      <div class="resources-section">
-        <h2>${sec.label}</h2>
-        <p class="desc">${sec.desc}</p>
-        <div class="resource-grid">
-          ${DATA.resources[sec.key].map(r => `
-          <a href="${r.url}" target="_blank" rel="noopener" class="card resource-card card-hover-accent">
-            <div class="resource-icon">${r.icon}</div>
-            <div>
-              <h4>${r.name}</h4>
-              <p>${r.desc}</p>
-            </div>
-            <div style="margin-left:auto;color:var(--text-3);flex-shrink:0;">${iconExt}</div>
-          </a>`).join('')}
-        </div>
-      </div>`).join('')}
-    </div>
+    <div style="padding-bottom:72px;">${sections}</div>
   </div>`;
 }
 
-/* ====================================================
+/* ====================================================================
    ABOUT
-==================================================== */
+==================================================================== */
 function renderAbout() {
+  const { bio, contact } = DATA.about;
+  const { departments } = DATA.studentwork;
+
+  const bioParagraphs = bio.map(p => `<p>${p}</p>`).join('');
+
+  const classCards = departments.map(dept => `
+    <div class="about-class-card">
+      <div class="about-class-icon">${icon(dept.icon, 18)}</div>
+      <h3>${dept.label}</h3>
+      <p>${dept.description}</p>
+    </div>`).join('');
+
   return `
   <div class="container">
     <div class="about-layout">
       <span class="tag tag-navy" style="margin-bottom:20px;display:inline-block;">About</span>
       <h1>Teaching tech,<br><span class="hl">one build at a time.</span></h1>
-      <div class="about-body">
-        <p>Hi, I'm Mr Jason — a technology teacher at ICS Bangkok. I teach Applied Technologies, Digital Media, and Business, with a shared belief in learning by doing. Every semester, students ship real projects they're proud of.</p>
-        <p>This site is a gallery, a resource hub, and a living record of what we build together. Students can find links, tools, past projects for inspiration, and everything else they need for class.</p>
-        <p>My teaching philosophy is simple: give students real tools, real constraints, and real creative freedom. The work on this site speaks for itself.</p>
-      </div>
-      <div class="about-classes">
-        ${DATA.classes.map(cls => `
-        <div class="about-class-card">
-          <div class="icon">${cls.icon}</div>
-          <h3>${cls.label}</h3>
-          <p>${cls.desc}</p>
-        </div>`).join('')}
-      </div>
+      <div class="about-body">${bioParagraphs}</div>
+      <div class="about-classes">${classCards}</div>
       <div class="about-contact">
         <div>
           <h3>Get in touch</h3>
-          <p class="muted">Questions, feedback, or just want to say hi.</p>
+          <p class="muted">${contact.tagline}</p>
         </div>
-        <a href="mailto:jason_w@ics.ac.th?subject=Hello from mrjasoncode.com" class="btn btn-accent">Send an Email →</a>
+        <a href="mailto:${contact.email}?subject=${encodeURIComponent(contact.emailSubject)}"
+           class="btn btn-accent">
+          Send an Email ${ICONS.arrow}
+        </a>
       </div>
     </div>
   </div>`;
 }
 
-/* ====================================================
+/* ====================================================================
    MOBILE NAV
-==================================================== */
-function toggleMobileNav() { document.getElementById('mobile-nav').classList.toggle('open'); }
-function closeMobileNav()  { document.getElementById('mobile-nav').classList.remove('open'); }
+==================================================================== */
+function toggleMobileNav() {
+  document.getElementById('mobile-nav').classList.toggle('open');
+}
+function closeMobileNav() {
+  document.getElementById('mobile-nav').classList.remove('open');
+}
 
-/* ====================================================
-   BOOT
-==================================================== */
-document.addEventListener('DOMContentLoaded', () => navigate('home'));
+/* ====================================================================
+   BOOT — load all JSON, then render
+==================================================================== */
+document.addEventListener('DOMContentLoaded', async () => {
+  const ok = await loadAllData();
+  if (!ok) return;
+
+  // Set initial theme icon now that icons are available
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  document.getElementById('theme-btn').innerHTML = isDark ? ICONS.moon : ICONS.sun;
+
+  navigate('home');
+});
 </script>
 </body>
 </html>
