@@ -1,0 +1,16 @@
+{
+  "id": "at-sem1-2026",
+  "label": "Semester 1, 2026",
+  "department": "applied-tech",
+
+  "projects": [
+    { "title": "Interactive Story Game", "student": "Leo V.",  "type": "HTML / JS",  "desc": "Branching text adventure with 12 unique endings in vanilla JS.", "url": "", "thumb": "" },
+    { "title": "Band Website",           "student": "Rin S.",  "type": "HTML / CSS", "desc": "Multi-page site with embedded audio player and tour dates.", "url": "", "thumb": "" },
+    { "title": "Flashcard Study App",    "student": "Teo A.",  "type": "JavaScript", "desc": "Spaced repetition app with custom deck creation and progress tracking.", "url": "", "thumb": "" }
+  ],
+
+  "links": [
+    { "label": "W3Schools",      "url": "https://w3schools.com",     "icon": "docs", "desc": "Beginner-friendly web tutorials." },
+    { "label": "Flexbox Froggy", "url": "https://flexboxfroggy.com", "icon": "star", "desc": "Learn Flexbox through a fun game." }
+  ]
+}

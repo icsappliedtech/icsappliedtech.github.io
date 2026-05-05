@@ -1,0 +1,21 @@
+{
+  "id": "dm-sem2-2026",
+  "label": "Semester 2, 2026",
+  "department": "digital-media",
+
+  "projects": [
+    { "title": "Brand Identity Design",    "student": "Aisha K.", "type": "Photoshop / Illustrator", "desc": "Complete brand system for a fictional Bangkok café — logo, color palette, and typography.", "url": "", "thumb": "" },
+    { "title": "Photo Manipulation Series","student": "Marco T.", "type": "Photoshop",               "desc": "5-piece surrealist series combining photography and digital illustration.", "url": "", "thumb": "" },
+    { "title": "Movie Poster Redesign",    "student": "Priya S.", "type": "Illustrator",             "desc": "Minimalist vector reimagining of three classic film posters.", "url": "", "thumb": "" },
+    { "title": "UX Case Study: MRT App",   "student": "James L.", "type": "Figma",                   "desc": "End-to-end UX research and redesign of the Bangkok MRT mobile app.", "url": "", "thumb": "" },
+    { "title": "Digital Magazine Layout",  "student": "Sofia R.", "type": "InDesign",                "desc": "12-page digital magazine covering Southeast Asian street food culture.", "url": "", "thumb": "" },
+    { "title": "Social Media Campaign",    "student": "Ben W.",   "type": "Canva",                   "desc": "Coordinated 30-day campaign for a student-run fashion brand.", "url": "", "thumb": "" }
+  ],
+
+  "links": [
+    { "label": "Adobe Creative Cloud", "url": "https://creativecloud.adobe.com", "icon": "star",   "desc": "Photoshop, Illustrator, InDesign & more." },
+    { "label": "Figma",                "url": "https://figma.com",              "icon": "layers", "desc": "Collaborative UI/UX design and prototyping." },
+    { "label": "Unsplash",             "url": "https://unsplash.com",           "icon": "image",  "desc": "Free high-resolution stock photography." },
+    { "label": "Google Fonts",         "url": "https://fonts.google.com",       "icon": "type",   "desc": "Open-source fonts for any project." }
+  ]
+}

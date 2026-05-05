@@ -1,0 +1,19 @@
+{
+  "id": "ent-sem2-2026",
+  "label": "Semester 2, 2026",
+  "department": "entrepreneurship",
+
+  "projects": [
+    { "title": "Lean Canvas: Campus Delivery App", "student": "Nadia P.", "type": "Lean Canvas",    "desc": "Problem-solution fit analysis for a student-run campus food delivery service.", "url": "", "thumb": "" },
+    { "title": "Pitch Deck: Upcycled Fashion",     "student": "Tom R.",   "type": "Slides / Canva", "desc": "Investor-ready 10-slide pitch for a Bangkok-based upcycled streetwear brand.", "url": "", "thumb": "" },
+    { "title": "MVP Prototype: Study Buddy App",   "student": "Lily S.",  "type": "Figma",          "desc": "Clickable prototype for a peer tutoring marketplace targeting ICS students.", "url": "", "thumb": "" },
+    { "title": "Customer Discovery Report",        "student": "Finn O.",  "type": "Docs / Sheets",  "desc": "30 customer interviews synthesized into key insight clusters and opportunity map.", "url": "", "thumb": "" }
+  ],
+
+  "links": [
+    { "label": "Lean Canvas",    "url": "https://leanstack.com/lean-canvas", "icon": "docs",      "desc": "One-page business model for startups." },
+    { "label": "Figma",          "url": "https://figma.com",                 "icon": "layers",    "desc": "Prototype your MVP before you build it." },
+    { "label": "Y Combinator",   "url": "https://www.ycombinator.com/library","icon": "star",     "desc": "Startup advice from the world's top accelerator." },
+    { "label": "Strategyzer",    "url": "https://www.strategyzer.com",       "icon": "chart",     "desc": "Business Model Canvas and Value Proposition tools." }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "_instructions": "Add new projects to the 'projects' array. Set 'url' and 'thumb' to empty string if not yet available. Update 'projectCount' in studentwork/index.json to match.",
+
+  "id": "at-sem2-2026",
+  "label": "Semester 2, 2026",
+  "department": "applied-tech",
+
+  "projects": [
+    { "title": "Personal Portfolio Site",      "student": "Kai T.",   "type": "HTML / CSS / JS", "desc": "Fully responsive portfolio with projects, skills, and contact form.", "url": "", "thumb": "" },
+    { "title": "Weather Dashboard",            "student": "Nina B.",  "type": "JS / API",        "desc": "Real-time weather app using OpenWeather API with 5-day forecast.", "url": "", "thumb": "" },
+    { "title": "To-Do App with Local Storage", "student": "Arjun P.", "type": "Vanilla JS",      "desc": "Task manager with categories, due dates, and persistent storage.", "url": "", "thumb": "" },
+    { "title": "Restaurant Landing Page",      "student": "Chloe D.", "type": "HTML / CSS",      "desc": "Pixel-perfect restaurant site with menu, gallery, and reservation form.", "url": "", "thumb": "" },
+    { "title": "JavaScript Quiz Engine",       "student": "Sam H.",   "type": "JavaScript",      "desc": "Dynamic quiz app with scoring, timer, and shareable results.", "url": "", "thumb": "" },
+    { "title": "CSS Art: Cityscape",           "student": "Mia K.",   "type": "CSS Only",        "desc": "Animated Bangkok cityscape built entirely with CSS.", "url": "", "thumb": "" }
+  ],
+
+  "links": [
+    { "label": "MDN Web Docs",  "url": "https://developer.mozilla.org", "icon": "docs",   "desc": "The gold-standard HTML, CSS & JS reference." },
+    { "label": "CodePen",       "url": "https://codepen.io",            "icon": "pen",    "desc": "Online editor for front-end experiments." },
+    { "label": "GitHub",        "url": "https://github.com",            "icon": "github", "desc": "Version control and project hosting." },
+    { "label": "CSS-Tricks",    "url": "https://css-tricks.com",        "icon": "star",   "desc": "Tips and tutorials for CSS." }
+  ]
+}

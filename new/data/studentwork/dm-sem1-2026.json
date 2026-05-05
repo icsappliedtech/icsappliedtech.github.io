@@ -1,0 +1,16 @@
+{
+  "id": "dm-sem1-2026",
+  "label": "Semester 1, 2026",
+  "department": "digital-media",
+
+  "projects": [
+    { "title": "Typography Poster Series", "student": "Lena M.", "type": "Illustrator", "desc": "6 expressive typographic posters exploring emotion and form.", "url": "", "thumb": "" },
+    { "title": "Infographic: Climate Data","student": "Omar F.", "type": "Canva",       "desc": "Visualizing 50 years of Bangkok climate data for a general audience.", "url": "", "thumb": "" },
+    { "title": "App Icon System",          "student": "Yuna C.", "type": "Figma",       "desc": "Cohesive suite of 20 app icons for a productivity platform.", "url": "", "thumb": "" }
+  ],
+
+  "links": [
+    { "label": "Behance",    "url": "https://behance.net", "icon": "star",   "desc": "Design portfolio inspiration." },
+    { "label": "Coolors.co", "url": "https://coolors.co",  "icon": "circle", "desc": "Fast color palette generation." }
+  ]
+}
