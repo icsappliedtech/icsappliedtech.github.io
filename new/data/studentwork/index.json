@@ -56,6 +56,18 @@
       "semesters": [
         { "id": "ent-sem2-2026", "label": "Semester 2, 2026", "year": 2026, "term": 2, "current": true, "projectCount": 4 }
       ]
+    },
+    {
+      "id": "marketing",
+      "label": "Marketing",
+      "shortLabel": "Marketing",
+      "icon": "megaphone",
+      "colorToken": "navy",
+      "tagClass": "tag-navy",
+      "description": "Brand strategy, consumer research, campaigns, and digital marketing.",
+      "semesters": [
+        { "id": "mkt-sem2-2026", "label": "Semester 2, 2026", "year": 2026, "term": 2, "current": true, "projectCount": 4 }
+      ]
     }
   ]
 }
