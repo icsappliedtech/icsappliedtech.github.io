@@ -1,0 +1,48 @@
+{
+  "_instructions": "Add new resources to any category array. To add a new category, add a new object to the 'categories' array with a unique 'id', 'label', 'desc', and 'icon', then add resources to its 'items' array.",
+
+  "categories": [
+    {
+      "id": "design",
+      "label": "Design Tools",
+      "icon": "palette",
+      "desc": "Visual design, prototyping, and creative software.",
+      "items": [
+        { "name": "Figma",                "url": "https://figma.com",               "icon": "layers", "desc": "Collaborative UI/UX design and prototyping." },
+        { "name": "Adobe Creative Cloud", "url": "https://creativecloud.adobe.com", "icon": "star",   "desc": "Photoshop, Illustrator, InDesign, Premiere & more." },
+        { "name": "Canva",                "url": "https://canva.com",               "icon": "pen",    "desc": "Easy drag-and-drop design for all skill levels." },
+        { "name": "Coolors",              "url": "https://coolors.co",              "icon": "circle", "desc": "Instant color palette generation." },
+        { "name": "Unsplash",             "url": "https://unsplash.com",            "icon": "image",  "desc": "Free high-resolution stock photos." },
+        { "name": "Google Fonts",         "url": "https://fonts.google.com",        "icon": "type",   "desc": "Open-source fonts for any web project." }
+      ]
+    },
+    {
+      "id": "dev",
+      "label": "Development",
+      "icon": "code",
+      "desc": "Code references, editors, and developer tools.",
+      "items": [
+        { "name": "MDN Web Docs",   "url": "https://developer.mozilla.org", "icon": "docs",   "desc": "The gold standard for HTML, CSS, and JavaScript." },
+        { "name": "GitHub",         "url": "https://github.com",            "icon": "github", "desc": "Version control and project hosting." },
+        { "name": "CodePen",        "url": "https://codepen.io",            "icon": "pen",    "desc": "Browser-based code editor for quick experiments." },
+        { "name": "Stack Overflow", "url": "https://stackoverflow.com",     "icon": "search", "desc": "Community Q&A for every coding problem." },
+        { "name": "Can I Use",      "url": "https://caniuse.com",           "icon": "check",  "desc": "Browser support tables for CSS and JS features." },
+        { "name": "CSS-Tricks",     "url": "https://css-tricks.com",        "icon": "star",   "desc": "Tips, tricks, and deep-dives for CSS." }
+      ]
+    },
+    {
+      "id": "ai",
+      "label": "AI Tools",
+      "icon": "chip",
+      "desc": "AI assistants, generators, and productivity tools.",
+      "items": [
+        { "name": "Claude",          "url": "https://claude.ai",                    "icon": "chip",  "desc": "AI assistant for writing, coding, and research." },
+        { "name": "ChatGPT",         "url": "https://chatgpt.com",                  "icon": "chip",  "desc": "OpenAI's conversational AI for any task." },
+        { "name": "GitHub Copilot",  "url": "https://github.com/features/copilot", "icon": "github","desc": "AI pair programmer inside your code editor." },
+        { "name": "Midjourney",      "url": "https://midjourney.com",              "icon": "image", "desc": "AI image generation for creative projects." },
+        { "name": "Perplexity",      "url": "https://perplexity.ai",               "icon": "search","desc": "AI-powered research and answer engine." },
+        { "name": "Runway ML",       "url": "https://runwayml.com",                "icon": "animation","desc": "AI video generation and editing tools." }
+      ]
+    }
+  ]
+}

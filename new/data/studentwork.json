@@ -1,0 +1,298 @@
+{
+  "_instructions": {
+    "howToAddASemester": "Copy an existing semester block and paste it at the TOP of the 'semesters' array for the correct department. Update the 'id', 'label', 'year', 'term', and set 'current' to true. Set the old current semester's 'current' to false.",
+    "howToAddAProject": "Copy a project object and add it to the 'projects' array of the correct semester. The 'thumb' field is optional — if blank, the department icon shows instead.",
+    "semesterIdFormat": "Use this format: dept-semN-YYYY  e.g. at-sem2-2026, dm-sem1-2027, biz-sem2-2026",
+    "departments": "digital-media | applied-tech | business"
+  },
+
+  "departments": [
+
+    {
+      "id": "applied-tech",
+      "label": "Applied Technologies",
+      "shortLabel": "Applied Tech",
+      "icon": "code",
+      "colorToken": "yellow",
+      "tagClass": "tag-yellow",
+      "description": "HTML, CSS, JavaScript, APIs, and full web projects.",
+
+      "semesters": [
+        {
+          "id": "at-sem2-2026",
+          "label": "Semester 2, 2026",
+          "year": 2026,
+          "term": 2,
+          "current": true,
+          "projects": [
+            {
+              "title": "Personal Portfolio Site",
+              "student": "Kai T.",
+              "type": "HTML / CSS / JS",
+              "desc": "Fully responsive portfolio with projects, skills, and contact form.",
+              "url": "",
+              "thumb": ""
+            },
+            {
+              "title": "Weather Dashboard",
+              "student": "Nina B.",
+              "type": "JS / API",
+              "desc": "Real-time weather app using OpenWeather API with 5-day forecast.",
+              "url": "",
+              "thumb": ""
+            },
+            {
+              "title": "To-Do App with Local Storage",
+              "student": "Arjun P.",
+              "type": "Vanilla JS",
+              "desc": "Task manager with categories, due dates, and persistent storage.",
+              "url": "",
+              "thumb": ""
+            },
+            {
+              "title": "Restaurant Landing Page",
+              "student": "Chloe D.",
+              "type": "HTML / CSS",
+              "desc": "Pixel-perfect restaurant site with menu, gallery, and reservation form.",
+              "url": "",
+              "thumb": ""
+            },
+            {
+              "title": "JavaScript Quiz Engine",
+              "student": "Sam H.",
+              "type": "JavaScript",
+              "desc": "Dynamic quiz app with scoring, timer, and shareable results.",
+              "url": "",
+              "thumb": ""
+            },
+            {
+              "title": "CSS Art: Cityscape",
+              "student": "Mia K.",
+              "type": "CSS Only",
+              "desc": "Animated Bangkok cityscape built entirely with CSS.",
+              "url": "",
+              "thumb": ""
+            }
+          ],
+          "links": [
+            { "label": "MDN Web Docs",  "url": "https://developer.mozilla.org", "icon": "docs",   "desc": "The gold-standard HTML, CSS & JS reference." },
+            { "label": "CodePen",       "url": "https://codepen.io",            "icon": "pen",    "desc": "Online editor for front-end experiments." },
+            { "label": "GitHub",        "url": "https://github.com",            "icon": "github", "desc": "Version control and project hosting." },
+            { "label": "CSS-Tricks",    "url": "https://css-tricks.com",        "icon": "star",   "desc": "Tips and tutorials for CSS." }
+          ]
+        },
+        {
+          "id": "at-sem1-2026",
+          "label": "Semester 1, 2026",
+          "year": 2026,
+          "term": 1,
+          "current": false,
+          "projects": [
+            {
+              "title": "Interactive Story Game",
+              "student": "Leo V.",
+              "type": "HTML / JS",
+              "desc": "Branching text adventure with 12 unique endings in vanilla JS.",
+              "url": "",
+              "thumb": ""
+            },
+            {
+              "title": "Band Website",
+              "student": "Rin S.",
+              "type": "HTML / CSS",
+              "desc": "Multi-page site with embedded audio player and tour dates.",
+              "url": "",
+              "thumb": ""
+            },
+            {
+              "title": "Flashcard Study App",
+              "student": "Teo A.",
+              "type": "JavaScript",
+              "desc": "Spaced repetition app with custom deck creation and progress tracking.",
+              "url": "",
+              "thumb": ""
+            }
+          ],
+          "links": [
+            { "label": "W3Schools",      "url": "https://w3schools.com",     "icon": "docs", "desc": "Beginner-friendly web tutorials." },
+            { "label": "Flexbox Froggy", "url": "https://flexboxfroggy.com", "icon": "star", "desc": "Learn Flexbox through a fun game." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "digital-media",
+      "label": "Digital Media",
+      "shortLabel": "Digital Media",
+      "icon": "palette",
+      "colorToken": "navy",
+      "tagClass": "tag-navy",
+      "description": "Photoshop, Illustrator, Figma, and visual storytelling.",
+
+      "semesters": [
+        {
+          "id": "dm-sem2-2026",
+          "label": "Semester 2, 2026",
+          "year": 2026,
+          "term": 2,
+          "current": true,
+          "projects": [
+            {
+              "title": "Brand Identity Design",
+              "student": "Aisha K.",
+              "type": "Photoshop / Illustrator",
+              "desc": "Complete brand system for a fictional Bangkok café — logo, color palette, and typography.",
+              "url": "",
+              "thumb": ""
+            },
+            {
+              "title": "Photo Manipulation Series",
+              "student": "Marco T.",
+              "type": "Photoshop",
+              "desc": "5-piece surrealist series combining photography and digital illustration.",
+              "url": "",
+              "thumb": ""
+            },
+            {
+              "title": "Movie Poster Redesign",
+              "student": "Priya S.",
+              "type": "Illustrator",
+              "desc": "Minimalist vector reimagining of three classic film posters.",
+              "url": "",
+              "thumb": ""
+            },
+            {
+              "title": "UX Case Study: MRT App",
+              "student": "James L.",
+              "type": "Figma",
+              "desc": "End-to-end UX research and redesign of the Bangkok MRT mobile app.",
+              "url": "",
+              "thumb": ""
+            },
+            {
+              "title": "Digital Magazine Layout",
+              "student": "Sofia R.",
+              "type": "InDesign",
+              "desc": "12-page digital magazine covering Southeast Asian street food culture.",
+              "url": "",
+              "thumb": ""
+            },
+            {
+              "title": "Social Media Campaign",
+              "student": "Ben W.",
+              "type": "Canva",
+              "desc": "Coordinated 30-day campaign for a student-run fashion brand.",
+              "url": "",
+              "thumb": ""
+            }
+          ],
+          "links": [
+            { "label": "Adobe Creative Cloud", "url": "https://creativecloud.adobe.com", "icon": "star",   "desc": "Photoshop, Illustrator, InDesign & more." },
+            { "label": "Figma",                "url": "https://figma.com",              "icon": "layers", "desc": "Collaborative UI/UX design and prototyping." },
+            { "label": "Unsplash",             "url": "https://unsplash.com",           "icon": "image",  "desc": "Free high-resolution stock photography." },
+            { "label": "Google Fonts",         "url": "https://fonts.google.com",       "icon": "type",   "desc": "Open-source fonts for any project." }
+          ]
+        },
+        {
+          "id": "dm-sem1-2026",
+          "label": "Semester 1, 2026",
+          "year": 2026,
+          "term": 1,
+          "current": false,
+          "projects": [
+            {
+              "title": "Typography Poster Series",
+              "student": "Lena M.",
+              "type": "Illustrator",
+              "desc": "6 expressive typographic posters exploring emotion and form.",
+              "url": "",
+              "thumb": ""
+            },
+            {
+              "title": "Infographic: Climate Data",
+              "student": "Omar F.",
+              "type": "Canva",
+              "desc": "Visualizing 50 years of Bangkok climate data for a general audience.",
+              "url": "",
+              "thumb": ""
+            },
+            {
+              "title": "App Icon System",
+              "student": "Yuna C.",
+              "type": "Figma",
+              "desc": "Cohesive suite of 20 app icons for a productivity platform.",
+              "url": "",
+              "thumb": ""
+            }
+          ],
+          "links": [
+            { "label": "Behance",    "url": "https://behance.net", "icon": "star",   "desc": "Design portfolio inspiration." },
+            { "label": "Coolors.co", "url": "https://coolors.co",  "icon": "layers", "desc": "Fast color palette generation." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "business",
+      "label": "Business",
+      "shortLabel": "Business",
+      "icon": "briefcase",
+      "colorToken": "slate",
+      "tagClass": "tag-slate",
+      "description": "Business plans, pitch decks, market research, and financial models.",
+
+      "semesters": [
+        {
+          "id": "biz-sem2-2026",
+          "label": "Semester 2, 2026",
+          "year": 2026,
+          "term": 2,
+          "current": true,
+          "projects": [
+            {
+              "title": "Startup Business Plan",
+              "student": "Grace L.",
+              "type": "Docs / Slides",
+              "desc": "Full business plan for a student-run sustainable clothing brand.",
+              "url": "",
+              "thumb": ""
+            },
+            {
+              "title": "Market Research Report",
+              "student": "Ivan T.",
+              "type": "Sheets / Docs",
+              "desc": "Consumer survey and competitive analysis for a bubble tea concept.",
+              "url": "",
+              "thumb": ""
+            },
+            {
+              "title": "Pitch Deck: EdTech App",
+              "student": "Anika R.",
+              "type": "Canva / Slides",
+              "desc": "10-slide investor pitch deck for an AI-powered homework helper.",
+              "url": "",
+              "thumb": ""
+            },
+            {
+              "title": "Financial Projections",
+              "student": "Chris M.",
+              "type": "Google Sheets",
+              "desc": "3-year P&L and cash flow model for a food truck business.",
+              "url": "",
+              "thumb": ""
+            }
+          ],
+          "links": [
+            { "label": "Google Workspace", "url": "https://workspace.google.com", "icon": "docs",  "desc": "Docs, Sheets, Slides for collaborative work." },
+            { "label": "Canva",            "url": "https://canva.com",            "icon": "star",  "desc": "Easy presentation and report design." },
+            { "label": "Statista",         "url": "https://statista.com",         "icon": "chart", "desc": "Market research and industry statistics." },
+            { "label": "Investopedia",     "url": "https://investopedia.com",     "icon": "chart", "desc": "Finance and business concepts explained." }
+          ]
+        }
+      ]
+    }
+
+  ]
+}

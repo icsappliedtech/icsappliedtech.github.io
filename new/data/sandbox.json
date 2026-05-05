@@ -1,0 +1,62 @@
+{
+  "_instructions": "Add new tools to the 'tools' array. Each tool needs: title, desc, icon (see icon list in main.js), tag (CSS | JS | Design | Dev | AI), and optionally a 'url' if it links out.",
+
+  "tools": [
+    {
+      "title": "CSS Animation Playground",
+      "desc": "Experiment with keyframes, transitions, and transforms — edit live and see results instantly.",
+      "icon": "animation",
+      "tag": "CSS",
+      "url": ""
+    },
+    {
+      "title": "Flexbox Visualizer",
+      "desc": "Toggle every Flexbox property and see the layout change in real time with live code output.",
+      "icon": "flex",
+      "tag": "CSS",
+      "url": ""
+    },
+    {
+      "title": "Grid Layout Builder",
+      "desc": "Visually design CSS Grid templates — columns, rows, gaps — and copy the generated code.",
+      "icon": "grid",
+      "tag": "CSS",
+      "url": ""
+    },
+    {
+      "title": "Color Palette Generator",
+      "desc": "Generate harmonious color palettes from a base hue and export as CSS custom properties.",
+      "icon": "palette",
+      "tag": "Design",
+      "url": ""
+    },
+    {
+      "title": "Typography Scale Builder",
+      "desc": "Pick a base size and scale ratio to build a full modular type scale with exportable CSS.",
+      "icon": "type",
+      "tag": "Design",
+      "url": ""
+    },
+    {
+      "title": "JS DOM Explorer",
+      "desc": "Interactive demos for selecting, traversing, and manipulating DOM elements step by step.",
+      "icon": "code",
+      "tag": "JS",
+      "url": ""
+    },
+    {
+      "title": "API Fetch Tester",
+      "desc": "Type any public API URL, fire a GET request, and inspect the formatted JSON response.",
+      "icon": "link",
+      "tag": "JS",
+      "url": ""
+    },
+    {
+      "title": "Regex Tester",
+      "desc": "Write regular expressions and test them against sample text with live match highlighting.",
+      "icon": "search",
+      "tag": "Dev",
+      "url": ""
+    }
+  ]
+}

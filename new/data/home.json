@@ -1,0 +1,32 @@
+{
+  "_instructions": "Edit 'announcement' each semester to update the banner. Set 'active' to false to hide it. Hero 'accentLineIndex' is zero-based — which headline line gets the blue accent color.",
+
+  "announcement": {
+    "active": true,
+    "message": "Semester 2, 2026 projects are now live.",
+    "linkText": "Browse student work →",
+    "linkTarget": "student-work"
+  },
+
+  "hero": {
+    "eyebrow": "ICS Bangkok · Applied Technologies · Digital Media · Business",
+    "headline": ["Design it.", "Build it.", "Show it."],
+    "accentLineIndex": 2,
+    "body": "A gallery and resource hub for students in Applied Technologies, Digital Media, and Business. Browse student work, find tools, and explore what we're building each semester."
+  },
+
+  "quickLinks": [
+    {
+      "icon": "flask",
+      "title": "The Sandbox",
+      "desc": "Interactive tools and coding experiments for class.",
+      "target": "sandbox"
+    },
+    {
+      "icon": "book",
+      "title": "Resources",
+      "desc": "Design, dev, and AI tools curated for all three disciplines.",
+      "target": "resources"
+    }
+  ]
+}

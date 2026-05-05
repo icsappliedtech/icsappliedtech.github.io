@@ -1,0 +1,20 @@
+{
+  "_instructions": "Update 'bio' paragraphs as needed. 'classes' auto-pulls from studentwork.json — no need to duplicate here. Update 'contact' if the email or school info changes.",
+
+  "bio": [
+    "Hi, I'm Mr Jason — a technology teacher at ICS Bangkok. I teach Applied Technologies, Digital Media, and Business, with a shared belief that the best way to learn is to build real things.",
+    "This site is a gallery, a resource hub, and a living record of what we create each semester. Students can find tools, links, past projects for inspiration, and everything else they need.",
+    "My teaching philosophy is simple: give students real tools, real constraints, and real creative freedom. The work on this site speaks for itself."
+  ],
+
+  "contact": {
+    "school": "ICS Bangkok",
+    "email": "jason_w@ics.ac.th",
+    "emailSubject": "Hello from mrjasoncode.com",
+    "tagline": "Questions, feedback, or just want to say hi."
+  },
+
+  "social": [
+    { "label": "GitHub",   "url": "https://github.com", "icon": "github" }
+  ]
+}
