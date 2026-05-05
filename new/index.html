@@ -58,7 +58,10 @@
       min-height: 100vh;
       line-height: 1.5;
       transition: background 0.25s ease, color 0.25s ease;
+      display: flex;
+      flex-direction: column;
     }
+    #app { flex: 1; }
     a { color: inherit; text-decoration: none; }
     button { cursor: pointer; font-family: inherit; border: none; background: none; }
     svg { display: block; flex-shrink: 0; }
@@ -341,7 +344,8 @@
       color: var(--text);
       margin-bottom: 22px;
     }
-    .hero h1 .hl { color: var(--accent); }
+    /* Global accent highlight — used in hero h1, about h1, etc. */
+    .hl { color: var(--accent); }
     .hero-body {
       font-size: 17px; color: var(--text-2);
       line-height: 1.7; max-width: 560px; margin-bottom: 36px;
@@ -754,7 +758,6 @@
     </button>
     <nav>
       <ul class="nav-links">
-        <li><button data-nav="home"         onclick="navigate('home')">Home</button></li>
         <li><button data-nav="student-work" onclick="navigate('student-work')">Student Work</button></li>
         <li><button data-nav="sandbox"      onclick="navigate('sandbox')">Sandbox</button></li>
         <li><button data-nav="resources"    onclick="navigate('resources')">Resources</button></li>
@@ -775,7 +778,6 @@
     </div>
   </div>
   <div class="mobile-nav" id="mobile-nav">
-    <button onclick="navigate('home'); closeMobileNav()">Home</button>
     <button onclick="navigate('student-work'); closeMobileNav()">Student Work</button>
     <button onclick="navigate('sandbox'); closeMobileNav()">Sandbox</button>
     <button onclick="navigate('resources'); closeMobileNav()">Resources</button>
@@ -818,7 +820,7 @@ const ICONS = {
   code: `<svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>`,
   palette: `<svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>`,
   briefcase: `<svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>`,
-  flask: `<svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>`,
+  rocket: `<svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.82m5.84-2.56a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.82m2.56-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg>`,
   book: `<svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>`,
   chip: `<svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1" stroke-width="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 9H5M7 12H5M7 15H5M17 9h2M17 12h2M17 15h2M9 7V5M12 7V5M15 7V5M9 19v-2M12 19v-2M15 19v-2"/></svg>`,
 
@@ -857,19 +859,29 @@ function icon(name, size) {
 
 /* ====================================================================
    DATA — loaded async from /data/*.json
+   studentwork/index.json loads on boot (metadata only).
+   Individual semester files (e.g. at-sem2-2026.json) load on demand
+   and are cached in DATA.semesterCache so they're only fetched once.
 ==================================================================== */
 let DATA = {};
 
 async function loadAllData() {
-  const files = ['home', 'studentwork', 'sandbox', 'resources', 'about'];
+  const coreFiles = ['home', 'sandbox', 'resources', 'about'];
   try {
     const results = await Promise.all(
-      files.map(f =>
+      coreFiles.map(f =>
         fetch(`data/${f}.json`)
           .then(r => { if (!r.ok) throw new Error(`Failed: data/${f}.json`); return r.json(); })
       )
     );
-    files.forEach((f, i) => { DATA[f] = results[i]; });
+    coreFiles.forEach((f, i) => { DATA[f] = results[i]; });
+
+    // Load studentwork index (metadata only — no projects)
+    const swIndex = await fetch('data/studentwork/index.json')
+      .then(r => { if (!r.ok) throw new Error('Failed: data/studentwork/index.json'); return r.json(); });
+    DATA.studentwork = swIndex;
+    DATA.semesterCache = {};
+
   } catch (err) {
     console.error('Data load error:', err);
     document.getElementById('app').innerHTML =
@@ -880,6 +892,14 @@ async function loadAllData() {
     return false;
   }
   return true;
+}
+
+async function loadSemester(semId) {
+  if (DATA.semesterCache[semId]) return DATA.semesterCache[semId];
+  const data = await fetch(`data/studentwork/${semId}.json`)
+    .then(r => { if (!r.ok) throw new Error(`Failed: ${semId}.json`); return r.json(); });
+  DATA.semesterCache[semId] = data;
+  return data;
 }
 
 /* ====================================================================
@@ -900,10 +920,7 @@ function toggleTheme() {
 
 (function initTheme() {
   const saved = localStorage.getItem('mjc-theme');
-  const isDark = saved === 'dark';
-  if (isDark) document.documentElement.setAttribute('data-theme', 'dark');
-  // Icon set after DOM ready
-  document.addEventListener('DOMContentLoaded', () => setThemeIcon(isDark));
+  if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
 })();
 
 /* ====================================================================
@@ -925,24 +942,42 @@ function navigate(route, deptId, semId) {
     if (btn.dataset.nav === match) btn.classList.add('nav-active');
   });
 
-  render();
+  renderAsync();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 /* ====================================================================
-   RENDER DISPATCHER
+   RENDER DISPATCHER — async so class page can lazy-load semester data
 ==================================================================== */
-function render() {
+async function renderAsync() {
+  const app = document.getElementById('app');
+
+  if (currentRoute === 'class-page') {
+    // Show spinner while semester file loads
+    app.innerHTML = `<div class="loading-screen"><div class="loading-dot"></div><div class="loading-dot"></div><div class="loading-dot"></div></div>`;
+    const dept = DATA.studentwork.departments.find(d => d.id === activeDeptId) || DATA.studentwork.departments[0];
+    const semMeta = activeSemId
+      ? dept.semesters.find(s => s.id === activeSemId)
+      : (dept.semesters.find(s => s.current) || dept.semesters[0]);
+    if (!semMeta) { app.innerHTML = `<div class="container" style="padding:60px 0;color:var(--text-3);">No semester found.</div>`; return; }
+    try {
+      const semData = await loadSemester(semMeta.id);
+      app.innerHTML = `<div class="fade-in">${renderClassPage(dept, semMeta, semData)}</div>`;
+    } catch (err) {
+      app.innerHTML = `<div class="container" style="padding:60px 0;color:var(--text-3);">Could not load semester data.</div>`;
+    }
+    return;
+  }
+
   const views = {
     'home':         renderHome,
     'student-work': renderStudentWork,
-    'class-page':   renderClassPage,
     'sandbox':      renderSandbox,
     'resources':    renderResources,
     'about':        renderAbout,
   };
   const viewFn = views[currentRoute] || renderHome;
-  document.getElementById('app').innerHTML = `<div class="fade-in">${viewFn()}</div>`;
+  app.innerHTML = `<div class="fade-in">${viewFn()}</div>`;
 }
 
 /* ====================================================================
@@ -967,7 +1002,6 @@ function renderHome() {
   ).join('<br>');
 
   const deptCards = departments.map(dept => {
-    const totalProjects = dept.semesters.reduce((acc, s) => acc + s.projects.length, 0);
     const semCount = dept.semesters.length;
     return `
     <div class="card card-hover-accent dept-card" onclick="navigate('class-page','${dept.id}',null)">
@@ -1030,8 +1064,7 @@ function renderStudentWork() {
   const { departments } = DATA.studentwork;
 
   const deptCards = departments.map(dept => {
-    const totalProjects = dept.semesters.reduce((acc, s) => acc + s.projects.length, 0);
-    const currentSem = dept.semesters.find(s => s.current);
+    const totalProjects = dept.semesters.reduce((acc, s) => acc + s.projectCount, 0);
 
     const semList = dept.semesters.map(sem => {
       const isCurrent = sem.current;
@@ -1043,7 +1076,7 @@ function renderStudentWork() {
           ${sem.label}
         </span>
         <span class="sw-sem-meta">
-          <span class="sw-sem-count">${sem.projects.length} projects</span>
+          <span class="sw-sem-count">${sem.projectCount} projects</span>
           ${ICONS.arrow}
         </span>
       </button>`;
@@ -1079,24 +1112,10 @@ function renderStudentWork() {
 }
 
 /* ====================================================================
-   CLASS PAGE — Sidebar + Project Gallery + Semester Links
+   CLASS PAGE — receives dept metadata, semMeta, and lazy-loaded semData
 ==================================================================== */
-function renderClassPage() {
+function renderClassPage(dept, semMeta, semData) {
   const { departments } = DATA.studentwork;
-  const dept = departments.find(d => d.id === activeDeptId) || departments[0];
-
-  // Default to the current semester, or the most recent
-  let sem;
-  if (activeSemId) {
-    sem = dept.semesters.find(s => s.id === activeSemId);
-  }
-  if (!sem) {
-    sem = dept.semesters.find(s => s.current) || dept.semesters[0];
-  }
-
-  if (!sem) {
-    return `<div class="container" style="padding:60px 0;text-align:center;color:var(--text-3);">No semester data found.</div>`;
-  }
 
   // Sidebar: department switcher
   const deptLinks = departments.map(d => `
@@ -1106,28 +1125,25 @@ function renderClassPage() {
       ${d.shortLabel}
     </button>`).join('');
 
-  // Sidebar: semester switcher for current dept
-  const semLinks = dept.semesters.map(s => `
-    <button class="sidebar-link ${s.id === sem.id ? 'active' : ''}"
+  // Sidebar: semester switcher (uses projectCount from index.json metadata)
+  const sidebarSemLinks = dept.semesters.map(s => `
+    <button class="sidebar-link ${s.id === semMeta.id ? 'active' : ''}"
             onclick="navigate('class-page','${dept.id}','${s.id}')">
       ${s.current ? '<span class="sem-dot"></span>' : ''}
       ${s.label}
-      <span class="count">${s.projects.length}</span>
+      <span class="count">${s.projectCount}</span>
     </button>`).join('');
 
   // Project grid
-  const projects = sem.projects.map(p => {
+  const projects = semData.projects.map(p => {
     const thumbContent = p.thumb
       ? `<img src="${p.thumb}" alt="${p.title}" loading="lazy"/>`
       : `<div style="opacity:0.25;">${icon(dept.icon, 32)}</div>`;
-
     const linkBadge = p.url
       ? `<span class="project-link-badge">${ICONS.external} View project</span>`
       : '';
-
     const Tag = p.url ? 'a' : 'div';
     const linkAttr = p.url ? `href="${p.url}" target="_blank" rel="noopener"` : '';
-
     return `
     <${Tag} ${linkAttr} class="card project-card card-hover-accent">
       <div class="project-thumb">${thumbContent}</div>
@@ -1141,8 +1157,9 @@ function renderClassPage() {
     </${Tag}>`;
   }).join('');
 
-  // Semester links
-  const linkCards = sem.links.map(l => `
+  // Semester resource links
+  const resourceLinks = semData.links || [];
+  const linkCards = resourceLinks.map(l => `
     <a href="${l.url}" target="_blank" rel="noopener" class="card link-card card-hover-accent">
       <div class="link-icon">${icon(l.icon)}</div>
       <div style="flex:1;min-width:0;">
@@ -1152,13 +1169,12 @@ function renderClassPage() {
       <div style="color:var(--text-3);flex-shrink:0;">${ICONS.external}</div>
     </a>`).join('');
 
-  // Accent bar color per dept
   const accentBarColor = dept.colorToken === 'yellow' ? 'var(--yellow)' : 'var(--accent)';
+  const projectCount = semData.projects.length;
 
   return `
   <div class="container">
     <div class="class-page-layout">
-
       <aside class="sidebar">
         <button class="sidebar-back" onclick="navigate('student-work')">
           ${ICONS.back} All Classes
@@ -1166,27 +1182,24 @@ function renderClassPage() {
         <p class="sidebar-section-label">Department</p>
         ${deptLinks}
         <p class="sidebar-section-label" style="margin-top:20px;">Semesters</p>
-        ${semLinks}
+        ${sidebarSemLinks}
       </aside>
-
       <div class="class-main">
         <div class="class-main-header">
           <div class="tags">
             <span class="tag ${dept.tagClass}">${dept.label}</span>
-            <span class="tag tag-slate">${sem.label}</span>
-            ${sem.current ? '<span class="tag tag-yellow">Current</span>' : ''}
+            <span class="tag tag-slate">${semMeta.label}</span>
+            ${semMeta.current ? '<span class="tag tag-yellow">Current</span>' : ''}
           </div>
           <h1>${dept.label}</h1>
-          <p class="muted">${sem.label} &nbsp;·&nbsp; ${sem.projects.length} student project${sem.projects.length !== 1 ? 's' : ''}</p>
+          <p class="muted">${semMeta.label} &nbsp;·&nbsp; ${projectCount} student project${projectCount !== 1 ? 's' : ''}</p>
         </div>
-
         <div class="section-heading">
           <div class="section-heading-bar" style="background:${accentBarColor};"></div>
           Project Gallery
         </div>
         <div class="project-grid">${projects}</div>
-
-        ${sem.links.length > 0 ? `
+        ${resourceLinks.length > 0 ? `
         <div class="section-heading" style="margin-top:8px;">
           <div class="section-heading-bar" style="background:var(--border-dark);"></div>
           Semester Resources
@@ -1194,7 +1207,6 @@ function renderClassPage() {
         <div class="link-grid" style="margin-bottom:72px;">${linkCards}</div>
         ` : ''}
       </div>
-
     </div>
   </div>`;
 }
@@ -1218,7 +1230,7 @@ function renderSandbox() {
 
     return t.url
       ? `<a href="${t.url}" target="_blank" rel="noopener" class="card sandbox-card card-hover-accent">${cardInner}</a>`
-      : `<div class="card sandbox-card card-hover-accent">${cardInner}</div>`;
+      : `<div class="card sandbox-card" style="cursor:default;">${cardInner.replace(`<span class="sandbox-open">Open tool ${ICONS.arrow}</span>`, '<span class="sandbox-open" style="color:var(--text-3);">Coming soon</span>')}</div>`;
   }).join('');
 
   return `
