@@ -598,6 +598,45 @@
       font-size: 11px; font-weight: 600; color: var(--accent);
     }
 
+    /* Submission grid */
+    .submission-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+      margin-bottom: 48px;
+    }
+    .submission-card {
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+    }
+    .submission-card:hover {
+      box-shadow: 0 6px 24px rgba(11,19,32,0.10);
+      transform: translateY(-2px);
+    }
+    [data-theme="dark"] .submission-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.35); }
+    .submission-thumb {
+      width: 100%; aspect-ratio: 16/10;
+      background: var(--surface-2);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-3); position: relative; overflow: hidden;
+    }
+    .submission-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .submission-body {
+      padding: 12px 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 14px 14px;
+      flex: 1; display: flex; flex-direction: column; gap: 3px;
+    }
+    .submission-student { font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-3); }
+    .submission-title   { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.3; }
+    .submission-link    { margin-top: 6px; display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: var(--accent); }
+    .submission-no-link { margin-top: 6px; font-size: 11px; color: var(--text-3); }
+
     /* Link grid (semester links) */
     .link-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
     .link-card {
@@ -927,19 +966,21 @@ function toggleTheme() {
 /* ====================================================================
    ROUTER
 ==================================================================== */
-let currentRoute   = 'home';
-let activeDeptId   = null;   // set when entering a class page
-let activeSemId    = null;   // set when entering a specific semester
+let currentRoute    = 'home';
+let activeDeptId    = null;   // active department
+let activeSemId     = null;   // active semester
+let activeProjectId = null;   // active project within a semester
 
-function navigate(route, deptId, semId) {
+function navigate(route, deptId, semId, projectId) {
   currentRoute = route;
-  if (deptId !== undefined) activeDeptId = deptId;
-  if (semId  !== undefined) activeSemId  = semId;
+  if (deptId    !== undefined) activeDeptId    = deptId;
+  if (semId     !== undefined) activeSemId     = semId;
+  if (projectId !== undefined) activeProjectId = projectId;
 
   // Update nav active states
   document.querySelectorAll('[data-nav]').forEach(btn => {
     btn.classList.remove('nav-active');
-    const match = (route === 'class-page') ? 'student-work' : route;
+    const match = (route === 'class-page' || route === 'project-page') ? 'student-work' : route;
     if (btn.dataset.nav === match) btn.classList.add('nav-active');
   });
 
@@ -948,14 +989,14 @@ function navigate(route, deptId, semId) {
 }
 
 /* ====================================================================
-   RENDER DISPATCHER — async so class page can lazy-load semester data
+   RENDER DISPATCHER — async for lazy-loaded semester/project data
 ==================================================================== */
 async function renderAsync() {
   const app = document.getElementById('app');
+  const spinner = `<div class="loading-screen"><div class="loading-dot"></div><div class="loading-dot"></div><div class="loading-dot"></div></div>`;
 
-  if (currentRoute === 'class-page') {
-    // Show spinner while semester file loads
-    app.innerHTML = `<div class="loading-screen"><div class="loading-dot"></div><div class="loading-dot"></div><div class="loading-dot"></div></div>`;
+  if (currentRoute === 'class-page' || currentRoute === 'project-page') {
+    app.innerHTML = spinner;
     const dept = DATA.studentwork.departments.find(d => d.id === activeDeptId) || DATA.studentwork.departments[0];
     const semMeta = activeSemId
       ? dept.semesters.find(s => s.id === activeSemId)
@@ -963,7 +1004,12 @@ async function renderAsync() {
     if (!semMeta) { app.innerHTML = `<div class="container" style="padding:60px 0;color:var(--text-3);">No semester found.</div>`; return; }
     try {
       const semData = await loadSemester(semMeta.id);
-      app.innerHTML = `<div class="fade-in">${renderClassPage(dept, semMeta, semData)}</div>`;
+      if (currentRoute === 'project-page') {
+        const project = semData.projects.find(p => p.id === activeProjectId) || semData.projects[0];
+        app.innerHTML = `<div class="fade-in">${renderProjectPage(dept, semMeta, project)}</div>`;
+      } else {
+        app.innerHTML = `<div class="fade-in">${renderClassPage(dept, semMeta, semData)}</div>`;
+      }
     } catch (err) {
       app.innerHTML = `<div class="container" style="padding:60px 0;color:var(--text-3);">Could not load semester data.</div>`;
     }
@@ -1135,27 +1181,25 @@ function renderClassPage(dept, semMeta, semData) {
       <span class="count">${s.projectCount}</span>
     </button>`).join('');
 
-  // Project grid
+  // Project grid — each card navigates to the project page
   const projects = semData.projects.map(p => {
-    const thumbContent = p.thumb
-      ? `<img src="${p.thumb}" alt="${p.title}" loading="lazy"/>`
-      : `<div style="opacity:0.25;">${icon(dept.icon, 32)}</div>`;
-    const linkBadge = p.url
-      ? `<span class="project-link-badge">${ICONS.external} View project</span>`
-      : '';
-    const Tag = p.url ? 'a' : 'div';
-    const linkAttr = p.url ? `href="${p.url}" target="_blank" rel="noopener"` : '';
+    const count = (p.submissions || []).length;
     return `
-    <${Tag} ${linkAttr} class="card project-card card-hover-accent">
-      <div class="project-thumb">${thumbContent}</div>
+    <div class="card project-card card-hover-accent"
+         onclick="navigate('project-page','${dept.id}','${semMeta.id}','${p.id}')"
+         style="cursor:pointer;">
+      <div class="project-thumb">
+        <div style="opacity:0.2;">${icon(dept.icon, 32)}</div>
+      </div>
       <div class="project-body">
         <p class="project-type">${p.type}</p>
         <p class="project-title">${p.title}</p>
-        <p class="project-student">${p.student}</p>
         <p class="project-desc">${p.desc}</p>
-        ${linkBadge}
+        <span class="project-link-badge" style="margin-top:6px;">
+          ${icon('arrow', 13)} ${count} submission${count !== 1 ? 's' : ''}
+        </span>
       </div>
-    </${Tag}>`;
+    </div>`;
   }).join('');
 
   // Semester resource links
@@ -1208,6 +1252,97 @@ function renderClassPage(dept, semMeta, semData) {
         <div class="link-grid" style="margin-bottom:72px;">${linkCards}</div>
         ` : ''}
       </div>
+    </div>
+  </div>`;
+}
+
+/* ====================================================================
+   PROJECT PAGE — shows all student submissions for one project
+==================================================================== */
+function renderProjectPage(dept, semMeta, project) {
+  const { departments } = DATA.studentwork;
+  const submissions = project.submissions || [];
+
+  // Sidebar: department switcher
+  const deptLinks = departments.map(d => `
+    <button class="sidebar-link ${d.id === dept.id ? 'active' : ''}"
+            onclick="navigate('class-page','${d.id}',null)">
+      <span class="sidebar-dept-icon">${icon(d.icon, 18)}</span>
+      ${d.shortLabel}
+    </button>`).join('');
+
+  // Sidebar: semester switcher
+  const sidebarSemLinks = dept.semesters.map(s => `
+    <button class="sidebar-link ${s.id === semMeta.id ? 'active' : ''}"
+            onclick="navigate('class-page','${dept.id}','${s.id}')">
+      ${s.current ? '<span class="sem-dot"></span>' : ''}
+      ${s.label}
+      <span class="count">${s.projectCount}</span>
+    </button>`).join('');
+
+  // Submission grid
+  const submissionCards = submissions.map(s => {
+    const thumbContent = s.thumb
+      ? `<img src="${s.thumb}" alt="${s.title}" loading="lazy"/>`
+      : `<div style="opacity:0.2;">${icon(dept.icon, 28)}</div>`;
+
+    if (s.url) {
+      return `
+      <a href="${s.url}" target="_blank" rel="noopener" class="submission-card">
+        <div class="submission-thumb">${thumbContent}</div>
+        <div class="submission-body">
+          <p class="submission-student">${s.student}</p>
+          <p class="submission-title">${s.title}</p>
+          <span class="submission-link">${ICONS.external} View work</span>
+        </div>
+      </a>`;
+    }
+    return `
+    <div class="submission-card">
+      <div class="submission-thumb">${thumbContent}</div>
+      <div class="submission-body">
+        <p class="submission-student">${s.student}</p>
+        <p class="submission-title">${s.title}</p>
+        <span class="submission-no-link">Not yet published</span>
+      </div>
+    </div>`;
+  }).join('');
+
+  const accentBarColor = dept.colorToken === 'yellow' ? 'var(--yellow)' : 'var(--accent)';
+
+  return `
+  <div class="container">
+    <div class="class-page-layout">
+
+      <aside class="sidebar">
+        <button class="sidebar-back" onclick="navigate('class-page','${dept.id}','${semMeta.id}')">
+          ${ICONS.back} Back to ${dept.shortLabel}
+        </button>
+        <p class="sidebar-section-label">Department</p>
+        ${deptLinks}
+        <p class="sidebar-section-label" style="margin-top:20px;">Semesters</p>
+        ${sidebarSemLinks}
+      </aside>
+
+      <div class="class-main">
+        <div class="class-main-header">
+          <div class="tags">
+            <span class="tag ${dept.tagClass}">${dept.label}</span>
+            <span class="tag tag-slate">${semMeta.label}</span>
+            ${semMeta.current ? '<span class="tag tag-yellow">Current</span>' : ''}
+          </div>
+          <h1>${project.title}</h1>
+          <p class="muted" style="margin-bottom:12px;">${project.type} &nbsp;·&nbsp; ${submissions.length} submission${submissions.length !== 1 ? 's' : ''}</p>
+          <p style="font-size:15px;color:var(--text-2);line-height:1.65;max-width:580px;">${project.desc}</p>
+        </div>
+
+        <div class="section-heading" style="margin-top:32px;">
+          <div class="section-heading-bar" style="background:${accentBarColor};"></div>
+          Student Submissions
+        </div>
+        <div class="submission-grid">${submissionCards}</div>
+      </div>
+
     </div>
   </div>`;
 }
