@@ -4,12 +4,43 @@
   "department": "digital-media",
 
   "projects": [
-    { "title": "Brand Identity Design",    "student": "Aisha K.", "type": "Photoshop / Illustrator", "desc": "Complete brand system for a fictional Bangkok café — logo, color palette, and typography.", "url": "", "thumb": "" },
-    { "title": "Photo Manipulation Series","student": "Marco T.", "type": "Photoshop",               "desc": "5-piece surrealist series combining photography and digital illustration.", "url": "", "thumb": "" },
-    { "title": "Movie Poster Redesign",    "student": "Priya S.", "type": "Illustrator",             "desc": "Minimalist vector reimagining of three classic film posters.", "url": "", "thumb": "" },
-    { "title": "UX Case Study: MRT App",   "student": "James L.", "type": "Figma",                   "desc": "End-to-end UX research and redesign of the Bangkok MRT mobile app.", "url": "", "thumb": "" },
-    { "title": "Digital Magazine Layout",  "student": "Sofia R.", "type": "InDesign",                "desc": "12-page digital magazine covering Southeast Asian street food culture.", "url": "", "thumb": "" },
-    { "title": "Social Media Campaign",    "student": "Ben W.",   "type": "Canva",                   "desc": "Coordinated 30-day campaign for a student-run fashion brand.", "url": "", "thumb": "" }
+    {
+      "id": "brand-identity",
+      "title": "Brand Identity Design",
+      "type": "Photoshop / Illustrator",
+      "desc": "Create a complete brand system for a fictional local business — logo, color palette, typography, and 2 mockup applications.",
+      "submissions": [
+        { "student": "Aisha K.", "title": "Baan Cha — Bangkok Café Brand",    "url": "", "thumb": "" },
+        { "student": "Marco T.", "title": "Street Found — Food Co.",          "url": "", "thumb": "" },
+        { "student": "Priya S.", "title": "Talad Neon Night Market Brand",    "url": "", "thumb": "" },
+        { "student": "James L.", "title": "Hatch — Co-working Space",         "url": "", "thumb": "" },
+        { "student": "Sofia R.", "title": "Bloom — Plant Delivery",           "url": "", "thumb": "" },
+        { "student": "Ben W.",   "title": "Drift — Skateboard Brand",         "url": "", "thumb": "" }
+      ]
+    },
+    {
+      "id": "ux-case-study",
+      "title": "UX Case Study",
+      "type": "Figma",
+      "desc": "Pick an existing app or service, identify usability problems through research, and present a redesigned prototype in Figma.",
+      "submissions": [
+        { "student": "James L.", "title": "MRT Bangkok App Redesign",         "url": "", "thumb": "" },
+        { "student": "Aisha K.", "title": "BTS Skytrain — Better UX",        "url": "", "thumb": "" },
+        { "student": "Sofia R.", "title": "School Canteen Ordering App",      "url": "", "thumb": "" },
+        { "student": "Marco T.", "title": "Grab Food — Simplified",          "url": "", "thumb": "" }
+      ]
+    },
+    {
+      "id": "photo-series",
+      "title": "Photo Manipulation Series",
+      "type": "Photoshop",
+      "desc": "Produce a series of 4 digitally manipulated photographs with a unified theme. Must demonstrate advanced masking and compositing.",
+      "submissions": [
+        { "student": "Marco T.", "title": "Surreal Bangkok Series",           "url": "", "thumb": "" },
+        { "student": "Priya S.", "title": "Elements: Earth & Sky",           "url": "", "thumb": "" },
+        { "student": "Ben W.",   "title": "Urban Dreams — 4 Pieces",         "url": "", "thumb": "" }
+      ]
+    }
   ],
 
   "links": [

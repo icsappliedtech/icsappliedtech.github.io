@@ -4,9 +4,28 @@
   "department": "digital-media",
 
   "projects": [
-    { "title": "Typography Poster Series", "student": "Lena M.", "type": "Illustrator", "desc": "6 expressive typographic posters exploring emotion and form.", "url": "", "thumb": "" },
-    { "title": "Infographic: Climate Data","student": "Omar F.", "type": "Canva",       "desc": "Visualizing 50 years of Bangkok climate data for a general audience.", "url": "", "thumb": "" },
-    { "title": "App Icon System",          "student": "Yuna C.", "type": "Figma",       "desc": "Cohesive suite of 20 app icons for a productivity platform.", "url": "", "thumb": "" }
+    {
+      "id": "typography-posters",
+      "title": "Typography Poster Series",
+      "type": "Illustrator",
+      "desc": "Design a series of 4 expressive typographic posters exploring a single theme using type as the primary visual element.",
+      "submissions": [
+        { "student": "Lena M.", "title": "Emotion — A Type Series",          "url": "", "thumb": "" },
+        { "student": "Omar F.", "title": "Motion & Type: 4 Posters",         "url": "", "thumb": "" },
+        { "student": "Yuna C.", "title": "Quiet Loud Quiet Loud",            "url": "", "thumb": "" }
+      ]
+    },
+    {
+      "id": "app-icon-system",
+      "title": "App Icon System",
+      "type": "Figma",
+      "desc": "Design a cohesive set of 16 app icons for a fictional productivity platform. All icons must share a consistent visual style.",
+      "submissions": [
+        { "student": "Yuna C.", "title": "Focus Suite — Icon System",        "url": "", "thumb": "" },
+        { "student": "Lena M.", "title": "Minimal OS Icon Pack",             "url": "", "thumb": "" },
+        { "student": "Omar F.", "title": "Workday App Icons",                "url": "", "thumb": "" }
+      ]
+    }
   ],
 
   "links": [

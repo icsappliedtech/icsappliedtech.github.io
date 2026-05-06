@@ -4,9 +4,28 @@
   "department": "applied-tech",
 
   "projects": [
-    { "title": "Interactive Story Game", "student": "Leo V.",  "type": "HTML / JS",  "desc": "Branching text adventure with 12 unique endings in vanilla JS.", "url": "", "thumb": "" },
-    { "title": "Band Website",           "student": "Rin S.",  "type": "HTML / CSS", "desc": "Multi-page site with embedded audio player and tour dates.", "url": "", "thumb": "" },
-    { "title": "Flashcard Study App",    "student": "Teo A.",  "type": "JavaScript", "desc": "Spaced repetition app with custom deck creation and progress tracking.", "url": "", "thumb": "" }
+    {
+      "id": "interactive-story",
+      "title": "Interactive Story Game",
+      "type": "HTML / JS",
+      "desc": "Build a branching text adventure in vanilla JS with at least 8 unique story paths and multiple endings.",
+      "submissions": [
+        { "student": "Leo V.",  "title": "The Lost Temple",           "url": "", "thumb": "" },
+        { "student": "Rin S.",  "title": "Neon City Choices",         "url": "", "thumb": "" },
+        { "student": "Teo A.",  "title": "Space Station Zero",        "url": "", "thumb": "" }
+      ]
+    },
+    {
+      "id": "band-website",
+      "title": "Band or Artist Website",
+      "type": "HTML / CSS",
+      "desc": "Design and build a multi-page website for a real or fictional music artist. Must include an audio player and tour dates.",
+      "submissions": [
+        { "student": "Leo V.",  "title": "Midnight Echo — Official",  "url": "", "thumb": "" },
+        { "student": "Rin S.",  "title": "The Static Kings",          "url": "", "thumb": "" },
+        { "student": "Teo A.",  "title": "Flux: A Band Site",         "url": "", "thumb": "" }
+      ]
+    }
   ],
 
   "links": [

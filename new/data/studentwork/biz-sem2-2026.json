@@ -4,10 +4,30 @@
   "department": "business",
 
   "projects": [
-    { "title": "Startup Business Plan",   "student": "Grace L.", "type": "Docs / Slides",   "desc": "Full business plan for a student-run sustainable clothing brand.", "url": "", "thumb": "" },
-    { "title": "Market Research Report",  "student": "Ivan T.",  "type": "Sheets / Docs",   "desc": "Consumer survey and competitive analysis for a bubble tea concept.", "url": "", "thumb": "" },
-    { "title": "Pitch Deck: EdTech App",  "student": "Anika R.", "type": "Canva / Slides",  "desc": "10-slide investor pitch deck for an AI-powered homework helper.", "url": "", "thumb": "" },
-    { "title": "Financial Projections",   "student": "Chris M.", "type": "Google Sheets",   "desc": "3-year P&L and cash flow model for a food truck business.", "url": "", "thumb": "" }
+    {
+      "id": "business-plan",
+      "title": "Startup Business Plan",
+      "type": "Docs / Slides",
+      "desc": "Write a full business plan for an original business idea. Must include executive summary, market analysis, operations plan, and financial overview.",
+      "submissions": [
+        { "student": "Grace L.", "title": "Re-Thread — Sustainable Fashion",  "url": "", "thumb": "" },
+        { "student": "Ivan T.",  "title": "BubbleLab — Tea Concept",         "url": "", "thumb": "" },
+        { "student": "Anika R.", "title": "StudyMate — Peer Tutoring App",   "url": "", "thumb": "" },
+        { "student": "Chris M.", "title": "Khao San Fusion Food Truck",      "url": "", "thumb": "" }
+      ]
+    },
+    {
+      "id": "pitch-deck",
+      "title": "Investor Pitch Deck",
+      "type": "Canva / Slides",
+      "desc": "Produce a 10-slide investor pitch deck for your business idea. Must include problem, solution, market size, business model, and ask.",
+      "submissions": [
+        { "student": "Anika R.", "title": "StudyMate — Investor Pitch",      "url": "", "thumb": "" },
+        { "student": "Grace L.", "title": "Re-Thread Series A Deck",         "url": "", "thumb": "" },
+        { "student": "Ivan T.",  "title": "BubbleLab Pitch",                 "url": "", "thumb": "" },
+        { "student": "Chris M.", "title": "Khao San Fusion — Seed Round",    "url": "", "thumb": "" }
+      ]
+    }
   ],
 
   "links": [

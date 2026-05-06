@@ -4,16 +4,36 @@
   "department": "marketing",
 
   "projects": [
-    { "title": "Brand Campaign: Local Café",      "student": "Zara N.",  "type": "Canva / Docs",    "desc": "Full campaign strategy for a local Bangkok café — target audience, messaging, and 3 ad executions.", "url": "", "thumb": "" },
-    { "title": "Social Media Audit",              "student": "Kai P.",   "type": "Slides / Sheets", "desc": "Competitive audit of 5 brands across Instagram and TikTok with growth recommendations.", "url": "", "thumb": "" },
-    { "title": "Consumer Persona Research",       "student": "Ella T.",  "type": "Docs / Canva",    "desc": "3 detailed buyer personas built from primary survey data and behavioural analysis.", "url": "", "thumb": "" },
-    { "title": "Email Marketing Campaign",        "student": "David L.", "type": "Mailchimp",       "desc": "Welcome sequence of 4 emails for a fictional streetwear brand with A/B subject line testing.", "url": "", "thumb": "" }
+    {
+      "id": "brand-campaign",
+      "title": "Brand Campaign",
+      "type": "Canva / Docs",
+      "desc": "Develop a full campaign strategy for a real or fictional local brand — define the target audience, key message, and produce 3 ad executions.",
+      "submissions": [
+        { "student": "Zara N.",  "title": "Baan Dee Café — Campaign",        "url": "", "thumb": "" },
+        { "student": "Kai P.",   "title": "Fresh Thread — Brand Push",       "url": "", "thumb": "" },
+        { "student": "Ella T.",  "title": "Siam Eats — Launch Campaign",     "url": "", "thumb": "" },
+        { "student": "David L.", "title": "GreenGo — Sustainability Drive",  "url": "", "thumb": "" }
+      ]
+    },
+    {
+      "id": "social-media-audit",
+      "title": "Social Media Audit",
+      "type": "Slides / Sheets",
+      "desc": "Choose 3 competing brands and audit their social media presence across Instagram and TikTok. Present findings and growth recommendations.",
+      "submissions": [
+        { "student": "Kai P.",   "title": "Bangkok Café Wars — Audit",       "url": "", "thumb": "" },
+        { "student": "Zara N.",  "title": "Fast Fashion TikTok Report",      "url": "", "thumb": "" },
+        { "student": "Ella T.",  "title": "Food Delivery App Audit",         "url": "", "thumb": "" },
+        { "student": "David L.", "title": "Sports Brand Social Audit",       "url": "", "thumb": "" }
+      ]
+    }
   ],
 
   "links": [
-    { "label": "Google Analytics",  "url": "https://analytics.google.com",      "icon": "chart", "desc": "Track and analyse website traffic and behaviour." },
-    { "label": "Canva",             "url": "https://canva.com",                 "icon": "pen",   "desc": "Design ads, posts, and campaign assets quickly." },
-    { "label": "Mailchimp",         "url": "https://mailchimp.com",             "icon": "docs",  "desc": "Email marketing platform used in class." },
-    { "label": "Think With Google", "url": "https://thinkwithgoogle.com",       "icon": "star",  "desc": "Consumer insights and marketing trend reports." }
+    { "label": "Google Analytics",  "url": "https://analytics.google.com",       "icon": "chart", "desc": "Track and analyse website traffic and behaviour." },
+    { "label": "Canva",             "url": "https://canva.com",                  "icon": "pen",   "desc": "Design ads, posts, and campaign assets quickly." },
+    { "label": "Mailchimp",         "url": "https://mailchimp.com",              "icon": "docs",  "desc": "Email marketing platform used in class." },
+    { "label": "Think With Google", "url": "https://thinkwithgoogle.com",        "icon": "star",  "desc": "Consumer insights and marketing trend reports." }
   ]
 }

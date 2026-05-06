@@ -4,16 +4,36 @@
   "department": "entrepreneurship",
 
   "projects": [
-    { "title": "Lean Canvas: Campus Delivery App", "student": "Nadia P.", "type": "Lean Canvas",    "desc": "Problem-solution fit analysis for a student-run campus food delivery service.", "url": "", "thumb": "" },
-    { "title": "Pitch Deck: Upcycled Fashion",     "student": "Tom R.",   "type": "Slides / Canva", "desc": "Investor-ready 10-slide pitch for a Bangkok-based upcycled streetwear brand.", "url": "", "thumb": "" },
-    { "title": "MVP Prototype: Study Buddy App",   "student": "Lily S.",  "type": "Figma",          "desc": "Clickable prototype for a peer tutoring marketplace targeting ICS students.", "url": "", "thumb": "" },
-    { "title": "Customer Discovery Report",        "student": "Finn O.",  "type": "Docs / Sheets",  "desc": "30 customer interviews synthesized into key insight clusters and opportunity map.", "url": "", "thumb": "" }
+    {
+      "id": "lean-canvas",
+      "title": "Lean Canvas",
+      "type": "Lean Canvas / Docs",
+      "desc": "Map your startup idea onto a Lean Canvas. Identify the problem, customer segments, unique value proposition, channels, and revenue streams.",
+      "submissions": [
+        { "student": "Nadia P.", "title": "CampusRun — Delivery App",        "url": "", "thumb": "" },
+        { "student": "Tom R.",   "title": "UpCycle — Fashion Platform",      "url": "", "thumb": "" },
+        { "student": "Lily S.",  "title": "StudyBuddy — Peer Tutoring",      "url": "", "thumb": "" },
+        { "student": "Finn O.",  "title": "FreshCart — Local Groceries",     "url": "", "thumb": "" }
+      ]
+    },
+    {
+      "id": "mvp-prototype",
+      "title": "MVP Prototype",
+      "type": "Figma",
+      "desc": "Build a clickable Figma prototype of your minimum viable product. Must include at least 5 screens and a working user flow.",
+      "submissions": [
+        { "student": "Lily S.",  "title": "StudyBuddy App — MVP",            "url": "", "thumb": "" },
+        { "student": "Nadia P.", "title": "CampusRun — Order Flow",          "url": "", "thumb": "" },
+        { "student": "Tom R.",   "title": "UpCycle Marketplace MVP",         "url": "", "thumb": "" },
+        { "student": "Finn O.",  "title": "FreshCart — Browse & Checkout",   "url": "", "thumb": "" }
+      ]
+    }
   ],
 
   "links": [
-    { "label": "Lean Canvas",    "url": "https://leanstack.com/lean-canvas", "icon": "docs",      "desc": "One-page business model for startups." },
-    { "label": "Figma",          "url": "https://figma.com",                 "icon": "layers",    "desc": "Prototype your MVP before you build it." },
-    { "label": "Y Combinator",   "url": "https://www.ycombinator.com/library","icon": "star",     "desc": "Startup advice from the world's top accelerator." },
-    { "label": "Strategyzer",    "url": "https://www.strategyzer.com",       "icon": "chart",     "desc": "Business Model Canvas and Value Proposition tools." }
+    { "label": "Lean Canvas",   "url": "https://leanstack.com/lean-canvas",  "icon": "docs",   "desc": "One-page business model for startups." },
+    { "label": "Figma",         "url": "https://figma.com",                  "icon": "layers", "desc": "Prototype your MVP before you build it." },
+    { "label": "Y Combinator",  "url": "https://www.ycombinator.com/library","icon": "star",   "desc": "Startup advice from the world's top accelerator." },
+    { "label": "Strategyzer",   "url": "https://www.strategyzer.com",        "icon": "chart",  "desc": "Business Model Canvas and Value Proposition tools." }
   ]
 }
