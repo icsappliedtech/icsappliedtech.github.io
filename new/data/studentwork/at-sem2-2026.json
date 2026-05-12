@@ -1,55 +1,142 @@
 {
   "_instructions": "Each project is an assignment given to the class. 'submissions' holds each student's individual work for that project. Add new submissions to the array as students finish. 'url' links to their published work; leave blank if not yet live. 'thumb' is a path to a screenshot image; leave blank to show the department icon.",
-
   "id": "at-sem2-2026",
   "label": "Semester 2, 2026",
   "department": "applied-tech",
-
   "projects": [
     {
       "id": "portfolio-site",
       "title": "Personal Portfolio Site",
-      "type": "HTML / CSS / JS",
+      "type": "code",
       "desc": "Build a fully responsive personal portfolio showcasing your projects, skills, and contact information.",
       "submissions": [
-        { "student": "Kai T.",   "title": "Kai's Dev Portfolio",      "url": "", "thumb": "" },
-        { "student": "Nina B.",  "title": "Nina Builds Things",        "url": "", "thumb": "" },
-        { "student": "Arjun P.","title": "Arjun.codes",               "url": "", "thumb": "" },
-        { "student": "Chloe D.","title": "Chloe's Creative Space",    "url": "", "thumb": "" },
-        { "student": "Sam H.",  "title": "Sam's Web Workshop",        "url": "", "thumb": "" },
-        { "student": "Mia K.",  "title": "Mia Kim — Front End Dev",   "url": "", "thumb": "" }
+        {
+          "student": "Kai T.",
+          "title": "Kai's Dev Portfolio",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Nina B.",
+          "title": "Nina Builds Things",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Arjun P.",
+          "title": "Arjun.codes",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Chloe D.",
+          "title": "Chloe's Creative Space",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Sam H.",
+          "title": "Sam's Web Workshop",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Mia K.",
+          "title": "Mia Kim \u2014 Front End Dev",
+          "url": "",
+          "thumb": ""
+        }
       ]
     },
     {
       "id": "weather-dashboard",
       "title": "Weather Dashboard",
-      "type": "JS / API",
+      "type": "code",
       "desc": "Build a real-time weather app using the OpenWeather API. Must include current conditions and a 5-day forecast.",
       "submissions": [
-        { "student": "Kai T.",   "title": "Bangkok Weather Hub",      "url": "", "thumb": "" },
-        { "student": "Nina B.",  "title": "Global Weather Finder",    "url": "", "thumb": "" },
-        { "student": "Arjun P.","title": "WeatherBoard",              "url": "", "thumb": "" },
-        { "student": "Sam H.",  "title": "Storm Tracker",             "url": "", "thumb": "" }
+        {
+          "student": "Kai T.",
+          "title": "Bangkok Weather Hub",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Nina B.",
+          "title": "Global Weather Finder",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Arjun P.",
+          "title": "WeatherBoard",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Sam H.",
+          "title": "Storm Tracker",
+          "url": "",
+          "thumb": ""
+        }
       ]
     },
     {
       "id": "quiz-engine",
       "title": "JavaScript Quiz Engine",
-      "type": "JavaScript",
+      "type": "code",
       "desc": "Build a dynamic quiz app with scoring, a countdown timer, and results screen. Topic of your choice.",
       "submissions": [
-        { "student": "Chloe D.","title": "Thai History Quiz",         "url": "", "thumb": "" },
-        { "student": "Mia K.",  "title": "CSS Challenge Trivia",      "url": "", "thumb": "" },
-        { "student": "Sam H.",  "title": "Football Facts Quiz",       "url": "", "thumb": "" },
-        { "student": "Arjun P.","title": "Pop Culture Speed Round",   "url": "", "thumb": "" }
+        {
+          "student": "Chloe D.",
+          "title": "Thai History Quiz",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Mia K.",
+          "title": "CSS Challenge Trivia",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Sam H.",
+          "title": "Football Facts Quiz",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Arjun P.",
+          "title": "Pop Culture Speed Round",
+          "url": "",
+          "thumb": ""
+        }
       ]
     }
   ],
-
   "links": [
-    { "label": "MDN Web Docs", "url": "https://developer.mozilla.org", "icon": "docs",   "desc": "The gold-standard HTML, CSS & JS reference." },
-    { "label": "CodePen",      "url": "https://codepen.io",            "icon": "pen",    "desc": "Online editor for front-end experiments." },
-    { "label": "GitHub",       "url": "https://github.com",            "icon": "github", "desc": "Version control and project hosting." },
-    { "label": "CSS-Tricks",   "url": "https://css-tricks.com",        "icon": "star",   "desc": "Tips and tutorials for CSS." }
+    {
+      "label": "MDN Web Docs",
+      "url": "https://developer.mozilla.org",
+      "icon": "docs",
+      "desc": "The gold-standard HTML, CSS & JS reference."
+    },
+    {
+      "label": "CodePen",
+      "url": "https://codepen.io",
+      "icon": "pen",
+      "desc": "Online editor for front-end experiments."
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com",
+      "icon": "github",
+      "desc": "Version control and project hosting."
+    },
+    {
+      "label": "CSS-Tricks",
+      "url": "https://css-tricks.com",
+      "icon": "star",
+      "desc": "Tips and tutorials for CSS."
+    }
   ]
 }

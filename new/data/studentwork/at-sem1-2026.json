@@ -2,34 +2,72 @@
   "id": "at-sem1-2026",
   "label": "Semester 1, 2026",
   "department": "applied-tech",
-
   "projects": [
     {
       "id": "interactive-story",
       "title": "Interactive Story Game",
-      "type": "HTML / JS",
+      "type": "code",
       "desc": "Build a branching text adventure in vanilla JS with at least 8 unique story paths and multiple endings.",
       "submissions": [
-        { "student": "Leo V.",  "title": "The Lost Temple",           "url": "", "thumb": "" },
-        { "student": "Rin S.",  "title": "Neon City Choices",         "url": "", "thumb": "" },
-        { "student": "Teo A.",  "title": "Space Station Zero",        "url": "", "thumb": "" }
+        {
+          "student": "Leo V.",
+          "title": "The Lost Temple",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Rin S.",
+          "title": "Neon City Choices",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Teo A.",
+          "title": "Space Station Zero",
+          "url": "",
+          "thumb": ""
+        }
       ]
     },
     {
       "id": "band-website",
       "title": "Band or Artist Website",
-      "type": "HTML / CSS",
+      "type": "code",
       "desc": "Design and build a multi-page website for a real or fictional music artist. Must include an audio player and tour dates.",
       "submissions": [
-        { "student": "Leo V.",  "title": "Midnight Echo — Official",  "url": "", "thumb": "" },
-        { "student": "Rin S.",  "title": "The Static Kings",          "url": "", "thumb": "" },
-        { "student": "Teo A.",  "title": "Flux: A Band Site",         "url": "", "thumb": "" }
+        {
+          "student": "Leo V.",
+          "title": "Midnight Echo \u2014 Official",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Rin S.",
+          "title": "The Static Kings",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Teo A.",
+          "title": "Flux: A Band Site",
+          "url": "",
+          "thumb": ""
+        }
       ]
     }
   ],
-
   "links": [
-    { "label": "W3Schools",      "url": "https://w3schools.com",     "icon": "docs", "desc": "Beginner-friendly web tutorials." },
-    { "label": "Flexbox Froggy", "url": "https://flexboxfroggy.com", "icon": "star", "desc": "Learn Flexbox through a fun game." }
+    {
+      "label": "W3Schools",
+      "url": "https://w3schools.com",
+      "icon": "docs",
+      "desc": "Beginner-friendly web tutorials."
+    },
+    {
+      "label": "Flexbox Froggy",
+      "url": "https://flexboxfroggy.com",
+      "icon": "star",
+      "desc": "Learn Flexbox through a fun game."
+    }
   ]
 }

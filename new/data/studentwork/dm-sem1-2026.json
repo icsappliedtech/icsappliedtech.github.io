@@ -2,34 +2,84 @@
   "id": "dm-sem1-2026",
   "label": "Semester 1, 2026",
   "department": "digital-media",
-
   "projects": [
     {
       "id": "typography-posters",
       "title": "Typography Poster Series",
-      "type": "Illustrator",
+      "type": "design",
       "desc": "Design a series of 4 expressive typographic posters exploring a single theme using type as the primary visual element.",
       "submissions": [
-        { "student": "Lena M.", "title": "Emotion — A Type Series",          "url": "", "thumb": "" },
-        { "student": "Omar F.", "title": "Motion & Type: 4 Posters",         "url": "", "thumb": "" },
-        { "student": "Yuna C.", "title": "Quiet Loud Quiet Loud",            "url": "", "thumb": "" }
+        {
+          "student": "Lena M.",
+          "title": "Emotion \u2014 A Type Series",
+          "mediaType": "image",
+          "media": "",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Omar F.",
+          "title": "Motion & Type: 4 Posters",
+          "mediaType": "image",
+          "media": "",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Yuna C.",
+          "title": "Quiet Loud Quiet Loud",
+          "mediaType": "image",
+          "media": "",
+          "url": "",
+          "thumb": ""
+        }
       ]
     },
     {
       "id": "app-icon-system",
       "title": "App Icon System",
-      "type": "Figma",
+      "type": "design",
       "desc": "Design a cohesive set of 16 app icons for a fictional productivity platform. All icons must share a consistent visual style.",
       "submissions": [
-        { "student": "Yuna C.", "title": "Focus Suite — Icon System",        "url": "", "thumb": "" },
-        { "student": "Lena M.", "title": "Minimal OS Icon Pack",             "url": "", "thumb": "" },
-        { "student": "Omar F.", "title": "Workday App Icons",                "url": "", "thumb": "" }
+        {
+          "student": "Yuna C.",
+          "title": "Focus Suite \u2014 Icon System",
+          "mediaType": "link",
+          "media": "",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Lena M.",
+          "title": "Minimal OS Icon Pack",
+          "mediaType": "link",
+          "media": "",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Omar F.",
+          "title": "Workday App Icons",
+          "mediaType": "link",
+          "media": "",
+          "url": "",
+          "thumb": ""
+        }
       ]
     }
   ],
-
   "links": [
-    { "label": "Behance",    "url": "https://behance.net", "icon": "star",   "desc": "Design portfolio inspiration." },
-    { "label": "Coolors.co", "url": "https://coolors.co",  "icon": "circle", "desc": "Fast color palette generation." }
+    {
+      "label": "Behance",
+      "url": "https://behance.net",
+      "icon": "star",
+      "desc": "Design portfolio inspiration."
+    },
+    {
+      "label": "Coolors.co",
+      "url": "https://coolors.co",
+      "icon": "circle",
+      "desc": "Fast color palette generation."
+    }
   ]
 }

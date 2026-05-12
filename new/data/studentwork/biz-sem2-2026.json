@@ -2,38 +2,96 @@
   "id": "biz-sem2-2026",
   "label": "Semester 2, 2026",
   "department": "business",
-
   "projects": [
     {
       "id": "business-plan",
       "title": "Startup Business Plan",
-      "type": "Docs / Slides",
+      "type": "design",
       "desc": "Write a full business plan for an original business idea. Must include executive summary, market analysis, operations plan, and financial overview.",
       "submissions": [
-        { "student": "Grace L.", "title": "Re-Thread — Sustainable Fashion",  "url": "", "thumb": "" },
-        { "student": "Ivan T.",  "title": "BubbleLab — Tea Concept",         "url": "", "thumb": "" },
-        { "student": "Anika R.", "title": "StudyMate — Peer Tutoring App",   "url": "", "thumb": "" },
-        { "student": "Chris M.", "title": "Khao San Fusion Food Truck",      "url": "", "thumb": "" }
+        {
+          "student": "Grace L.",
+          "title": "Re-Thread \u2014 Sustainable Fashion",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Ivan T.",
+          "title": "BubbleLab \u2014 Tea Concept",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Anika R.",
+          "title": "StudyMate \u2014 Peer Tutoring App",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Chris M.",
+          "title": "Khao San Fusion Food Truck",
+          "url": "",
+          "thumb": ""
+        }
       ]
     },
     {
       "id": "pitch-deck",
       "title": "Investor Pitch Deck",
-      "type": "Canva / Slides",
+      "type": "design",
       "desc": "Produce a 10-slide investor pitch deck for your business idea. Must include problem, solution, market size, business model, and ask.",
       "submissions": [
-        { "student": "Anika R.", "title": "StudyMate — Investor Pitch",      "url": "", "thumb": "" },
-        { "student": "Grace L.", "title": "Re-Thread Series A Deck",         "url": "", "thumb": "" },
-        { "student": "Ivan T.",  "title": "BubbleLab Pitch",                 "url": "", "thumb": "" },
-        { "student": "Chris M.", "title": "Khao San Fusion — Seed Round",    "url": "", "thumb": "" }
+        {
+          "student": "Anika R.",
+          "title": "StudyMate \u2014 Investor Pitch",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Grace L.",
+          "title": "Re-Thread Series A Deck",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Ivan T.",
+          "title": "BubbleLab Pitch",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Chris M.",
+          "title": "Khao San Fusion \u2014 Seed Round",
+          "url": "",
+          "thumb": ""
+        }
       ]
     }
   ],
-
   "links": [
-    { "label": "Google Workspace", "url": "https://workspace.google.com", "icon": "docs",  "desc": "Docs, Sheets, Slides for collaborative work." },
-    { "label": "Canva",            "url": "https://canva.com",            "icon": "star",  "desc": "Easy presentation and report design." },
-    { "label": "Statista",         "url": "https://statista.com",         "icon": "chart", "desc": "Market research and industry statistics." },
-    { "label": "Investopedia",     "url": "https://investopedia.com",     "icon": "chart", "desc": "Finance and business concepts explained." }
+    {
+      "label": "Google Workspace",
+      "url": "https://workspace.google.com",
+      "icon": "docs",
+      "desc": "Docs, Sheets, Slides for collaborative work."
+    },
+    {
+      "label": "Canva",
+      "url": "https://canva.com",
+      "icon": "star",
+      "desc": "Easy presentation and report design."
+    },
+    {
+      "label": "Statista",
+      "url": "https://statista.com",
+      "icon": "chart",
+      "desc": "Market research and industry statistics."
+    },
+    {
+      "label": "Investopedia",
+      "url": "https://investopedia.com",
+      "icon": "chart",
+      "desc": "Finance and business concepts explained."
+    }
   ]
 }

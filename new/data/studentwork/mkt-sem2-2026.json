@@ -2,38 +2,96 @@
   "id": "mkt-sem2-2026",
   "label": "Semester 2, 2026",
   "department": "marketing",
-
   "projects": [
     {
       "id": "brand-campaign",
       "title": "Brand Campaign",
-      "type": "Canva / Docs",
-      "desc": "Develop a full campaign strategy for a real or fictional local brand — define the target audience, key message, and produce 3 ad executions.",
+      "type": "design",
+      "desc": "Develop a full campaign strategy for a real or fictional local brand \u2014 define the target audience, key message, and produce 3 ad executions.",
       "submissions": [
-        { "student": "Zara N.",  "title": "Baan Dee Café — Campaign",        "url": "", "thumb": "" },
-        { "student": "Kai P.",   "title": "Fresh Thread — Brand Push",       "url": "", "thumb": "" },
-        { "student": "Ella T.",  "title": "Siam Eats — Launch Campaign",     "url": "", "thumb": "" },
-        { "student": "David L.", "title": "GreenGo — Sustainability Drive",  "url": "", "thumb": "" }
+        {
+          "student": "Zara N.",
+          "title": "Baan Dee Caf\u00e9 \u2014 Campaign",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Kai P.",
+          "title": "Fresh Thread \u2014 Brand Push",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Ella T.",
+          "title": "Siam Eats \u2014 Launch Campaign",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "David L.",
+          "title": "GreenGo \u2014 Sustainability Drive",
+          "url": "",
+          "thumb": ""
+        }
       ]
     },
     {
       "id": "social-media-audit",
       "title": "Social Media Audit",
-      "type": "Slides / Sheets",
+      "type": "design",
       "desc": "Choose 3 competing brands and audit their social media presence across Instagram and TikTok. Present findings and growth recommendations.",
       "submissions": [
-        { "student": "Kai P.",   "title": "Bangkok Café Wars — Audit",       "url": "", "thumb": "" },
-        { "student": "Zara N.",  "title": "Fast Fashion TikTok Report",      "url": "", "thumb": "" },
-        { "student": "Ella T.",  "title": "Food Delivery App Audit",         "url": "", "thumb": "" },
-        { "student": "David L.", "title": "Sports Brand Social Audit",       "url": "", "thumb": "" }
+        {
+          "student": "Kai P.",
+          "title": "Bangkok Caf\u00e9 Wars \u2014 Audit",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Zara N.",
+          "title": "Fast Fashion TikTok Report",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Ella T.",
+          "title": "Food Delivery App Audit",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "David L.",
+          "title": "Sports Brand Social Audit",
+          "url": "",
+          "thumb": ""
+        }
       ]
     }
   ],
-
   "links": [
-    { "label": "Google Analytics",  "url": "https://analytics.google.com",       "icon": "chart", "desc": "Track and analyse website traffic and behaviour." },
-    { "label": "Canva",             "url": "https://canva.com",                  "icon": "pen",   "desc": "Design ads, posts, and campaign assets quickly." },
-    { "label": "Mailchimp",         "url": "https://mailchimp.com",              "icon": "docs",  "desc": "Email marketing platform used in class." },
-    { "label": "Think With Google", "url": "https://thinkwithgoogle.com",        "icon": "star",  "desc": "Consumer insights and marketing trend reports." }
+    {
+      "label": "Google Analytics",
+      "url": "https://analytics.google.com",
+      "icon": "chart",
+      "desc": "Track and analyse website traffic and behaviour."
+    },
+    {
+      "label": "Canva",
+      "url": "https://canva.com",
+      "icon": "pen",
+      "desc": "Design ads, posts, and campaign assets quickly."
+    },
+    {
+      "label": "Mailchimp",
+      "url": "https://mailchimp.com",
+      "icon": "docs",
+      "desc": "Email marketing platform used in class."
+    },
+    {
+      "label": "Think With Google",
+      "url": "https://thinkwithgoogle.com",
+      "icon": "star",
+      "desc": "Consumer insights and marketing trend reports."
+    }
   ]
 }

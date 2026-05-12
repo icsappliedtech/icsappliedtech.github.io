@@ -1,11 +1,10 @@
 {
   "_instructions": {
-    "structure": "This file contains ONLY department info and semester metadata — no projects. Projects live in separate files named by semester ID (e.g. at-sem2-2026.json). The hub page loads only this file, then fetches individual semester files on demand.",
+    "structure": "This file contains ONLY department info and semester metadata \u2014 no projects. Projects live in separate files named by semester ID (e.g. at-sem2-2026.json). The hub page loads only this file, then fetches individual semester files on demand.",
     "howToAddASemester": "1. Add a new semester object at the TOP of the correct department's 'semesters' array. 2. Set 'current: true' and set the old current semester to 'current: false'. 3. Create a matching file in data/studentwork/ named with the semester ID (e.g. ent-sem1-2027.json).",
     "howToAddADepartment": "Add a new department object to the 'departments' array. Then create semester files for it.",
     "semesterIdFormat": "dept-semN-YYYY  e.g. at-sem2-2026, dm-sem1-2027, ent-sem2-2026"
   },
-
   "departments": [
     {
       "id": "applied-tech",
@@ -14,10 +13,24 @@
       "icon": "code",
       "colorToken": "yellow",
       "tagClass": "tag-yellow",
-      "description": "HTML, CSS, JavaScript, APIs, and full web projects.",
+      "description": "HTML, CSS, JavaScript, and full web projects.",
       "semesters": [
-        { "id": "at-sem2-2026", "label": "Semester 2, 2026", "year": 2026, "term": 2, "current": true,  "projectCount": 6 },
-        { "id": "at-sem1-2026", "label": "Semester 1, 2026", "year": 2026, "term": 1, "current": false, "projectCount": 3 }
+        {
+          "id": "at-sem2-2026",
+          "label": "Semester 2, 2026",
+          "year": 2026,
+          "term": 2,
+          "current": true,
+          "projectCount": 6
+        },
+        {
+          "id": "at-sem1-2026",
+          "label": "Semester 1, 2026",
+          "year": 2026,
+          "term": 1,
+          "current": false,
+          "projectCount": 3
+        }
       ]
     },
     {
@@ -27,10 +40,24 @@
       "icon": "palette",
       "colorToken": "navy",
       "tagClass": "tag-navy",
-      "description": "Photoshop, Illustrator, Figma, and visual storytelling.",
+      "description": "Vector, Raster, Audio, and Video.",
       "semesters": [
-        { "id": "dm-sem2-2026", "label": "Semester 2, 2026", "year": 2026, "term": 2, "current": true,  "projectCount": 6 },
-        { "id": "dm-sem1-2026", "label": "Semester 1, 2026", "year": 2026, "term": 1, "current": false, "projectCount": 3 }
+        {
+          "id": "dm-sem2-2026",
+          "label": "Semester 2, 2026",
+          "year": 2026,
+          "term": 2,
+          "current": true,
+          "projectCount": 6
+        },
+        {
+          "id": "dm-sem1-2026",
+          "label": "Semester 1, 2026",
+          "year": 2026,
+          "term": 1,
+          "current": false,
+          "projectCount": 3
+        }
       ]
     },
     {
@@ -40,9 +67,16 @@
       "icon": "briefcase",
       "colorToken": "slate",
       "tagClass": "tag-slate",
-      "description": "Business plans, pitch decks, market research, and financial models.",
+      "description": "Business plans, pitch decks, and market research.",
       "semesters": [
-        { "id": "biz-sem2-2026", "label": "Semester 2, 2026", "year": 2026, "term": 2, "current": true, "projectCount": 4 }
+        {
+          "id": "biz-sem2-2026",
+          "label": "Semester 2, 2026",
+          "year": 2026,
+          "term": 2,
+          "current": true,
+          "projectCount": 4
+        }
       ]
     },
     {
@@ -52,9 +86,16 @@
       "icon": "rocket",
       "colorToken": "yellow",
       "tagClass": "tag-yellow",
-      "description": "Ideation, lean startup methodology, pitching, and building real ventures.",
+      "description": "Discover, plan, resource, launch, and harvest.",
       "semesters": [
-        { "id": "ent-sem2-2026", "label": "Semester 2, 2026", "year": 2026, "term": 2, "current": true, "projectCount": 4 }
+        {
+          "id": "ent-sem2-2026",
+          "label": "Semester 2, 2026",
+          "year": 2026,
+          "term": 2,
+          "current": true,
+          "projectCount": 4
+        }
       ]
     },
     {
@@ -64,9 +105,16 @@
       "icon": "megaphone",
       "colorToken": "navy",
       "tagClass": "tag-navy",
-      "description": "Brand strategy, consumer research, campaigns, and digital marketing.",
+      "description": "Product, price, place, and promotion.",
       "semesters": [
-        { "id": "mkt-sem2-2026", "label": "Semester 2, 2026", "year": 2026, "term": 2, "current": true, "projectCount": 4 }
+        {
+          "id": "mkt-sem2-2026",
+          "label": "Semester 2, 2026",
+          "year": 2026,
+          "term": 2,
+          "current": true,
+          "projectCount": 4
+        }
       ]
     }
   ]

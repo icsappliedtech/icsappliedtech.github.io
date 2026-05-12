@@ -1,52 +1,231 @@
 {
+  "_instructions": {
+    "mediaType": "Set 'mediaType' to: 'link' (opens URL), 'image' (lightbox), 'audio' (player), 'video' (YouTube embed).",
+    "media": "For image: path to full-size image. For audio: path to audio file. For video: YouTube URL or video ID. For link: leave blank (use 'url' field instead).",
+    "url": "Only used when mediaType is 'link'. Leave blank for image/audio/video types.",
+    "thumb": "Thumbnail shown on the card. Works for all mediaTypes."
+  },
   "id": "dm-sem2-2026",
   "label": "Semester 2, 2026",
   "department": "digital-media",
-
   "projects": [
     {
       "id": "brand-identity",
       "title": "Brand Identity Design",
-      "type": "Photoshop / Illustrator",
-      "desc": "Create a complete brand system for a fictional local business — logo, color palette, typography, and 2 mockup applications.",
+      "type": "design",
+      "desc": "Create a complete brand system for a fictional local business \u2014 logo, color palette, typography, and 2 mockup applications.",
       "submissions": [
-        { "student": "Aisha K.", "title": "Baan Cha — Bangkok Café Brand",    "url": "", "thumb": "" },
-        { "student": "Marco T.", "title": "Street Found — Food Co.",          "url": "", "thumb": "" },
-        { "student": "Priya S.", "title": "Talad Neon Night Market Brand",    "url": "", "thumb": "" },
-        { "student": "James L.", "title": "Hatch — Co-working Space",         "url": "", "thumb": "" },
-        { "student": "Sofia R.", "title": "Bloom — Plant Delivery",           "url": "", "thumb": "" },
-        { "student": "Ben W.",   "title": "Drift — Skateboard Brand",         "url": "", "thumb": "" }
+        {
+          "student": "Aisha K.",
+          "title": "Baan Cha \u2014 Bangkok Caf\u00e9 Brand",
+          "mediaType": "image",
+          "media": "",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Marco T.",
+          "title": "Street Found \u2014 Food Co.",
+          "mediaType": "image",
+          "media": "",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Priya S.",
+          "title": "Talad Neon Night Market Brand",
+          "mediaType": "image",
+          "media": "",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "James L.",
+          "title": "Hatch \u2014 Co-working Space",
+          "mediaType": "image",
+          "media": "",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Sofia R.",
+          "title": "Bloom \u2014 Plant Delivery",
+          "mediaType": "image",
+          "media": "",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Ben W.",
+          "title": "Drift \u2014 Skateboard Brand",
+          "mediaType": "image",
+          "media": "",
+          "url": "",
+          "thumb": ""
+        }
       ]
     },
     {
       "id": "ux-case-study",
       "title": "UX Case Study",
-      "type": "Figma",
-      "desc": "Pick an existing app or service, identify usability problems through research, and present a redesigned prototype in Figma.",
+      "type": "prototype",
+      "desc": "Pick an existing app or service, identify usability problems through research, and present a redesigned prototype using your preferred design tool.",
       "submissions": [
-        { "student": "James L.", "title": "MRT Bangkok App Redesign",         "url": "", "thumb": "" },
-        { "student": "Aisha K.", "title": "BTS Skytrain — Better UX",        "url": "", "thumb": "" },
-        { "student": "Sofia R.", "title": "School Canteen Ordering App",      "url": "", "thumb": "" },
-        { "student": "Marco T.", "title": "Grab Food — Simplified",          "url": "", "thumb": "" }
+        {
+          "student": "James L.",
+          "title": "MRT Bangkok App Redesign",
+          "mediaType": "link",
+          "media": "",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Aisha K.",
+          "title": "BTS Skytrain \u2014 Better UX",
+          "mediaType": "link",
+          "media": "",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Sofia R.",
+          "title": "School Canteen Ordering App",
+          "mediaType": "link",
+          "media": "",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Marco T.",
+          "title": "Grab Food \u2014 Simplified",
+          "mediaType": "link",
+          "media": "",
+          "url": "",
+          "thumb": ""
+        }
       ]
     },
     {
       "id": "photo-series",
       "title": "Photo Manipulation Series",
-      "type": "Photoshop",
+      "type": "design",
       "desc": "Produce a series of 4 digitally manipulated photographs with a unified theme. Must demonstrate advanced masking and compositing.",
       "submissions": [
-        { "student": "Marco T.", "title": "Surreal Bangkok Series",           "url": "", "thumb": "" },
-        { "student": "Priya S.", "title": "Elements: Earth & Sky",           "url": "", "thumb": "" },
-        { "student": "Ben W.",   "title": "Urban Dreams — 4 Pieces",         "url": "", "thumb": "" }
+        {
+          "student": "Marco T.",
+          "title": "Surreal Bangkok Series",
+          "mediaType": "image",
+          "media": "",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Priya S.",
+          "title": "Elements: Earth & Sky",
+          "mediaType": "image",
+          "media": "",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Ben W.",
+          "title": "Urban Dreams \u2014 4 Pieces",
+          "mediaType": "image",
+          "media": "",
+          "url": "",
+          "thumb": ""
+        }
+      ]
+    },
+    {
+      "id": "audio-design",
+      "title": "Sound Design & Podcast",
+      "type": "design",
+      "desc": "Produce a 3\u20135 minute audio piece \u2014 a podcast episode, soundscape, or short story with music and effects.",
+      "submissions": [
+        {
+          "student": "Sofia R.",
+          "title": "Bangkok After Dark \u2014 Soundscape",
+          "mediaType": "audio",
+          "media": "",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Ben W.",
+          "title": "The Street Vendor Podcast Ep. 1",
+          "mediaType": "audio",
+          "media": "",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Aisha K.",
+          "title": "Monsoon Season \u2014 Ambient Audio",
+          "mediaType": "audio",
+          "media": "",
+          "url": "",
+          "thumb": ""
+        }
+      ]
+    },
+    {
+      "id": "motion-video",
+      "title": "Motion Design & Video",
+      "type": "design",
+      "desc": "Create a 60\u201390 second motion piece \u2014 a title sequence, explainer video, or short documentary.",
+      "submissions": [
+        {
+          "student": "James L.",
+          "title": "MRT Explainer \u2014 Motion Design",
+          "mediaType": "video",
+          "media": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Marco T.",
+          "title": "Street Art of Bangkok",
+          "mediaType": "video",
+          "media": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "url": "",
+          "thumb": ""
+        },
+        {
+          "student": "Priya S.",
+          "title": "Title Sequence \u2014 Noir City",
+          "mediaType": "video",
+          "media": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "url": "",
+          "thumb": ""
+        }
       ]
     }
   ],
-
   "links": [
-    { "label": "Adobe Creative Cloud", "url": "https://creativecloud.adobe.com", "icon": "star",   "desc": "Photoshop, Illustrator, InDesign & more." },
-    { "label": "Figma",                "url": "https://figma.com",              "icon": "layers", "desc": "Collaborative UI/UX design and prototyping." },
-    { "label": "Unsplash",             "url": "https://unsplash.com",           "icon": "image",  "desc": "Free high-resolution stock photography." },
-    { "label": "Google Fonts",         "url": "https://fonts.google.com",       "icon": "type",   "desc": "Open-source fonts for any project." }
+    {
+      "label": "Adobe Creative Cloud",
+      "url": "https://creativecloud.adobe.com",
+      "icon": "star",
+      "desc": "Photoshop, Illustrator, InDesign & more."
+    },
+    {
+      "label": "Prototyping Tools",
+      "url": "",
+      "icon": "layers",
+      "desc": "Use your preferred tool for wireframing and prototyping."
+    },
+    {
+      "label": "Unsplash",
+      "url": "https://unsplash.com",
+      "icon": "image",
+      "desc": "Free high-resolution stock photography."
+    },
+    {
+      "label": "Google Fonts",
+      "url": "https://fonts.google.com",
+      "icon": "type",
+      "desc": "Open-source fonts for any project."
+    }
   ]
 }
