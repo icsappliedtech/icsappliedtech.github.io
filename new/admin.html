@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>MJC Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#0B1320;--surface:#111D2E;--surface-2:#1A2C42;--border:#1E3250;--border-2:#2A4468;--text:#E8EDF5;--text-2:#9AAEC8;--text-3:#4D6884;--accent:#4D87D6;--accent-2:#3A70BE;--yellow:#FFCB47;--yellow-bg:#1C1700;--green:#34D399;--green-bg:#052015;--red:#F87171;--red-bg:#1C0505;--mono:'JetBrains Mono',monospace;--sans:'Inter',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;}
+.header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 28px;height:56px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.header-brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;}
+.header-mark{width:30px;height:30px;background:var(--accent);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#fff;letter-spacing:.02em;}
+.header-badge{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--yellow);background:var(--yellow-bg);border:1px solid #3a2d00;padding:3px 9px;border-radius:100px;}
+.header-right{display:flex;align-items:center;gap:10px;}
+.body{display:flex;flex:1;overflow:hidden;}
+.sidebar{width:220px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;}
+.sidebar-section{padding:20px 14px 8px;}
+.sidebar-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);padding:0 8px;margin-bottom:6px;}
+.nav-btn{width:100%;text-align:left;display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:8px;font-size:13px;font-weight:500;color:var(--text-2);cursor:pointer;border:none;background:none;font-family:var(--sans);transition:background .15s,color .15s;margin-bottom:2px;}
+.nav-btn:hover{background:var(--surface-2);color:var(--text);}
+.nav-btn.active{background:rgba(77,135,214,.15);color:var(--accent);font-weight:600;}
+.step-num{width:20px;height:20px;border-radius:50%;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text-3);flex-shrink:0;}
+.nav-btn.active .step-num{background:var(--accent);color:#fff;}
+.sidebar-folder{margin-top:auto;padding:14px;border-top:1px solid var(--border);}
+.folder-status{font-size:12px;color:var(--text-3);display:flex;align-items:center;gap:6px;margin-top:8px;word-break:break-all;}
+.folder-dot{width:7px;height:7px;border-radius:50%;background:var(--text-3);flex-shrink:0;}
+.folder-dot.open{background:var(--green);}
+.main{flex:1;overflow-y:auto;padding:32px 36px;}
+.panel{display:none;}
+.panel.active{display:block;}
+.page-title{font-weight:800;font-size:24px;letter-spacing:-.02em;margin-bottom:4px;}
+.page-desc{font-size:14px;color:var(--text-2);margin-bottom:28px;line-height:1.6;}
+.page-desc code{font-family:var(--mono);font-size:12px;background:var(--surface-2);padding:2px 6px;border-radius:4px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:16px;}
+.card-title{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);margin-bottom:18px;display:flex;align-items:center;gap:8px;}
+.card-title::before{content:'';display:inline-block;width:14px;height:2px;background:var(--yellow);border-radius:2px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.form-grid.cols-3{grid-template-columns:1fr 1fr 1fr;}
+.form-grid.cols-1{grid-template-columns:1fr;}
+.field{display:flex;flex-direction:column;gap:6px;}
+.field.span-2{grid-column:span 2;}
+label{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--text-3);}
+.label-hint{font-size:11px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-3);margin-left:6px;}
+input[type=text],input[type=number],input[type=url],select,textarea{font-family:var(--sans);font-size:14px;padding:10px 14px;background:var(--surface-2);border:1.5px solid var(--border);border-radius:8px;color:var(--text);outline:none;transition:border-color .15s;width:100%;}
+input[type=text]:focus,input[type=number]:focus,input[type=url]:focus,select:focus,textarea:focus{border-color:var(--accent);}
+input.mono,select.mono{font-family:var(--mono);font-size:13px;}
+textarea{resize:vertical;min-height:80px;}
+select option{background:var(--surface-2);}
+.radio-group{display:flex;gap:8px;}
+.radio-opt{display:flex;align-items:center;gap:7px;padding:9px 14px;background:var(--surface-2);border:1.5px solid var(--border);border-radius:8px;cursor:pointer;font-size:14px;transition:border-color .15s,background .15s;flex:1;justify-content:center;}
+.radio-opt input{display:none;}
+.radio-opt.selected{border-color:var(--accent);background:rgba(77,135,214,.1);color:var(--accent);font-weight:600;}
+.checkbox-row{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--surface-2);border:1.5px solid var(--border);border-radius:8px;cursor:pointer;transition:border-color .15s;}
+.checkbox-row.checked{border-color:var(--yellow);background:var(--yellow-bg);}
+.checkbox-row input{width:16px;height:16px;cursor:pointer;accent-color:var(--yellow);}
+.checkbox-label{font-size:14px;}
+.checkbox-row.checked .checkbox-label{color:var(--yellow);}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:14px;padding:11px 20px;border-radius:9px;border:none;cursor:pointer;transition:all .15s;white-space:nowrap;}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-primary:hover{background:var(--accent-2);}
+.btn-ghost{background:var(--surface-2);color:var(--text-2);border:1.5px solid var(--border);}
+.btn-ghost:hover{border-color:var(--border-2);color:var(--text);}
+.btn-yellow{background:var(--yellow);color:#0B1320;}
+.btn-yellow:hover{background:#e6b73e;}
+.btn-sm{font-size:12px;padding:7px 14px;border-radius:7px;}
+.form-actions{display:flex;align-items:center;gap:12px;margin-top:20px;padding-top:20px;border-top:1px solid var(--border);}
+.items-list{display:flex;flex-direction:column;gap:6px;margin-bottom:4px;}
+.item-row{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--surface-2);border-radius:9px;border:1px solid var(--border);}
+.item-name{font-size:13px;font-weight:600;flex:1;}
+.item-meta{font-size:11px;color:var(--text-3);font-family:var(--mono);}
+.item-badge{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:100px;}
+.badge-current{background:rgba(255,203,71,.15);color:var(--yellow);border:1px solid #3a2d00;}
+.badge-past{background:var(--surface);color:var(--text-3);border:1px solid var(--border);}
+.empty{text-align:center;padding:24px;color:var(--text-3);font-size:13px;}
+#lock-screen{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:1000;}
+#lock-screen.hidden{display:none;}
+.lock-mark{width:60px;height:60px;background:var(--accent);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;font-family:var(--sans);letter-spacing:.02em;margin-bottom:8px;}
+.lock-title{font-size:26px;font-weight:800;letter-spacing:-.02em;}
+.lock-sub{font-size:15px;color:var(--text-2);max-width:380px;text-align:center;line-height:1.6;}
+.lock-note{font-size:12px;color:var(--text-3);background:var(--surface);border:1px solid var(--border);padding:10px 16px;border-radius:8px;max-width:380px;text-align:center;line-height:1.6;}
+#toast-container{position:fixed;top:20px;right:20px;display:flex;flex-direction:column;gap:8px;z-index:9999;pointer-events:none;}
+.toast{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:10px;font-size:13px;font-weight:500;min-width:260px;max-width:380px;border:1px solid transparent;animation:toastIn .2s ease;pointer-events:auto;}
+@keyframes toastIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
+.toast.success{background:var(--green-bg);border-color:var(--green);color:var(--green);}
+.toast.error{background:var(--red-bg);border-color:var(--red);color:var(--red);}
+.toast.info{background:var(--surface);border-color:var(--border);color:var(--text-2);}
+.toast-dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex-shrink:0;}
+@media(max-width:700px){.sidebar{display:none;}.main{padding:20px;}.form-grid,.form-grid.cols-3{grid-template-columns:1fr;}.field.span-2{grid-column:span 1;}}
+.field-hint{font-size:12px;color:var(--text-3);line-height:1.5;margin-top:2px;}
+.field-hint code{font-family:var(--mono);font-size:11px;background:var(--surface-2);padding:1px 5px;border-radius:4px;color:var(--text-2);}
+.field-hint strong{color:var(--text-2);font-weight:600;}
+
+/* Edit / Delete row actions */
+.item-actions{display:flex;gap:6px;margin-left:auto;flex-shrink:0;}
+.btn-icon{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:7px;border:none;cursor:pointer;font-size:13px;transition:background .15s,color .15s;font-family:var(--sans);}
+.btn-edit{background:var(--surface);color:var(--text-2);border:1px solid var(--border);}
+.btn-edit:hover{background:rgba(77,135,214,.15);color:var(--accent);border-color:var(--accent);}
+.btn-delete{background:var(--surface);color:var(--text-3);border:1px solid var(--border);}
+.btn-delete:hover{background:var(--red-bg);color:var(--red);border-color:var(--red);}
+.btn-delete.confirm{background:var(--red-bg);color:var(--red);border-color:var(--red);font-size:11px;font-weight:700;width:auto;padding:0 10px;}
+
+/* Edit Modal */
+.edit-modal-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.7);backdrop-filter:blur(3px);align-items:center;justify-content:center;padding:24px;}
+.edit-modal-overlay.open{display:flex;}
+.edit-modal{background:var(--surface);border:1px solid var(--border);border-radius:16px;width:100%;max-width:580px;max-height:90vh;overflow-y:auto;display:flex;flex-direction:column;}
+.edit-modal-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px 0;}
+.edit-modal-header h3{font-size:16px;font-weight:700;}
+.edit-modal-close{width:32px;height:32px;border-radius:8px;background:var(--surface-2);border:1px solid var(--border);color:var(--text-2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;line-height:1;transition:all .15s;}
+.edit-modal-close:hover{background:var(--red-bg);color:var(--red);border-color:var(--red);}
+.edit-modal-body{padding:20px 24px;}
+.edit-modal-footer{padding:16px 24px;border-top:1px solid var(--border);display:flex;gap:10px;}
+.naming-rule{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:18px;display:flex;flex-direction:column;gap:6px;}
+.naming-rule-title{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--yellow);}
+.naming-rule p{font-size:12px;color:var(--text-2);line-height:1.6;}
+.naming-rule code{font-family:var(--mono);font-size:11px;background:var(--bg);padding:1px 5px;border-radius:4px;color:var(--text);}
+.folder-path-display{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-top:4px;display:flex;flex-direction:column;gap:6px;}
+.folder-path-display .fpath-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);}
+.folder-path-display .fpath-value{font-family:var(--mono);font-size:13px;color:var(--yellow);word-break:break-all;}
+.folder-path-display .fpath-note{font-size:11px;color:var(--text-3);}
+
+</style>
+</head>
+<body>
+
+<div id="lock-screen">
+  <div class="lock-mark">MJC</div>
+  <div class="lock-title">Site Admin</div>
+  <p class="lock-sub">Open your <strong>mrjasoncode</strong> project folder to start managing content. All changes save directly to your JSON files.</p>
+  <button class="btn btn-yellow" onclick="openFolder()" style="font-size:15px;padding:14px 28px;margin-top:8px;">Open Project Folder</button>
+  <p class="lock-note">Requires Chrome or Edge. Open the folder that contains your <code style="font-family:monospace;">index.html</code> file.</p>
+</div>
+
+<div class="header">
+  <div class="header-brand">
+    <div class="header-mark">MJC</div>
+    Mr Jason Code <span class="header-badge">Admin</span>
+  </div>
+  <div class="header-right">
+    <span id="header-folder" style="font-size:12px;color:var(--text-3);font-family:monospace;"></span>
+    <button class="btn btn-ghost btn-sm" onclick="openFolder()">Change Folder</button>
+  </div>
+</div>
+
+<div class="body">
+  <div class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Add Content</div>
+      <button class="nav-btn active" onclick="showPanel('class')" id="nav-class">
+        <span class="step-num">1</span> New Class
+      </button>
+      <button class="nav-btn" onclick="showPanel('semester')" id="nav-semester">
+        <span class="step-num">2</span> New Semester
+      </button>
+      <button class="nav-btn" onclick="showPanel('project')" id="nav-project">
+        <span class="step-num">3</span> New Project
+      </button>
+      <button class="nav-btn" onclick="showPanel('submission')" id="nav-submission">
+        <span class="step-num">4</span> Add Student Work
+      </button>
+    </div>
+    <div class="sidebar-folder">
+      <button class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;" onclick="refreshAll()">Reload Files</button>
+      <div class="folder-status">
+        <div class="folder-dot" id="folder-dot"></div>
+        <span id="folder-name">No folder open</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- PANEL: CLASS -->
+    <div class="panel active" id="panel-class">
+      <div class="page-title">Add a New Class</div>
+      <p class="page-desc">A class is the top level of the student work hierarchy. Each class contains semesters, which contain projects, which contain student submissions. This saves to <code>data/studentwork/index.json</code>.</p>
+
+      <div class="naming-rule">
+        <div class="naming-rule-title">Naming Convention — Class IDs</div>
+        <p>The <strong>ID Prefix</strong> becomes the start of every semester ID for this class. Keep it short, lowercase, no spaces.<br/>
+        Examples: <code>at</code> → Applied Technologies &nbsp;·&nbsp; <code>dm</code> → Digital Media &nbsp;·&nbsp; <code>biz</code> → Business &nbsp;·&nbsp; <code>ent</code> → Entrepreneurship &nbsp;·&nbsp; <code>mkt</code> → Marketing</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Current Classes</div>
+        <div id="existing-classes"><div class="empty">Open your project folder to load data.</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">New Class Details</div>
+        <div class="form-grid">
+
+          <div class="field">
+            <label>Class Name</label>
+            <input type="text" id="c-label" placeholder="e.g. Applied Technologies" oninput="updateClassId()"/>
+            <p class="field-hint">The full class name shown on cards and headings on the site.<br/><strong>Example:</strong> <code>Applied Technologies</code></p>
+          </div>
+
+          <div class="field">
+            <label>Short Name</label>
+            <input type="text" id="c-shortlabel" placeholder="e.g. Applied Tech"/>
+            <p class="field-hint">Abbreviated name used in the sidebar and compact displays.<br/><strong>Example:</strong> <code>Applied Tech</code></p>
+          </div>
+
+          <div class="field">
+            <label>ID Prefix</label>
+            <input type="text" id="c-prefix" class="mono" placeholder="e.g. at" oninput="updateClassId()"/>
+            <p class="field-hint">Short lowercase code used to build semester IDs. Once set, <strong>do not change it</strong> — all semester files use it.<br/><strong>Examples:</strong> <code>at</code> · <code>dm</code> · <code>biz</code> · <code>ent</code> · <code>mkt</code></p>
+          </div>
+
+          <div class="field">
+            <label>Department ID <span class="label-hint">auto-generated from prefix</span></label>
+            <input type="text" id="c-id" class="mono" placeholder="auto-filled"/>
+            <p class="field-hint">Unique ID used internally. Auto-fills from the prefix. Only edit if you need something different.<br/><strong>Example:</strong> <code>applied-tech</code></p>
+          </div>
+
+          <div class="field">
+            <label>Icon</label>
+            <select id="c-icon">
+              <option value="code">code — for tech / web / programming</option>
+              <option value="palette">palette — for design / art / media</option>
+              <option value="briefcase">briefcase — for business</option>
+              <option value="rocket">rocket — for entrepreneurship / startups</option>
+              <option value="megaphone">megaphone — for marketing / comms</option>
+              <option value="book">book — for general / academic</option>
+              <option value="chip">chip — for AI / computer science</option>
+              <option value="chart">chart — for data / finance</option>
+              <option value="star">star — general purpose</option>
+            </select>
+            <p class="field-hint">Icon shown on the class card. Pick the one that best represents the subject.</p>
+          </div>
+
+          <div class="field">
+            <label>Accent Color</label>
+            <select id="c-color">
+              <option value="navy|tag-navy">Navy — blue, used for design-focused classes</option>
+              <option value="yellow|tag-yellow">Yellow — used for tech / entrepreneurship</option>
+              <option value="slate|tag-slate">Slate — grey, for business / neutral classes</option>
+            </select>
+            <p class="field-hint">Color used for the class tag badge and card accents on the site.</p>
+          </div>
+
+          <div class="field span-2">
+            <label>Description</label>
+            <input type="text" id="c-desc" placeholder="e.g. HTML, CSS, JavaScript, and full web projects."/>
+            <p class="field-hint">One short sentence shown under the class name on cards. Describe what students make in this class.<br/><strong>Examples:</strong> <code>Vector, Raster, Audio, and Video.</code> &nbsp;·&nbsp; <code>Discover, plan, resource, launch, and harvest.</code></p>
+          </div>
+
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" onclick="addClass()">Save New Class</button>
+          <button class="btn btn-ghost" onclick="clearFields(['c-label','c-shortlabel','c-prefix','c-id','c-desc'])">Clear</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL: SEMESTER -->
+    <div class="panel" id="panel-semester">
+      <div class="page-title">Add a New Semester</div>
+      <p class="page-desc">A semester belongs to a class. This adds the semester entry to <code>data/studentwork/index.json</code> and creates its empty project file in <code>data/studentwork/</code>. Do this at the start of each new term.</p>
+
+      <div class="naming-rule">
+        <div class="naming-rule-title">Naming Convention — Semester IDs</div>
+        <p>Format: <code>[prefix]-sem[term]-[year]</code><br/>
+        Examples: <code>at-sem2-2026</code> · <code>dm-sem1-2027</code> · <code>biz-sem2-2026</code><br/>
+        The ID is <strong>auto-generated</strong> from your selections — only edit if you need something custom.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">New Semester Details</div>
+        <div class="form-grid">
+
+          <div class="field">
+            <label>Class</label>
+            <select id="s-dept" onchange="updateSemId()">
+              <option value="">— select a class —</option>
+            </select>
+            <p class="field-hint">Which class this semester belongs to. The class prefix is used to build the semester ID.</p>
+          </div>
+
+          <div class="field">
+            <label>Year</label>
+            <input type="number" id="s-year" value="2026" min="2020" max="2040" oninput="updateSemId()"/>
+            <p class="field-hint">The calendar year of this semester.<br/><strong>Example:</strong> <code>2027</code></p>
+          </div>
+
+          <div class="field">
+            <label>Term</label>
+            <div class="radio-group">
+              <label class="radio-opt selected" id="radio-1">
+                <input type="radio" name="s-term" value="1" checked onchange="termChanged(this)"/> Semester 1
+              </label>
+              <label class="radio-opt" id="radio-2">
+                <input type="radio" name="s-term" value="2" onchange="termChanged(this)"/> Semester 2
+              </label>
+            </div>
+            <p class="field-hint">Semester 1 = first half of the school year. Semester 2 = second half.</p>
+          </div>
+
+          <div class="field">
+            <label>Semester ID <span class="label-hint">auto-generated, editable</span></label>
+            <input type="text" id="s-id" class="mono" placeholder="e.g. at-sem1-2027"/>
+            <p class="field-hint">Auto-built from your selections above. Only edit if you need a custom name. This ID is also used as the <strong>filename</strong> for the semester's JSON file and as part of the <strong>folder path</strong> for student work files.</p>
+          </div>
+
+          <div class="field span-2">
+            <label>Set as Current Semester</label>
+            <div class="checkbox-row checked" id="s-current-row" onclick="toggleCheckbox('s-current','s-current-row')">
+              <input type="checkbox" id="s-current" checked/>
+              <span class="checkbox-label">Mark as the active semester — shown with a yellow dot on the hub page. Un-marks the previous current semester for this class automatically.</span>
+            </div>
+          </div>
+
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" onclick="addSemester()">Save New Semester</button>
+          <button class="btn btn-ghost" onclick="clearFields(['s-id'])">Clear</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">All Existing Semesters</div>
+        <div id="existing-semesters"><div class="empty">Open your project folder to load data.</div></div>
+      </div>
+    </div>
+
+    <!-- PANEL: PROJECT -->
+    <div class="panel" id="panel-project">
+      <div class="page-title">Add a New Project</div>
+      <p class="page-desc">A project is an assignment given to the class. Each project holds all the individual student submissions. Add a new project whenever you assign one — you can add student work to it at any time after.</p>
+
+      <div class="naming-rule">
+        <div class="naming-rule-title">Naming Convention — Project IDs &amp; Folder Names</div>
+        <p>Format: <code>[short-descriptive-name]</code> — lowercase, hyphens, no spaces.<br/>
+        Examples: <code>portfolio-site</code> · <code>brand-identity</code> · <code>pitch-deck</code> · <code>lean-canvas</code><br/>
+        The Project ID also becomes the <strong>folder name</strong> you create manually in <code>work/[class-id]/[semester-id]/</code>.<br/>
+        Example folder path: <code>work/digital-media/dm-sem2-2026/brand-identity/</code></p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">New Project Details</div>
+        <div class="form-grid">
+
+          <div class="field">
+            <label>Class</label>
+            <select id="p-dept" onchange="populateProjSems()">
+              <option value="">— select a class —</option>
+            </select>
+            <p class="field-hint">Which class this project is assigned to.</p>
+          </div>
+
+          <div class="field">
+            <label>Semester</label>
+            <select id="p-sem" onchange="showExistingProjects()">
+              <option value="">— select a semester —</option>
+            </select>
+            <p class="field-hint">Which semester the project belongs to. Select the class first.</p>
+          </div>
+
+          <div class="field span-2">
+            <label>Project Title</label>
+            <input type="text" id="p-title" placeholder="e.g. Personal Portfolio Site" oninput="updateProjectId()"/>
+            <p class="field-hint">The name of the assignment as shown on the site.<br/><strong>Examples:</strong> <code>Personal Portfolio Site</code> · <code>Brand Identity Design</code> · <code>Investor Pitch Deck</code></p>
+          </div>
+
+          <div class="field">
+            <label>Project Type</label>
+            <select id="p-type">
+              <option value="code">code — HTML, CSS, JavaScript, web projects</option>
+              <option value="design">design — visual, audio, video, print work</option>
+              <option value="prototype">prototype — wireframes, canvases, plans, decks</option>
+            </select>
+            <p class="field-hint">The category of work. Shown as a small badge on the project card.</p>
+          </div>
+
+          <div class="field">
+            <label>Project ID <span class="label-hint">auto-generated, editable</span></label>
+            <input type="text" id="p-id" class="mono" placeholder="e.g. portfolio-site" oninput="updateFolderPath()"/>
+            <p class="field-hint">Auto-built from the title. Lowercase, hyphens only. This is also the <strong>folder name</strong> you'll create manually for student files.</p>
+          </div>
+
+          <div class="field span-2">
+            <label>Assignment Brief</label>
+            <textarea id="p-desc" placeholder="Describe what students were asked to build or create. This appears above the student submissions on the project page."></textarea>
+            <p class="field-hint">Write this as you would write the assignment description for students. It shows at the top of the project page above all the submissions.<br/><strong>Example:</strong> <code>Build a fully responsive personal portfolio showcasing your projects, skills, and contact information.</code></p>
+          </div>
+
+        </div>
+
+        <div class="folder-path-display" id="folder-path-display" style="display:none;">
+          <div class="fpath-label">Folder to create manually</div>
+          <div class="fpath-value" id="folder-path-value">—</div>
+          <div class="fpath-note">Create this folder inside your <code>work/</code> directory before adding student files. File paths in student submissions should start from the site root — e.g. <code>work/digital-media/dm-sem2-2026/brand-identity/aisha.jpg</code></div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" onclick="addProject()">Save New Project</button>
+          <button class="btn btn-ghost" onclick="clearFields(['p-title','p-id','p-desc'])">Clear</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Projects in Selected Semester</div>
+        <div id="existing-projects"><div class="empty">Select a class and semester above.</div></div>
+      </div>
+    </div>
+
+    <!-- PANEL: SUBMISSION -->
+    <div class="panel" id="panel-submission">
+      <div class="page-title">Add Student Work</div>
+      <p class="page-desc">Add each student's submission to a project. The selectors stay locked between saves so you can enter the whole class one by one without re-selecting. You can come back and add more students at any time.</p>
+
+      <div class="naming-rule">
+        <div class="naming-rule-title">File Path Convention — Student Files</div>
+        <p>All file paths are <strong>relative to the site root</strong> (the folder containing <code>index.html</code>).<br/>
+        Format: <code>work/[class-id]/[semester-id]/[project-id]/[student-filename]</code><br/>
+        Examples:<br/>
+        &nbsp;Image: <code>work/digital-media/dm-sem2-2026/brand-identity/aisha-brand-full.jpg</code><br/>
+        &nbsp;Audio: <code>work/digital-media/dm-sem2-2026/audio-design/sofia-soundscape.mp3</code><br/>
+        &nbsp;Thumb: <code>work/digital-media/dm-sem2-2026/brand-identity/aisha-brand-thumb.jpg</code></p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Step 1 — Select Class / Semester / Project</div>
+        <div class="form-grid cols-3">
+          <div class="field">
+            <label>Class</label>
+            <select id="sw-dept" onchange="populateSwSems()">
+              <option value="">— select —</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Semester</label>
+            <select id="sw-sem" onchange="populateSwProjects()">
+              <option value="">— select —</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Project</label>
+            <select id="sw-project" onchange="showExistingSubmissions()">
+              <option value="">— select —</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Existing Submissions</div>
+        <div id="existing-submissions"><div class="empty">Select a class, semester, and project above.</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Step 2 — New Submission</div>
+        <div class="form-grid">
+
+          <div class="field">
+            <label>Student Name</label>
+            <input type="text" id="sw-student" placeholder="e.g. Kai T."/>
+            <p class="field-hint">First name and last initial. Keep it consistent — same format every semester.<br/><strong>Example:</strong> <code>Kai T.</code> · <code>Aisha K.</code> · <code>Marco T.</code></p>
+          </div>
+
+          <div class="field">
+            <label>Their Project Title</label>
+            <input type="text" id="sw-title" placeholder="e.g. Kai's Dev Portfolio"/>
+            <p class="field-hint">The title the student gave their own work — not the assignment name. Each student's title should be unique.<br/><strong>Example:</strong> <code>Bangkok Café Brand</code> · <code>Storm Tracker App</code></p>
+          </div>
+
+          <div class="field span-2">
+            <label>Media Type</label>
+            <select id="sw-mediatype" onchange="updateMediaFields()">
+              <option value="link">Link — opens the student's work in a new tab (websites, Canva, Google Slides, PDFs)</option>
+              <option value="image">Image — opens a full-size image in a lightbox (posters, photos, brand work)</option>
+              <option value="audio">Audio — plays an audio file in a player (podcasts, soundscapes, music)</option>
+              <option value="video">Video — embeds a YouTube video (motion design, film, video essays)</option>
+            </select>
+            <p class="field-hint">How the student's work is viewed when someone clicks their card on the site. Choose the type that matches what they submitted.</p>
+          </div>
+
+          <div class="field" id="sw-url-field">
+            <label id="sw-url-label">URL</label>
+            <input type="url" id="sw-url" placeholder="https://"/>
+            <p class="field-hint" id="sw-url-hint">Full URL to the student's published work. Leave blank if not yet published — you can add it later.<br/><strong>Examples:</strong> <code>https://kait.github.io/portfolio</code> · <code>https://canva.com/design/...</code></p>
+          </div>
+
+          <div class="field" id="sw-media-field" style="display:none;">
+            <label id="sw-media-label">Media Path / URL</label>
+            <input type="text" id="sw-media" placeholder=""/>
+            <p class="field-hint" id="sw-media-hint">Path to the student's file, relative to the site root.</p>
+          </div>
+
+          <div class="field">
+            <label>Thumbnail Path <span class="label-hint">optional</span></label>
+            <input type="text" id="sw-thumb" placeholder="e.g. work/digital-media/dm-sem2-2026/brand-identity/aisha-thumb.jpg"/>
+            <p class="field-hint">Path to a small preview image shown on the submission card. Recommended size: <strong>640×400px</strong>, saved as <code>-thumb.jpg</code>. Leave blank to show the class icon instead.<br/><strong>Format:</strong> <code>work/[class]/[semester]/[project]/[student]-thumb.jpg</code></p>
+          </div>
+
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" onclick="addSubmission()">Save Submission</button>
+          <button class="btn btn-ghost" onclick="clearFields(['sw-student','sw-title','sw-url','sw-media','sw-thumb'])">Clear</button>
+          <span id="sw-saved-msg" style="font-size:13px;color:var(--green);display:none;">Saved. Add the next student below.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<!-- EDIT MODAL -->
+<div class="edit-modal-overlay" id="edit-modal" onclick="handleEditOverlayClick(event)">
+  <div class="edit-modal">
+    <div class="edit-modal-header">
+      <h3 id="edit-modal-title">Edit</h3>
+      <button class="edit-modal-close" onclick="closeEditModal()">×</button>
+    </div>
+    <div class="edit-modal-body" id="edit-modal-body"></div>
+    <div class="edit-modal-footer" id="edit-modal-footer"></div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// STATE
+// ============================================================
+let rootDir  = null;
+let dataDir  = null;
+let swDir    = null;
+let swIndex  = null;
+let semCache = {};
+
+// ============================================================
+// FILE SYSTEM
+// ============================================================
+async function openFolder() {
+  try {
+    rootDir = await window.showDirectoryPicker({ mode: 'readwrite' });
+    dataDir = await rootDir.getDirectoryHandle('data');
+    swDir   = await dataDir.getDirectoryHandle('studentwork');
+    semCache = {};
+    await loadIndex();
+    document.getElementById('lock-screen').classList.add('hidden');
+    document.getElementById('folder-name').textContent = rootDir.name;
+    document.getElementById('folder-dot').classList.add('open');
+    document.getElementById('header-folder').textContent = rootDir.name;
+    refreshAll();
+    toast('Opened: ' + rootDir.name, 'success');
+  } catch(err) {
+    if (err.name !== 'AbortError') toast('Error: ' + err.message, 'error');
+  }
+}
+
+async function readJSON(dir, filename) {
+  const fh   = await dir.getFileHandle(filename);
+  const file = await fh.getFile();
+  return JSON.parse(await file.text());
+}
+
+async function writeJSON(dir, filename, data) {
+  const fh = await dir.getFileHandle(filename, { create: true });
+  const w  = await fh.createWritable();
+  await w.write(JSON.stringify(data, null, 2));
+  await w.close();
+}
+
+async function loadIndex() {
+  swIndex = await readJSON(swDir, 'index.json');
+}
+
+async function loadSemester(semId) {
+  if (semCache[semId]) return semCache[semId];
+  const data = await readJSON(swDir, semId + '.json');
+  semCache[semId] = data;
+  return data;
+}
+
+async function saveSemester(semId, data) {
+  semCache[semId] = data;
+  await writeJSON(swDir, semId + '.json', data);
+}
+
+async function saveIndex() {
+  await writeJSON(swDir, 'index.json', swIndex);
+}
+
+// ============================================================
+// REFRESH
+// ============================================================
+function refreshAll() {
+  if (!swIndex) return;
+  renderExistingClasses();
+  renderExistingSemesters();
+  populateAllSelects();
+}
+
+function renderExistingClasses() {
+  const el = document.getElementById('existing-classes');
+  if (!swIndex.departments.length) { el.innerHTML = '<div class="empty">No classes yet.</div>'; return; }
+  el.innerHTML = '<div class="items-list">' + swIndex.departments.map(d => `
+    <div class="item-row">
+      <div class="item-name">${d.label}</div>
+      <div class="item-meta">${d.id}</div>
+      <span class="item-badge badge-past">${d.semesters.length} sem</span>
+    </div>`).join('') + '</div>';
+}
+
+function renderExistingSemesters() {
+  const el = document.getElementById('existing-semesters');
+  const rows = [];
+  swIndex.departments.forEach(d => d.semesters.forEach(s => rows.push({deptId:d.id, deptLabel:d.label, ...s})));
+  if (!rows.length) { el.innerHTML = '<div class="empty">No semesters yet.</div>'; return; }
+  el.innerHTML = '<div class="items-list">' + rows.map(r => `
+    <div class="item-row" id="sem-row-${r.id}">
+      <div class="item-name">${r.deptLabel} — ${r.label}</div>
+      <div class="item-meta">${r.id}</div>
+      ${r.current ? '<span class="item-badge badge-current">Current</span>' : '<span class="item-badge badge-past">Past</span>'}
+      <span class="item-badge badge-past">${r.projectCount} proj</span>
+      <div class="item-actions">
+        <button class="btn-icon btn-edit" title="Edit" onclick="openEditSemester('${r.deptId}','${r.id}')">✎</button>
+        <button class="btn-icon btn-delete" title="Delete" id="del-sem-${r.id}" onclick="confirmDelete('sem','${r.deptId}','${r.id}')">✕</button>
+      </div>
+    </div>`).join('') + '</div>';
+}
+
+function populateAllSelects() {
+  const opts = '<option value="">— select a class —</option>' +
+    swIndex.departments.map(d => `<option value="${d.id}">${d.label}</option>`).join('');
+  ['s-dept','p-dept','sw-dept'].forEach(id => document.getElementById(id).innerHTML = opts);
+}
+
+// ============================================================
+// PANELS
+// ============================================================
+function showPanel(name) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  document.getElementById('nav-' + name).classList.add('active');
+}
+
+// ============================================================
+// AUTO-ID
+// ============================================================
+function slugify(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''); }
+
+function updateClassId() {
+  const prefix = document.getElementById('c-prefix').value.trim();
+  const label  = document.getElementById('c-label').value.trim();
+  document.getElementById('c-id').value = prefix ? slugify(prefix) : slugify(label);
+}
+
+function updateSemId() {
+  const deptId = document.getElementById('s-dept').value;
+  const dept   = swIndex && swIndex.departments.find(d => d.id === deptId);
+  const prefix = dept?.semPrefix || '';
+  const year   = document.getElementById('s-year').value || '2026';
+  const term   = document.querySelector('input[name="s-term"]:checked')?.value || '1';
+  document.getElementById('s-id').value = prefix ? `${prefix}-sem${term}-${year}` : '';
+}
+
+function updateProjectId() {
+  document.getElementById('p-id').value = slugify(document.getElementById('p-title').value);
+}
+
+function termChanged(radio) {
+  document.querySelectorAll('.radio-opt').forEach(el => el.classList.remove('selected'));
+  if (radio.checked) radio.closest('.radio-opt').classList.add('selected');
+  updateSemId();
+}
+
+function toggleCheckbox(cbId, rowId) {
+  const cb = document.getElementById(cbId);
+  cb.checked = !cb.checked;
+  document.getElementById(rowId).classList.toggle('checked', cb.checked);
+}
+
+// ============================================================
+// CASCADING SELECTS
+// ============================================================
+function populateProjSems() {
+  const dept = swIndex?.departments.find(d => d.id === document.getElementById('p-dept').value);
+  const sel  = document.getElementById('p-sem');
+  sel.innerHTML = '<option value="">— select a semester —</option>';
+  dept?.semesters.forEach(s => {
+    const o = document.createElement('option');
+    o.value = s.id; o.textContent = s.label + (s.current?' (current)':'');
+    sel.appendChild(o);
+  });
+  document.getElementById('existing-projects').innerHTML = '<div class="empty">Select a semester above.</div>';
+  updateFolderPath();
+}
+
+async function showExistingProjects() {
+  updateFolderPath();
+  const semId = document.getElementById('p-sem').value;
+  const el    = document.getElementById('existing-projects');
+  if (!semId) { el.innerHTML = '<div class="empty">Select a semester.</div>'; return; }
+  try {
+    const sem = await loadSemester(semId);
+    if (!sem.projects.length) { el.innerHTML = '<div class="empty">No projects yet in this semester.</div>'; return; }
+    el.innerHTML = '<div class="items-list">' + sem.projects.map(p => `
+      <div class="item-row" id="proj-row-${p.id}">
+        <div class="item-name">${p.title}</div>
+        <div class="item-meta">${p.id}</div>
+        <span class="item-badge badge-past">${(p.submissions||[]).length} sub</span>
+        <span class="item-badge badge-past">${p.type}</span>
+        <div class="item-actions">
+          <button class="btn-icon btn-edit" title="Edit" onclick="openEditProject('${semId}','${p.id}')">✎</button>
+          <button class="btn-icon btn-delete" title="Delete" id="del-proj-${p.id}" onclick="confirmDelete('proj','${semId}','${p.id}')">✕</button>
+        </div>
+      </div>`).join('') + '</div>';
+  } catch(e) { el.innerHTML = '<div class="empty" style="color:var(--red)">Could not load semester file.</div>'; }
+}
+
+function populateSwSems() {
+  const dept = swIndex?.departments.find(d => d.id === document.getElementById('sw-dept').value);
+  const sel  = document.getElementById('sw-sem');
+  sel.innerHTML = '<option value="">— select —</option>';
+  document.getElementById('sw-project').innerHTML = '<option value="">— select —</option>';
+  document.getElementById('existing-submissions').innerHTML = '<div class="empty">Select a project above.</div>';
+  dept?.semesters.forEach(s => {
+    const o = document.createElement('option');
+    o.value = s.id; o.textContent = s.label + (s.current?' (current)':'');
+    sel.appendChild(o);
+  });
+}
+
+async function populateSwProjects() {
+  const semId = document.getElementById('sw-sem').value;
+  const sel   = document.getElementById('sw-project');
+  sel.innerHTML = '<option value="">— select —</option>';
+  document.getElementById('existing-submissions').innerHTML = '<div class="empty">Select a project.</div>';
+  if (!semId) return;
+  try {
+    const sem = await loadSemester(semId);
+    sem.projects.forEach(p => {
+      const o = document.createElement('option');
+      o.value = p.id; o.textContent = p.title;
+      sel.appendChild(o);
+    });
+  } catch(e) { toast('Could not load: ' + semId, 'error'); }
+}
+
+async function showExistingSubmissions() {
+  const semId  = document.getElementById('sw-sem').value;
+  const projId = document.getElementById('sw-project').value;
+  const el     = document.getElementById('existing-submissions');
+  if (!semId || !projId) { el.innerHTML = '<div class="empty">Select a project.</div>'; return; }
+  try {
+    const sem  = await loadSemester(semId);
+    const proj = sem.projects.find(p => p.id === projId);
+    const subs = proj?.submissions || [];
+    if (!subs.length) { el.innerHTML = '<div class="empty">No submissions yet.</div>'; return; }
+    el.innerHTML = '<div class="items-list">' + subs.map((s, i) => `
+      <div class="item-row" id="sub-row-${i}">
+        <div class="item-name">${s.student} — ${s.title}</div>
+        <span class="item-badge badge-past">${s.mediaType || 'link'}</span>
+        ${s.url ? `<a href="${s.url}" target="_blank" style="font-size:12px;color:var(--accent);white-space:nowrap;">View ↗</a>` : '<span style="font-size:12px;color:var(--text-3)">No URL</span>'}
+        <div class="item-actions">
+          <button class="btn-icon btn-edit" title="Edit" onclick="openEditSubmission('${semId}','${projId}',${i})">✎</button>
+          <button class="btn-icon btn-delete" title="Delete" id="del-sub-${i}" onclick="confirmDelete('sub','${semId}','${projId}',${i})">✕</button>
+        </div>
+      </div>`).join('') + '</div>';
+  } catch(e) { el.innerHTML = '<div class="empty" style="color:var(--red)">Could not load file.</div>'; }
+}
+
+// ============================================================
+// OPERATIONS
+// ============================================================
+async function addClass() {
+  const label      = val('c-label');
+  const shortLabel = val('c-shortlabel') || label;
+  const id         = val('c-id') || slugify(label);
+  const prefix     = val('c-prefix') || id;
+  const icon       = document.getElementById('c-icon').value;
+  const [colorToken,tagClass] = document.getElementById('c-color').value.split('|');
+  const desc       = val('c-desc');
+  if (!label || !id) { toast('Class name is required.', 'error'); return; }
+  if (swIndex.departments.find(d => d.id === id)) { toast('ID already exists: ' + id, 'error'); return; }
+  swIndex.departments.push({ id, label, shortLabel, semPrefix: prefix, icon, colorToken, tagClass, description: desc, semesters: [] });
+  await saveIndex();
+  toast(`Class "${label}" saved.`, 'success');
+  clearFields(['c-label','c-shortlabel','c-prefix','c-id','c-desc']);
+  refreshAll();
+}
+
+async function addSemester() {
+  const deptId  = document.getElementById('s-dept').value;
+  const year    = parseInt(document.getElementById('s-year').value);
+  const term    = parseInt(document.querySelector('input[name="s-term"]:checked').value);
+  const semId   = val('s-id');
+  const current = document.getElementById('s-current').checked;
+  if (!deptId) { toast('Please select a class.', 'error'); return; }
+  if (!semId)  { toast('Semester ID is required.', 'error'); return; }
+  const dept = swIndex.departments.find(d => d.id === deptId);
+  if (!dept) { toast('Class not found.', 'error'); return; }
+  if (dept.semesters.find(s => s.id === semId)) { toast('Semester ID already exists: ' + semId, 'error'); return; }
+  if (current) dept.semesters.forEach(s => s.current = false);
+  const label = `Semester ${term}, ${year}`;
+  dept.semesters.unshift({ id: semId, label, year, term, current, projectCount: 0 });
+  await saveSemester(semId, { id: semId, label, department: deptId, projects: [], links: [] });
+  await saveIndex();
+  toast(`Semester "${label}" created for ${dept.label}.`, 'success');
+  clearFields(['s-id']);
+  refreshAll();
+}
+
+async function addProject() {
+  const deptId = document.getElementById('p-dept').value;
+  const semId  = document.getElementById('p-sem').value;
+  const title  = val('p-title');
+  const type   = val('p-type');
+  const id     = val('p-id') || slugify(title);
+  const desc   = val('p-desc');
+  if (!deptId || !semId) { toast('Select a class and semester.', 'error'); return; }
+  if (!title)            { toast('Project title is required.', 'error'); return; }
+  let semData;
+  try { semData = await loadSemester(semId); } catch(e) { toast('Could not load: ' + semId, 'error'); return; }
+  if (semData.projects.find(p => p.id === id)) { toast('Project ID already exists: ' + id, 'error'); return; }
+  semData.projects.push({ id, title, type, desc, submissions: [] });
+  await saveSemester(semId, semData);
+  const dept = swIndex.departments.find(d => d.id === deptId);
+  const sem  = dept?.semesters.find(s => s.id === semId);
+  if (sem) sem.projectCount = semData.projects.length;
+  await saveIndex();
+  toast(`Project "${title}" added to ${semId}.`, 'success');
+  clearFields(['p-title','p-type','p-id','p-desc']);
+  showExistingProjects();
+  refreshAll();
+}
+
+async function addSubmission() {
+  const semId     = document.getElementById('sw-sem').value;
+  const projId    = document.getElementById('sw-project').value;
+  const student   = val('sw-student');
+  const title     = val('sw-title');
+  const mediaType = document.getElementById('sw-mediatype').value;
+  const url       = mediaType === 'link'  ? val('sw-url')   : '';
+  const media     = mediaType !== 'link'  ? val('sw-media')  : '';
+  const thumb     = val('sw-thumb');
+  if (!semId || !projId)  { toast('Select a class, semester, and project.', 'error'); return; }
+  if (!student || !title) { toast('Student name and title are required.', 'error'); return; }
+  let semData;
+  try { semData = await loadSemester(semId); } catch(e) { toast('Could not load semester file.', 'error'); return; }
+  const project = semData.projects.find(p => p.id === projId);
+  if (!project) { toast('Project not found.', 'error'); return; }
+  project.submissions.push({ student, title, mediaType, url, media, thumb });
+  await saveSemester(semId, semData);
+  toast(`${student}'s work added to "${project.title}".`, 'success');
+  clearFields(['sw-student','sw-title','sw-url','sw-media','sw-thumb']);
+  document.getElementById('sw-saved-msg').style.display = 'inline';
+  showExistingSubmissions();
+}
+
+// ============================================================
+// EDIT MODAL
+// ============================================================
+function openEditModal(title, bodyHTML, footerHTML) {
+  document.getElementById('edit-modal-title').textContent = title;
+  document.getElementById('edit-modal-body').innerHTML = bodyHTML;
+  document.getElementById('edit-modal-footer').innerHTML = footerHTML;
+  document.getElementById('edit-modal').classList.add('open');
+}
+function closeEditModal() {
+  document.getElementById('edit-modal').classList.remove('open');
+}
+function handleEditOverlayClick(e) {
+  if (e.target === document.getElementById('edit-modal')) closeEditModal();
+}
+
+// ---- EDIT SEMESTER ----
+function openEditSemester(deptId, semId) {
+  const dept = swIndex.departments.find(d => d.id === deptId);
+  const sem  = dept?.semesters.find(s => s.id === semId);
+  if (!sem) return;
+  openEditModal(`Edit Semester — ${sem.label}`, `
+    <div class="form-grid" style="gap:12px;">
+      <div class="field span-2">
+        <label>Semester ID <span class="label-hint">read-only</span></label>
+        <input type="text" value="${sem.id}" class="mono" disabled style="opacity:.5;cursor:not-allowed;"/>
+        <p class="field-hint">IDs cannot be changed after creation as they are used as filenames.</p>
+      </div>
+      <div class="field">
+        <label>Year</label>
+        <input type="number" id="e-sem-year" value="${sem.year}" min="2020" max="2040"/>
+      </div>
+      <div class="field">
+        <label>Term</label>
+        <select id="e-sem-term">
+          <option value="1" ${sem.term===1?'selected':''}>Semester 1</option>
+          <option value="2" ${sem.term===2?'selected':''}>Semester 2</option>
+        </select>
+      </div>
+      <div class="field span-2">
+        <label>Set as Current</label>
+        <div class="checkbox-row ${sem.current?'checked':''}" id="e-sem-current-row" onclick="toggleCheckbox('e-sem-current','e-sem-current-row')">
+          <input type="checkbox" id="e-sem-current" ${sem.current?'checked':''}/>
+          <span class="checkbox-label">Mark as active/current semester for ${dept.label}</span>
+        </div>
+      </div>
+    </div>`,
+    `<button class="btn btn-primary" onclick="saveEditSemester('${deptId}','${semId}')">Save Changes</button>
+     <button class="btn btn-ghost" onclick="closeEditModal()">Cancel</button>`
+  );
+}
+
+async function saveEditSemester(deptId, semId) {
+  const dept    = swIndex.departments.find(d => d.id === deptId);
+  const sem     = dept?.semesters.find(s => s.id === semId);
+  if (!sem) return;
+  const year    = parseInt(document.getElementById('e-sem-year').value);
+  const term    = parseInt(document.getElementById('e-sem-term').value);
+  const current = document.getElementById('e-sem-current').checked;
+  if (current) dept.semesters.forEach(s => s.current = false);
+  sem.year    = year;
+  sem.term    = term;
+  sem.label   = `Semester ${term}, ${year}`;
+  sem.current = current;
+  // Also update the semester file label
+  try {
+    const semData = await loadSemester(semId);
+    semData.label = sem.label;
+    await saveSemester(semId, semData);
+  } catch(e) { /* file may not exist yet */ }
+  await saveIndex();
+  toast(`Semester updated to "${sem.label}".`, 'success');
+  closeEditModal();
+  refreshAll();
+}
+
+// ---- DELETE SEMESTER ----
+async function deleteSemester(deptId, semId) {
+  const dept = swIndex.departments.find(d => d.id === deptId);
+  if (!dept) return;
+  const sem  = dept.semesters.find(s => s.id === semId);
+  const hasProjects = (sem?.projectCount || 0) > 0;
+  if (hasProjects) {
+    toast(`Cannot delete — this semester has ${sem.projectCount} project(s). Delete all projects first.`, 'error');
+    return;
+  }
+  dept.semesters = dept.semesters.filter(s => s.id !== semId);
+  // Try to delete the semester JSON file
+  try {
+    await swDir.removeEntry(semId + '.json');
+  } catch(e) { /* file may not exist */ }
+  delete semCache[semId];
+  await saveIndex();
+  toast(`Semester "${semId}" deleted.`, 'success');
+  closeEditModal();
+  refreshAll();
+}
+
+// ---- EDIT PROJECT ----
+async function openEditProject(semId, projId) {
+  let semData;
+  try { semData = await loadSemester(semId); } catch(e) { toast('Could not load semester.', 'error'); return; }
+  const proj = semData.projects.find(p => p.id === projId);
+  if (!proj) return;
+  openEditModal(`Edit Project — ${proj.title}`, `
+    <div class="form-grid" style="gap:12px;">
+      <div class="field span-2">
+        <label>Project Title</label>
+        <input type="text" id="e-proj-title" value="${proj.title.replace(/"/g,'&quot;')}"/>
+      </div>
+      <div class="field">
+        <label>Project Type</label>
+        <select id="e-proj-type">
+          <option value="code" ${proj.type==='code'?'selected':''}>code</option>
+          <option value="design" ${proj.type==='design'?'selected':''}>design</option>
+          <option value="prototype" ${proj.type==='prototype'?'selected':''}>prototype</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Project ID <span class="label-hint">read-only</span></label>
+        <input type="text" value="${proj.id}" class="mono" disabled style="opacity:.5;cursor:not-allowed;"/>
+      </div>
+      <div class="field span-2">
+        <label>Assignment Brief</label>
+        <textarea id="e-proj-desc" rows="4">${proj.desc || ''}</textarea>
+      </div>
+    </div>`,
+    `<button class="btn btn-primary" onclick="saveEditProject('${semId}','${projId}')">Save Changes</button>
+     <button class="btn btn-ghost" onclick="closeEditModal()">Cancel</button>`
+  );
+}
+
+async function saveEditProject(semId, projId) {
+  let semData;
+  try { semData = await loadSemester(semId); } catch(e) { toast('Could not load semester.', 'error'); return; }
+  const proj = semData.projects.find(p => p.id === projId);
+  if (!proj) return;
+  proj.title = document.getElementById('e-proj-title').value.trim();
+  proj.type  = document.getElementById('e-proj-type').value;
+  proj.desc  = document.getElementById('e-proj-desc').value.trim();
+  await saveSemester(semId, semData);
+  toast(`Project "${proj.title}" updated.`, 'success');
+  closeEditModal();
+  showExistingProjects();
+}
+
+// ---- DELETE PROJECT ----
+async function deleteProject(semId, projId) {
+  let semData;
+  try { semData = await loadSemester(semId); } catch(e) { toast('Could not load semester.', 'error'); return; }
+  const proj = semData.projects.find(p => p.id === projId);
+  const subCount = (proj?.submissions || []).length;
+  if (subCount > 0) {
+    toast(`Cannot delete — this project has ${subCount} submission(s). Delete all submissions first.`, 'error');
+    return;
+  }
+  semData.projects = semData.projects.filter(p => p.id !== projId);
+  await saveSemester(semId, semData);
+  // Update projectCount in index
+  swIndex.departments.forEach(d => {
+    const sem = d.semesters.find(s => s.id === semId);
+    if (sem) sem.projectCount = semData.projects.length;
+  });
+  await saveIndex();
+  toast(`Project "${projId}" deleted.`, 'success');
+  closeEditModal();
+  showExistingProjects();
+  refreshAll();
+}
+
+// ---- EDIT SUBMISSION ----
+async function openEditSubmission(semId, projId, index) {
+  let semData;
+  try { semData = await loadSemester(semId); } catch(e) { toast('Could not load semester.', 'error'); return; }
+  const proj = semData.projects.find(p => p.id === projId);
+  const s    = proj?.submissions?.[index];
+  if (!s) return;
+  const mt = s.mediaType || 'link';
+  const urlField   = mt === 'link' ? '' : 'style="display:none;"';
+  const mediaField = mt !== 'link' ? '' : 'style="display:none;"';
+  openEditModal(`Edit Submission — ${s.student}`, `
+    <div class="form-grid" style="gap:12px;">
+      <div class="field">
+        <label>Student Name</label>
+        <input type="text" id="e-sub-student" value="${s.student.replace(/"/g,'&quot;')}"/>
+      </div>
+      <div class="field">
+        <label>Project Title</label>
+        <input type="text" id="e-sub-title" value="${s.title.replace(/"/g,'&quot;')}"/>
+      </div>
+      <div class="field span-2">
+        <label>Media Type</label>
+        <select id="e-sub-mediatype" onchange="editModalMediaChange()">
+          <option value="link"  ${mt==='link' ?'selected':''}>Link — opens URL in a new tab</option>
+          <option value="image" ${mt==='image'?'selected':''}>Image — lightbox</option>
+          <option value="audio" ${mt==='audio'?'selected':''}>Audio — player</option>
+          <option value="video" ${mt==='video'?'selected':''}>Video — YouTube embed</option>
+        </select>
+      </div>
+      <div class="field span-2" id="e-sub-url-field" ${urlField}>
+        <label>URL</label>
+        <input type="url" id="e-sub-url" value="${(s.url||'').replace(/"/g,'&quot;')}" placeholder="https://"/>
+      </div>
+      <div class="field span-2" id="e-sub-media-field" ${mediaField}>
+        <label id="e-sub-media-label">${mt==='video'?'YouTube URL':mt==='audio'?'Audio File Path':'Image Path'}</label>
+        <input type="text" id="e-sub-media" value="${(s.media||'').replace(/"/g,'&quot;')}"/>
+      </div>
+      <div class="field span-2">
+        <label>Thumbnail Path</label>
+        <input type="text" id="e-sub-thumb" value="${(s.thumb||'').replace(/"/g,'&quot;')}" placeholder="work/..."/>
+      </div>
+    </div>`,
+    `<button class="btn btn-primary" onclick="saveEditSubmission('${semId}','${projId}',${index})">Save Changes</button>
+     <button class="btn btn-ghost" onclick="closeEditModal()">Cancel</button>`
+  );
+}
+
+function editModalMediaChange() {
+  const mt = document.getElementById('e-sub-mediatype').value;
+  document.getElementById('e-sub-url-field').style.display   = mt === 'link' ? '' : 'none';
+  document.getElementById('e-sub-media-field').style.display = mt !== 'link' ? '' : 'none';
+  const labels = { image:'Image Path', audio:'Audio File Path', video:'YouTube URL' };
+  const lbl = document.getElementById('e-sub-media-label');
+  if (lbl && labels[mt]) lbl.textContent = labels[mt];
+}
+
+async function saveEditSubmission(semId, projId, index) {
+  let semData;
+  try { semData = await loadSemester(semId); } catch(e) { toast('Could not load semester.', 'error'); return; }
+  const proj = semData.projects.find(p => p.id === projId);
+  if (!proj || !proj.submissions[index]) return;
+  const mt = document.getElementById('e-sub-mediatype').value;
+  proj.submissions[index] = {
+    student:   document.getElementById('e-sub-student').value.trim(),
+    title:     document.getElementById('e-sub-title').value.trim(),
+    mediaType: mt,
+    url:       mt === 'link' ? document.getElementById('e-sub-url').value.trim() : '',
+    media:     mt !== 'link' ? document.getElementById('e-sub-media').value.trim() : '',
+    thumb:     document.getElementById('e-sub-thumb').value.trim(),
+  };
+  await saveSemester(semId, semData);
+  toast(`Submission updated for ${proj.submissions[index].student}.`, 'success');
+  closeEditModal();
+  showExistingSubmissions();
+}
+
+// ---- DELETE SUBMISSION ----
+async function deleteSubmission(semId, projId, index) {
+  let semData;
+  try { semData = await loadSemester(semId); } catch(e) { toast('Could not load semester.', 'error'); return; }
+  const proj = semData.projects.find(p => p.id === projId);
+  if (!proj) return;
+  const name = proj.submissions[index]?.student || 'submission';
+  proj.submissions.splice(index, 1);
+  await saveSemester(semId, semData);
+  toast(`Deleted ${name}'s submission.`, 'success');
+  showExistingSubmissions();
+}
+
+// ---- CONFIRM DELETE (two-click pattern) ----
+// First click: button turns red and says "Confirm". Second click: executes.
+const _pendingDeletes = {};
+function confirmDelete(type, ...args) {
+  const key = type + args.join('-');
+  const btnId = type === 'sem'  ? `del-sem-${args[1]}`
+              : type === 'proj' ? `del-proj-${args[1]}`
+              : `del-sub-${args[2]}`;
+  const btn = document.getElementById(btnId);
+  if (!btn) return;
+  if (_pendingDeletes[key]) {
+    // Second click — execute
+    clearTimeout(_pendingDeletes[key].timer);
+    delete _pendingDeletes[key];
+    if (type === 'sem')  deleteSemester(args[0], args[1]);
+    if (type === 'proj') deleteProject(args[0], args[1]);
+    if (type === 'sub')  deleteSubmission(args[0], args[1], args[2]);
+  } else {
+    // First click — arm
+    btn.classList.add('confirm');
+    btn.textContent = 'Sure?';
+    const timer = setTimeout(() => {
+      btn.classList.remove('confirm');
+      btn.textContent = '✕';
+      delete _pendingDeletes[key];
+    }, 3000);
+    _pendingDeletes[key] = { timer };
+  }
+}
+
+// ============================================================
+// HELPERS
+// ============================================================
+function val(id) { return document.getElementById(id).value.trim(); }
+
+function clearFields(ids) {
+  ids.forEach(id => document.getElementById(id).value = '');
+  const msg = document.getElementById('sw-saved-msg');
+  if (msg) msg.style.display = 'none';
+}
+
+function toast(msg, type='info') {
+  const c = document.getElementById('toast-container');
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.innerHTML = `<div class="toast-dot"></div>${msg}`;
+  c.appendChild(t);
+  setTimeout(() => t.remove(), 4000);
+}
+
+// ============================================================
+// INIT
+// ============================================================
+if (!('showDirectoryPicker' in window)) {
+  document.getElementById('lock-screen').innerHTML = `
+    <div class="lock-mark" style="background:var(--red)">!</div>
+    <div class="lock-title" style="color:var(--red)">Browser Not Supported</div>
+    <p class="lock-sub">This admin tool requires the File System Access API.<br/>Please open it in <strong>Chrome</strong> or <strong>Edge</strong>.</p>`;
+}
+
+function updateFolderPath() {
+  const deptId = document.getElementById('p-dept').value;
+  const semId  = document.getElementById('p-sem').value;
+  const projId = document.getElementById('p-id').value.trim();
+  const display = document.getElementById('folder-path-display');
+  const value   = document.getElementById('folder-path-value');
+  if (deptId && semId && projId) {
+    display.style.display = '';
+    value.textContent = `work/${deptId}/${semId}/${projId}/`;
+  } else {
+    display.style.display = 'none';
+  }
+}
+
+function updateMediaFields() {
+  const mt         = document.getElementById('sw-mediatype').value;
+  const urlField   = document.getElementById('sw-url-field');
+  const mediaField = document.getElementById('sw-media-field');
+  const mediaLabel = document.getElementById('sw-media-label');
+  const mediaInput = document.getElementById('sw-media');
+  const mediaHint  = document.getElementById('sw-media-hint');
+  const urlHint    = document.getElementById('sw-url-hint');
+
+  if (mt === 'link') {
+    urlField.style.display   = '';
+    mediaField.style.display = 'none';
+    urlHint.innerHTML = 'Full URL to the student\'s published work. Leave blank if not yet published — you can add it later.<br/><strong>Examples:</strong> <code>https://kait.github.io/portfolio</code> · <code>https://canva.com/design/...</code>';
+  } else {
+    urlField.style.display   = 'none';
+    mediaField.style.display = '';
+    if (mt === 'image') {
+      mediaLabel.innerHTML = 'Full-Size Image Path';
+      mediaInput.placeholder = 'work/digital-media/dm-sem2-2026/brand-identity/aisha-brand-full.jpg';
+      mediaInput.type = 'text';
+      mediaHint.innerHTML = 'Path to the full-size image, relative to the site root. This is what opens in the lightbox when clicked.<br/><strong>Format:</strong> <code>work/[class]/[semester]/[project]/[student]-full.jpg</code><br/>Recommended size: <strong>1600px wide</strong> max. Save as JPG for photos, PNG for graphics.';
+    } else if (mt === 'audio') {
+      mediaLabel.innerHTML = 'Audio File Path';
+      mediaInput.placeholder = 'work/digital-media/dm-sem2-2026/audio-design/sofia-soundscape.mp3';
+      mediaInput.type = 'text';
+      mediaHint.innerHTML = 'Path to the audio file, relative to the site root.<br/><strong>Format:</strong> <code>work/[class]/[semester]/[project]/[student]-title.mp3</code><br/>Accepted formats: <code>mp3</code> · <code>wav</code> · <code>ogg</code>. Keep files under 20MB.';
+    } else if (mt === 'video') {
+      mediaLabel.innerHTML = 'YouTube URL';
+      mediaInput.placeholder = 'https://www.youtube.com/watch?v=...';
+      mediaInput.type = 'url';
+      mediaHint.innerHTML = 'The full YouTube URL of the student\'s video. The video must be set to <strong>Public</strong> or <strong>Unlisted</strong> on YouTube.<br/><strong>Example:</strong> <code>https://www.youtube.com/watch?v=dQw4w9WgXcQ</code>';
+    }
+  }
+}
+
+document.querySelectorAll('input[type=radio]').forEach(r => {
+  r.addEventListener('change', () => {
+    document.querySelectorAll('.radio-opt').forEach(el => el.classList.remove('selected'));
+    if (r.checked) r.closest('.radio-opt').classList.add('selected');
+  });
+});
+</script>
+</body>
+</html>
