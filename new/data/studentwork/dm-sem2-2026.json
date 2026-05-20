@@ -13,11 +13,11 @@
       "id": "brand-identity",
       "title": "Brand Identity Design",
       "type": "design",
-      "desc": "Create a complete brand system for a fictional local business \u2014 logo, color palette, typography, and 2 mockup applications.",
+      "desc": "Create a complete brand system for a fictional local business — logo, color palette, typography, and 2 mockup applications.",
       "submissions": [
         {
           "student": "Aisha K.",
-          "title": "Baan Cha \u2014 Bangkok Caf\u00e9 Brand",
+          "title": "Baan Cha — Bangkok Café Brand",
           "mediaType": "image",
           "media": "",
           "url": "",
@@ -25,7 +25,7 @@
         },
         {
           "student": "Marco T.",
-          "title": "Street Found \u2014 Food Co.",
+          "title": "Street Found — Food Co.",
           "mediaType": "image",
           "media": "",
           "url": "",
@@ -41,7 +41,7 @@
         },
         {
           "student": "James L.",
-          "title": "Hatch \u2014 Co-working Space",
+          "title": "Hatch — Co-working Space",
           "mediaType": "image",
           "media": "",
           "url": "",
@@ -49,7 +49,7 @@
         },
         {
           "student": "Sofia R.",
-          "title": "Bloom \u2014 Plant Delivery",
+          "title": "Bloom — Plant Delivery",
           "mediaType": "image",
           "media": "",
           "url": "",
@@ -57,7 +57,7 @@
         },
         {
           "student": "Ben W.",
-          "title": "Drift \u2014 Skateboard Brand",
+          "title": "Drift — Skateboard Brand",
           "mediaType": "image",
           "media": "",
           "url": "",
@@ -81,7 +81,7 @@
         },
         {
           "student": "Aisha K.",
-          "title": "BTS Skytrain \u2014 Better UX",
+          "title": "BTS Skytrain — Better UX",
           "mediaType": "link",
           "media": "",
           "url": "",
@@ -97,7 +97,7 @@
         },
         {
           "student": "Marco T.",
-          "title": "Grab Food \u2014 Simplified",
+          "title": "Grab Food — Simplified",
           "mediaType": "link",
           "media": "",
           "url": "",
@@ -129,7 +129,7 @@
         },
         {
           "student": "Ben W.",
-          "title": "Urban Dreams \u2014 4 Pieces",
+          "title": "Urban Dreams — 4 Pieces",
           "mediaType": "image",
           "media": "",
           "url": "",
@@ -141,11 +141,11 @@
       "id": "audio-design",
       "title": "Sound Design & Podcast",
       "type": "design",
-      "desc": "Produce a 3\u20135 minute audio piece \u2014 a podcast episode, soundscape, or short story with music and effects.",
+      "desc": "Produce a 3–5 minute audio piece — a podcast episode, soundscape, or short story with music and effects.",
       "submissions": [
         {
           "student": "Sofia R.",
-          "title": "Bangkok After Dark \u2014 Soundscape",
+          "title": "Bangkok After Dark — Soundscape",
           "mediaType": "audio",
           "media": "",
           "url": "",
@@ -161,7 +161,7 @@
         },
         {
           "student": "Aisha K.",
-          "title": "Monsoon Season \u2014 Ambient Audio",
+          "title": "Monsoon Season — Ambient Audio",
           "mediaType": "audio",
           "media": "",
           "url": "",
@@ -173,11 +173,11 @@
       "id": "motion-video",
       "title": "Motion Design & Video",
       "type": "design",
-      "desc": "Create a 60\u201390 second motion piece \u2014 a title sequence, explainer video, or short documentary.",
+      "desc": "Create a 60–90 second motion piece — a title sequence, explainer video, or short documentary.",
       "submissions": [
         {
           "student": "James L.",
-          "title": "MRT Explainer \u2014 Motion Design",
+          "title": "MRT Explainer — Motion Design",
           "mediaType": "video",
           "media": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
           "url": "",
@@ -193,11 +193,59 @@
         },
         {
           "student": "Priya S.",
-          "title": "Title Sequence \u2014 Noir City",
+          "title": "Title Sequence — Noir City",
           "mediaType": "video",
           "media": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
           "url": "",
           "thumb": ""
+        }
+      ]
+    },
+    {
+      "id": "personal-poster",
+      "title": "Personal Poster",
+      "type": "design",
+      "desc": "Create a vector-based poster design that reflects you.",
+      "submissions": [
+        {
+          "student": "Bambi",
+          "title": "Pasta tree of the best fruits",
+          "mediaType": "link",
+          "url": "work/digital-media/dm-sem2-2026/personal-poster/bambi-personal-poster.pdf",
+          "media": "",
+          "thumb": "work/digital-media/dm-sem2-2026/personal-poster/bambi-personal-poster-thumb.jpg"
+        },
+        {
+          "student": "Christine",
+          "title": "Science Fiction & Fluffy Cows",
+          "mediaType": "link",
+          "url": "work/digital-media/dem-sem2-2026/personal-poster/christine-personal-poster.pdf",
+          "media": "",
+          "thumb": "work/digital-media/dem-sem2-2026/personal-poster/christine-personal-poster-thumb.jpg"
+        }
+      ]
+    },
+    {
+      "id": "tourism-city-postcard",
+      "title": "Tourism City Postcard",
+      "type": "design",
+      "desc": "Design a city postcard for tourists.",
+      "submissions": [
+        {
+          "student": "Bambi",
+          "title": "Hong Kong",
+          "mediaType": "link",
+          "url": "work/digital-media/dm-sem2-2026/tourism-postcard//bambi-city-postcard.pdf",
+          "media": "",
+          "thumb": "work/digital-media/dm-sem2-2026/tourism-postcard//bambi-city-postcard-thumb.jpg"
+        },
+        {
+          "student": "Christine",
+          "title": "Amsterdam",
+          "mediaType": "link",
+          "url": "work/digital-media/dm-sem2-2026/tourism-postcard/christine-city-postcard.pdf",
+          "media": "",
+          "thumb": "work/digital-media/dm-sem2-2026/tourism-postcard/christine-city-postcard-thumb.jpg"
         }
       ]
     }
