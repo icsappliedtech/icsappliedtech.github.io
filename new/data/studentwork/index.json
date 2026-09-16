@@ -16,20 +16,20 @@
       "description": "HTML, CSS, JavaScript, and full web projects.",
       "semesters": [
         {
+          "id": "at-sem1-2026",
+          "label": "Semester 1, 2026",
+          "year": 2026,
+          "term": 1,
+          "current": true,
+          "projectCount": 0
+        },
+        {
           "id": "at-sem2-2026",
           "label": "Semester 2, 2026",
           "year": 2026,
           "term": 2,
-          "current": true,
-          "projectCount": 6
-        },
-        {
-          "id": "at-sem1-2026",
-          "label": "Semester 1, 2025",
-          "year": 2025,
-          "term": 1,
           "current": false,
-          "projectCount": 3
+          "projectCount": 0
         }
       ],
       "semPrefix": "at"
@@ -44,20 +44,20 @@
       "description": "Vector, Raster, Audio, and Video.",
       "semesters": [
         {
+          "id": "dm-sem1-2026",
+          "label": "Semester 1, 2026",
+          "year": 2026,
+          "term": 1,
+          "current": true,
+          "projectCount": 0
+        },
+        {
           "id": "dm-sem2-2026",
           "label": "Semester 2, 2026",
           "year": 2026,
           "term": 2,
-          "current": true,
-          "projectCount": 7
-        },
-        {
-          "id": "dm-sem1-2026",
-          "label": "Semester 1, 2025",
-          "year": 2025,
-          "term": 1,
           "current": false,
-          "projectCount": 3
+          "projectCount": 0
         }
       ],
       "semPrefix": "dm"
@@ -72,12 +72,20 @@
       "description": "Business plans, pitch decks, and market research.",
       "semesters": [
         {
+          "id": "biz-sem1-2026",
+          "label": "Semester 1, 2026",
+          "year": 2026,
+          "term": 1,
+          "current": true,
+          "projectCount": 0
+        },
+        {
           "id": "biz-sem2-2026",
           "label": "Semester 2, 2026",
           "year": 2026,
           "term": 2,
-          "current": true,
-          "projectCount": 4
+          "current": false,
+          "projectCount": 0
         }
       ],
       "semPrefix": "biz"
@@ -92,12 +100,20 @@
       "description": "Discover, plan, resource, launch, and harvest.",
       "semesters": [
         {
+          "id": "ent-sem1-2026",
+          "label": "Semester 1, 2026",
+          "year": 2026,
+          "term": 1,
+          "current": true,
+          "projectCount": 0
+        },
+        {
           "id": "ent-sem2-2026",
           "label": "Semester 2, 2026",
           "year": 2026,
           "term": 2,
-          "current": true,
-          "projectCount": 4
+          "current": false,
+          "projectCount": 0
         }
       ],
       "semPrefix": "ent"
@@ -118,14 +134,6 @@
           "term": 1,
           "current": true,
           "projectCount": 0
-        },
-        {
-          "id": "mkt-sem2-2026",
-          "label": "Semester 2, 2026",
-          "year": 2026,
-          "term": 2,
-          "current": false,
-          "projectCount": 4
         }
       ],
       "semPrefix": "mkt"

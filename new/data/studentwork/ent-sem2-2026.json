@@ -2,72 +2,7 @@
   "id": "ent-sem2-2026",
   "label": "Semester 2, 2026",
   "department": "entrepreneurship",
-  "projects": [
-    {
-      "id": "lean-canvas",
-      "title": "Lean Canvas",
-      "type": "prototype",
-      "desc": "Map your startup idea onto a Lean Canvas. Identify the problem, customer segments, unique value proposition, channels, and revenue streams.",
-      "submissions": [
-        {
-          "student": "Nadia P.",
-          "title": "CampusRun \u2014 Delivery App",
-          "url": "",
-          "thumb": ""
-        },
-        {
-          "student": "Tom R.",
-          "title": "UpCycle \u2014 Fashion Platform",
-          "url": "",
-          "thumb": ""
-        },
-        {
-          "student": "Lily S.",
-          "title": "StudyBuddy \u2014 Peer Tutoring",
-          "url": "",
-          "thumb": ""
-        },
-        {
-          "student": "Finn O.",
-          "title": "FreshCart \u2014 Local Groceries",
-          "url": "",
-          "thumb": ""
-        }
-      ]
-    },
-    {
-      "id": "mvp-prototype",
-      "title": "MVP Prototype",
-      "type": "prototype",
-      "desc": "Build a clickable prototype of your minimum viable product using your preferred design tool. Must include at least 5 screens and a working user flow.",
-      "submissions": [
-        {
-          "student": "Lily S.",
-          "title": "StudyBuddy App \u2014 MVP",
-          "url": "",
-          "thumb": ""
-        },
-        {
-          "student": "Nadia P.",
-          "title": "CampusRun \u2014 Order Flow",
-          "url": "",
-          "thumb": ""
-        },
-        {
-          "student": "Tom R.",
-          "title": "UpCycle Marketplace MVP",
-          "url": "",
-          "thumb": ""
-        },
-        {
-          "student": "Finn O.",
-          "title": "FreshCart \u2014 Browse & Checkout",
-          "url": "",
-          "thumb": ""
-        }
-      ]
-    }
-  ],
+  "projects": [],
   "links": [
     {
       "label": "Lean Canvas",
