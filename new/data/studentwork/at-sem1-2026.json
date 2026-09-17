@@ -2,6 +2,23 @@
   "id": "at-sem1-2026",
   "label": "Semester 1, 2026",
   "department": "applied-tech",
-  "projects": [],
+  "projects": [
+    {
+      "id": "computer-hardware-poster",
+      "title": "Computer Hardware Poster",
+      "type": "design",
+      "desc": "Design a poster that showcases the main hardware components of a computer.",
+      "submissions": [
+        {
+          "student": "Alex D.",
+          "title": "Alex's Computer Hardware Poster",
+          "mediaType": "link",
+          "url": "https://mrjasoncode.com/work/applied-tech/at-sem2-2026/computer-hardware-poster/alex-computer-hardware-poster.pdf",
+          "media": "",
+          "thumb": ""
+        }
+      ]
+    }
+  ],
   "links": []
 }

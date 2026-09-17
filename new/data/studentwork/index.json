@@ -21,7 +21,7 @@
           "year": 2026,
           "term": 1,
           "current": true,
-          "projectCount": 0
+          "projectCount": 1
         },
         {
           "id": "at-sem2-2026",
@@ -63,13 +63,14 @@
       "semPrefix": "dm"
     },
     {
-      "id": "business",
+      "id": "Business",
       "label": "Business",
       "shortLabel": "Business",
+      "semPrefix": "biz",
       "icon": "briefcase",
       "colorToken": "slate",
       "tagClass": "tag-slate",
-      "description": "Business plans, pitch decks, and market research.",
+      "description": "",
       "semesters": [
         {
           "id": "biz-sem1-2026",
@@ -87,56 +88,7 @@
           "current": false,
           "projectCount": 0
         }
-      ],
-      "semPrefix": "biz"
-    },
-    {
-      "id": "entrepreneurship",
-      "label": "Entrepreneurship",
-      "shortLabel": "Entrepreneurship",
-      "icon": "rocket",
-      "colorToken": "yellow",
-      "tagClass": "tag-yellow",
-      "description": "Discover, plan, resource, launch, and harvest.",
-      "semesters": [
-        {
-          "id": "ent-sem1-2026",
-          "label": "Semester 1, 2026",
-          "year": 2026,
-          "term": 1,
-          "current": true,
-          "projectCount": 0
-        },
-        {
-          "id": "ent-sem2-2026",
-          "label": "Semester 2, 2026",
-          "year": 2026,
-          "term": 2,
-          "current": false,
-          "projectCount": 0
-        }
-      ],
-      "semPrefix": "ent"
-    },
-    {
-      "id": "marketing",
-      "label": "Marketing",
-      "shortLabel": "Marketing",
-      "icon": "megaphone",
-      "colorToken": "navy",
-      "tagClass": "tag-navy",
-      "description": "Product, price, place, and promotion.",
-      "semesters": [
-        {
-          "id": "mkt-sem1-2026",
-          "label": "Semester 1, 2026",
-          "year": 2026,
-          "term": 1,
-          "current": true,
-          "projectCount": 0
-        }
-      ],
-      "semPrefix": "mkt"
+      ]
     }
   ]
 }
