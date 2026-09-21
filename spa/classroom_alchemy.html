@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Classroom Alchemy - Educational Sandbox Game</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            950: '#070c1e',
+                            900: '#0b132b',
+                            800: '#1c2541',
+                            700: '#2a3a5e',
+                            600: '#3a4f7c',
+                        },
+                        royal: {
+                            400: '#60a5fa',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        gold: {
+                            300: '#fcd34d',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                        }
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 2s infinite ease-in-out',
+                        'float': 'float 4s infinite ease-in-out',
+                        'shake': 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both',
+                        'pop': 'pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+                        'sparkle': 'sparkle 1.5s infinite linear',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 15px rgba(245, 158, 11, 0.35)' },
+                            '50%': { boxShadow: '0 0 30px rgba(245, 158, 11, 0.8)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-5px)' },
+                        },
+                        shake: {
+                            '10%, 90%': { transform: 'translate3d(-2px, 0, 0)' },
+                            '20%, 80%': { transform: 'translate3d(4px, 0, 0)' },
+                            '30%, 50%, 70%': { transform: 'translate3d(-8px, 0, 0)' },
+                            '40%, 60%': { transform: 'translate3d(8px, 0, 0)' },
+                        },
+                        pop: {
+                            '0%': { transform: 'scale(0.8)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #ffffff;
+            background-image: 
+                radial-gradient(at 15% 15%, rgba(37, 99, 235, 0.05) 0px, transparent 45%),
+                radial-gradient(at 85% 85%, rgba(59, 130, 246, 0.08) 0px, transparent 50%);
+            background-attachment: fixed;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        /* Light Gray Panels */
+        .glass-panel {
+            background: #f8fafc;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid #e2e8f0;
+        }
+
+        /* White Cards with Light Gray Borders & Blue Hover */
+        .glass-card {
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: #2563eb;
+            box-shadow: 0 8px 18px -2px rgba(37, 99, 235, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Target Workbench Slots */
+        .slot-target {
+            transition: all 0.2s ease;
+            background: #ffffff;
+            border: 2.5px dashed #cbd5e1;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
+        }
+
+        .slot-target.drag-over {
+            border-color: #2563eb;
+            background: #eff6ff;
+            transform: scale(1.02);
+        }
+
+        .slot-target.filled {
+            border-style: solid;
+            border-color: #2563eb;
+            background: #ffffff;
+            box-shadow: 0 6px 16px -2px rgba(37, 99, 235, 0.2);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Glowing Effects */
+        .glow-amber {
+            box-shadow: 0 0 25px rgba(37, 99, 235, 0.4);
+        }
+
+        .dragging {
+            opacity: 0.5;
+            transform: scale(0.95);
+        }
+
+        /* Ambient background canvas */
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="text-slate-800 font-sans min-h-screen flex flex-col justify-between overflow-x-hidden relative">
+
+    <!-- Background Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <div class="relative z-10 flex flex-col min-h-screen">
+        
+        <!-- HEADER -->
+        <header class="w-full glass-panel border-b border-slate-200 sticky top-0 z-30 px-4 py-3 sm:px-6 shadow-sm">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+                
+                <!-- Logo & Title -->
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-blue-700 via-blue-600 to-sky-500 flex items-center justify-center text-white font-black text-2xl shadow-md shadow-blue-500/20 border border-blue-400">
+                        <i class="fa-solid fa-flask"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-display font-extrabold text-xl sm:text-2xl text-slate-900 tracking-tight">
+                            Classroom Alchemy
+                        </h1>
+                        <p class="text-xs text-blue-600 font-semibold tracking-wide">Academic Research & Discovery Lab</p>
+                    </div>
+                </div>
+
+                <!-- Progress Tracker Center -->
+                <div class="w-full md:w-96 flex flex-col gap-1.5 bg-slate-200/70 p-2.5 rounded-xl border border-slate-300/80 shadow-inner">
+                    <div class="flex justify-between items-center text-xs font-semibold">
+                        <span class="text-blue-900 flex items-center gap-1.5">
+                            <i class="fa-solid fa-compass text-blue-600 animate-spin" style="animation-duration: 12s;"></i>
+                            <span id="discoveryCountText">Discovered: 4 / 12 Elements</span>
+                        </span>
+                        <span id="discoveryPercentText" class="text-blue-700 font-bold">33%</span>
+                    </div>
+                    <div class="w-full bg-slate-300 h-2.5 rounded-full overflow-hidden p-0.5 border border-slate-300">
+                        <div id="progressBar" class="bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 h-full rounded-full transition-all duration-500 ease-out shadow-sm" style="width: 33.33%;"></div>
+                    </div>
+                </div>
+
+                <!-- Control Buttons -->
+                <div class="flex items-center gap-2">
+                    <button id="soundToggleBtn" onclick="toggleAudio()" class="p-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-blue-700 transition-colors border border-slate-300 flex items-center justify-center shadow-sm" title="Toggle Sound">
+                        <i id="soundIcon" class="fa-solid fa-volume-high text-sm"></i>
+                    </button>
+                    <button onclick="clearWorkbench()" class="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-xs font-bold text-white transition-all border border-blue-500 flex items-center gap-2 active:scale-95 shadow-sm">
+                        <i class="fa-solid fa-broom"></i>
+                        <span>Clear Workbench</span>
+                    </button>
+                    <button onclick="confirmResetProgress()" class="px-3 py-2 rounded-xl bg-red-50 hover:bg-red-100 text-xs font-bold text-red-600 hover:text-red-700 transition-all border border-red-200 flex items-center gap-1.5 active:scale-95 shadow-sm" title="Reset All Progress">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        <span class="hidden sm:inline">Reset</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN LAYOUT AREA -->
+        <main class="max-w-7xl w-full mx-auto p-4 sm:p-6 flex-1 flex flex-col gap-6">
+            
+            <!-- Top Section: Split Screen Shelf & Workbench -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                
+                <!-- ELEMENT SHELF (Left/Sidebar Panel) -->
+                <section class="lg:col-span-5 glass-panel rounded-2xl p-4 sm:p-5 flex flex-col gap-4 shadow-sm border border-slate-200">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-boxes-stacked text-blue-600"></i>
+                            <h2 class="font-display font-bold text-lg text-slate-800">Element Shelf</h2>
+                        </div>
+                        <span class="text-xs bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-extrabold border border-blue-200 shadow-sm" id="shelfCountBadge">4 Available</span>
+                    </div>
+
+                    <!-- Search / Filter -->
+                    <div class="relative">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                        <input type="text" id="searchInput" oninput="filterShelfElements()" placeholder="Search unlocked elements..." class="w-full bg-white border border-slate-300 rounded-xl pl-9 pr-4 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors shadow-inner">
+                    </div>
+
+                    <!-- Hint / Helper Message -->
+                    <p class="text-[11px] text-blue-800 font-medium italic flex items-center gap-1.5 bg-blue-50/80 p-2.5 rounded-lg border border-blue-200">
+                        <i class="fa-solid fa-circle-info text-blue-600"></i>
+                        <span>Drag elements or tap them to place into Workbench slots.</span>
+                    </p>
+
+                    <!-- Unlocked Element Grid -->
+                    <div id="elementShelf" class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-h-[360px] lg:max-h-[420px] overflow-y-auto pr-1 p-1">
+                        <!-- Dynamic Element Cards injected by JS -->
+                    </div>
+                </section>
+
+                <!-- WORKBENCH (Main Center Area) -->
+                <section class="lg:col-span-7 glass-panel rounded-2xl p-5 sm:p-7 flex flex-col justify-between items-center min-h-[380px] lg:min-h-[440px] relative overflow-hidden shadow-sm border border-slate-200">
+                    
+                    <!-- Background Alchemy Circle Effect -->
+                    <div class="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
+                        <div class="w-72 h-72 sm:w-96 sm:h-96 rounded-full border-4 border-dashed border-blue-500 animate-spin" style="animation-duration: 40s;"></div>
+                        <div class="w-56 h-56 sm:w-72 sm:h-72 rounded-full border-2 border-blue-400 absolute"></div>
+                    </div>
+
+                    <div class="w-full flex justify-between items-center z-10">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-vial text-blue-600 text-lg"></i>
+                            <h2 class="font-display font-bold text-xl text-slate-800">Alchemy Workbench</h2>
+                        </div>
+                        <span class="text-xs text-blue-700 font-bold bg-blue-50 px-3.5 py-1 rounded-full border border-blue-200">Reaction Matrix</span>
+                    </div>
+
+                    <!-- Workbench Slots Container -->
+                    <div class="w-full max-w-lg my-6 z-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+                        
+                        <!-- Slot A Target -->
+                        <div id="slotA" class="slot-target w-36 h-36 sm:w-40 sm:h-40 rounded-2xl flex flex-col items-center justify-center relative p-3 cursor-pointer group shadow-sm" 
+                             ondragover="handleDragOver(event)" 
+                             ondragleave="handleDragLeave(event)" 
+                             ondrop="handleDrop(event, 'slotA')" 
+                             onclick="clearSlot('slotA')">
+                            <!-- Placeholder when empty -->
+                            <div class="empty-state flex flex-col items-center text-slate-400 group-hover:text-blue-600 transition-colors">
+                                <i class="fa-solid fa-plus-circle text-2xl mb-2 text-blue-500"></i>
+                                <span class="text-xs font-extrabold uppercase tracking-wider text-slate-600">Element A</span>
+                                <span class="text-[10px] text-slate-400 mt-1">Drop or Tap</span>
+                            </div>
+                            <!-- Filled Content inserted dynamically -->
+                            <div class="filled-content hidden w-full h-full flex flex-col items-center justify-center text-center"></div>
+                        </div>
+
+                        <!-- Plus Sign Indicator -->
+                        <div class="w-10 h-10 rounded-full bg-white border-2 border-blue-500 flex items-center justify-center text-blue-600 font-black text-lg shadow-md">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+
+                        <!-- Slot B Target -->
+                        <div id="slotB" class="slot-target w-36 h-36 sm:w-40 sm:h-40 rounded-2xl flex flex-col items-center justify-center relative p-3 cursor-pointer group shadow-sm" 
+                             ondragover="handleDragOver(event)" 
+                             ondragleave="handleDragLeave(event)" 
+                             ondrop="handleDrop(event, 'slotB')" 
+                             onclick="clearSlot('slotB')">
+                            <!-- Placeholder when empty -->
+                            <div class="empty-state flex flex-col items-center text-slate-400 group-hover:text-blue-600 transition-colors">
+                                <i class="fa-solid fa-plus-circle text-2xl mb-2 text-blue-500"></i>
+                                <span class="text-xs font-extrabold uppercase tracking-wider text-slate-600">Element B</span>
+                                <span class="text-[10px] text-slate-400 mt-1">Drop or Tap</span>
+                            </div>
+                            <!-- Filled Content inserted dynamically -->
+                            <div class="filled-content hidden w-full h-full flex flex-col items-center justify-center text-center"></div>
+                        </div>
+                    </div>
+
+                    <!-- Combine Trigger Action Area -->
+                    <div class="w-full flex flex-col items-center gap-3 z-10">
+                        <button id="combineBtn" onclick="triggerCombine()" disabled class="w-full sm:w-72 py-3.5 px-6 rounded-xl font-display font-black text-sm uppercase tracking-wider text-white bg-gradient-to-r from-blue-600 via-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-300 shadow-md disabled:shadow-none flex items-center justify-center gap-2 border border-blue-400 active:scale-95">
+                            <i class="fa-solid fa-wand-magic-sparkles text-base"></i>
+                            <span>Synthesize Elements</span>
+                        </button>
+                        
+                        <!-- Reaction Feedback Toast Message -->
+                        <div id="workbenchFeedback" class="h-6 text-xs font-bold text-center transition-all duration-300 text-blue-800"></div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- DISCOVERY LOG (Bottom Codex Grid) -->
+            <section class="glass-panel rounded-2xl p-5 sm:p-6 shadow-sm border border-slate-200 flex flex-col gap-4">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                    <div class="flex items-center gap-2.5">
+                        <i class="fa-solid fa-book-bookmark text-blue-600 text-lg"></i>
+                        <h2 class="font-display font-bold text-lg text-slate-800">Discovery Codex</h2>
+                        <span class="text-xs text-slate-500 font-semibold">(12 Total Elements)</span>
+                    </div>
+                    <p class="text-xs text-slate-600">Synthesize all elements to complete the laboratory research!</p>
+                </div>
+
+                <!-- Grid of all 12 elements -->
+                <div id="discoveryLogGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3.5">
+                    <!-- Dynamic Discovery Cards rendered here -->
+                </div>
+            </section>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="w-full border-t border-slate-200 py-4 px-6 text-center text-xs text-slate-500">
+            <p>Classroom Alchemy &bull; Academic Laboratory Sandbox &bull; Modern Light Edition</p>
+        </footer>
+    </div>
+
+    <!-- NEW DISCOVERY TOAST BANNER -->
+    <div id="discoveryToast" class="fixed bottom-8 right-1/2 translate-x-1/2 lg:translate-x-0 lg:right-8 z-50 transform translate-y-24 opacity-0 transition-all duration-500 pointer-events-none">
+        <div class="bg-slate-900 border-2 border-blue-500 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-4 max-w-md backdrop-blur-md">
+            <div id="toastIcon" class="w-12 h-12 rounded-xl bg-blue-500/20 border border-blue-400/50 flex items-center justify-center text-3xl shrink-0 shadow-sm">
+                ✨
+            </div>
+            <div>
+                <div class="text-[10px] font-black text-blue-400 uppercase tracking-widest">New Discovery Unlocked!</div>
+                <div id="toastTitle" class="font-display font-extrabold text-lg text-white">Lava</div>
+                <div id="toastDesc" class="text-xs text-slate-300 mt-0.5 line-clamp-2">Molten rock created under extreme temperature.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RESET CONFIRMATION MODAL -->
+    <div id="resetModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-md flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white border-2 border-slate-200 rounded-2xl max-w-sm w-full p-6 flex flex-col gap-4 text-center shadow-2xl">
+            <div class="w-12 h-12 rounded-full bg-red-100 border border-red-200 text-red-600 flex items-center justify-center mx-auto text-xl">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <div>
+                <h3 class="font-display font-bold text-lg text-slate-900">Reset Alchemy Progress?</h3>
+                <p class="text-xs text-slate-600 mt-1">This will clear all discovered elements and return to the starting 4 base elements.</p>
+            </div>
+            <div class="flex gap-3 mt-2">
+                <button onclick="closeResetModal()" class="flex-1 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs transition-colors border border-slate-200">
+                    Cancel
+                </button>
+                <button onclick="executeResetProgress()" class="flex-1 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition-colors shadow-md">
+                    Yes, Reset
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FULL COMPLETION CONGRATULATIONS MODAL -->
+    <div id="completionModal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-lg flex items-center justify-center p-4 hidden opacity-0 transition-all duration-500">
+        <div class="bg-white border-2 border-blue-500 rounded-3xl max-w-lg w-full p-8 text-center shadow-2xl relative overflow-hidden flex flex-col items-center gap-5">
+            
+            <!-- Radiant Blue Glow Background -->
+            <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-72 h-72 bg-blue-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white text-4xl shadow-xl shadow-blue-500/30 animate-bounce border-2 border-blue-300">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+
+            <div>
+                <span class="text-xs font-bold tracking-widest text-blue-700 uppercase bg-blue-100 px-3.5 py-1 rounded-full border border-blue-200">Academic Excellence Achieved</span>
+                <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-slate-900 mt-2">Laboratory Complete!</h2>
+                <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+                    Outstanding research! You have successfully synthesized all <strong class="text-blue-600">12 elements</strong> in the Classroom Alchemy curriculum.
+                </p>
+            </div>
+
+            <!-- Summary Badges -->
+            <div class="grid grid-cols-3 gap-3 w-full bg-slate-50 p-4 rounded-xl border border-slate-200 text-center shadow-inner">
+                <div>
+                    <div class="text-xl font-black text-blue-600">12 / 12</div>
+                    <div class="text-[10px] text-slate-500 font-medium uppercase mt-0.5">Elements</div>
+                </div>
+                <div>
+                    <div class="text-xl font-black text-emerald-600">8</div>
+                    <div class="text-[10px] text-slate-500 font-medium uppercase mt-0.5">Synthesized</div>
+                </div>
+                <div>
+                    <div class="text-xl font-black text-indigo-600">100%</div>
+                    <div class="text-[10px] text-slate-500 font-medium uppercase mt-0.5">Codex</div>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3 w-full mt-2">
+                <button onclick="closeCompletionModal()" class="flex-1 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs transition-all border border-slate-200">
+                    Explore Codex
+                </button>
+                <button onclick="executeResetProgress(); closeCompletionModal();" class="flex-1 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-extrabold text-xs transition-all shadow-md border border-blue-400">
+                    Play Again
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+
+        // Master Element Database
+        const ELEMENTS = {
+            // Base Elements (Unlocked by default)
+            fire: {
+                id: 'fire',
+                name: 'Fire',
+                icon: '🔥',
+                isBase: true,
+                color: 'bg-white border-slate-200 text-slate-900',
+                badgeBg: 'bg-orange-100 text-orange-800 border-orange-300',
+                description: 'A fundamental thermodynamic energy state producing heat, light, and reaction warmth.'
+            },
+            water: {
+                id: 'water',
+                name: 'Water',
+                icon: '💧',
+                isBase: true,
+                color: 'bg-white border-slate-200 text-slate-900',
+                badgeBg: 'bg-blue-100 text-blue-800 border-blue-300',
+                description: 'Essential liquid molecule composed of two hydrogen atoms and one oxygen atom.'
+            },
+            earth: {
+                id: 'earth',
+                name: 'Earth',
+                icon: '🌿',
+                isBase: true,
+                color: 'bg-white border-slate-200 text-slate-900',
+                badgeBg: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+                description: 'Rich soil, mineral compounds, and organic terrain nourishing living biomes.'
+            },
+            air: {
+                id: 'air',
+                name: 'Air',
+                icon: '💨',
+                isBase: true,
+                color: 'bg-white border-slate-200 text-slate-900',
+                badgeBg: 'bg-sky-100 text-sky-800 border-sky-300',
+                description: 'Gaseous atmospheric mixture primarily made of nitrogen and oxygen gases.'
+            },
+
+            // Unlockable Discoveries (8)
+            lava: {
+                id: 'lava',
+                name: 'Lava',
+                icon: '🌋',
+                isBase: false,
+                color: 'bg-white border-slate-200 text-slate-900',
+                badgeBg: 'bg-red-100 text-red-800 border-red-300',
+                description: 'Molten liquid rock expelled by a volcano during an eruption under intense geothermal heat.'
+            },
+            mud: {
+                id: 'mud',
+                name: 'Mud',
+                icon: '🟤',
+                isBase: false,
+                color: 'bg-white border-slate-200 text-slate-900',
+                badgeBg: 'bg-amber-100 text-amber-800 border-amber-300',
+                description: 'A sticky mixture of earth soil and water, used throughout human history for building.'
+            },
+            energy: {
+                id: 'energy',
+                name: 'Energy',
+                icon: '⚡',
+                isBase: false,
+                color: 'bg-white border-slate-200 text-slate-900',
+                badgeBg: 'bg-yellow-100 text-yellow-800 border-yellow-300',
+                description: 'Dynamic kinetic and electrical capacity capable of driving chemical reactions.'
+            },
+            obsidian: {
+                id: 'obsidian',
+                name: 'Obsidian',
+                icon: '💎',
+                isBase: false,
+                color: 'bg-white border-slate-200 text-slate-900',
+                badgeBg: 'bg-purple-100 text-purple-800 border-purple-300',
+                description: 'Naturally occurring volcanic glass formed when molten lava cools rapidly in liquid water.'
+            },
+            brick: {
+                id: 'brick',
+                name: 'Brick',
+                icon: '🧱',
+                isBase: false,
+                color: 'bg-white border-slate-200 text-slate-900',
+                badgeBg: 'bg-orange-100 text-orange-800 border-orange-300',
+                description: 'Durable construction block produced by thermal hardening of wet clay or mud.'
+            },
+            cloud: {
+                id: 'cloud',
+                name: 'Cloud',
+                icon: '☁️',
+                isBase: false,
+                color: 'bg-white border-slate-200 text-slate-900',
+                badgeBg: 'bg-slate-100 text-slate-800 border-slate-300',
+                description: 'Visible mass of condensed water vapor floating high in the planetary atmosphere.'
+            },
+            life: {
+                id: 'life',
+                name: 'Life',
+                icon: '✨',
+                isBase: false,
+                color: 'bg-white border-slate-200 text-slate-900',
+                badgeBg: 'bg-teal-100 text-teal-800 border-teal-300',
+                description: 'Biological organismic state arising from nutrient organic matter stimulated by energy.'
+            },
+            plant: {
+                id: 'plant',
+                name: 'Plant',
+                icon: '🌱',
+                isBase: false,
+                color: 'bg-white border-slate-200 text-slate-900',
+                badgeBg: 'bg-green-100 text-green-800 border-green-300',
+                description: 'Photosynthetic living organism rooted in earth, converting sunlight into bio-energy.'
+            }
+        };
+
+        // Pre-loaded Recipes (Combination pairs)
+        // Order independent matching (A + B == B + A)
+        const RECIPES = [
+            { pair: ['fire', 'earth'], result: 'lava' },
+            { pair: ['water', 'earth'], result: 'mud' },
+            { pair: ['fire', 'air'], result: 'energy' },
+            { pair: ['lava', 'water'], result: 'obsidian' },
+            { pair: ['mud', 'fire'], result: 'brick' },
+            { pair: ['water', 'air'], result: 'cloud' },
+            { pair: ['mud', 'energy'], result: 'life' },
+            { pair: ['life', 'earth'], result: 'plant' }
+        ];
+
+        // State Tracking Variables
+        let unlockedElements = new Set(['fire', 'water', 'earth', 'air']);
+        let workbenchSlotA = null; // elementId
+        let workbenchSlotB = null; // elementId
+        let soundEnabled = true;
+        let audioCtx = null;
+        let draggedElementId = null;
+
+        function handleDragStart(e, elementId) {
+            draggedElementId = elementId;
+            e.dataTransfer.setData('text/plain', elementId);
+            e.dataTransfer.effectAllowed = 'copy';
+            e.target.classList.add('dragging');
+        }
+
+        function handleDragEnd(e) {
+            e.target.classList.remove('dragging');
+            draggedElementId = null;
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'copy';
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleDrop(e, slotName) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+            
+            const elementId = e.dataTransfer.getData('text/plain') || draggedElementId;
+            if (elementId && ELEMENTS[elementId]) {
+                playSound('click');
+                if (slotName === 'slotA') {
+                    workbenchSlotA = elementId;
+                } else if (slotName === 'slotB') {
+                    workbenchSlotB = elementId;
+                }
+                renderWorkbench();
+                setFeedback('');
+            }
+        }
+
+        function addToWorkbench(elementId) {
+            if (!workbenchSlotA) {
+                workbenchSlotA = elementId;
+            } else if (!workbenchSlotB) {
+                workbenchSlotB = elementId;
+            } else {
+                // If both are filled, shift slot B to slot A and place new element in slot B
+                workbenchSlotA = workbenchSlotB;
+                workbenchSlotB = elementId;
+            }
+            renderWorkbench();
+            setFeedback('');
+        }
+
+        function clearSlot(slotName) {
+            if (slotName === 'slotA' && workbenchSlotA) {
+                workbenchSlotA = null;
+                playSound('clear');
+                renderWorkbench();
+                setFeedback('');
+            } else if (slotName === 'slotB' && workbenchSlotB) {
+                workbenchSlotB = null;
+                playSound('clear');
+                renderWorkbench();
+                setFeedback('');
+            }
+        }
+
+        function clearWorkbench() {
+            if (workbenchSlotA || workbenchSlotB) {
+                workbenchSlotA = null;
+                workbenchSlotB = null;
+                playSound('clear');
+                renderWorkbench();
+                setFeedback('');
+            }
+        }
+
+        function renderWorkbench() {
+            const slotAContainer = document.getElementById('slotA');
+            const slotBContainer = document.getElementById('slotB');
+            
+            updateSlotUI(slotAContainer, workbenchSlotA);
+            updateSlotUI(slotBContainer, workbenchSlotB);
+
+            const combineBtn = document.getElementById('combineBtn');
+            if (workbenchSlotA && workbenchSlotB) {
+                combineBtn.disabled = false;
+            } else {
+                combineBtn.disabled = true;
+            }
+        }
+
+        // Initialize Web Audio API Synthesizer
+        function getAudioContext() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) {
+                    audioCtx = new AudioContext();
+                }
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playSound(type) {
+            if (!soundEnabled) return;
+            try {
+                const ctx = getAudioContext();
+                if (!ctx) return;
+
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+
+                const now = ctx.currentTime;
+
+                if (type === 'click') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(440, now);
+                    osc.frequency.exponentialRampToValueAtTime(880, now + 0.08);
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+                    osc.start(now);
+                    osc.stop(now + 0.08);
+                } else if (type === 'clear') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(300, now);
+                    osc.frequency.exponentialRampToValueAtTime(150, now + 0.1);
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+                    osc.start(now);
+                    osc.stop(now + 0.1);
+                } else if (type === 'success') {
+                    // Celebration chime arpeggio
+                    const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+                    notes.forEach((freq, idx) => {
+                        const noteOsc = ctx.createOscillator();
+                        const noteGain = ctx.createGain();
+                        noteOsc.type = 'sine';
+                        noteOsc.frequency.setValueAtTime(freq, now + idx * 0.08);
+                        
+                        noteGain.gain.setValueAtTime(0.2, now + idx * 0.08);
+                        noteGain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.35);
+
+                        noteOsc.connect(noteGain);
+                        noteGain.connect(ctx.destination);
+
+                        noteOsc.start(now + idx * 0.08);
+                        noteOsc.stop(now + idx * 0.08 + 0.35);
+                    });
+                } else if (type === 'invalid') {
+                    // Soft low invalid rumble
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(140, now);
+                    osc.frequency.linearRampToValueAtTime(90, now + 0.25);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                } else if (type === 'complete') {
+                    // Fanfare chords
+                    const chord = [392.00, 493.88, 587.33, 783.99]; // G4, B4, D5, G5
+                    chord.forEach((freq) => {
+                        const noteOsc = ctx.createOscillator();
+                        const noteGain = ctx.createGain();
+                        noteOsc.type = 'triangle';
+                        noteOsc.frequency.setValueAtTime(freq, now);
+                        
+                        noteGain.gain.setValueAtTime(0.18, now);
+                        noteGain.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+
+                        noteOsc.connect(noteGain);
+                        noteGain.connect(ctx.destination);
+
+                        noteOsc.start(now);
+                        noteOsc.stop(now + 1.2);
+                    });
+                }
+            } catch (e) {
+                console.warn('Audio synthesis muted or unsupported', e);
+            }
+        }
+
+        function toggleAudio() {
+            soundEnabled = !soundEnabled;
+            const soundIcon = document.getElementById('soundIcon');
+            if (soundEnabled) {
+                soundIcon.className = 'fa-solid fa-volume-high text-sm';
+                playSound('click');
+            } else {
+                soundIcon.className = 'fa-solid fa-volume-xmark text-sm text-slate-500';
+            }
+        }
+
+
+        // Render functions
+        function renderAll() {
+            renderShelf();
+            renderWorkbench();
+            renderDiscoveryLog();
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const count = unlockedElements.size;
+            const total = Object.keys(ELEMENTS).length;
+            const percent = Math.round((count / total) * 100);
+
+            document.getElementById('discoveryCountText').innerText = `Discovered: ${count} / ${total} Elements`;
+            document.getElementById('discoveryPercentText').innerText = `${percent}%`;
+            document.getElementById('progressBar').style.width = `${percent}%`;
+            document.getElementById('shelfCountBadge').innerText = `${count} Unlocked`;
+        }
+
+        function renderShelf() {
+            const container = document.getElementById('elementShelf');
+            const searchVal = (document.getElementById('searchInput').value || '').toLowerCase().trim();
+            container.innerHTML = '';
+
+            const list = Array.from(unlockedElements).map(id => ELEMENTS[id]).filter(el => {
+                return el.name.toLowerCase().includes(searchVal);
+            });
+
+            if (list.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full py-8 text-center text-xs text-royal-400">
+                        No elements matching search query.
+                    </div>
+                `;
+                return;
+            }
+
+            list.forEach(el => {
+                const card = document.createElement('div');
+                card.className = `glass-card p-3 rounded-xl flex flex-col items-center justify-center cursor-pointer select-none border transition-all ${el.color}`;
+                card.setAttribute('draggable', 'true');
+                
+                card.innerHTML = `
+                    <div class="text-3xl mb-1 filter drop-shadow-md animate-float pointer-events-none">${el.icon}</div>
+                    <span class="text-xs font-extrabold text-royal-900 pointer-events-none">${el.name}</span>
+                `;
+
+                // Drag Events
+                card.addEventListener('dragstart', (e) => handleDragStart(e, el.id));
+                card.addEventListener('dragend', handleDragEnd);
+
+                // Touch / Click Tap Event
+                card.addEventListener('click', () => {
+                    playSound('click');
+                    addToWorkbench(el.id);
+                });
+
+                container.appendChild(card);
+            });
+        }
+
+        function filterShelfElements() {
+            renderShelf();
+        }
+
+        function updateSlotUI(slotContainer, elementId) {
+            const emptyState = slotContainer.querySelector('.empty-state');
+            const filledContent = slotContainer.querySelector('.filled-content');
+
+            if (elementId && ELEMENTS[elementId]) {
+                const el = ELEMENTS[elementId];
+                slotContainer.classList.add('filled');
+                emptyState.classList.add('hidden');
+                filledContent.classList.remove('hidden');
+
+                filledContent.innerHTML = `
+                    <div class="text-4xl mb-1.5 filter drop-shadow-md animate-pop">${el.icon}</div>
+                    <div class="text-xs font-black text-royal-900">${el.name}</div>
+                    <div class="text-[10px] text-slate-500 font-semibold mt-1 flex items-center gap-1 hover:text-red-600 transition-colors">
+                        <i class="fa-solid fa-xmark"></i> Tap to remove
+                    </div>
+                `;
+            } else {
+                slotContainer.classList.remove('filled');
+                emptyState.classList.remove('hidden');
+                filledContent.classList.add('hidden');
+            }
+        }
+
+        function renderDiscoveryLog() {
+            const grid = document.getElementById('discoveryLogGrid');
+            grid.innerHTML = '';
+
+            Object.values(ELEMENTS).forEach((el, index) => {
+                const isUnlocked = unlockedElements.has(el.id);
+                const card = document.createElement('div');
+
+                if (isUnlocked) {
+                    card.className = `glass-card p-3 rounded-xl flex flex-col items-center text-center relative overflow-hidden group border ${el.color}`;
+                    card.innerHTML = `
+                        <div class="text-xs font-mono font-black text-blue-600 absolute top-2 left-2">#${index + 1}</div>
+                        <div class="text-3xl my-2 filter drop-shadow-md">${el.icon}</div>
+                        <div class="text-xs font-extrabold text-slate-900">${el.name}</div>
+                        <span class="text-[9px] font-bold px-2 py-0.5 rounded-full mt-1.5 border ${el.badgeBg}">
+                            ${el.isBase ? 'Base Element' : 'Synthesized'}
+                        </span>
+                        
+                        <!-- Mini description tooltip on hover -->
+                        <div class="absolute inset-0 bg-slate-900/95 p-2.5 rounded-xl text-[10px] text-slate-200 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none border border-blue-400">
+                            <span class="font-black text-blue-300 mb-1">${el.name}</span>
+                            <p class="leading-tight text-center text-[9px] text-slate-300">${el.description}</p>
+                        </div>
+                    `;
+                } else {
+                    card.className = 'glass-panel p-3 rounded-xl flex flex-col items-center justify-center text-center opacity-70 border border-slate-200 relative';
+                    card.innerHTML = `
+                        <div class="text-xs font-mono font-bold text-slate-400 absolute top-2 left-2">#${index + 1}</div>
+                        <div class="w-10 h-10 rounded-full bg-slate-200 border border-slate-300 flex items-center justify-center text-slate-500 text-lg my-2 font-black">
+                            ?
+                        </div>
+                        <div class="text-xs font-semibold text-slate-500">Locked</div>
+                        <span class="text-[9px] text-slate-400 mt-1">Undiscovered</span>
+                    `;
+                }
+
+                grid.appendChild(card);
+            });
+        }
+
+
+        function setFeedback(msg, colorClass = 'text-gold-300') {
+            const feedbackEl = document.getElementById('workbenchFeedback');
+            feedbackEl.className = `h-6 text-xs font-bold text-center transition-all duration-300 ${colorClass}`;
+            feedbackEl.innerText = msg;
+        }
+
+        function triggerCombine() {
+            if (!workbenchSlotA || !workbenchSlotB) return;
+
+            const elemA = workbenchSlotA;
+            const elemB = workbenchSlotB;
+
+            // Search matching recipe
+            const matchedRecipe = RECIPES.find(r => {
+                return (r.pair[0] === elemA && r.pair[1] === elemB) ||
+                       (r.pair[0] === elemB && r.pair[1] === elemA);
+            });
+
+            const slotAEl = document.getElementById('slotA');
+            const slotBEl = document.getElementById('slotB');
+
+            if (matchedRecipe) {
+                const resultId = matchedRecipe.result;
+                const resultElement = ELEMENTS[resultId];
+                const isNewDiscovery = !unlockedElements.has(resultId);
+
+                // Add to unlocked set
+                unlockedElements.add(resultId);
+
+                // Play sound & flash effects
+                playSound('success');
+                slotAEl.classList.add('glow-amber');
+                slotBEl.classList.add('glow-amber');
+                
+                setTimeout(() => {
+                    slotAEl.classList.remove('glow-amber');
+                    slotBEl.classList.remove('glow-amber');
+                }, 800);
+
+                // Toast banner notification
+                showDiscoveryToast(resultElement, isNewDiscovery);
+
+                // Clear slots and place new discovered element or clear
+                workbenchSlotA = null;
+                workbenchSlotB = null;
+
+                renderAll();
+
+                if (isNewDiscovery) {
+                    setFeedback(`NEW DISCOVERY: ${resultElement.name}!`, 'text-emerald-400 font-bold');
+                    
+                    // Check full completion condition
+                    if (unlockedElements.size === Object.keys(ELEMENTS).length) {
+                        setTimeout(() => {
+                            showCompletionModal();
+                        }, 1200);
+                    }
+                } else {
+                    setFeedback(`Reaction produced: ${resultElement.name} (Already discovered)`, 'text-amber-300');
+                }
+
+            } else {
+                // Invalid combination
+                playSound('invalid');
+                slotAEl.classList.add('animate-shake');
+                slotBEl.classList.add('animate-shake');
+
+                setFeedback('No reaction... try another pair!', 'text-red-400 font-bold');
+
+                setTimeout(() => {
+                    slotAEl.classList.remove('animate-shake');
+                    slotBEl.classList.remove('animate-shake');
+                }, 600);
+            }
+        }
+
+        function showDiscoveryToast(element, isNew) {
+            const toast = document.getElementById('discoveryToast');
+            const toastIcon = document.getElementById('toastIcon');
+            const toastTitle = document.getElementById('toastTitle');
+            const toastDesc = document.getElementById('toastDesc');
+
+            toastIcon.innerText = element.icon;
+            toastTitle.innerText = element.name;
+            toastDesc.innerText = element.description;
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            // Trigger burst effect on canvas
+            createParticleBurst();
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3500);
+        }
+
+        // Reset progress handlers
+        function confirmResetProgress() {
+            playSound('click');
+            const modal = document.getElementById('resetModal');
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+
+        function closeResetModal() {
+            playSound('click');
+            const modal = document.getElementById('resetModal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+
+        function executeResetProgress() {
+            playSound('clear');
+            unlockedElements = new Set(['fire', 'water', 'earth', 'air']);
+            workbenchSlotA = null;
+            workbenchSlotB = null;
+            closeResetModal();
+            renderAll();
+            setFeedback('Progress reset to 4 base elements.', 'text-slate-400');
+        }
+
+        function showCompletionModal() {
+            playSound('complete');
+            createParticleBurst(100);
+            const modal = document.getElementById('completionModal');
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+
+        function closeCompletionModal() {
+            playSound('click');
+            const modal = document.getElementById('completionModal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 500);
+        }
+
+
+        // Ambient & Celebratory Canvas Particles
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor(x, y, isBurst = false) {
+                this.x = x || Math.random() * canvas.width;
+                this.y = y || Math.random() * canvas.height;
+                this.size = isBurst ? Math.random() * 6 + 3 : Math.random() * 2 + 1;
+                this.speedX = isBurst ? (Math.random() - 0.5) * 8 : (Math.random() - 0.5) * 0.5;
+                this.speedY = isBurst ? (Math.random() - 0.5) * 8 : -Math.random() * 0.6 - 0.2;
+                this.color = isBurst 
+                    ? `hsl(${Math.random() * 40 + 200}, 90%, 55%)` 
+                    : `rgba(37, 99, 235, ${Math.random() * 0.25 + 0.1})`;
+                this.life = isBurst ? 100 : Infinity;
+                this.maxLife = this.life;
+                this.isBurst = isBurst;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.isBurst) {
+                    this.life--;
+                    this.speedY += 0.08; // Gravity for burst
+                } else {
+                    if (this.y < 0) this.y = canvas.height;
+                    if (this.x < 0) this.x = canvas.width;
+                    if (this.x > canvas.width) this.x = 0;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.fillStyle = this.color;
+                if (this.isBurst) {
+                    ctx.globalAlpha = Math.max(0, this.life / this.maxLife);
+                }
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        // Initialize ambient stars/sparks
+        for (let i = 0; i < 40; i++) {
+            particles.push(new Particle());
+        }
+
+        function createParticleBurst(count = 50) {
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle(centerX, centerY, true));
+            }
+        }
+
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.update();
+                p.draw();
+
+                if (p.isBurst && p.life <= 0) {
+                    particles.splice(i, 1);
+                }
+            }
+
+            requestAnimationFrame(animateParticles);
+        }
+
+        // Window Load Initialization
+        window.onload = function() {
+            renderAll();
+            animateParticles();
+            
+            // First user interaction unlocks Web Audio context
+            document.body.addEventListener('click', () => {
+                getAudioContext();
+            }, { once: true });
+        };
+    </script>
+</body>
+</html>
