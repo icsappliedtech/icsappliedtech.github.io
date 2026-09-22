@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Mystery Lab Escape - Educational Escape Room</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Orbitron for digital timer and Inter for clean UI -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom Font Assignments */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b101d;
+            color: #f1f5f9;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(14, 165, 233, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(34, 197, 94, 0.08) 0%, transparent 40%),
+                linear-gradient(to bottom, #090d16, #0f172a);
+            background-attachment: fixed;
+        }
+
+        .font-digital {
+            font-family: 'Orbitron', monospace;
+        }
+
+        /* Neon Glow Effects */
+        .glow-cyan {
+            box-shadow: 0 0 20px -3px rgba(6, 182, 212, 0.4), 0 0 8px -2px rgba(6, 182, 212, 0.3);
+        }
+        .glow-emerald {
+            box-shadow: 0 0 25px -3px rgba(16, 185, 129, 0.5), 0 0 10px -2px rgba(16, 185, 129, 0.4);
+        }
+        .glow-amber {
+            box-shadow: 0 0 20px -3px rgba(245, 158, 11, 0.4);
+        }
+        .glow-rose {
+            box-shadow: 0 0 20px -3px rgba(244, 63, 94, 0.4);
+        }
+
+        /* Shake Animation for Wrong Code */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-10px); }
+            40%, 80% { transform: translateX(10px); }
+        }
+        .animate-shake {
+            animation: shake 0.5s ease-in-out;
+            border-color: #f43f5e !important;
+            box-shadow: 0 0 25px rgba(244, 63, 94, 0.6) !important;
+        }
+
+        /* Pulse Lock Pulse Animation */
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.03); }
+        }
+        .animate-pulse-glow {
+            animation: pulse-glow 2s infinite ease-in-out;
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card-solved {
+            background: rgba(6, 78, 59, 0.35);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(52, 211, 153, 0.4);
+        }
+
+        /* Custom Scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        /* Confetti canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-3 sm:p-6 text-slate-100 selection:bg-cyan-500 selection:text-slate-900">
+
+    <!-- Confetti Canvas for Victory -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- App Container -->
+    <div class="max-w-7xl mx-auto w-full space-y-6">
+
+        <!-- Header / Navigation Bar -->
+        <header class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col lg:flex-row items-center justify-between gap-4 border-slate-800 shadow-2xl relative overflow-hidden">
+            <!-- Decorative Accent Line -->
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-emerald-400 to-amber-500"></div>
+
+            <!-- Title & Subtitle -->
+            <div class="flex items-center gap-3 text-center sm:text-left">
+                <div class="p-3 bg-cyan-500/10 border border-cyan-500/30 rounded-xl text-cyan-400 text-2xl sm:text-3xl">
+                    <i class="fa-solid fa-flask-vial animate-pulse"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-emerald-300 to-teal-200">
+                        The Mystery Lab Escape
+                    </h1>
+                    <p class="text-xs sm:text-sm text-slate-400">Classroom Escape Room Module • Deconstruct the Science Clues</p>
+                </div>
+            </div>
+
+            <!-- Lock Tracker & Game Status -->
+            <div class="flex flex-wrap items-center justify-center gap-3 w-full lg:w-auto">
+                <!-- Lock Counter Badge -->
+                <div id="lock-status-badge" class="flex items-center gap-2.5 px-4 py-2.5 bg-slate-800/80 border border-slate-700 rounded-xl shadow-inner transition-all duration-300">
+                    <i class="fa-solid fa-lock text-amber-400 text-lg" id="lock-status-icon"></i>
+                    <span id="locks-remaining-text" class="text-sm font-bold tracking-wide text-slate-200">
+                        3 Locks Remaining
+                    </span>
+                </div>
+
+                <!-- Timer Display & Controls -->
+                <div class="flex items-center gap-2 bg-slate-900/90 border border-cyan-500/30 px-4 py-1.5 rounded-xl glow-cyan">
+                    <i class="fa-regular fa-clock text-cyan-400 text-lg"></i>
+                    <span id="timer-display" class="font-digital text-2xl sm:text-3xl font-bold text-cyan-400 tracking-wider">
+                        10:00
+                    </span>
+                </div>
+
+                <!-- Timer Action Buttons -->
+                <div class="flex items-center gap-1.5 bg-slate-800/80 p-1.5 rounded-xl border border-slate-700">
+                    <button id="btn-timer-toggle" onclick="toggleTimer()" title="Start / Pause Timer" class="p-2 sm:px-3 sm:py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-sm font-semibold transition flex items-center gap-1.5 active:scale-95">
+                        <i class="fa-solid fa-play" id="timer-toggle-icon"></i>
+                        <span class="hidden sm:inline" id="timer-toggle-text">Start</span>
+                    </button>
+                    <button onclick="resetGamePrompt()" title="Reset Escape Room" class="p-2 sm:px-3 sm:py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-lg text-sm font-semibold transition active:scale-95">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        <span class="hidden sm:inline">Reset</span>
+                    </button>
+                    <button onclick="openSettingsModal()" title="Teacher Control Panel" class="p-2 sm:px-3 sm:py-2 bg-slate-700 hover:bg-cyan-600 text-slate-200 hover:text-white rounded-lg text-sm font-semibold transition active:scale-95">
+                        <i class="fa-solid fa-sliders"></i>
+                    </button>
+                    <button onclick="toggleSound()" id="sound-btn" title="Toggle Sound FX" class="p-2 bg-slate-700 hover:bg-slate-600 text-cyan-400 rounded-lg text-sm transition active:scale-95">
+                        <i class="fa-solid fa-volume-high" id="sound-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Cards Grid (3 Locks) -->
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+
+            <!-- LOCK 1: THE NUMBER CODE -->
+            <section id="card-lock-1" class="glass-card rounded-2xl p-5 sm:p-6 flex flex-col justify-between border-slate-800 transition-all duration-500 hover:border-cyan-500/40 relative overflow-hidden group">
+                <!-- Status Badge -->
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-cyan-400 flex items-center gap-1.5">
+                        <i class="fa-solid fa-calculator"></i> Lock #1 • Math Vault
+                    </span>
+                    <span id="badge-lock-1" class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1">
+                        <i class="fa-solid fa-lock"></i> LOCKED
+                    </span>
+                </div>
+
+                <!-- Clue Header -->
+                <div class="mb-4">
+                    <h2 class="text-lg font-bold text-slate-100 mb-1">The Number Code</h2>
+                    <p class="text-xs text-slate-400">Solve the mathematical equation to bypass the security terminal.</p>
+                </div>
+
+                <!-- Mathematical Equation Clue Box -->
+                <div class="bg-slate-900/80 border border-slate-700/80 rounded-xl p-4 mb-4 text-center">
+                    <span class="text-xs text-slate-400 block mb-1 font-medium">TERMINAL EQUATION</span>
+                    <div id="lock1-clue-text" class="text-xl sm:text-2xl font-bold font-digital text-cyan-300 tracking-wide">
+                        What is (12 × 4) + 12?
+                    </div>
+                </div>
+
+                <!-- Digital Keypad Input & Screen -->
+                <div class="space-y-3 my-auto">
+                    <!-- Keypad Output Display -->
+                    <div class="relative">
+                        <input type="text" id="lock1-input" readonly placeholder="Enter Code" 
+                            class="w-full bg-slate-950 border-2 border-slate-700 focus:border-cyan-400 rounded-xl py-3 px-4 text-center font-digital text-2xl tracking-widest text-cyan-400 placeholder:text-slate-600 outline-none transition shadow-inner">
+                        <button onclick="clearLock1Input()" title="Clear Input" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 p-1">
+                            <i class="fa-solid fa-circle-xmark text-lg"></i>
+                        </button>
+                    </div>
+
+                    <!-- Touch Keypad Grid -->
+                    <div class="grid grid-cols-3 gap-2">
+                        <button onclick="keypadPress('1')" class="py-2.5 bg-slate-800/90 hover:bg-slate-700 text-slate-100 font-bold text-lg rounded-lg border border-slate-700 active:scale-95 transition">1</button>
+                        <button onclick="keypadPress('2')" class="py-2.5 bg-slate-800/90 hover:bg-slate-700 text-slate-100 font-bold text-lg rounded-lg border border-slate-700 active:scale-95 transition">2</button>
+                        <button onclick="keypadPress('3')" class="py-2.5 bg-slate-800/90 hover:bg-slate-700 text-slate-100 font-bold text-lg rounded-lg border border-slate-700 active:scale-95 transition">3</button>
+                        <button onclick="keypadPress('4')" class="py-2.5 bg-slate-800/90 hover:bg-slate-700 text-slate-100 font-bold text-lg rounded-lg border border-slate-700 active:scale-95 transition">4</button>
+                        <button onclick="keypadPress('5')" class="py-2.5 bg-slate-800/90 hover:bg-slate-700 text-slate-100 font-bold text-lg rounded-lg border border-slate-700 active:scale-95 transition">5</button>
+                        <button onclick="keypadPress('6')" class="py-2.5 bg-slate-800/90 hover:bg-slate-700 text-slate-100 font-bold text-lg rounded-lg border border-slate-700 active:scale-95 transition">6</button>
+                        <button onclick="keypadPress('7')" class="py-2.5 bg-slate-800/90 hover:bg-slate-700 text-slate-100 font-bold text-lg rounded-lg border border-slate-700 active:scale-95 transition">7</button>
+                        <button onclick="keypadPress('8')" class="py-2.5 bg-slate-800/90 hover:bg-slate-700 text-slate-100 font-bold text-lg rounded-lg border border-slate-700 active:scale-95 transition">8</button>
+                        <button onclick="keypadPress('9')" class="py-2.5 bg-slate-800/90 hover:bg-slate-700 text-slate-100 font-bold text-lg rounded-lg border border-slate-700 active:scale-95 transition">9</button>
+                        <button onclick="clearLock1Input()" class="py-2.5 bg-rose-950/40 hover:bg-rose-900/50 text-rose-300 font-bold text-xs sm:text-sm rounded-lg border border-rose-800/50 active:scale-95 transition uppercase">CLEAR</button>
+                        <button onclick="keypadPress('0')" class="py-2.5 bg-slate-800/90 hover:bg-slate-700 text-slate-100 font-bold text-lg rounded-lg border border-slate-700 active:scale-95 transition">0</button>
+                        <button onclick="submitLock1()" id="btn-submit-lock1" class="py-2.5 bg-cyan-600 hover:bg-cyan-500 text-slate-900 font-black text-sm rounded-lg border border-cyan-400 active:scale-95 transition uppercase">UNLOCK</button>
+                    </div>
+                </div>
+
+                <!-- Footer / Feedback Area -->
+                <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                    <span id="lock1-feedback" class="text-slate-400 italic">Enter numeric response...</span>
+                    <button onclick="showHint(1)" class="text-cyan-400 hover:underline flex items-center gap-1 font-semibold">
+                        <i class="fa-regular fa-lightbulb"></i> Hint
+                    </button>
+                </div>
+            </section>
+
+            <!-- LOCK 2: THE CIPHER UNSCRAMBLER -->
+            <section id="card-lock-2" class="glass-card rounded-2xl p-5 sm:p-6 flex flex-col justify-between border-slate-800 transition-all duration-500 hover:border-emerald-500/40 relative overflow-hidden group">
+                <!-- Status Badge -->
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-400 flex items-center gap-1.5">
+                        <i class="fa-solid fa-dna"></i> Lock #2 • Science Cipher
+                    </span>
+                    <span id="badge-lock-2" class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1">
+                        <i class="fa-solid fa-lock"></i> LOCKED
+                    </span>
+                </div>
+
+                <!-- Clue Header -->
+                <div class="mb-4">
+                    <h2 class="text-lg font-bold text-slate-100 mb-1">The Cipher Unscrambler</h2>
+                    <p class="text-xs text-slate-400">Rearrange the scrambled chemical tiles to reveal the core lab element.</p>
+                </div>
+
+                <!-- Scrambled Letters Display Tiles -->
+                <div class="bg-slate-900/80 border border-slate-700/80 rounded-xl p-4 mb-4 text-center">
+                    <span class="text-xs text-slate-400 block mb-2 font-medium">SCRAMBLED ELEMENT TILES</span>
+                    <div id="scrambled-tiles-container" class="flex flex-wrap justify-center gap-2">
+                        <!-- Tiles dynamically populated or default HTML -->
+                        <span class="w-10 h-10 bg-slate-800 border-2 border-emerald-500/40 text-emerald-300 font-extrabold text-xl rounded-lg flex items-center justify-center shadow-md">O</span>
+                        <span class="w-10 h-10 bg-slate-800 border-2 border-emerald-500/40 text-emerald-300 font-extrabold text-xl rounded-lg flex items-center justify-center shadow-md">Y</span>
+                        <span class="w-10 h-10 bg-slate-800 border-2 border-emerald-500/40 text-emerald-300 font-extrabold text-xl rounded-lg flex items-center justify-center shadow-md">X</span>
+                        <span class="w-10 h-10 bg-slate-800 border-2 border-emerald-500/40 text-emerald-300 font-extrabold text-xl rounded-lg flex items-center justify-center shadow-md">G</span>
+                        <span class="w-10 h-10 bg-slate-800 border-2 border-emerald-500/40 text-emerald-300 font-extrabold text-xl rounded-lg flex items-center justify-center shadow-md">N</span>
+                        <span class="w-10 h-10 bg-slate-800 border-2 border-emerald-500/40 text-emerald-300 font-extrabold text-xl rounded-lg flex items-center justify-center shadow-md">E</span>
+                    </div>
+                </div>
+
+                <!-- Input & Submit Form -->
+                <div class="space-y-3 my-auto">
+                    <div class="relative">
+                        <input type="text" id="lock2-input" placeholder="Type element name..." 
+                            onkeyup="handleLock2Keyup(event)"
+                            class="w-full bg-slate-950 border-2 border-slate-700 focus:border-emerald-400 rounded-xl py-3 px-4 uppercase text-center font-bold tracking-widest text-emerald-300 placeholder:text-slate-600 outline-none transition shadow-inner">
+                    </div>
+
+                    <button onclick="submitLock2()" id="btn-submit-lock2" 
+                        class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-black text-sm rounded-xl border border-emerald-400 active:scale-95 transition uppercase shadow-lg shadow-emerald-950/50">
+                        DECRYPT CIPHER
+                    </button>
+                </div>
+
+                <!-- Footer / Feedback Area -->
+                <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                    <span id="lock2-feedback" class="text-slate-400 italic">Case-insensitive entry...</span>
+                    <button onclick="showHint(2)" class="text-emerald-400 hover:underline flex items-center gap-1 font-semibold">
+                        <i class="fa-regular fa-lightbulb"></i> Hint
+                    </button>
+                </div>
+            </section>
+
+            <!-- LOCK 3: THE LOGIC SWITCH -->
+            <section id="card-lock-3" class="glass-card rounded-2xl p-5 sm:p-6 flex flex-col justify-between border-slate-800 transition-all duration-500 hover:border-amber-500/40 relative overflow-hidden group">
+                <!-- Status Badge -->
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-amber-400 flex items-center gap-1.5">
+                        <i class="fa-solid fa-diagram-project"></i> Lock #3 • Logic Grid
+                    </span>
+                    <span id="badge-lock-3" class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1">
+                        <i class="fa-solid fa-lock"></i> LOCKED
+                    </span>
+                </div>
+
+                <!-- Clue Header -->
+                <div class="mb-4">
+                    <h2 class="text-lg font-bold text-slate-100 mb-1">The Logic Switch</h2>
+                    <p class="text-xs text-slate-400">Trigger the color sequence in exact scientific order to align the reactor core.</p>
+                </div>
+
+                <!-- Current Sequence Attempt Bar -->
+                <div class="bg-slate-900/80 border border-slate-700/80 rounded-xl p-3 mb-4 flex items-center justify-between">
+                    <span class="text-xs text-slate-400 font-medium">ACTIVE SEQUENCE:</span>
+                    <div id="sequence-display" class="flex gap-2">
+                        <span class="w-4 h-4 rounded-full bg-slate-800 border border-slate-700"></span>
+                        <span class="w-4 h-4 rounded-full bg-slate-800 border border-slate-700"></span>
+                        <span class="w-4 h-4 rounded-full bg-slate-800 border border-slate-700"></span>
+                        <span class="w-4 h-4 rounded-full bg-slate-800 border border-slate-700"></span>
+                    </div>
+                </div>
+
+                <!-- Color Buttons 2x2 Grid -->
+                <div class="grid grid-cols-2 gap-3 my-auto" id="logic-buttons-grid">
+                    <button onclick="pressColorSequence('RED')" id="color-btn-red" 
+                        class="p-4 rounded-xl bg-gradient-to-br from-rose-600 to-rose-800 hover:from-rose-500 hover:to-rose-700 text-white font-bold text-sm tracking-wide border border-rose-400/50 shadow-lg active:scale-95 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-fire text-rose-200"></i> RED
+                    </button>
+                    <button onclick="pressColorSequence('BLUE')" id="color-btn-blue" 
+                        class="p-4 rounded-xl bg-gradient-to-br from-blue-600 to-blue-800 hover:from-blue-500 hover:to-blue-700 text-white font-bold text-sm tracking-wide border border-blue-400/50 shadow-lg active:scale-95 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-droplet text-blue-200"></i> BLUE
+                    </button>
+                    <button onclick="pressColorSequence('GREEN')" id="color-btn-green" 
+                        class="p-4 rounded-xl bg-gradient-to-br from-emerald-600 to-emerald-800 hover:from-emerald-500 hover:to-emerald-700 text-white font-bold text-sm tracking-wide border border-emerald-400/50 shadow-lg active:scale-95 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-leaf text-emerald-200"></i> GREEN
+                    </button>
+                    <button onclick="pressColorSequence('YELLOW')" id="color-btn-yellow" 
+                        class="p-4 rounded-xl bg-gradient-to-br from-amber-500 to-amber-700 hover:from-amber-400 hover:to-amber-600 text-slate-950 font-bold text-sm tracking-wide border border-amber-300/50 shadow-lg active:scale-95 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-sun text-amber-950"></i> YELLOW
+                    </button>
+                </div>
+
+                <!-- Footer / Feedback Area -->
+                <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                    <span id="lock3-feedback" class="text-slate-400 italic">Click 4 colors in order...</span>
+                    <button onclick="showHint(3)" class="text-amber-400 hover:underline flex items-center gap-1 font-semibold">
+                        <i class="fa-regular fa-lightbulb"></i> Hint
+                    </button>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer / Instructions Bar -->
+        <footer class="glass-card rounded-2xl p-4 text-center text-xs text-slate-400 flex flex-col sm:flex-row items-center justify-between gap-3 border-slate-800">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-circle-info text-cyan-400"></i>
+                <span>Use teamwork to decrypt all 3 lab security locks before time expires!</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <button onclick="resetCurrentLocks()" class="hover:text-slate-200 transition underline">Clear Responses</button>
+                <span>•</span>
+                <button onclick="openSettingsModal()" class="hover:text-cyan-400 transition underline">Teacher Admin</button>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- VICTORY MODAL OVERLAY -->
+    <div id="victory-modal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden transition-all duration-500 opacity-0">
+        <div class="glass-card border-2 border-emerald-500/60 glow-emerald rounded-3xl p-6 sm:p-10 max-w-lg w-full text-center space-y-6 transform scale-90 transition-all duration-500" id="victory-content">
+            
+            <!-- Glowing Trophy Icon -->
+            <div class="w-24 h-24 bg-gradient-to-tr from-emerald-500 to-cyan-400 rounded-full flex items-center justify-center mx-auto shadow-xl shadow-emerald-500/30 animate-bounce">
+                <i class="fa-solid fa-trophy text-4xl text-slate-950"></i>
+            </div>
+
+            <!-- Title -->
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-black tracking-tight text-white uppercase">
+                    CONGRATULATIONS!
+                </h2>
+                <p class="text-emerald-400 font-extrabold text-lg sm:text-xl tracking-wider mt-1">
+                    YOU ESCAPED THE LAB!
+                </p>
+            </div>
+
+            <!-- Escape Summary Box -->
+            <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 space-y-3">
+                <div class="flex justify-between items-center text-sm border-b border-slate-800 pb-2">
+                    <span class="text-slate-400">Total Time Elapsed:</span>
+                    <span id="victory-time-taken" class="font-digital text-emerald-400 font-bold text-lg">00:00</span>
+                </div>
+                <div class="flex justify-between items-center text-sm border-b border-slate-800 pb-2">
+                    <span class="text-slate-400">Locks Cleared:</span>
+                    <span class="text-emerald-400 font-bold">3 / 3</span>
+                </div>
+                <div class="flex justify-between items-center text-sm">
+                    <span class="text-slate-400">Hints Consulted:</span>
+                    <span id="victory-hints-used" class="text-slate-300 font-semibold">0</span>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-3">
+                <button onclick="resetGame()" class="flex-1 py-3 px-6 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-xl transition shadow-lg active:scale-95">
+                    PLAY AGAIN
+                </button>
+                <button onclick="closeVictoryModal()" class="py-3 px-5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded-xl transition active:scale-95">
+                    REVIEW DASHBOARD
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- GAME OVER / TIME UP MODAL -->
+    <div id="gameover-modal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden transition-all duration-500 opacity-0">
+        <div class="glass-card border-2 border-rose-500/60 glow-rose rounded-3xl p-6 sm:p-8 max-w-md w-full text-center space-y-5">
+            
+            <div class="w-20 h-20 bg-rose-500/20 border-2 border-rose-500 text-rose-500 rounded-full flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-hourglass-end"></i>
+            </div>
+
+            <div>
+                <h2 class="text-2xl font-black text-rose-400 uppercase tracking-wide">TIME HAS EXPIRED!</h2>
+                <p class="text-slate-300 text-sm mt-1">The lab protocol initiated containment lock-down.</p>
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <button onclick="addExtraTime(3)" class="py-3 bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-black rounded-xl transition">
+                    + ADD 3 EXTRA MINUTES
+                </button>
+                <button onclick="resetGame()" class="py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded-xl transition">
+                    RESTART ESCAPE ROOM
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HINT MODAL -->
+    <div id="hint-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="glass-card border border-cyan-500/40 rounded-2xl p-6 max-w-sm w-full text-center space-y-4">
+            <div class="w-12 h-12 bg-cyan-500/20 border border-cyan-400 rounded-full flex items-center justify-center mx-auto text-cyan-300 text-xl">
+                <i class="fa-regular fa-lightbulb"></i>
+            </div>
+            <h3 id="hint-title" class="text-lg font-bold text-slate-100">Lab Clue Hint</h3>
+            <p id="hint-body" class="text-sm text-cyan-200 bg-slate-900/80 p-3 rounded-xl border border-slate-800 italic">
+                Hint message goes here...
+            </p>
+            <button onclick="closeHintModal()" class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded-lg text-sm transition">
+                GOT IT
+            </button>
+        </div>
+    </div>
+
+    <!-- TEACHER SETTINGS MODAL -->
+    <div id="settings-modal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="glass-card border border-slate-700 rounded-3xl p-6 sm:p-8 max-w-lg w-full space-y-5 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <h3 class="text-lg font-bold text-slate-100 flex items-center gap-2">
+                    <i class="fa-solid fa-chalkboard-user text-cyan-400"></i> Teacher Control Panel
+                </h3>
+                <button onclick="closeSettingsModal()" class="text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4 text-xs sm:text-sm">
+                <!-- Timer Settings -->
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1">Escape Room Timer (Minutes):</label>
+                    <input type="number" id="setting-timer-mins" min="1" max="60" value="10" 
+                        class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-100 focus:border-cyan-400 outline-none">
+                </div>
+
+                <!-- Lock 1 Settings -->
+                <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800 space-y-2">
+                    <span class="font-bold text-cyan-400 block">Lock 1 (Math Code)</span>
+                    <label class="block text-slate-400 text-xs">Clue Text:</label>
+                    <input type="text" id="setting-lock1-clue" value="What is (12 × 4) + 12?" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-slate-200">
+                    <label class="block text-slate-400 text-xs">Answer Code:</label>
+                    <input type="text" id="setting-lock1-ans" value="60" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-slate-200">
+                </div>
+
+                <!-- Lock 2 Settings -->
+                <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800 space-y-2">
+                    <span class="font-bold text-emerald-400 block">Lock 2 (Word Cipher)</span>
+                    <label class="block text-slate-400 text-xs">Scrambled Word:</label>
+                    <input type="text" id="setting-lock2-scramble" value="O - Y - X - G - N - E" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-slate-200">
+                    <label class="block text-slate-400 text-xs">Answer Word:</label>
+                    <input type="text" id="setting-lock2-ans" value="OXYGEN" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-slate-200">
+                </div>
+
+                <!-- Lock 3 Settings -->
+                <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800 space-y-2">
+                    <span class="font-bold text-amber-400 block">Lock 3 (Color Logic Sequence)</span>
+                    <label class="block text-slate-400 text-xs">Correct Sequence (Comma separated: RED, GREEN, YELLOW, BLUE):</label>
+                    <input type="text" id="setting-lock3-seq" value="RED, GREEN, YELLOW, BLUE" class="w-full bg-slate-950 border border-slate-800 rounded p-2 text-slate-200">
+                </div>
+            </div>
+
+            <div class="flex gap-3 pt-3 border-t border-slate-800">
+                <button onclick="saveSettings()" class="flex-1 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold rounded-xl transition">
+                    SAVE & APPLY
+                </button>
+                <button onclick="closeSettingsModal()" class="py-2.5 px-4 bg-slate-800 text-slate-300 font-bold rounded-xl hover:bg-slate-700 transition">
+                    CANCEL
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        /* State Variables */
+        const gameConfig = {
+            initialMinutes: 10,
+            lock1: {
+                clue: "What is (12 × 4) + 12?",
+                answer: "60",
+                hint: "First calculate 12 × 4 = 48, then add 12 to 48!"
+            },
+            lock2: {
+                scramble: "O - Y - X - G - N - E",
+                answer: "OXYGEN",
+                hint: "An invisible gas that makes up ~21% of Earth's atmosphere and is essential for human respiration."
+            },
+            lock3: {
+                sequence: ["RED", "GREEN", "YELLOW", "BLUE"],
+                hint: "Think natural cycle: Fire (Red) → Plants (Green) → Sunlight (Yellow) → Water (Blue)."
+            }
+        };
+
+        let gameState = {
+            timerSeconds: 10 * 60,
+            initialDuration: 10 * 60,
+            timerInterval: null,
+            timerRunning: false,
+            locksSolved: {
+                1: false,
+                2: false,
+                3: false
+            },
+            lock3CurrentSeq: [],
+            hintsUsedCount: 0,
+            soundEnabled: true
+        };
+
+        /* Sound Effects Engine using Web Audio API */
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playSound(type) {
+            if (!gameState.soundEnabled) return;
+            try {
+                initAudio();
+                const now = audioCtx.currentTime;
+
+                if (type === 'click') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(400, now);
+                    osc.frequency.exponentialRampToValueAtTime(800, now + 0.05);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.05);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.05);
+                } else if (type === 'success') {
+                    // Cheerful Arpeggio
+                    const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+                    notes.forEach((freq, idx) => {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'triangle';
+                        osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+                        gain.gain.setValueAtTime(0.15, now + idx * 0.08);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.25);
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+                        osc.start(now + idx * 0.08);
+                        osc.stop(now + idx * 0.08 + 0.25);
+                    });
+                } else if (type === 'error') {
+                    // Buzz Sound
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(150, now);
+                    osc.frequency.linearRampToValueAtTime(100, now + 0.25);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.25);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                } else if (type === 'victory') {
+                    // Fanfare Tune
+                    const melody = [
+                        { f: 523.25, d: 0.15 },
+                        { f: 659.25, d: 0.15 },
+                        { f: 783.99, d: 0.15 },
+                        { f: 1046.50, d: 0.4 }
+                    ];
+                    let timeOffset = 0;
+                    melody.forEach((note) => {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(note.f, now + timeOffset);
+                        gain.gain.setValueAtTime(0.2, now + timeOffset);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + timeOffset + note.d);
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+                        osc.start(now + timeOffset);
+                        osc.stop(now + timeOffset + note.d);
+                        timeOffset += note.d + 0.05;
+                    });
+                }
+            } catch (e) {
+                console.log("Audio play error:", e);
+            }
+        }
+
+        function toggleSound() {
+            gameState.soundEnabled = !gameState.soundEnabled;
+            const icon = document.getElementById('sound-icon');
+            if (gameState.soundEnabled) {
+                icon.className = 'fa-solid fa-volume-high';
+                playSound('click');
+            } else {
+                icon.className = 'fa-solid fa-volume-xmark text-slate-500';
+            }
+        }
+
+        /* Timer Functions */
+        function updateTimerDisplay() {
+            const mins = Math.floor(gameState.timerSeconds / 60);
+            const secs = gameState.timerSeconds % 60;
+            const formatted = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            const displayEl = document.getElementById('timer-display');
+            displayEl.textContent = formatted;
+
+            // Low time warnings
+            if (gameState.timerSeconds <= 60) {
+                displayEl.classList.remove('text-cyan-400');
+                displayEl.classList.add('text-rose-500', 'animate-pulse');
+            } else {
+                displayEl.classList.add('text-cyan-400');
+                displayEl.classList.remove('text-rose-500', 'animate-pulse');
+            }
+        }
+
+        function toggleTimer() {
+            initAudio();
+            playSound('click');
+            if (gameState.timerRunning) {
+                pauseTimer();
+            } else {
+                startTimer();
+            }
+        }
+
+        function startTimer() {
+            if (gameState.timerRunning) return;
+            gameState.timerRunning = true;
+
+            const btnText = document.getElementById('timer-toggle-text');
+            const btnIcon = document.getElementById('timer-toggle-icon');
+            const btn = document.getElementById('btn-timer-toggle');
+
+            btnText.textContent = "Pause";
+            btnIcon.className = "fa-solid fa-pause";
+            btn.classList.remove('bg-emerald-600', 'hover:bg-emerald-500');
+            btn.classList.add('bg-amber-600', 'hover:bg-amber-500');
+
+            gameState.timerInterval = setInterval(() => {
+                if (gameState.timerSeconds > 0) {
+                    gameState.timerSeconds--;
+                    updateTimerDisplay();
+                } else {
+                    pauseTimer();
+                    triggerGameOver();
+                }
+            }, 1000);
+        }
+
+        function pauseTimer() {
+            gameState.timerRunning = false;
+            clearInterval(gameState.timerInterval);
+
+            const btnText = document.getElementById('timer-toggle-text');
+            const btnIcon = document.getElementById('timer-toggle-icon');
+            const btn = document.getElementById('btn-timer-toggle');
+
+            if (btnText) {
+                btnText.textContent = "Start";
+                btnIcon.className = "fa-solid fa-play";
+                btn.classList.remove('bg-amber-600', 'hover:bg-amber-500');
+                btn.classList.add('bg-emerald-600', 'hover:bg-emerald-500');
+            }
+        }
+
+        function updateLockStatusBadge() {
+            const remaining = Object.values(gameState.locksSolved).filter(solved => !solved).length;
+            const badgeText = document.getElementById('locks-remaining-text');
+            const badgeIcon = document.getElementById('lock-status-icon');
+            const badgeContainer = document.getElementById('lock-status-badge');
+
+            if (remaining === 0) {
+                badgeText.textContent = "ALL LOCKS UNLOCKED!";
+                badgeText.className = "text-sm font-bold tracking-wide text-emerald-300";
+                badgeIcon.className = "fa-solid fa-lock-open text-emerald-400 text-lg";
+                badgeContainer.className = "flex items-center gap-2.5 px-4 py-2.5 bg-emerald-950/60 border border-emerald-500/50 rounded-xl glow-emerald transition-all duration-300";
+            } else {
+                badgeText.textContent = `${remaining} Lock${remaining > 1 ? 's' : ''} Remaining`;
+                badgeText.className = "text-sm font-bold tracking-wide text-slate-200";
+                badgeIcon.className = "fa-solid fa-lock text-amber-400 text-lg";
+                badgeContainer.className = "flex items-center gap-2.5 px-4 py-2.5 bg-slate-800/80 border border-slate-700 rounded-xl shadow-inner transition-all duration-300";
+            }
+        }
+
+        /* Lock 1 Logic */
+        function keypadPress(val) {
+            if (gameState.locksSolved[1]) return;
+            playSound('click');
+            const input = document.getElementById('lock1-input');
+            if (input.value.length < 8) {
+                input.value += val;
+            }
+        }
+
+        function clearLock1Input() {
+            if (gameState.locksSolved[1]) return;
+            playSound('click');
+            document.getElementById('lock1-input').value = '';
+        }
+
+        function submitLock1() {
+            if (gameState.locksSolved[1]) return;
+            const inputEl = document.getElementById('lock1-input');
+            const val = inputEl.value.trim();
+            const card = document.getElementById('card-lock-1');
+            const feedback = document.getElementById('lock1-feedback');
+
+            // Strip padded zeros for comparison if numeric
+            const cleanUserVal = parseInt(val, 10);
+            const cleanTargetVal = parseInt(gameConfig.lock1.answer, 10);
+
+            if (val !== "" && (val === gameConfig.lock1.answer.trim() || cleanUserVal === cleanTargetVal)) {
+                // Correct Answer
+                gameState.locksSolved[1] = true;
+                playSound('success');
+
+                card.className = "glass-card-solved rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all duration-500 glow-emerald relative overflow-hidden group";
+                document.getElementById('badge-lock-1').className = "px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 flex items-center gap-1";
+                document.getElementById('badge-lock-1').innerHTML = '<i class="fa-solid fa-lock-open"></i> UNLOCKED';
+                
+                inputEl.disabled = true;
+                inputEl.className = "w-full bg-emerald-950/60 border-2 border-emerald-500/60 rounded-xl py-3 px-4 text-center font-digital text-2xl tracking-widest text-emerald-300 outline-none";
+                document.getElementById('btn-submit-lock1').disabled = true;
+                document.getElementById('btn-submit-lock1').className = "py-2.5 bg-emerald-500 text-slate-950 font-black text-sm rounded-lg opacity-80 cursor-not-allowed uppercase";
+                document.getElementById('btn-submit-lock1').textContent = "SOLVED";
+
+                feedback.textContent = "Access Granted! Lock Unlocked.";
+                feedback.className = "text-emerald-400 font-bold";
+
+                checkVictoryCondition();
+            } else {
+                // Wrong Answer
+                playSound('error');
+                card.classList.add('animate-shake');
+                feedback.textContent = "Access Denied! Incorrect code.";
+                feedback.className = "text-rose-400 font-bold";
+
+                setTimeout(() => {
+                    card.classList.remove('animate-shake');
+                }, 500);
+            }
+        }
+
+        /* Lock 2 Logic */
+        function handleLock2Keyup(e) {
+            if (e.key === 'Enter') {
+                submitLock2();
+            }
+        }
+
+        function submitLock2() {
+            if (gameState.locksSolved[2]) return;
+            const inputEl = document.getElementById('lock2-input');
+            const val = inputEl.value.trim().toUpperCase();
+            const card = document.getElementById('card-lock-2');
+            const feedback = document.getElementById('lock2-feedback');
+
+            if (val === gameConfig.lock2.answer.trim().toUpperCase()) {
+                // Correct Answer
+                gameState.locksSolved[2] = true;
+                playSound('success');
+
+                card.className = "glass-card-solved rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all duration-500 glow-emerald relative overflow-hidden group";
+                document.getElementById('badge-lock-2').className = "px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 flex items-center gap-1";
+                document.getElementById('badge-lock-2').innerHTML = '<i class="fa-solid fa-lock-open"></i> UNLOCKED';
+
+                inputEl.disabled = true;
+                inputEl.className = "w-full bg-emerald-950/60 border-2 border-emerald-500/60 rounded-xl py-3 px-4 text-center font-bold tracking-widest text-emerald-300 outline-none";
+                document.getElementById('btn-submit-lock2').disabled = true;
+                document.getElementById('btn-submit-lock2').className = "w-full py-3 bg-emerald-500 text-slate-950 font-black text-sm rounded-xl opacity-80 cursor-not-allowed uppercase";
+                document.getElementById('btn-submit-lock2').textContent = "CIPHER DECRYPTED";
+
+                feedback.textContent = "Chemical Element Verified!";
+                feedback.className = "text-emerald-400 font-bold";
+
+                checkVictoryCondition();
+            } else {
+                // Wrong Answer
+                playSound('error');
+                card.classList.add('animate-shake');
+                feedback.textContent = "Incorrect Cipher Solution!";
+                feedback.className = "text-rose-400 font-bold";
+
+                setTimeout(() => {
+                    card.classList.remove('animate-shake');
+                }, 500);
+            }
+        }
+
+        /* Lock 3 Logic */
+        function pressColorSequence(color) {
+            if (gameState.locksSolved[3]) return;
+            playSound('click');
+
+            gameState.lock3CurrentSeq.push(color);
+            updateSequenceDots();
+
+            // Check when target length reached
+            if (gameState.lock3CurrentSeq.length === gameConfig.lock3.sequence.length) {
+                verifyLock3Sequence();
+            }
+        }
+
+        function updateSequenceDots() {
+            const displayContainer = document.getElementById('sequence-display');
+            displayContainer.innerHTML = '';
+
+            const maxSeq = gameConfig.lock3.sequence.length;
+            for (let i = 0; i < maxSeq; i++) {
+                const dot = document.createElement('span');
+                dot.className = "w-4 h-4 rounded-full border transition-all duration-300 ";
+                
+                if (i < gameState.lock3CurrentSeq.length) {
+                    const c = gameState.lock3CurrentSeq[i];
+                    if (c === 'RED') dot.className += "bg-rose-500 border-rose-300 shadow-sm shadow-rose-500";
+                    else if (c === 'BLUE') dot.className += "bg-blue-500 border-blue-300 shadow-sm shadow-blue-500";
+                    else if (c === 'GREEN') dot.className += "bg-emerald-500 border-emerald-300 shadow-sm shadow-emerald-500";
+                    else if (c === 'YELLOW') dot.className += "bg-amber-400 border-amber-200 shadow-sm shadow-amber-400";
+                } else {
+                    dot.className += "bg-slate-800 border-slate-700";
+                }
+                displayContainer.appendChild(dot);
+            }
+        }
+
+        function verifyLock3Sequence() {
+            const card = document.getElementById('card-lock-3');
+            const feedback = document.getElementById('lock3-feedback');
+            const target = gameConfig.lock3.sequence;
+
+            let isCorrect = true;
+            for (let i = 0; i < target.length; i++) {
+                if (gameState.lock3CurrentSeq[i] !== target[i]) {
+                    isCorrect = false;
+                    break;
+                }
+            }
+
+            if (isCorrect) {
+                // Correct Sequence
+                gameState.locksSolved[3] = true;
+                playSound('success');
+
+                card.className = "glass-card-solved rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all duration-500 glow-emerald relative overflow-hidden group";
+                document.getElementById('badge-lock-3').className = "px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 flex items-center gap-1";
+                document.getElementById('badge-lock-3').innerHTML = '<i class="fa-solid fa-lock-open"></i> UNLOCKED';
+
+                feedback.textContent = "Logic Circuit Aligned!";
+                feedback.className = "text-emerald-400 font-bold";
+
+                // Disable color buttons
+                const btnGrid = document.getElementById('logic-buttons-grid');
+                Array.from(btnGrid.children).forEach(btn => btn.classList.add('opacity-70', 'cursor-not-allowed'));
+
+                checkVictoryCondition();
+            } else {
+                // Wrong Sequence
+                playSound('error');
+                card.classList.add('animate-shake');
+                feedback.textContent = "Sequence Mismatch! Resetting...";
+                feedback.className = "text-rose-400 font-bold";
+
+                setTimeout(() => {
+                    card.classList.remove('animate-shake');
+                    gameState.lock3CurrentSeq = [];
+                    updateSequenceDots();
+                    feedback.textContent = "Click 4 colors in order...";
+                    feedback.className = "text-slate-400 italic";
+                }, 800);
+            }
+        }
+
+        /* Check Game Victory */
+        function checkVictoryCondition() {
+            updateLockStatusBadge();
+            const allSolved = Object.values(gameState.locksSolved).every(val => val === true);
+            if (allSolved) {
+                pauseTimer();
+                setTimeout(() => {
+                    triggerVictory();
+                }, 400);
+            }
+        }
+
+        function triggerVictory() {
+            playSound('victory');
+            startConfetti();
+
+            const timeElapsed = gameState.initialDuration - gameState.timerSeconds;
+            const mins = Math.floor(timeElapsed / 60);
+            const secs = timeElapsed % 60;
+            const timeFormatted = `${mins}m ${secs}s`;
+
+            document.getElementById('victory-time-taken').textContent = timeFormatted;
+            document.getElementById('victory-hints-used').textContent = gameState.hintsUsedCount;
+
+            const modal = document.getElementById('victory-modal');
+            const content = document.getElementById('victory-content');
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-90');
+                content.classList.add('scale-100');
+            }, 50);
+        }
+
+        function closeVictoryModal() {
+            const modal = document.getElementById('victory-modal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                stopConfetti();
+            }, 300);
+        }
+
+        function triggerGameOver() {
+            playSound('error');
+            const modal = document.getElementById('gameover-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+            }, 50);
+        }
+
+        function addExtraTime(mins) {
+            gameState.timerSeconds += mins * 60;
+            updateTimerDisplay();
+            const modal = document.getElementById('gameover-modal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                startTimer();
+            }, 300);
+        }
+
+        /* Hint Modal Management */
+        function showHint(lockNum) {
+            playSound('click');
+            gameState.hintsUsedCount++;
+            const titleEl = document.getElementById('hint-title');
+            const bodyEl = document.getElementById('hint-body');
+
+            if (lockNum === 1) {
+                titleEl.textContent = "Lock #1 Math Hint";
+                bodyEl.textContent = gameConfig.lock1.hint;
+            } else if (lockNum === 2) {
+                titleEl.textContent = "Lock #2 Cipher Hint";
+                bodyEl.textContent = gameConfig.lock2.hint;
+            } else if (lockNum === 3) {
+                titleEl.textContent = "Lock #3 Logic Switch Hint";
+                bodyEl.textContent = gameConfig.lock3.hint;
+            }
+
+            document.getElementById('hint-modal').classList.remove('hidden');
+        }
+
+        function closeHintModal() {
+            playSound('click');
+            document.getElementById('hint-modal').classList.add('hidden');
+        }
+
+        /* Settings Modal Functions */
+        function openSettingsModal() {
+            playSound('click');
+            pauseTimer();
+            document.getElementById('settings-modal').classList.remove('hidden');
+        }
+
+        function closeSettingsModal() {
+            playSound('click');
+            document.getElementById('settings-modal').classList.add('hidden');
+        }
+
+        function saveSettings() {
+            playSound('click');
+            const timerMins = parseInt(document.getElementById('setting-timer-mins').value, 10) || 10;
+            gameConfig.initialMinutes = timerMins;
+            gameState.initialDuration = timerMins * 60;
+            gameState.timerSeconds = timerMins * 60;
+
+            // Lock 1
+            gameConfig.lock1.clue = document.getElementById('setting-lock1-clue').value;
+            gameConfig.lock1.answer = document.getElementById('setting-lock1-ans').value;
+            document.getElementById('lock1-clue-text').textContent = gameConfig.lock1.clue;
+
+            // Lock 2
+            gameConfig.lock2.scramble = document.getElementById('setting-lock2-scramble').value;
+            gameConfig.lock2.answer = document.getElementById('setting-lock2-ans').value;
+            renderScrambledTiles(gameConfig.lock2.scramble);
+
+            // Lock 3
+            const seqStr = document.getElementById('setting-lock3-seq').value;
+            gameConfig.lock3.sequence = seqStr.split(',').map(s => s.trim().toUpperCase());
+
+            closeSettingsModal();
+            resetGame();
+        }
+
+        function renderScrambledTiles(scrambleStr) {
+            const container = document.getElementById('scrambled-tiles-container');
+            container.innerHTML = '';
+            // Remove hyphen/spaces and split into letters
+            const letters = scrambleStr.replace(/[\s-]/g, '').split('');
+            letters.forEach(letter => {
+                const tile = document.createElement('span');
+                tile.className = "w-10 h-10 bg-slate-800 border-2 border-emerald-500/40 text-emerald-300 font-extrabold text-xl rounded-lg flex items-center justify-center shadow-md uppercase";
+                tile.textContent = letter;
+                container.appendChild(tile);
+            });
+        }
+
+        /* Reset Logic */
+        function resetGamePrompt() {
+            playSound('click');
+            resetGame();
+        }
+
+        function resetCurrentLocks() {
+            playSound('click');
+            // Clear Inputs without resetting timer
+            if (!gameState.locksSolved[1]) document.getElementById('lock1-input').value = '';
+            if (!gameState.locksSolved[2]) document.getElementById('lock2-input').value = '';
+            if (!gameState.locksSolved[3]) {
+                gameState.lock3CurrentSeq = [];
+                updateSequenceDots();
+            }
+        }
+
+        function resetGame() {
+            pauseTimer();
+            stopConfetti();
+
+            gameState.timerSeconds = gameConfig.initialMinutes * 60;
+            gameState.initialDuration = gameConfig.initialMinutes * 60;
+            gameState.locksSolved = { 1: false, 2: false, 3: false };
+            gameState.lock3CurrentSeq = [];
+            gameState.hintsUsedCount = 0;
+
+            updateTimerDisplay();
+            updateLockStatusBadge();
+
+            // Reset Card 1 UI
+            const card1 = document.getElementById('card-lock-1');
+            card1.className = "glass-card rounded-2xl p-5 sm:p-6 flex flex-col justify-between border-slate-800 transition-all duration-500 hover:border-cyan-500/40 relative overflow-hidden group";
+            document.getElementById('badge-lock-1').className = "px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1";
+            document.getElementById('badge-lock-1').innerHTML = '<i class="fa-solid fa-lock"></i> LOCKED';
+            const in1 = document.getElementById('lock1-input');
+            in1.value = '';
+            in1.disabled = false;
+            in1.className = "w-full bg-slate-950 border-2 border-slate-700 focus:border-cyan-400 rounded-xl py-3 px-4 text-center font-digital text-2xl tracking-widest text-cyan-400 placeholder:text-slate-600 outline-none transition shadow-inner";
+            const btn1 = document.getElementById('btn-submit-lock1');
+            btn1.disabled = false;
+            btn1.className = "py-2.5 bg-cyan-600 hover:bg-cyan-500 text-slate-900 font-black text-sm rounded-lg border border-cyan-400 active:scale-95 transition uppercase";
+            btn1.textContent = "UNLOCK";
+            document.getElementById('lock1-feedback').textContent = "Enter numeric response...";
+            document.getElementById('lock1-feedback').className = "text-slate-400 italic";
+
+            // Reset Card 2 UI
+            const card2 = document.getElementById('card-lock-2');
+            card2.className = "glass-card rounded-2xl p-5 sm:p-6 flex flex-col justify-between border-slate-800 transition-all duration-500 hover:border-emerald-500/40 relative overflow-hidden group";
+            document.getElementById('badge-lock-2').className = "px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1";
+            document.getElementById('badge-lock-2').innerHTML = '<i class="fa-solid fa-lock"></i> LOCKED';
+            const in2 = document.getElementById('lock2-input');
+            in2.value = '';
+            in2.disabled = false;
+            in2.className = "w-full bg-slate-950 border-2 border-slate-700 focus:border-emerald-400 rounded-xl py-3 px-4 uppercase text-center font-bold tracking-widest text-emerald-300 placeholder:text-slate-600 outline-none transition shadow-inner";
+            const btn2 = document.getElementById('btn-submit-lock2');
+            btn2.disabled = false;
+            btn2.className = "w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-black text-sm rounded-xl border border-emerald-400 active:scale-95 transition uppercase shadow-lg shadow-emerald-950/50";
+            btn2.textContent = "DECRYPT CIPHER";
+            document.getElementById('lock2-feedback').textContent = "Case-insensitive entry...";
+            document.getElementById('lock2-feedback').className = "text-slate-400 italic";
+
+            // Reset Card 3 UI
+            const card3 = document.getElementById('card-lock-3');
+            card3.className = "glass-card rounded-2xl p-5 sm:p-6 flex flex-col justify-between border-slate-800 transition-all duration-500 hover:border-amber-500/40 relative overflow-hidden group";
+            document.getElementById('badge-lock-3').className = "px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1";
+            document.getElementById('badge-lock-3').innerHTML = '<i class="fa-solid fa-lock"></i> LOCKED';
+            document.getElementById('lock3-feedback').textContent = "Click 4 colors in order...";
+            document.getElementById('lock3-feedback').className = "text-slate-400 italic";
+            updateSequenceDots();
+
+            const btnGrid = document.getElementById('logic-buttons-grid');
+            Array.from(btnGrid.children).forEach(btn => btn.classList.remove('opacity-70', 'cursor-not-allowed'));
+
+            // Hide Modals
+            document.getElementById('victory-modal').classList.add('hidden', 'opacity-0');
+            document.getElementById('gameover-modal').classList.add('hidden', 'opacity-0');
+            document.getElementById('hint-modal').classList.add('hidden');
+        }
+
+        /* Particles / Confetti Animation */
+        let confettiInterval = null;
+        let confettiParticles = [];
+
+        function startConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const colors = ['#06b6d4', '#10b981', '#f59e0b', '#ec4899', '#3b82f6'];
+            confettiParticles = [];
+
+            for (let i = 0; i < 120; i++) {
+                confettiParticles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    size: Math.random() * 8 + 4,
+                    speedY: Math.random() * 3 + 2,
+                    speedX: Math.random() * 2 - 1,
+                    rotation: Math.random() * 360,
+                    rotSpeed: Math.random() * 4 - 2
+                });
+            }
+
+            function render() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                confettiParticles.forEach(p => {
+                    p.y += p.speedY;
+                    p.x += p.speedX;
+                    p.rotation += p.rotSpeed;
+
+                    if (p.y > canvas.height) {
+                        p.y = -10;
+                        p.x = Math.random() * canvas.width;
+                    }
+
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate((p.rotation * Math.PI) / 180);
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+                    ctx.restore();
+                });
+            }
+
+            if (confettiInterval) clearInterval(confettiInterval);
+            confettiInterval = setInterval(render, 1000 / 60);
+        }
+
+        function stopConfetti() {
+            if (confettiInterval) {
+                clearInterval(confettiInterval);
+                confettiInterval = null;
+            }
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        // Window Resize listener for canvas
+        window.addEventListener('resize', () => {
+            const canvas = document.getElementById('confetti-canvas');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Window Load Initializer
+        window.onload = function() {
+            updateTimerDisplay();
+            updateLockStatusBadge();
+            renderScrambledTiles(gameConfig.lock2.scramble);
+        };
+    </script>
+</body>
+</html>

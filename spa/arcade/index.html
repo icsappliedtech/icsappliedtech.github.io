@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 Classroom AI Arcade - Games Portal</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter & Orbitron for Arcade vibes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        arcade: {
+                            bg: '#0a0d18',
+                            card: 'rgba(18, 24, 43, 0.65)',
+                            border: 'rgba(255, 255, 255, 0.1)',
+                            magenta: '#ff007f',
+                            cyan: '#00f0ff',
+                            gold: '#ffd700',
+                            lime: '#39ff14',
+                            purple: '#a855f7'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        arcade: ['Orbitron', 'sans-serif']
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 3s infinite alternate',
+                        'float': 'float 4s ease-in-out infinite',
+                        'scanline': 'scanline 8s linear infinite'
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%': { boxShadow: '0 0 15px rgba(0, 240, 255, 0.2)' },
+                            '100%': { boxShadow: '0 0 35px rgba(255, 0, 127, 0.5)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' }
+                        },
+                        scanline: {
+                            '0%': { transform: 'translateY(-100%)' },
+                            '100%': { transform: 'translateY(1000%)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #080b14;
+            color: #f1f5f9;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism utility */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Specific card hover glows */
+        .card-magenta:hover {
+            border-color: rgba(255, 0, 127, 0.8);
+            box-shadow: 0 10px 30px -5px rgba(255, 0, 127, 0.35), 0 0 15px rgba(255, 0, 127, 0.2);
+            transform: translateY(-6px);
+        }
+
+        .card-cyan:hover {
+            border-color: rgba(0, 240, 255, 0.8);
+            box-shadow: 0 10px 30px -5px rgba(0, 240, 255, 0.35), 0 0 15px rgba(0, 240, 255, 0.2);
+            transform: translateY(-6px);
+        }
+
+        .card-lime:hover {
+            border-color: rgba(57, 255, 20, 0.8);
+            box-shadow: 0 10px 30px -5px rgba(57, 255, 20, 0.35), 0 0 15px rgba(57, 255, 20, 0.2);
+            transform: translateY(-6px);
+        }
+
+        .card-gold:hover {
+            border-color: rgba(255, 215, 0, 0.8);
+            box-shadow: 0 10px 30px -5px rgba(255, 215, 0, 0.35), 0 0 15px rgba(255, 215, 0, 0.2);
+            transform: translateY(-6px);
+        }
+
+        .card-purple:hover {
+            border-color: rgba(168, 85, 247, 0.8);
+            box-shadow: 0 10px 30px -5px rgba(168, 85, 247, 0.35), 0 0 15px rgba(168, 85, 247, 0.2);
+            transform: translateY(-6px);
+        }
+
+        /* Animated Text Gradient */
+        .text-gradient-neon {
+            background: linear-gradient(135deg, #00f0ff 0%, #ff007f 50%, #ffd700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Subtle synth grid overlay background */
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080b14;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f0ff;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen grid-bg selection:bg-pink-500 selection:text-white flex flex-col justify-between">
+
+    <!-- Background Animated Canvas Particle Effect -->
+    <canvas id="bgCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
+
+    <div class="relative z-10">
+        
+        <!-- Top Navbar Control Bar -->
+        <header class="border-b border-slate-800/80 bg-slate-950/60 backdrop-blur-md sticky top-0 z-40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-pink-500 to-amber-400 p-0.5 shadow-lg shadow-cyan-500/20">
+                        <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
+                            <i class="fa-solid font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500 text-lg">🎮</i>
+                        </div>
+                    </div>
+                    <span class="font-arcade text-lg sm:text-xl font-bold tracking-wider text-white">AI ARCADE</span>
+                </div>
+
+                <div class="flex items-center space-x-3 sm:space-x-4">
+                    <!-- Retro Sound Effect Toggle -->
+                    <button id="soundToggleBtn" class="flex items-center space-x-2 px-3 py-1.5 rounded-lg border border-slate-700 bg-slate-900/80 text-xs font-semibold text-slate-300 hover:text-white hover:border-cyan-500/50 transition-all">
+                        <i id="soundIcon" class="fa-solid fa-volume-high text-cyan-400"></i>
+                        <span id="soundStatus" class="hidden sm:inline">SFX: ON</span>
+                    </button>
+
+                    <!-- Quick Folder Check Modal Trigger -->
+                    <button onclick="toggleModal('infoModal')" class="flex items-center space-x-2 px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-cyan-500/10 to-pink-500/10 border border-cyan-500/30 text-xs font-semibold text-cyan-300 hover:bg-cyan-500/20 transition-all shadow-sm">
+                        <i class="fa-solid fa-circle-question text-cyan-400"></i>
+                        <span class="hidden sm:inline">Setup Guide</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16">
+            
+            <!-- Hero Header Section -->
+            <div class="text-center space-y-4 mb-8">
+                <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-slate-800/80 border border-slate-700/80 text-xs font-medium text-pink-400 shadow-inner">
+                    <span class="flex h-2 w-2 rounded-full bg-pink-500 animate-ping"></span>
+                    <span>Gemini Canvas Powered Hub</span>
+                </div>
+                
+                <h1 class="font-arcade text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white drop-shadow-md">
+                    🎮 <span class="text-gradient-neon">Classroom AI Arcade</span>
+                </h1>
+                
+                <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto font-normal">
+                    Interactive Learning Games & Single-Page Apps
+                </p>
+
+                <!-- Quick Stats Badge Bar -->
+                <div class="pt-2 flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm font-semibold">
+                    <div class="px-4 py-2 rounded-xl glass-card text-cyan-300 flex items-center space-x-2 border-cyan-500/20 shadow-lg">
+                        <i class="fa-solid fa-gamepad text-cyan-400"></i>
+                        <span>6 Live Games Available</span>
+                    </div>
+                    <div class="px-4 py-2 rounded-xl glass-card text-emerald-300 flex items-center space-x-2 border-emerald-500/20 shadow-lg">
+                        <i class="fa-solid fa-wifi text-emerald-400"></i>
+                        <span>Offline Ready</span>
+                    </div>
+                    <div class="px-4 py-2 rounded-xl glass-card text-amber-300 flex items-center space-x-2 border-amber-500/20 shadow-lg">
+                        <i class="fa-solid fa-shield-halved text-amber-400"></i>
+                        <span>No Sign-In Required</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="instructionBanner" class="mb-10 transition-all duration-500 ease-in-out">
+                <div class="glass-card rounded-2xl p-4 sm:p-5 border-l-4 border-l-cyan-400 relative overflow-hidden group shadow-xl">
+                    <div class="flex items-start sm:items-center justify-between gap-4">
+                        <div class="flex items-start sm:items-center space-x-3.5">
+                            <div class="p-2.5 bg-cyan-500/10 rounded-xl text-cyan-400 shrink-0 border border-cyan-500/20">
+                                <i class="fa-solid fa-lightbulb text-xl animate-pulse"></i>
+                            </div>
+                            <div class="text-sm">
+                                <span class="font-bold text-cyan-300 uppercase tracking-wider text-xs block sm:inline sm:mr-2">Tip:</span>
+                                <span class="text-slate-200">Save all 5 game HTML files in the same folder on your computer. Click any card below to launch the game instantly!</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-2 shrink-0">
+                            <button onclick="dismissBanner()" class="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-800/80 transition-colors" title="Dismiss Banner">
+                                <i class="fa-solid fa-xmark text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter & Search Controls Bar -->
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
+                <!-- Category Filter Buttons -->
+                <div class="flex flex-wrap items-center justify-center md:justify-start gap-2 w-full md:w-auto">
+                    <button onclick="filterCategory('all')" class="filter-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20" data-cat="all">
+                        All Games (6)
+                    </button>
+                    <button onclick="filterCategory('logic')" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800/80 text-slate-300 hover:bg-slate-700/80 hover:text-white border border-slate-700/60 transition-all" data-cat="logic">
+                        Logic & Puzzles
+                    </button>
+                    <button onclick="filterCategory('review')" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800/80 text-slate-300 hover:bg-slate-700/80 hover:text-white border border-slate-700/60 transition-all" data-cat="review">
+                        Review & Speed
+                    </button>
+                    <button onclick="filterCategory('sandbox')" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800/80 text-slate-300 hover:bg-slate-700/80 hover:text-white border border-slate-700/60 transition-all" data-cat="sandbox">
+                        Sandbox
+                    </button>
+                    <button onclick="filterCategory('class')" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800/80 text-slate-300 hover:bg-slate-700/80 hover:text-white border border-slate-700/60 transition-all" data-cat="class">
+                        Whole-Class
+                    </button>
+                </div>
+
+                <!-- Instant Search Input -->
+                <div class="relative w-full md:w-64">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="Search arcade games..." 
+                           class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl pl-9 pr-4 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
+                </div>
+            </div>
+
+            <div id="gamesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- CARD 1: Mystery Lab Escape -->
+                <div class="game-card glass-card card-magenta rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden group" data-category="logic" data-title="the mystery lab escape">
+                    <!-- Subtle Glow Accent Top Bar -->
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-rose-500 via-pink-500 to-purple-500"></div>
+
+                    <div>
+                        <!-- Top Header info -->
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <span class="px-3 py-1 rounded-lg text-xs font-bold bg-pink-500/10 text-pink-400 border border-pink-500/30 uppercase tracking-wider">
+                                Logic & Puzzles
+                            </span>
+                            <button onclick="toggleFavorite(1)" class="text-slate-500 hover:text-amber-400 transition-colors p-1" title="Bookmark Game">
+                                <i id="favIcon-1" class="fa-regular fa-star text-base"></i>
+                            </button>
+                        </div>
+
+                        <!-- Icon & Title -->
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-12 h-12 rounded-xl bg-pink-500/20 text-pink-400 flex items-center justify-center text-2xl border border-pink-500/30 group-hover:scale-110 transition-transform">
+                                🔓
+                            </div>
+                            <div>
+                                <h3 class="font-arcade text-lg font-bold text-white group-hover:text-pink-300 transition-colors">
+                                    The Mystery Lab Escape
+                                </h3>
+                                <span class="text-[11px] text-slate-400 flex items-center gap-1">
+                                    <i class="fa-regular fa-clock text-pink-400"></i> ~10-15 Min Session
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6 font-normal">
+                            Solve math codes, unscramble ciphers, and sequence logic switches to escape the lab before time runs out.
+                        </p>
+                    </div>
+
+                    <!-- Bottom Action Bar -->
+                    <div class="pt-4 border-t border-slate-800/80 space-y-3">
+                        <a href="escape_room.html" target="_blank" onclick="recordPlay('The Mystery Lab Escape')" class="play-btn w-full py-3 px-4 rounded-xl bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white font-bold text-xs tracking-wider uppercase text-center flex items-center justify-center space-x-2 shadow-lg shadow-pink-600/20 transition-all hover:shadow-pink-500/40 active:scale-95">
+                            <span>PLAY ESCAPE ROOM 🔓</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
+                        <div class="flex items-center justify-between text-[11px] text-slate-400 px-1">
+                            <span>File: <code class="text-pink-300">escape_room.html</code></span>
+                            <span id="playCount-1" class="text-slate-500">Played 0 times</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2: Space Racer -->
+                <div class="game-card glass-card card-cyan rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden group" data-category="review" data-title="space racer">
+                    <!-- Subtle Glow Accent Top Bar -->
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-500"></div>
+
+                    <div>
+                        <!-- Top Header info -->
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <span class="px-3 py-1 rounded-lg text-xs font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 uppercase tracking-wider">
+                                Fast-Paced Review
+                            </span>
+                            <button onclick="toggleFavorite(2)" class="text-slate-500 hover:text-amber-400 transition-colors p-1" title="Bookmark Game">
+                                <i id="favIcon-2" class="fa-regular fa-star text-base"></i>
+                            </button>
+                        </div>
+
+                        <!-- Icon & Title -->
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-2xl border border-cyan-500/30 group-hover:scale-110 transition-transform">
+                                🚀
+                            </div>
+                            <div>
+                                <h3 class="font-arcade text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">
+                                    Space Racer
+                                </h3>
+                                <span class="text-[11px] text-slate-400 flex items-center gap-1">
+                                    <i class="fa-solid fa-bolt text-cyan-400"></i> High Speed Action
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6 font-normal">
+                            Pilot a spaceship through speed gates by answering review questions correctly to maintain your streak.
+                        </p>
+                    </div>
+
+                    <!-- Bottom Action Bar -->
+                    <div class="pt-4 border-t border-slate-800/80 space-y-3">
+                        <a href="space_racer.html" target="_blank" onclick="recordPlay('Space Racer')" class="play-btn w-full py-3 px-4 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold text-xs tracking-wider uppercase text-center flex items-center justify-center space-x-2 shadow-lg shadow-cyan-600/20 transition-all hover:shadow-cyan-500/40 active:scale-95">
+                            <span>LAUNCH SPACE RACER 🚀</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
+                        <div class="flex items-center justify-between text-[11px] text-slate-400 px-1">
+                            <span>File: <code class="text-cyan-300">space_racer.html</code></span>
+                            <span id="playCount-2" class="text-slate-500">Played 0 times</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 3: Classroom Alchemy -->
+                <div class="game-card glass-card card-lime rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden group" data-category="sandbox" data-title="classroom alchemy">
+                    <!-- Subtle Glow Accent Top Bar -->
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-lime-500 via-emerald-500 to-teal-500"></div>
+
+                    <div>
+                        <!-- Top Header info -->
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <span class="px-3 py-1 rounded-lg text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 uppercase tracking-wider">
+                                Discovery & Sandbox
+                            </span>
+                            <button onclick="toggleFavorite(3)" class="text-slate-500 hover:text-amber-400 transition-colors p-1" title="Bookmark Game">
+                                <i id="favIcon-3" class="fa-regular fa-star text-base"></i>
+                            </button>
+                        </div>
+
+                        <!-- Icon & Title -->
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl border border-emerald-500/30 group-hover:scale-110 transition-transform">
+                                🧪
+                            </div>
+                            <div>
+                                <h3 class="font-arcade text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">
+                                    Classroom Alchemy
+                                </h3>
+                                <span class="text-[11px] text-slate-400 flex items-center gap-1">
+                                    <i class="fa-solid fa-flask text-emerald-400"></i> Creative Crafting
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6 font-normal">
+                            Drag, drop, and combine base elements to unlock hidden concepts, building your full encyclopedia.
+                        </p>
+                    </div>
+
+                    <!-- Bottom Action Bar -->
+                    <div class="pt-4 border-t border-slate-800/80 space-y-3">
+                        <a href="classroom_alchemy.html" target="_blank" onclick="recordPlay('Classroom Alchemy')" class="play-btn w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs tracking-wider uppercase text-center flex items-center justify-center space-x-2 shadow-lg shadow-emerald-600/20 transition-all hover:shadow-emerald-500/40 active:scale-95">
+                            <span>ENTER ALCHEMY LAB 🧪</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
+                        <div class="flex items-center justify-between text-[11px] text-slate-400 px-1">
+                            <span>File: <code class="text-emerald-300">classroom_alchemy.html</code></span>
+                            <span id="playCount-3" class="text-slate-500">Played 0 times</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 4: Tile Match Showdown -->
+                <div class="game-card glass-card card-gold rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden group" data-category="review" data-title="tile match showdown">
+                    <!-- Subtle Glow Accent Top Bar -->
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 via-yellow-400 to-orange-500"></div>
+
+                    <div>
+                        <!-- Top Header info -->
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <span class="px-3 py-1 rounded-lg text-xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30 uppercase tracking-wider">
+                                Memory & Speed
+                            </span>
+                            <button onclick="toggleFavorite(4)" class="text-slate-500 hover:text-amber-400 transition-colors p-1" title="Bookmark Game">
+                                <i id="favIcon-4" class="fa-regular fa-star text-base"></i>
+                            </button>
+                        </div>
+
+                        <!-- Icon & Title -->
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl border border-amber-500/30 group-hover:scale-110 transition-transform">
+                                🎴
+                            </div>
+                            <div>
+                                <h3 class="font-arcade text-lg font-bold text-white group-hover:text-amber-300 transition-colors">
+                                    Tile Match Showdown
+                                </h3>
+                                <span class="text-[11px] text-slate-400 flex items-center gap-1">
+                                    <i class="fa-solid fa-stopwatch text-amber-400"></i> Memory Blitz
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6 font-normal">
+                            Flip cards in a sleek 3D grid to match fractions, vocabulary terms, or concepts against the clock.
+                        </p>
+                    </div>
+
+                    <!-- Bottom Action Bar -->
+                    <div class="pt-4 border-t border-slate-800/80 space-y-3">
+                        <a href="tile_match.html" target="_blank" onclick="recordPlay('Tile Match Showdown')" class="play-btn w-full py-3 px-4 rounded-xl bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-500 hover:to-yellow-500 text-white font-bold text-xs tracking-wider uppercase text-center flex items-center justify-center space-x-2 shadow-lg shadow-amber-600/20 transition-all hover:shadow-amber-500/40 active:scale-95">
+                            <span>START MATCHING 🎴</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
+                        <div class="flex items-center justify-between text-[11px] text-slate-400 px-1">
+                            <span>File: <code class="text-amber-300">tile_match.html</code></span>
+                            <span id="playCount-4" class="text-slate-500">Played 0 times</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 5: The Ultimate Classroom Game Show -->
+                <div class="game-card glass-card card-purple rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden group md:col-span-2 lg:col-span-1" data-category="class" data-title="the ultimate classroom game show">
+                    <!-- Subtle Glow Accent Top Bar -->
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 via-indigo-500 to-pink-500"></div>
+
+                    <div>
+                        <!-- Top Header info -->
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <span class="px-3 py-1 rounded-lg text-xs font-bold bg-purple-500/10 text-purple-400 border border-purple-500/30 uppercase tracking-wider">
+                                Whole-Class Review
+                            </span>
+                            <button onclick="toggleFavorite(5)" class="text-slate-500 hover:text-amber-400 transition-colors p-1" title="Bookmark Game">
+                                <i id="favIcon-5" class="fa-regular fa-star text-base"></i>
+                            </button>
+                        </div>
+
+                        <!-- Icon & Title -->
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-2xl border border-purple-500/30 group-hover:scale-110 transition-transform">
+                                🏆
+                            </div>
+                            <div>
+                                <h3 class="font-arcade text-lg font-bold text-white group-hover:text-purple-300 transition-colors">
+                                    The Ultimate Game Show
+                                </h3>
+                                <span class="text-[11px] text-slate-400 flex items-center gap-1">
+                                    <i class="fa-solid fa-users text-purple-400"></i> Multiplayer Console
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6 font-normal">
+                            TV-style game show console featuring Jeopardy point categories, integrated timers, and live team scoring.
+                        </p>
+                    </div>
+
+                    <!-- Bottom Action Bar -->
+                    <div class="pt-4 border-t border-slate-800/80 space-y-3">
+                        <a href="game_show.html" target="_blank" onclick="recordPlay('The Ultimate Classroom Game Show')" class="play-btn w-full py-3 px-4 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs tracking-wider uppercase text-center flex items-center justify-center space-x-2 shadow-lg shadow-purple-600/20 transition-all hover:shadow-purple-500/40 active:scale-95">
+                            <span>START GAME SHOW 🏆</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
+                        <div class="flex items-center justify-between text-[11px] text-slate-400 px-1">
+                            <span>File: <code class="text-purple-300">game_show.html</code></span>
+                            <span id="playCount-5" class="text-slate-500">Played 0 times</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 6: Classroom Boss Battle -->
+                <div class="game-card glass-card card-magenta rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden group" data-category="class" data-title="classroom boss battle">
+                    <!-- Subtle Glow Accent Top Bar -->
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-rose-500 to-amber-500"></div>
+
+                    <div>
+                        <!-- Top Header info -->
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <span class="px-3 py-1 rounded-lg text-xs font-bold bg-rose-500/10 text-rose-400 border border-rose-500/30 uppercase tracking-wider">
+                                Turn-Based RPG
+                            </span>
+                            <button onclick="toggleFavorite(6)" class="text-slate-500 hover:text-amber-400 transition-colors p-1" title="Bookmark Game">
+                                <i id="favIcon-6" class="fa-regular fa-star text-base"></i>
+                            </button>
+                        </div>
+
+                        <!-- Icon & Title -->
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-12 h-12 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-2xl border border-rose-500/30 group-hover:scale-110 transition-transform">
+                                ⚔️
+                            </div>
+                            <div>
+                                <h3 class="font-arcade text-lg font-bold text-white group-hover:text-rose-300 transition-colors">
+                                    Classroom Boss Battle
+                                </h3>
+                                <span class="text-[11px] text-slate-400 flex items-center gap-1">
+                                    <i class="fa-solid fa-dragon text-rose-400"></i> Turn-Based RPG
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6 font-normal">
+                            Fight an epic monster boss as a class by answering review questions to strike, deal critical hits, and heal your party.
+                        </p>
+                    </div>
+
+                    <!-- Bottom Action Bar -->
+                    <div class="pt-4 border-t border-slate-800/80 space-y-3">
+                        <a href="boss_battle.html" target="_blank" onclick="recordPlay('Classroom Boss Battle')" class="play-btn w-full py-3 px-4 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold text-xs tracking-wider uppercase text-center flex items-center justify-center space-x-2 shadow-lg shadow-red-600/20 transition-all hover:shadow-red-500/40 active:scale-95">
+                            <span>ENTER BATTLE ⚔️</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
+                        <div class="flex items-center justify-between text-[11px] text-slate-400 px-1">
+                            <span>File: <code class="text-rose-300">boss_battle.html</code></span>
+                            <span id="playCount-6" class="text-slate-500">Played 0 times</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Empty Search Results Message -->
+            <div id="noResults" class="hidden text-center py-12 glass-card rounded-2xl border-slate-800">
+                <i class="fa-solid fa-ghost text-4xl text-slate-600 mb-3"></i>
+                <p class="text-slate-300 font-semibold text-base">No arcade games match your filter or search query.</p>
+                <button onclick="resetFilters()" class="mt-3 text-xs text-cyan-400 hover:underline">Reset search filters</button>
+            </div>
+
+        </main>
+    </div>
+
+    <div id="infoModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md flex items-center justify-center z-50 p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="glass-card max-w-lg w-full rounded-2xl p-6 border-slate-700 shadow-2xl relative transform scale-95 transition-transform duration-300" id="infoModalContainer">
+            
+            <button onclick="toggleModal('infoModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="flex items-center space-x-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl border border-cyan-500/30">
+                    <i class="fa-solid fa-folder-open"></i>
+                </div>
+                <div>
+                    <h3 class="font-arcade text-lg font-bold text-white">Arcade Setup Guide</h3>
+                    <p class="text-xs text-slate-400">How to run games locally in 3 quick steps</p>
+                </div>
+            </div>
+
+            <div class="space-y-3 text-xs text-slate-300 leading-relaxed mb-6">
+                <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800 flex items-start space-x-3">
+                    <span class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 font-bold flex items-center justify-center shrink-0">1</span>
+                    <p><strong class="text-white">Save Files:</strong> Download or save this landing page (<code class="text-cyan-300">index.html</code>) and all 5 individual game HTML files into the <u class="text-amber-300">same folder</u> on your device.</p>
+                </div>
+
+                <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800 flex items-start space-x-3">
+                    <span class="w-6 h-6 rounded-full bg-pink-500/20 text-pink-400 font-bold flex items-center justify-center shrink-0">2</span>
+                    <p><strong class="text-white">Double Click to Launch:</strong> Open this portal in any modern Web Browser (Chrome, Edge, Safari, Firefox). No web server, Node.js, or internet connection needed!</p>
+                </div>
+
+                <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800 flex items-start space-x-3">
+                    <span class="w-6 h-6 rounded-full bg-lime-500/20 text-lime-400 font-bold flex items-center justify-center shrink-0">3</span>
+                    <p><strong class="text-white">Instant Play:</strong> Click any card's launch button. The game opens in a clean new tab, ready for student or classroom interactive projection!</p>
+                </div>
+            </div>
+
+            <button onclick="toggleModal('infoModal')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs uppercase tracking-wider transition-all">
+                Got It! Back to Arcade
+            </button>
+        </div>
+    </div>
+
+    <footer class="relative z-10 border-t border-slate-800/80 bg-slate-950/80 backdrop-blur-sm py-6 text-center text-xs text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-microchip text-cyan-400"></i>
+                <span class="font-medium text-slate-300">Built with AI Agents & Gemini Canvas</span>
+                <span class="text-slate-600">•</span>
+                <span class="text-slate-400">Single-Page HTML5 App Hub</span>
+            </div>
+            
+            <div class="text-slate-500 text-[11px]">
+                Offline Compatible • Touch Friendly • Zero Dependencies
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* Retro Web Audio API Sound Effects Synthesizer */
+        let sfxEnabled = true;
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) {
+                    audioCtx = new AudioContext();
+                }
+            }
+        }
+
+        function playRetroSound(type) {
+            if (!sfxEnabled) return;
+            try {
+                initAudio();
+                if (!audioCtx) return;
+                
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                const now = audioCtx.currentTime;
+
+                if (type === 'hover') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(300, now);
+                    osc.frequency.exponentialRampToValueAtTime(600, now + 0.05);
+                    gain.gain.setValueAtTime(0.02, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+                    osc.start(now);
+                    osc.stop(now + 0.05);
+                } else if (type === 'click') {
+                    osc.type = 'square';
+                    osc.frequency.setValueAtTime(150, now);
+                    osc.frequency.setValueAtTime(300, now + 0.04);
+                    gain.gain.setValueAtTime(0.04, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+                    osc.start(now);
+                    osc.stop(now + 0.1);
+                } else if (type === 'toggle') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(500, now);
+                    osc.frequency.exponentialRampToValueAtTime(250, now + 0.08);
+                    gain.gain.setValueAtTime(0.03, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+                    osc.start(now);
+                    osc.stop(now + 0.08);
+                }
+            } catch (e) {
+                console.log('Audio error:', e);
+            }
+        }
+
+        /* Sound Toggle Logic */
+        const soundBtn = document.getElementById('soundToggleBtn');
+        const soundIcon = document.getElementById('soundIcon');
+        const soundStatus = document.getElementById('soundStatus');
+
+        soundBtn.addEventListener('click', () => {
+            sfxEnabled = !sfxEnabled;
+            if (sfxEnabled) {
+                soundIcon.className = "fa-solid fa-volume-high text-cyan-400";
+                soundStatus.textContent = "SFX: ON";
+                playRetroSound('toggle');
+            } else {
+                soundIcon.className = "fa-solid fa-volume-xmark text-slate-500";
+                soundStatus.textContent = "SFX: OFF";
+            }
+        });
+
+        /* Play Tracker in localStorage */
+        function recordPlay(gameTitle) {
+            playRetroSound('click');
+            let plays = JSON.parse(localStorage.getItem('arcade_plays') || '{}');
+            plays[gameTitle] = (plays[gameTitle] || 0) + 1;
+            localStorage.setItem('arcade_plays', JSON.stringify(plays));
+            updatePlayCounts();
+        }
+
+        function updatePlayCounts() {
+            let plays = JSON.parse(localStorage.getItem('arcade_plays') || '{}');
+            const titles = [
+                'The Mystery Lab Escape',
+                'Space Racer',
+                'Classroom Alchemy',
+                'Tile Match Showdown',
+                'The Ultimate Classroom Game Show',
+                'Classroom Boss Battle'
+            ];
+            titles.forEach((title, idx) => {
+                const elem = document.getElementById(`playCount-${idx + 1}`);
+                if (elem) {
+                    const count = plays[title] || 0;
+                    elem.textContent = `Played ${count} time${count === 1 ? '' : 's'}`;
+                }
+            });
+        }
+
+        /* Favorites Toggle System */
+        function toggleFavorite(id) {
+            playRetroSound('click');
+            let favs = JSON.parse(localStorage.getItem('arcade_favs') || '[]');
+            const index = favs.indexOf(id);
+            if (index > -1) {
+                favs.splice(index, 1);
+            } else {
+                favs.push(id);
+            }
+            localStorage.setItem('arcade_favs', JSON.stringify(favs));
+            renderFavorites();
+        }
+
+        function renderFavorites() {
+            let favs = JSON.parse(localStorage.getItem('arcade_favs') || '[]');
+            for (let i = 1; i <= 6; i++) {
+                const icon = document.getElementById(`favIcon-${i}`);
+                if (icon) {
+                    if (favs.includes(i)) {
+                        icon.className = "fa-solid fa-star text-amber-400";
+                    } else {
+                        icon.className = "fa-regular fa-star text-slate-500";
+                    }
+                }
+            }
+        }
+
+        /* Category Filtering & Search */
+        let currentCategory = 'all';
+
+        function filterCategory(cat) {
+            playRetroSound('click');
+            currentCategory = cat;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.getAttribute('data-cat') === cat) {
+                    btn.className = "filter-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20";
+                } else {
+                    btn.className = "filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800/80 text-slate-300 hover:bg-slate-700/80 hover:text-white border border-slate-700/60 transition-all";
+                }
+            });
+            applyFilters();
+        }
+
+        function handleSearch() {
+            applyFilters();
+        }
+
+        function resetFilters() {
+            document.getElementById('searchInput').value = '';
+            filterCategory('all');
+        }
+
+        function applyFilters() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.game-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const cat = card.getAttribute('data-category');
+                const title = card.getAttribute('data-title');
+
+                const matchesCat = (currentCategory === 'all' || cat === currentCategory);
+                const matchesQuery = !query || title.includes(query);
+
+                if (matchesCat && matchesQuery) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            const noRes = document.getElementById('noResults');
+            if (visibleCount === 0) {
+                noRes.classList.remove('hidden');
+            } else {
+                noRes.classList.add('hidden');
+            }
+        }
+
+        /* Banner Dismiss Logic */
+        function dismissBanner() {
+            playRetroSound('click');
+            const banner = document.getElementById('instructionBanner');
+            banner.style.opacity = '0';
+            banner.style.maxHeight = '0px';
+            banner.style.marginBottom = '0px';
+            setTimeout(() => banner.style.display = 'none', 500);
+            localStorage.setItem('arcade_banner_dismissed', 'true');
+        }
+
+        /* Modal Toggle Logic */
+        function toggleModal(modalId) {
+            playRetroSound('click');
+            const modal = document.getElementById(modalId);
+            const container = document.getElementById(modalId + 'Container');
+            if (modal.classList.contains('pointer-events-none')) {
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                container.classList.remove('scale-95');
+                container.classList.add('scale-100');
+            } else {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                container.classList.remove('scale-100');
+                container.classList.add('scale-95');
+            }
+        }
+
+        /* Background Particle Canvas Animation */
+        function initBackgroundCanvas() {
+            const canvas = document.getElementById('bgCanvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+
+            window.addEventListener('resize', resize);
+            resize();
+
+            // Create particles
+            for (let i = 0; i < 35; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 2 + 0.5,
+                    color: ['#00f0ff', '#ff007f', '#ffd700', '#39ff14'][Math.floor(Math.random() * 4)],
+                    vx: (Math.random() - 0.5) * 0.4,
+                    vy: (Math.random() - 0.5) * 0.4,
+                    alpha: Math.random() * 0.5 + 0.2
+                });
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    if (p.x < 0) p.x = width;
+                    if (p.x > width) p.x = 0;
+                    if (p.y < 0) p.y = height;
+                    if (p.y > height) p.y = 0;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.globalAlpha = p.alpha;
+                    ctx.shadowBlur = 8;
+                    ctx.shadowColor = p.color;
+                    ctx.fill();
+                });
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        }
+
+        /* Attach audio sound triggers to interactive elements */
+        function setupSoundTriggers() {
+            document.querySelectorAll('a, button, .game-card').forEach(elem => {
+                elem.addEventListener('mouseenter', () => playRetroSound('hover'));
+            });
+        }
+
+        /* On Window Load Setup */
+        window.onload = function() {
+            initBackgroundCanvas();
+            updatePlayCounts();
+            renderFavorites();
+            setupSoundTriggers();
+
+            // Check banner state
+            if (localStorage.getItem('arcade_banner_dismissed') === 'true') {
+                const banner = document.getElementById('instructionBanner');
+                if (banner) banner.style.display = 'none';
+            }
+        };
+    </script>
+</body>
+</html>
