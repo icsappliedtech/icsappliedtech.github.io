@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science Studio • Classroom Dashboard</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        science: {
+                            50: '#ecfeff',
+                            100: '#cffafe',
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                            900: '#164e63',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #090d16;
+            color: #f1f5f9;
+        }
+
+        /* Glassmorphism effects for Dark Mode */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(51, 65, 85, 0.6);
+        }
+
+        .glass-card-accent {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+        }
+
+        /* Smooth timer progress transitions */
+        .timer-circle-progress {
+            transition: stroke-dashoffset 0.3s ease, stroke 0.3s ease;
+        }
+
+        /* Glowing background ambient lights */
+        .ambient-glow {
+            position: absolute;
+            border-radius: 9999px;
+            filter: blur(80px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-slate-100 flex flex-col justify-between selection:bg-cyan-500 selection:text-slate-950 relative overflow-x-hidden">
+
+    <div class="ambient-glow w-96 h-96 bg-cyan-500 top-0 left-10"></div>
+    <div class="ambient-glow w-96 h-96 bg-emerald-500 bottom-10 right-10"></div>
+    <div class="ambient-glow w-80 h-80 bg-violet-600 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+
+    <header class="w-full bg-slate-900/90 border-b border-slate-800 sticky top-0 z-30 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col sm:flex-row items-center justify-between gap-3">
+            
+            <!-- Logo & Title -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-cyan-500 to-emerald-400 flex items-center justify-center text-slate-950 font-black shadow-lg shadow-cyan-500/20">
+                    <i class="fa-solid fa-atom text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-white tracking-tight leading-none flex items-center gap-2">
+                        Science Lab Studio <span class="text-xs px-2 py-0.5 rounded-full bg-cyan-950 border border-cyan-800 text-cyan-400 font-semibold">AP / Honors</span>
+                    </h1>
+                    <p class="text-xs font-medium text-slate-400 mt-0.5">High School Interactive Dashboard</p>
+                </div>
+            </div>
+
+            <!-- Subject Quick Tag & Live Clock -->
+            <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
+                <div class="bg-slate-800/80 border border-slate-700/80 text-emerald-400 px-3.5 py-1.5 rounded-full text-xs font-semibold flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span id="classPeriodText">Period 3 • AP Physics & Chemistry</span>
+                </div>
+
+                <div class="text-right">
+                    <div id="liveClock" class="text-lg font-bold text-cyan-300 tracking-wide font-mono leading-none">00:00:00 AM</div>
+                    <div id="liveDate" class="text-[11px] font-medium text-slate-400 mt-0.5">Loading date...</div>
+                </div>
+
+                <!-- Fullscreen Toggle Button -->
+                <button id="fullscreenBtn" title="Toggle Fullscreen for SMART Board" class="p-2 rounded-xl text-slate-400 hover:text-cyan-400 hover:bg-slate-800 transition-colors">
+                    <i class="fa-solid fa-expand text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 w-full flex-grow z-10">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
+
+            <!-- LEFT COLUMN: Timer, Bellringer & Exit Ticket Generator (7 cols) -->
+            <div class="lg:col-span-7 flex flex-col gap-6 sm:gap-8">
+                
+                <!-- FEATURE 1: Interactive Science Lab Timer -->
+                <section class="glass-card rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden transition-all duration-300">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-9 h-9 rounded-xl bg-cyan-950/80 border border-cyan-800/60 text-cyan-400 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-stopwatch"></i>
+                            </div>
+                            <h2 class="text-lg sm:text-xl font-bold text-white">Lab & Activity Timer</h2>
+                        </div>
+                        <span id="timerStatusBadge" class="text-xs font-semibold px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
+                            Ready
+                        </span>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-around gap-6 py-2">
+                        <!-- SVG Progress Dial -->
+                        <div class="relative w-56 h-56 flex items-center justify-center">
+                            <svg class="w-full h-full -rotate-90 transform" viewBox="0 0 100 100">
+                                <!-- Background Track -->
+                                <circle cx="50" cy="50" r="42" stroke="currentColor" stroke-width="7" class="text-slate-800" fill="transparent" />
+                                <!-- Progress Ring -->
+                                <circle id="timerRing" cx="50" cy="50" r="42" stroke="currentColor" stroke-width="7" 
+                                        stroke-dasharray="263.89" stroke-dashoffset="0" stroke-linecap="round"
+                                        class="text-cyan-400 timer-circle-progress" fill="transparent" />
+                            </svg>
+                            <!-- Time Display Inside Ring -->
+                            <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+                                <span id="timerDisplay" class="text-4xl sm:text-5xl font-black text-white font-mono tracking-tighter">
+                                    05:00
+                                </span>
+                                <span id="timerSubtext" class="text-xs font-semibold text-cyan-400/80 mt-1 uppercase tracking-wider">Experiment Time</span>
+                            </div>
+                        </div>
+
+                        <!-- Timer Controls & Quick Presets -->
+                        <div class="flex flex-col justify-center items-center sm:items-start w-full sm:w-auto gap-4">
+                            <!-- Quick Set Preset Buttons -->
+                            <div class="w-full">
+                                <label class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-2 text-center sm:text-left">Lab Presets</label>
+                                <div class="grid grid-cols-3 gap-2 w-full">
+                                    <button onclick="setTimerPreset(60)" class="preset-btn px-3 py-2 rounded-xl bg-slate-800 hover:bg-cyan-950 hover:text-cyan-300 border border-slate-700 font-semibold text-xs sm:text-sm text-slate-200 transition-all text-center">
+                                        1 Min
+                                    </button>
+                                    <button onclick="setTimerPreset(300)" class="preset-btn px-3 py-2 rounded-xl bg-cyan-950 text-cyan-300 border border-cyan-800 font-bold text-xs sm:text-sm transition-all text-center">
+                                        5 Min
+                                    </button>
+                                    <button onclick="setTimerPreset(600)" class="preset-btn px-3 py-2 rounded-xl bg-slate-800 hover:bg-cyan-950 hover:text-cyan-300 border border-slate-700 font-semibold text-xs sm:text-sm text-slate-200 transition-all text-center">
+                                        10 Min
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Custom Adjustment Buttons -->
+                            <div class="flex items-center gap-2 w-full justify-center sm:justify-start">
+                                <button onclick="adjustTime(-30)" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium border border-slate-700 transition-colors" title="Subtract 30s">
+                                    -30s
+                                </button>
+                                <button onclick="adjustTime(30)" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium border border-slate-700 transition-colors" title="Add 30s">
+                                    +30s
+                                </button>
+                                <button onclick="adjustTime(300)" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium border border-slate-700 transition-colors" title="Add 5m">
+                                    +5m
+                                </button>
+                            </div>
+
+                            <!-- Action Buttons: Start / Pause / Reset -->
+                            <div class="flex items-center gap-3 w-full mt-2">
+                                <button id="startPauseBtn" onclick="toggleTimer()" class="flex-1 py-3 px-5 rounded-2xl bg-cyan-500 hover:bg-cyan-400 active:bg-cyan-600 text-slate-950 font-black text-sm shadow-lg shadow-cyan-500/20 transition-all flex items-center justify-center gap-2">
+                                    <i id="startPauseIcon" class="fa-solid fa-play"></i>
+                                    <span id="startPauseLabel">Start</span>
+                                </button>
+                                <button onclick="resetTimer()" class="py-3 px-4 rounded-2xl bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-slate-200 border border-slate-700 font-semibold text-sm transition-all" title="Reset Timer">
+                                    <i class="fa-solid fa-rotate-left"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FEATURE 2: High School Science Bellringer Card -->
+                <section class="glass-card rounded-3xl p-6 sm:p-8 shadow-2xl border-t-4 border-t-emerald-400 relative">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-9 h-9 rounded-xl bg-emerald-950/80 border border-emerald-800/60 text-emerald-400 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-flask-vial"></i>
+                            </div>
+                            <h2 class="text-lg sm:text-xl font-bold text-white">Today's Science Bellringer</h2>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <!-- Science Subject Category Selector -->
+                            <select id="bellringerCategory" onchange="changeBellringerCategory()" class="bg-slate-800 border border-slate-700 text-emerald-300 text-xs font-semibold rounded-xl px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-emerald-400 cursor-pointer">
+                                <option value="physics">AP Physics</option>
+                                <option value="chemistry">Honors Chemistry</option>
+                                <option value="biology">AP Biology</option>
+                                <option value="environmental">Earth & Environmental</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Question Container -->
+                    <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 mb-5 relative">
+                        <p id="bellringerSubject" class="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-1">Topic: Newton's Laws & Mechanics</p>
+                        <h3 id="bellringerQuestion" class="text-base sm:text-lg font-medium text-slate-100 leading-relaxed font-sans">
+                            A 1,200 kg car accelerates from rest to 20 m/s in 5 seconds. What net force was exerted on the car?
+                        </h3>
+                    </div>
+
+                    <!-- Answer Section (Hidden by default) -->
+                    <div class="flex flex-col gap-3">
+                        <div id="answerBox" class="hidden bg-emerald-950/40 border border-emerald-800/80 rounded-2xl p-4 text-emerald-100 transition-all duration-300">
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-emerald-400 text-lg mt-0.5"></i>
+                                <div>
+                                    <span class="font-bold text-xs uppercase tracking-wider text-emerald-400 block mb-0.5">Solution & Answer</span>
+                                    <p id="bellringerAnswer" class="text-sm sm:text-base font-semibold font-mono text-emerald-200">
+                                        F = m × a. Acceleration = (20 - 0) / 5 = 4 m/s². Force = 1,200 kg × 4 m/s² = 4,800 N.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between gap-3">
+                            <button id="revealAnswerBtn" onclick="toggleAnswer()" class="flex-1 py-3 px-5 rounded-2xl bg-emerald-500 hover:bg-emerald-400 active:bg-emerald-600 text-slate-950 font-bold text-sm shadow-lg shadow-emerald-500/20 transition-all flex items-center justify-center gap-2">
+                                <i id="revealIcon" class="fa-solid fa-eye"></i>
+                                <span id="revealText">Reveal Solution</span>
+                            </button>
+                            
+                            <button onclick="nextBellringerQuestion()" class="py-3 px-4 rounded-2xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2" title="Next Science Problem">
+                                <i class="fa-solid fa-shuffle"></i>
+                                <span class="hidden sm:inline">Next Problem</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FEATURE 3: Exit Ticket Generator Card (NEW) -->
+                <section class="glass-card rounded-3xl p-6 sm:p-8 shadow-2xl border-t-4 border-t-violet-500 relative">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-9 h-9 rounded-xl bg-violet-950/80 border border-violet-800/60 text-violet-400 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-ticket"></i>
+                            </div>
+                            <h2 class="text-lg sm:text-xl font-bold text-white">Exit Ticket Generator</h2>
+                        </div>
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-violet-950 text-violet-300 border border-violet-800">
+                            4 Critical Prompts
+                        </span>
+                    </div>
+
+                    <!-- Prompt Selector Tabs -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4">
+                        <button onclick="selectExitTicketPrompt(0)" id="promptTab-0" class="prompt-tab-btn p-2 rounded-xl bg-violet-950/80 text-violet-300 border border-violet-700 font-bold text-xs text-center transition-all">
+                            1. Hypothesis & Error
+                        </button>
+                        <button onclick="selectExitTicketPrompt(1)" id="promptTab-1" class="prompt-tab-btn p-2 rounded-xl bg-slate-800/80 text-slate-400 border border-slate-700 font-semibold text-xs text-center hover:bg-slate-700 transition-all">
+                            2. Synthesis
+                        </button>
+                        <button onclick="selectExitTicketPrompt(2)" id="promptTab-2" class="prompt-tab-btn p-2 rounded-xl bg-slate-800/80 text-slate-400 border border-slate-700 font-semibold text-xs text-center hover:bg-slate-700 transition-all">
+                            3. Real-World
+                        </button>
+                        <button onclick="selectExitTicketPrompt(3)" id="promptTab-3" class="prompt-tab-btn p-2 rounded-xl bg-slate-800/80 text-slate-400 border border-slate-700 font-semibold text-xs text-center hover:bg-slate-700 transition-all">
+                            4. Muddiest Point
+                        </button>
+                    </div>
+
+                    <!-- Selected Exit Ticket Box -->
+                    <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 mb-4 relative min-h-[110px] flex flex-col justify-center">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span id="exitTicketCategoryBadge" class="text-[11px] font-extrabold uppercase tracking-widest text-violet-400 bg-violet-950/80 border border-violet-800 px-2.5 py-0.5 rounded-full">
+                                Reflection Prompt #1
+                            </span>
+                            <span class="text-xs text-slate-500 font-mono">Submit on Canvas / Index Card</span>
+                        </div>
+                        <h3 id="exitTicketText" class="text-base sm:text-lg font-semibold text-white leading-snug">
+                            "How did today's experimental data either support or contradict your initial hypothesis? Identify one potential source of systematic error."
+                        </h3>
+                    </div>
+
+                    <!-- Generator Action Controls -->
+                    <div class="flex items-center gap-3">
+                        <button onclick="generateRandomExitTicket()" class="flex-1 py-3 px-5 rounded-2xl bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-violet-500/20 transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-dice"></i>
+                            <span>Randomize Exit Prompt</span>
+                        </button>
+
+                        <button onclick="copyExitTicketToClipboard()" class="py-3 px-4 rounded-2xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2" title="Copy to Clipboard">
+                            <i class="fa-solid fa-copy"></i>
+                            <span id="copyBtnText" class="hidden sm:inline">Copy Text</span>
+                        </button>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- RIGHT COLUMN: Interactive Lab Safety Checklist & Random Student Name Picker (5 cols) -->
+            <div class="lg:col-span-5 flex flex-col gap-6 sm:gap-8">
+                
+                <!-- FEATURE 4: Interactive Today's Lab Safety Steps Checklist (NEW) -->
+                <section class="glass-card rounded-3xl p-6 sm:p-8 shadow-2xl border-t-4 border-t-amber-400">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-9 h-9 rounded-xl bg-amber-950/80 border border-amber-800/60 text-amber-400 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-lg font-bold text-white">Lab Safety Checklist</h2>
+                                <p class="text-xs text-slate-400">Required before start of experiment</p>
+                            </div>
+                        </div>
+                        <button onclick="resetLabSafetyChecklist()" class="text-xs font-semibold text-amber-400 hover:underline">
+                            Reset All
+                        </button>
+                    </div>
+
+                    <!-- Safety Readiness Progress Bar -->
+                    <div class="mb-5 bg-slate-900 border border-slate-800 rounded-2xl p-3">
+                        <div class="flex justify-between items-center mb-1.5 text-xs font-bold">
+                            <span class="text-slate-300">Lab Readiness Status</span>
+                            <span id="safetyProgressPercent" class="text-amber-400 font-mono">0% Completed</span>
+                        </div>
+                        <div class="w-full bg-slate-800 rounded-full h-2.5 overflow-hidden">
+                            <div id="safetyProgressBar" class="bg-gradient-to-r from-amber-500 to-emerald-400 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Checklist Items List -->
+                    <ul id="labSafetyList" class="space-y-2.5">
+                        <li class="flex items-start gap-3 p-3 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 transition-colors cursor-pointer" onclick="toggleSafetyCheck(0)">
+                            <input type="checkbox" id="safetyCheck-0" class="mt-0.5 w-4 h-4 rounded border-slate-700 text-amber-500 focus:ring-amber-400 bg-slate-800 cursor-pointer" onchange="updateSafetyProgress()">
+                            <div class="flex-grow">
+                                <span class="text-xs sm:text-sm font-semibold text-slate-200 block">ANSI Z87.1 Splash Goggles & Aprons On</span>
+                                <span class="text-[11px] text-slate-400">Eye and clothing protection mandatory at lab stations.</span>
+                            </div>
+                        </li>
+
+                        <li class="flex items-start gap-3 p-3 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 transition-colors cursor-pointer" onclick="toggleSafetyCheck(1)">
+                            <input type="checkbox" id="safetyCheck-1" class="mt-0.5 w-4 h-4 rounded border-slate-700 text-amber-500 focus:ring-amber-400 bg-slate-800 cursor-pointer" onchange="updateSafetyProgress()">
+                            <div class="flex-grow">
+                                <span class="text-xs sm:text-sm font-semibold text-slate-200 block">Inspect Glassware for Cracks or Chips</span>
+                                <span class="text-[11px] text-slate-400">Dispose damaged glass in yellow sharp containers.</span>
+                            </div>
+                        </li>
+
+                        <li class="flex items-start gap-3 p-3 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 transition-colors cursor-pointer" onclick="toggleSafetyCheck(2)">
+                            <input type="checkbox" id="safetyCheck-2" class="mt-0.5 w-4 h-4 rounded border-slate-700 text-amber-500 focus:ring-amber-400 bg-slate-800 cursor-pointer" onchange="updateSafetyProgress()">
+                            <div class="flex-grow">
+                                <span class="text-xs sm:text-sm font-semibold text-slate-200 block">Locate Eye-Wash & Safety Shower</span>
+                                <span class="text-[11px] text-slate-400">Verify clear paths to emergency wash stations.</span>
+                            </div>
+                        </li>
+
+                        <li class="flex items-start gap-3 p-3 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 transition-colors cursor-pointer" onclick="toggleSafetyCheck(3)">
+                            <input type="checkbox" id="safetyCheck-3" class="mt-0.5 w-4 h-4 rounded border-slate-700 text-amber-500 focus:ring-amber-400 bg-slate-800 cursor-pointer" onchange="updateSafetyProgress()">
+                            <div class="flex-grow">
+                                <span class="text-xs sm:text-sm font-semibold text-slate-200 block">Check Fume Hood & Chemical Waste Bins</span>
+                                <span class="text-[11px] text-slate-400">Turn on ventilation before handling volatile reagents.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- FEATURE 5: Random Student Name Picker (Lab Partner / Cold Call) -->
+                <section class="glass-card rounded-3xl p-6 sm:p-8 shadow-2xl border-t-4 border-t-cyan-500 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-9 h-9 rounded-xl bg-cyan-950/80 border border-cyan-800/60 text-cyan-400 flex items-center justify-center font-bold">
+                                    <i class="fa-solid fa-microscope"></i>
+                                </div>
+                                <h2 class="text-lg sm:text-xl font-bold text-white">Lab Partner Picker</h2>
+                            </div>
+                            <span id="studentCountBadge" class="text-xs font-bold text-cyan-400 bg-cyan-950/80 border border-cyan-800 px-2.5 py-1 rounded-full">
+                                5 Students
+                            </span>
+                        </div>
+
+                        <!-- Selected Student Highlight Spotlight -->
+                        <div id="pickerSpotlight" class="bg-slate-900/90 border-2 border-dashed border-cyan-500/40 rounded-2xl p-6 mb-6 text-center transition-all duration-300 min-h-[120px] flex flex-col items-center justify-center relative overflow-hidden">
+                            <div id="spotlightDefaultState" class="text-center">
+                                <div class="w-12 h-12 rounded-full bg-cyan-950/80 border border-cyan-800 text-cyan-400 flex items-center justify-center mx-auto mb-2 text-xl">
+                                    <i class="fa-solid fa-user-astronaut"></i>
+                                </div>
+                                <p class="text-xs font-semibold text-slate-400">Select student for lab demonstration</p>
+                            </div>
+
+                            <div id="spotlightActiveState" class="hidden text-center z-10">
+                                <span class="text-[10px] font-extrabold uppercase tracking-widest text-cyan-400 bg-cyan-950 border border-cyan-800 px-2.5 py-0.5 rounded-full inline-block mb-1">
+                                    Selected Student / Lab Lead
+                                </span>
+                                <h3 id="selectedStudentName" class="text-3xl font-black text-cyan-300 tracking-tight scale-100 transition-transform">
+                                    Alex
+                                </h3>
+                            </div>
+                        </div>
+
+                        <!-- List of Active Student Chips -->
+                        <div class="mb-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">Class Roster</label>
+                                <button onclick="toggleEditRoster()" class="text-xs font-semibold text-cyan-400 hover:text-cyan-300 flex items-center gap-1">
+                                    <i class="fa-solid fa-pen-to-square"></i> <span id="editRosterBtnText">Edit Roster</span>
+                                </button>
+                            </div>
+
+                            <!-- Interactive Chips Container -->
+                            <div id="studentChipContainer" class="flex flex-wrap gap-2 max-h-48 overflow-y-auto p-1">
+                                <!-- Pre-filled with Alex, Jordan, Taylor, Morgan, Sam dynamically -->
+                            </div>
+
+                            <!-- Edit Roster Input Box (Hidden by default) -->
+                            <div id="rosterEditArea" class="hidden mt-3">
+                                <p class="text-xs text-slate-400 mb-1">Enter student names separated by commas:</p>
+                                <textarea id="rosterInput" rows="3" class="w-full text-xs sm:text-sm p-3 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 focus:ring-2 focus:ring-cyan-500 focus:outline-none font-mono" placeholder="Alex, Jordan, Taylor, Morgan, Sam"></textarea>
+                                <div class="flex justify-end gap-2 mt-2">
+                                    <button onclick="saveRoster()" class="px-3 py-1.5 rounded-lg bg-cyan-500 text-slate-950 text-xs font-bold hover:bg-cyan-400">Save List</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trigger Button -->
+                    <div class="mt-4">
+                        <button id="pickStudentBtn" onclick="pickRandomStudent()" class="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-cyan-500 to-emerald-400 hover:from-cyan-400 hover:to-emerald-300 active:scale-[0.99] text-slate-950 font-black text-base shadow-lg shadow-cyan-500/20 transition-all flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <span>Pick Random Student</span>
+                        </button>
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="w-full bg-slate-900/80 border-t border-slate-800 py-4 mt-8 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs font-semibold text-slate-400 flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div>High School Science Studio • Interactive SMART Board Dashboard</div>
+            <div class="text-cyan-400/80 font-mono">AP Physics • Chemistry • Biology • Earth Science</div>
+        </div>
+    </footer>
+
+    <script>
+        // Web Audio Synthesizer for Lab SFX
+        class SoundFX {
+            constructor() {
+                this.ctx = null;
+            }
+
+            init() {
+                if (!this.ctx) {
+                    this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+            }
+
+            playTick() {
+                try {
+                    this.init();
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(900, this.ctx.currentTime);
+                    gain.gain.setValueAtTime(0.04, this.ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.04);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start();
+                    osc.stop(this.ctx.currentTime + 0.04);
+                } catch (e) {}
+            }
+
+            playPop() {
+                try {
+                    this.init();
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(400, this.ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(800, this.ctx.currentTime + 0.07);
+                    gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.07);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start();
+                    osc.stop(this.ctx.currentTime + 0.07);
+                } catch (e) {}
+            }
+
+            playFinishChime() {
+                try {
+                    this.init();
+                    const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+                    notes.forEach((freq, idx) => {
+                        const osc = this.ctx.createOscillator();
+                        const gain = this.ctx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(freq, this.ctx.currentTime + idx * 0.12);
+                        gain.gain.setValueAtTime(0.12, this.ctx.currentTime + idx * 0.12);
+                        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + idx * 0.12 + 0.5);
+                        osc.connect(gain);
+                        gain.connect(this.ctx.destination);
+                        osc.start(this.ctx.currentTime + idx * 0.12);
+                        osc.stop(this.ctx.currentTime + idx * 0.12 + 0.5);
+                    });
+                } catch (e) {}
+            }
+        }
+
+        const sounds = new SoundFX();
+
+        // Live Clock Updater
+        function updateClock() {
+            const now = new Date();
+            const clockEl = document.getElementById('liveClock');
+            const dateEl = document.getElementById('liveDate');
+
+            if (clockEl) {
+                clockEl.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            }
+            if (dateEl) {
+                dateEl.textContent = now.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+            }
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Fullscreen Toggle Helper
+        document.getElementById('fullscreenBtn').addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {});
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        });
+
+        // ==========================================
+        // FEATURE 1: TIMER MODULE LOGIC
+        // ==========================================
+        let timerTotalSeconds = 300; // Default 5 mins
+        let timerRemainingSeconds = 300;
+        let timerInterval = null;
+        let isTimerRunning = false;
+
+        const timerDisplay = document.getElementById('timerDisplay');
+        const timerRing = document.getElementById('timerRing');
+        const startPauseBtn = document.getElementById('startPauseBtn');
+        const startPauseIcon = document.getElementById('startPauseIcon');
+        const startPauseLabel = document.getElementById('startPauseLabel');
+        const timerStatusBadge = document.getElementById('timerStatusBadge');
+        const fullCircumference = 263.89; // 2 * PI * 42
+
+        function updateTimerUI() {
+            const mins = Math.floor(timerRemainingSeconds / 60);
+            const secs = timerRemainingSeconds % 60;
+            timerDisplay.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+            // Update Circle Ring Progress
+            const fraction = timerRemainingSeconds / timerTotalSeconds;
+            const offset = fullCircumference - (fraction * fullCircumference);
+            timerRing.style.strokeDashoffset = isNaN(offset) ? 0 : offset;
+
+            // Change color if under 30 seconds
+            if (timerRemainingSeconds <= 30 && isTimerRunning) {
+                timerRing.classList.remove('text-cyan-400');
+                timerRing.classList.add('text-rose-500');
+            } else {
+                timerRing.classList.remove('text-rose-500');
+                timerRing.classList.add('text-cyan-400');
+            }
+        }
+
+        function setTimerPreset(seconds) {
+            pauseTimer();
+            timerTotalSeconds = seconds;
+            timerRemainingSeconds = seconds;
+            updateTimerUI();
+            timerStatusBadge.textContent = 'Ready';
+            timerStatusBadge.className = 'text-xs font-semibold px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700';
+            sounds.playPop();
+        }
+
+        function adjustTime(deltaSeconds) {
+            timerRemainingSeconds = Math.max(0, timerRemainingSeconds + deltaSeconds);
+            if (timerRemainingSeconds > timerTotalSeconds) {
+                timerTotalSeconds = timerRemainingSeconds;
+            }
+            updateTimerUI();
+            sounds.playPop();
+        }
+
+        function toggleTimer() {
+            if (isTimerRunning) {
+                pauseTimer();
+            } else {
+                startTimer();
+            }
+        }
+
+        function startTimer() {
+            if (timerRemainingSeconds <= 0) return;
+
+            isTimerRunning = true;
+            startPauseIcon.className = 'fa-solid fa-pause';
+            startPauseLabel.textContent = 'Pause';
+            startPauseBtn.className = 'flex-1 py-3 px-5 rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-sm shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center gap-2';
+            
+            timerStatusBadge.textContent = 'Experiment Active';
+            timerStatusBadge.className = 'text-xs font-semibold px-3 py-1 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800 animate-pulse';
+
+            timerInterval = setInterval(() => {
+                if (timerRemainingSeconds > 0) {
+                    timerRemainingSeconds--;
+                    updateTimerUI();
+                } else {
+                    handleTimerComplete();
+                }
+            }, 1000);
+
+            sounds.playPop();
+        }
+
+        function pauseTimer() {
+            isTimerRunning = false;
+            clearInterval(timerInterval);
+            startPauseIcon.className = 'fa-solid fa-play';
+            startPauseLabel.textContent = 'Start';
+            startPauseBtn.className = 'flex-1 py-3 px-5 rounded-2xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-sm shadow-lg shadow-cyan-500/20 transition-all flex items-center justify-center gap-2';
+
+            if (timerRemainingSeconds > 0) {
+                timerStatusBadge.textContent = 'Paused';
+                timerStatusBadge.className = 'text-xs font-semibold px-3 py-1 rounded-full bg-amber-950 text-amber-300 border border-amber-800';
+            }
+        }
+
+        function resetTimer() {
+            pauseTimer();
+            timerRemainingSeconds = timerTotalSeconds;
+            updateTimerUI();
+            timerStatusBadge.textContent = 'Reset';
+            timerStatusBadge.className = 'text-xs font-semibold px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700';
+            sounds.playPop();
+        }
+
+        function handleTimerComplete() {
+            pauseTimer();
+            timerStatusBadge.textContent = 'Time Expired!';
+            timerStatusBadge.className = 'text-xs font-bold px-3 py-1 rounded-full bg-rose-500 text-white border border-rose-600 animate-bounce';
+            
+            sounds.playFinishChime();
+
+            confetti({
+                particleCount: 90,
+                spread: 80,
+                origin: { y: 0.6 }
+            });
+        }
+
+        // ==========================================
+        // FEATURE 2: HIGH SCHOOL SCIENCE BELLRINGERS
+        // ==========================================
+        const bellringerQuestions = {
+            physics: [
+                { q: "A 1,200 kg car accelerates from rest to 20 m/s in 5 seconds. What net force was exerted on the car?", a: "F = m × a → a = 20/5 = 4 m/s² → F = 1200 × 4 = 4,800 N." },
+                { q: "Calculate the kinetic energy of a 0.5 kg projectile moving at a velocity of 40 m/s.", a: "KE = ½mv² = 0.5 × 0.5 kg × (40 m/s)² = 0.25 × 1600 = 400 Joules." },
+                { q: "Light travels from air (n=1.0) into glass (n=1.5) at an angle of 30°. Will the ray bend toward or away from the normal line?", a: "Bends TOWARD the normal line (entering a medium with higher refractive index)." }
+            ],
+            chemistry: [
+                { q: "Balance the combustion equation: __ C₃H₈ + __ O₂ → __ CO₂ + __ H₂O", a: "1 C₃H₈ + 5 O₂ → 3 CO₂ + 4 H₂O" },
+                { q: "What is the pH of a 0.001 M solution of Hydrochloric acid (HCl)?", a: "pH = -log[H⁺] = -log(10⁻³) = 3.0" },
+                { q: "Which element has the highest electronegativity value on the Pauling scale?", a: "Fluorine (F) with a value of ~3.98." }
+            ],
+            biology: [
+                { q: "During which phase of meiosis does crossing over (genetic recombination) occur?", a: "Prophase I of Meiosis I." },
+                { q: "What is the net gain of ATP molecules produced per glucose molecule during Glycolysis alone?", a: "2 net ATP (4 produced, 2 consumed)." },
+                { q: "What enzyme synthesizes complementary mRNA strands from a DNA template during transcription?", a: "RNA Polymerase." }
+            ],
+            environmental: [
+                { q: "Explain the process of Eutrophication caused by excess nitrogen/phosphorus runoff.", a: "Nutrient runoff → Algal bloom → Sun blocked → Algae die → Bacteria consume O₂ → Hypoxia / Dead zones." },
+                { q: "Which atmospheric layer contains the beneficial Ozone Layer that absorbs solar UV radiation?", a: "The Stratosphere." }
+            ]
+        };
+
+        let currentCategory = 'physics';
+        let currentQuestionIndex = 0;
+        let isAnswerRevealed = false;
+
+        function updateBellringerUI() {
+            const currentList = bellringerQuestions[currentCategory];
+            const item = currentList[currentQuestionIndex];
+
+            const subjectTextMap = {
+                physics: "Topic: AP Physics • Dynamics & Energy",
+                chemistry: "Topic: Honors Chemistry • Equations & pH",
+                biology: "Topic: AP Biology • Cellular Genetics",
+                environmental: "Topic: Earth & Environmental Science"
+            };
+
+            document.getElementById('bellringerSubject').textContent = subjectTextMap[currentCategory];
+            document.getElementById('bellringerQuestion').textContent = item.q;
+            document.getElementById('bellringerAnswer').textContent = item.a;
+
+            hideAnswer();
+        }
+
+        function toggleAnswer() {
+            if (isAnswerRevealed) {
+                hideAnswer();
+            } else {
+                showAnswer();
+            }
+        }
+
+        function showAnswer() {
+            isAnswerRevealed = true;
+            document.getElementById('answerBox').classList.remove('hidden');
+            document.getElementById('revealText').textContent = 'Hide Solution';
+            document.getElementById('revealIcon').className = 'fa-solid fa-eye-slash';
+            sounds.playPop();
+        }
+
+        function hideAnswer() {
+            isAnswerRevealed = false;
+            document.getElementById('answerBox').classList.add('hidden');
+            document.getElementById('revealText').textContent = 'Reveal Solution';
+            document.getElementById('revealIcon').className = 'fa-solid fa-eye';
+        }
+
+        function changeBellringerCategory() {
+            currentCategory = document.getElementById('bellringerCategory').value;
+            currentQuestionIndex = 0;
+            updateBellringerUI();
+            sounds.playPop();
+        }
+
+        function nextBellringerQuestion() {
+            const currentList = bellringerQuestions[currentCategory];
+            currentQuestionIndex = (currentQuestionIndex + 1) % currentList.length;
+            updateBellringerUI();
+            sounds.playPop();
+        }
+
+        // ==========================================
+        // FEATURE 3: EXIT TICKET GENERATOR LOGIC
+        // ==========================================
+        const exitTicketPrompts = [
+            {
+                title: "1. Hypothesis & Error",
+                badge: "Reflection Prompt #1",
+                text: "\"How did today's experimental data either support or contradict your initial hypothesis? Identify one potential source of systematic error in your measurements.\""
+            },
+            {
+                title: "2. Synthesis",
+                badge: "Reflection Prompt #2",
+                text: "\"Explain today's core chemical/physical concept in your own words as if you were explaining it to a 9th-grade student who missed class today.\""
+            },
+            {
+                title: "3. Real-World",
+                badge: "Reflection Prompt #3",
+                text: "\"Describe one real-world technology, natural phenomenon, or industry process where the principle we studied today plays a vital role.\""
+            },
+            {
+                title: "4. Muddiest Point",
+                badge: "Reflection Prompt #4",
+                text: "\"What was the 'muddiest' or most confusing step in today's calculation or experiment? What specific question do you need answered before tomorrow's quiz?\""
+            }
+        ];
+
+        let currentExitTicketIndex = 0;
+
+        function selectExitTicketPrompt(index) {
+            currentExitTicketIndex = index;
+            const prompt = exitTicketPrompts[index];
+
+            document.getElementById('exitTicketCategoryBadge').textContent = prompt.badge;
+            document.getElementById('exitTicketText').textContent = prompt.text;
+
+            // Highlight tab buttons
+            for (let i = 0; i < 4; i++) {
+                const btn = document.getElementById(`promptTab-${i}`);
+                if (i === index) {
+                    btn.className = 'prompt-tab-btn p-2 rounded-xl bg-violet-950/80 text-violet-300 border border-violet-700 font-bold text-xs text-center transition-all';
+                } else {
+                    btn.className = 'prompt-tab-btn p-2 rounded-xl bg-slate-800/80 text-slate-400 border border-slate-700 font-semibold text-xs text-center hover:bg-slate-700 transition-all';
+                }
+            }
+
+            sounds.playPop();
+        }
+
+        function generateRandomExitTicket() {
+            let nextIndex = Math.floor(Math.random() * exitTicketPrompts.length);
+            if (nextIndex === currentExitTicketIndex) {
+                nextIndex = (currentExitTicketIndex + 1) % exitTicketPrompts.length;
+            }
+            selectExitTicketPrompt(nextIndex);
+        }
+
+        function copyExitTicketToClipboard() {
+            const promptText = document.getElementById('exitTicketText').textContent;
+            
+            // Clipboard fallback logic
+            const tempTextarea = document.createElement('textarea');
+            tempTextarea.value = promptText;
+            document.body.appendChild(tempTextarea);
+            tempTextarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextarea);
+
+            const copyBtnText = document.getElementById('copyBtnText');
+            copyBtnText.textContent = 'Copied!';
+            sounds.playPop();
+
+            setTimeout(() => {
+                copyBtnText.textContent = 'Copy Text';
+            }, 2000);
+        }
+
+        // ==========================================
+        // FEATURE 4: LAB SAFETY CHECKLIST LOGIC
+        // ==========================================
+        function toggleSafetyCheck(index) {
+            const checkbox = document.getElementById(`safetyCheck-${index}`);
+            if (event.target !== checkbox) {
+                checkbox.checked = !checkbox.checked;
+            }
+            updateSafetyProgress();
+        }
+
+        function updateSafetyProgress() {
+            const checkboxes = document.querySelectorAll('#labSafetyList input[type="checkbox"]');
+            let checkedCount = 0;
+
+            checkboxes.forEach((cb) => {
+                if (cb.checked) checkedCount++;
+            });
+
+            const percent = Math.round((checkedCount / checkboxes.length) * 100);
+            document.getElementById('safetyProgressPercent').textContent = `${percent}% Completed`;
+            document.getElementById('safetyProgressBar').style.width = `${percent}%`;
+
+            if (percent === 100) {
+                sounds.playFinishChime();
+                confetti({
+                    particleCount: 50,
+                    spread: 60,
+                    origin: { x: 0.8, y: 0.3 }
+                });
+            } else {
+                sounds.playPop();
+            }
+        }
+
+        function resetLabSafetyChecklist() {
+            const checkboxes = document.querySelectorAll('#labSafetyList input[type="checkbox"]');
+            checkboxes.forEach((cb) => {
+                cb.checked = false;
+            });
+            updateSafetyProgress();
+        }
+
+        // ==========================================
+        // FEATURE 5: RANDOM STUDENT PICKER LOGIC
+        // ==========================================
+        let students = ['Alex', 'Jordan', 'Taylor', 'Morgan', 'Sam'];
+        let isPicking = false;
+
+        function renderStudentChips() {
+            const container = document.getElementById('studentChipContainer');
+            const countBadge = document.getElementById('studentCountBadge');
+            
+            container.innerHTML = '';
+            countBadge.textContent = `${students.length} Students`;
+
+            students.forEach((student, index) => {
+                const chip = document.createElement('div');
+                chip.className = 'student-chip bg-slate-900 border border-slate-800 text-slate-200 font-semibold text-xs px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow-sm transition-all';
+                chip.setAttribute('data-name', student);
+                chip.id = `chip-${index}`;
+
+                chip.innerHTML = `
+                    <span>${student}</span>
+                    <button onclick="removeStudent(${index})" class="text-slate-500 hover:text-rose-400 ml-1 transition-colors" title="Remove student">
+                        <i class="fa-solid fa-xmark text-xs"></i>
+                    </button>
+                `;
+                container.appendChild(chip);
+            });
+
+            document.getElementById('rosterInput').value = students.join(', ');
+        }
+
+        function removeStudent(index) {
+            if (isPicking) return;
+            students.splice(index, 1);
+            renderStudentChips();
+            sounds.playPop();
+        }
+
+        function toggleEditRoster() {
+            const editArea = document.getElementById('rosterEditArea');
+            const btnText = document.getElementById('editRosterBtnText');
+            if (editArea.classList.contains('hidden')) {
+                editArea.classList.remove('hidden');
+                btnText.textContent = 'Close';
+            } else {
+                editArea.classList.add('hidden');
+                btnText.textContent = 'Edit Roster';
+            }
+        }
+
+        function saveRoster() {
+            const input = document.getElementById('rosterInput').value;
+            const parsed = input.split(',').map(name => name.trim()).filter(name => name.length > 0);
+            
+            if (parsed.length > 0) {
+                students = parsed;
+                renderStudentChips();
+                toggleEditRoster();
+                sounds.playPop();
+            }
+        }
+
+        function pickRandomStudent() {
+            if (isPicking || students.length === 0) return;
+
+            isPicking = true;
+            const pickBtn = document.getElementById('pickStudentBtn');
+            const defaultState = document.getElementById('spotlightDefaultState');
+            const activeState = document.getElementById('spotlightActiveState');
+            const nameDisplay = document.getElementById('selectedStudentName');
+
+            pickBtn.disabled = true;
+            pickBtn.classList.add('opacity-75', 'cursor-not-allowed');
+
+            defaultState.classList.add('hidden');
+            activeState.classList.remove('hidden');
+
+            let shuffleCount = 0;
+            const totalShuffles = 20;
+            const baseDelay = 50;
+
+            function shuffleStep() {
+                document.querySelectorAll('.student-chip').forEach(c => {
+                    c.className = 'student-chip bg-slate-900 border border-slate-800 text-slate-200 font-semibold text-xs px-3 py-1.5 rounded-xl flex items-center gap-1.5 transition-all';
+                });
+
+                const randomIndex = Math.floor(Math.random() * students.length);
+                const chosenName = students[randomIndex];
+
+                nameDisplay.textContent = chosenName;
+
+                const activeChip = document.getElementById(`chip-${randomIndex}`);
+                if (activeChip) {
+                    activeChip.className = 'student-chip bg-cyan-500 border border-cyan-400 text-slate-950 font-black text-xs px-3 py-1.5 rounded-xl flex items-center gap-1.5 transition-all scale-105 shadow-md shadow-cyan-500/30';
+                }
+
+                sounds.playTick();
+                shuffleCount++;
+
+                if (shuffleCount < totalShuffles) {
+                    const delay = baseDelay + Math.pow(shuffleCount, 1.8);
+                    setTimeout(shuffleStep, delay);
+                } else {
+                    isPicking = false;
+                    pickBtn.disabled = false;
+                    pickBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+
+                    nameDisplay.classList.add('scale-125');
+                    setTimeout(() => nameDisplay.classList.remove('scale-125'), 300);
+
+                    sounds.playPop();
+
+                    confetti({
+                        particleCount: 60,
+                        angle: 60,
+                        spread: 55,
+                        origin: { x: 0.75, y: 0.6 }
+                    });
+                }
+            }
+
+            shuffleStep();
+        }
+
+        // Initialize App State
+        window.onload = function() {
+            updateTimerUI();
+            updateBellringerUI();
+            selectExitTicketPrompt(0);
+            updateSafetyProgress();
+            renderStudentChips();
+        };
+    </script>
+</body>
+</html>
