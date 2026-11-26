@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checking | AI Moves Work Model</title>
+<meta name="description" content="Checking has two questions. Is it right? Is it good? Right needs a source. Good needs experience.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314130f'/%3E%3Crect x='10' y='24' width='10' height='16' rx='3' fill='%230f9d8a'/%3E%3Crect x='24' y='24' width='10' height='16' rx='3' fill='%232f62e0'/%3E%3Crect x='38' y='24' width='16' height='16' rx='3' fill='%23e0405a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main><div class="wrap">
+
+<div class="eyebrow">Page 2 of 8</div>
+<h1 style="margin-top:12px">Checking has two questions</h1>
+<div class="grid" style="margin-top:20px">
+  <div class="card" style="border-top:6px solid var(--check)"><div class="eyebrow">Accuracy</div><h3 style="margin-top:6px">Is it right?</h3><p><b>Right needs a source.</b></p></div>
+  <div class="card" style="border-top:6px solid var(--check)"><div class="eyebrow">Quality</div><h3 style="margin-top:6px">Is it good?</h3><p><b>Good needs experience.</b></p></div>
+</div>
+
+<section>
+  <h2>Try it: Is it right?</h2>
+  <p>An AI wrote this notice for a school bake sale. Tap every phrase you think is wrong.</p>
+  <div class="quote" id="blurb"></div>
+  <div class="row" style="margin-top:12px">
+    <button class="btn sm" type="button" id="sheetbtn">Show the fact sheet</button>
+    <button class="btn sm solid" type="button" id="checkbtn">Check my answers</button>
+    <button class="btn sm" type="button" id="resetbtn">Start over</button>
+  </div>
+  <div class="panel" id="sheet" style="display:none;margin-top:12px">
+    <div class="eyebrow">Fact sheet from the organizer</div>
+    <ul class="clean"><li>Group: Grade 10</li><li>Day: Wednesday</li><li>Place: Courtyard</li><li>Time: 3 pm to 5 pm</li><li>Price: 25 baht per muffin</li><li>Money goes to: the robotics team</li></ul>
+  </div>
+  <div id="res1" aria-live="polite"></div>
+</section>
+
+<section>
+  <h2>Try it: Is it good?</h2>
+  <p>Both versions are right. Which one is better?</p>
+  <div class="grid">
+    <div class="card"><div class="eyebrow">Version A</div><p>There is a bake sale on Wednesday in the Courtyard. Muffins are 25 baht. The money goes to the robotics team.</p><button class="btn sm" type="button" data-pick="A">A is better</button></div>
+    <div class="card"><div class="eyebrow">Version B</div><p>Wednesday, 3 pm, Courtyard: Grade 10 is selling muffins to buy parts for the robotics team. 25 baht each. Bring a friend.</p><button class="btn sm" type="button" data-pick="B">B is better</button></div>
+  </div>
+  <div id="res2" aria-live="polite"></div>
+</section>
+
+<div data-pager></div>
+</div></main>
+<footer class="foot"><div class="wrap">AI Moves Work Model by Jason Weimer. jasonweimer.com</div></footer>
+<script src="nav.js"></script>
+<script>
+
+(function(){
+  var ph=[
+    {t:'Grade 10 bake sale',err:false},
+    {t:'this Thursday',err:true,fix:'Wednesday'},
+    {t:'in the Library',err:true,fix:'Courtyard'},
+    {t:'from 3 pm',err:false},
+    {t:'20 baht',err:true,fix:'25 baht'},
+    {t:'the robotics team',err:false}
+  ];
+  var sel=[],sheet=false,done=false;
+  var blurb=document.getElementById('blurb');
+  function span(i){
+    var s=document.createElement('button');s.type='button';s.className='phrase';s.textContent=ph[i].t;
+    if(done){
+      s.disabled=true;
+      if(ph[i].err&&sel[i])s.className='phrase hit';
+      else if(ph[i].err)s.className='phrase miss';
+      else if(sel[i])s.className='phrase fa';
+    }else if(sel[i])s.className='phrase sel';
+    s.addEventListener('click',function(){if(done)return;sel[i]=!sel[i];draw()});
+    return s;
+  }
+  function txt(t){return document.createTextNode(t)}
+  function draw(){
+    blurb.innerHTML='';
+    blurb.appendChild(txt('Join the '));blurb.appendChild(span(0));blurb.appendChild(txt(' '));
+    blurb.appendChild(span(1));blurb.appendChild(txt(' '));blurb.appendChild(span(2));blurb.appendChild(txt(' '));
+    blurb.appendChild(span(3));blurb.appendChild(txt('. Every muffin costs '));blurb.appendChild(span(4));
+    blurb.appendChild(txt('. All the money goes to '));blurb.appendChild(span(5));blurb.appendChild(txt('.'));
+  }
+  document.getElementById('sheetbtn').addEventListener('click',function(){
+    sheet=true;document.getElementById('sheet').style.display='block';
+  });
+  document.getElementById('checkbtn').addEventListener('click',function(){
+    done=true;draw();
+    var found=0,fa=0,lines=[];
+    ph.forEach(function(p,i){
+      if(p.err&&sel[i])found++;
+      if(!p.err&&sel[i])fa++;
+      if(p.err)lines.push('<li>"'+p.t+'" should be '+p.fix+'.</li>');
+    });
+    var msg='<div class="callout"><b>You found '+found+' of 3 errors. False alarms: '+fa+'.</b><ul class="clean">'+lines.join('')+'</ul>';
+    msg+=sheet?'<p>You had a source. That is what made these errors easy to find. <b>Right needs a source.</b></p>':'<p>You had no source. That is guessing. Open the fact sheet and try again. <b>Right needs a source.</b></p>';
+    msg+='</div>';
+    document.getElementById('res1').innerHTML=msg;
+  });
+  document.getElementById('resetbtn').addEventListener('click',function(){
+    sel=[];done=false;sheet=false;
+    document.getElementById('sheet').style.display='none';
+    document.getElementById('res1').innerHTML='';
+    draw();
+  });
+  draw();
+
+  var picks=document.querySelectorAll('[data-pick]');
+  for(var i=0;i<picks.length;i++){
+    picks[i].addEventListener('click',function(ev){
+      var k=ev.target.getAttribute('data-pick');
+      document.getElementById('res2').innerHTML='<div class="callout"><b>You picked '+k+'.</b><p>Both versions pass the fact sheet. No source settles which is better. You decide with what you have read and written. <b>Good needs experience.</b></p><p>Say in one sentence why you picked '+k+'. Compare your reason with a classmate.</p></div>';
+    });
+  }
+})();
+
+</script>
+</body>
+</html>

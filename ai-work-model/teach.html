@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teach it | AI Moves Work Model</title>
+<meta name="description" content="Three lessons that build the three student rules. Each uses one lab test.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314130f'/%3E%3Crect x='10' y='24' width='10' height='16' rx='3' fill='%230f9d8a'/%3E%3Crect x='24' y='24' width='10' height='16' rx='3' fill='%232f62e0'/%3E%3Crect x='38' y='24' width='16' height='16' rx='3' fill='%23e0405a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main><div class="wrap">
+
+<div class="eyebrow">Page 6 of 8</div>
+<h1 style="margin-top:12px">Teach it in three lessons</h1>
+<p class="lead">Each lesson uses one lab test and ends with one student rule.</p>
+
+<div class="tabs" id="lessons" role="group" aria-label="Pick a lesson">
+  <button type="button" data-k="0" aria-pressed="true">Lesson 1</button>
+  <button type="button" data-k="1" aria-pressed="false">Lesson 2</button>
+  <button type="button" data-k="2" aria-pressed="false">Lesson 3</button>
+  <button type="button" data-k="3" aria-pressed="false">Later</button>
+</div>
+<div class="panel" id="lesson" aria-live="polite"></div>
+
+<section>
+  <h2>What students get</h2>
+  <p>Students learn to expect checking, to match the amount of checking to the cost of a mistake, and to protect the work that builds their skill.</p>
+  <p class="note">These are aims. There is no evidence yet that the lessons change what students do. The lab collects the first data.</p>
+</section>
+
+<section>
+  <h2>Run it as a PD session</h2>
+  <p>A suggested 45 minutes. Everyone uses their own work.</p>
+  <ol class="clean">
+    <li><b>5 min.</b> Show the model on the <a href="index.html">home page</a>.</li>
+    <li><b>10 min.</b> Sort your own work on <a href="stages.html">Stages</a>.</li>
+    <li><b>10 min.</b> Run two real examples through <a href="decide.html">Decide</a>.</li>
+    <li><b>10 min.</b> Time one task on the <a href="time-test.html">Time test</a>.</li>
+    <li><b>10 min.</b> Pick the first lesson you will run.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>Where it sits in AI literacy</h2>
+  <p>AI literacy frameworks cover more: how AI works, bias, ethics, and how AI is designed. This model covers one part. It covers working with AI output on real work. Two frameworks to read next are on the <a href="sources.html">Sources</a> page.</p>
+</section>
+
+<div data-pager></div>
+</div></main>
+<footer class="foot"><div class="wrap">AI Moves Work Model by Jason Weimer. jasonweimer.com</div></footer>
+<script src="nav.js"></script>
+<script>
+
+(function(){
+  var L=[
+    {t:'Lesson 1: Where the time goes',m:'30 min',lab:'t1',test:'Lab test 1',
+     say:'AI does not remove the work. It moves it.',
+     doit:'Everyone does the same task. Half do it by hand. Half use AI. All log Plan, Do, and Check minutes.',
+     ask:'Where did the saved minutes go?',
+     rule:'Expect to spend more of your time checking.'},
+    {t:'Lesson 2: When to check',m:'40 min',lab:'t3',test:'Lab test 3',
+     say:'Not every output needs the same check.',
+     doit:'Students sort four tasks by how difficult they are to check and what a mistake costs. Then they do the tasks and time them.',
+     ask:'On which task did AI lose? Which task would you never leave to AI?',
+     rule:'Check more when it is difficult to check and a mistake costs a lot.'},
+    {t:'Lesson 3: When the work is the point',m:'40 min',lab:'t5',test:'Lab test 5',
+     say:'Some work is how you learn.',
+     doit:'Students learn one skill. Half practice by hand. Half practice with AI. Then everyone takes a short test with no AI.',
+     ask:'Which group scored higher on the test with no AI? What did the practice do for them?',
+     rule:'Do the work yourself when the work is the point.'}
+  ];
+  var el=document.getElementById('lesson');
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+  function draw(k){
+    var h='';
+    if(k<3){
+      var l=L[k];
+      h='<div class="row"><span class="pill dark">'+l.m+'</span><span class="pill">'+l.test+'</span></div>'
+       +'<h2 style="margin-top:12px">'+esc(l.t)+'</h2>'
+       +'<p><b>Say.</b> '+esc(l.say)+'</p>'
+       +'<p><b>Do.</b> '+esc(l.doit)+'</p>'
+       +'<p><b>Ask.</b> '+esc(l.ask)+'</p>'
+       +'<div class="callout"><div class="eyebrow">Students leave with</div><p style="margin:4px 0 0;font-family:var(--sg);font-weight:700;font-size:20px">'+esc(l.rule)+'</p></div>'
+       +'<p style="margin-top:16px"><a class="btn solid" href="lab.html#'+l.lab+'">Open '+l.test.toLowerCase()+'</a></p>';
+    }else{
+      h='<h2>Later</h2><p>Two more tests are ready when you want them.</p>'
+       +'<p><b>Lab test 2: Checking is two skills.</b> 30 min. It tests the two questions: Is it right? Is it good?</p>'
+       +'<p><a class="btn sm" href="lab.html#t2">Open test 2</a></p>'
+       +'<p><b>Lab test 4: Where you check.</b> 40 min. It tests how checking changes for a routine and for a project.</p>'
+       +'<p><a class="btn sm" href="lab.html#t4">Open test 4</a></p>';
+    }
+    el.innerHTML=h;
+    var bs=document.getElementById('lessons').children;
+    for(var i=0;i<bs.length;i++)bs[i].setAttribute('aria-pressed',+bs[i].getAttribute('data-k')===k?'true':'false');
+  }
+  document.getElementById('lessons').addEventListener('click',function(ev){
+    var k=ev.target.getAttribute('data-k');if(k!==null)draw(+k);
+  });
+  draw(0);
+})();
+
+</script>
+</body>
+</html>

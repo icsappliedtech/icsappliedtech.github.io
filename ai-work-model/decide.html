@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decide | AI Moves Work Model</title>
+<meta name="description" content="Four questions and one decision rule: when to use AI and how much to check.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314130f'/%3E%3Crect x='10' y='24' width='10' height='16' rx='3' fill='%230f9d8a'/%3E%3Crect x='24' y='24' width='10' height='16' rx='3' fill='%232f62e0'/%3E%3Crect x='38' y='24' width='16' height='16' rx='3' fill='%23e0405a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main><div class="wrap">
+
+<div class="eyebrow">Page 3 of 8</div>
+<h1 style="margin-top:12px">Four questions decide what to do</h1>
+<p class="lead">Answer the four questions about a piece of work. The rule tells you what to do.</p>
+
+<div class="panel" style="margin-top:22px">
+  <div class="q"><b>1. How large is it?</b>
+    <div class="seg" data-g="size" role="group" aria-label="How large is it?"><button type="button" data-v="task">Task</button><button type="button" data-v="routine">Routine</button><button type="button" data-v="project">Project</button></div></div>
+  <div class="q"><b>2. How difficult is it to check?</b>
+    <div class="seg" data-g="diff" role="group" aria-label="How difficult is it to check?"><button type="button" data-v="easy">Easy</button><button type="button" data-v="hard">Difficult</button></div></div>
+  <div class="q"><b>3. What does a mistake cost?</b>
+    <div class="seg" data-g="cost" role="group" aria-label="What does a mistake cost?"><button type="button" data-v="cheap">Cheap</button><button type="button" data-v="costly">Costly</button></div></div>
+  <div class="q"><b>4. Is the work the point?</b>
+    <div class="seg" data-g="point" role="group" aria-label="Is the work the point?"><button type="button" data-v="no">No</button><button type="button" data-v="yes">Yes</button></div></div>
+  <div class="note" style="margin-top:8px">If the work is how you learn, the work is the point.</div>
+</div>
+
+<div class="dark" style="margin-top:16px">
+  <div class="eyebrow" style="color:#9a9a96">What to do</div>
+  <div id="answer" style="font-family:var(--sg);font-weight:700;font-size:clamp(24px,3.4vw,36px);line-height:1.15;margin-top:6px" aria-live="polite"></div>
+  <p id="where" style="margin:10px 0 0;color:#d8d8d4"></p>
+</div>
+
+<section>
+  <h2>The decision rule</h2>
+  <ul class="rules" id="rules">
+    <li data-r="0"><b>The work is the point:</b> do it yourself first.</li>
+    <li data-r="1"><b>Easy to check, cheap mistake:</b> use AI. Check lightly.</li>
+    <li data-r="2"><b>Easy to check, costly mistake:</b> use AI. Check every time.</li>
+    <li data-r="3"><b>Difficult to check, cheap mistake:</b> use AI. Spot check.</li>
+    <li data-r="4"><b>Difficult to check, costly mistake:</b> do it yourself, or use AI with a source and an expert check.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Try an example</h2>
+  <div class="row" id="examples" style="margin-top:10px"></div>
+</section>
+
+<div data-pager></div>
+</div></main>
+<footer class="foot"><div class="wrap">AI Moves Work Model by Jason Weimer. jasonweimer.com</div></footer>
+<script src="nav.js"></script>
+<script>
+
+(function(){
+  var S={size:'task',diff:'easy',cost:'cheap',point:'no'};
+  var ANS=['Do it yourself first.','Use AI. Check lightly.','Use AI. Check every time.','Use AI. Spot check.','Do it yourself, or use AI with a source and an expert check.'];
+  var WHERE={task:'Where to check: the output.',routine:'Where to check: deeply at setup, then by sampling.',project:'Where to check: each part and the whole.'};
+  function rule(){
+    if(S.point==='yes')return 0;
+    if(S.diff==='easy')return S.cost==='cheap'?1:2;
+    return S.cost==='cheap'?3:4;
+  }
+  function draw(){
+    var r=rule();
+    document.getElementById('answer').textContent=ANS[r];
+    document.getElementById('where').textContent=(r===0?'The work is the point, so your other answers do not change the rule. ':'')+WHERE[S.size];
+    var segs=document.querySelectorAll('[data-g]');
+    for(var i=0;i<segs.length;i++){
+      var g=segs[i].getAttribute('data-g'),bs=segs[i].children;
+      for(var j=0;j<bs.length;j++)bs[j].setAttribute('aria-pressed',bs[j].getAttribute('data-v')===S[g]?'true':'false');
+    }
+    var li=document.querySelectorAll('#rules li');
+    for(var k=0;k<li.length;k++)li[k].className=(+li[k].getAttribute('data-r')===r)?'on':'';
+  }
+  document.addEventListener('click',function(ev){
+    var b=ev.target,p=b.parentNode;
+    if(b.getAttribute&&b.getAttribute('data-v')&&p&&p.getAttribute('data-g')){S[p.getAttribute('data-g')]=b.getAttribute('data-v');draw()}
+  });
+  var EXS=[
+    ['A caption for a poster',{size:'task',diff:'easy',cost:'cheap',point:'no'}],
+    ['The total on an invoice',{size:'task',diff:'easy',cost:'costly',point:'no'}],
+    ['A summary of a long reading',{size:'task',diff:'hard',cost:'cheap',point:'no'}],
+    ['A health number on a poster',{size:'task',diff:'hard',cost:'costly',point:'no'}],
+    ['A weekly attendance report',{size:'routine',diff:'easy',cost:'costly',point:'no'}],
+    ['Practice problems for a skill you are learning',{size:'task',diff:'easy',cost:'cheap',point:'yes'}]
+  ];
+  var ex=document.getElementById('examples');
+  EXS.forEach(function(e){
+    var b=document.createElement('button');b.type='button';b.className='btn sm';b.textContent=e[0];
+    b.addEventListener('click',function(){S={size:e[1].size,diff:e[1].diff,cost:e[1].cost,point:e[1].point};draw()});
+    ex.appendChild(b);
+  });
+  draw();
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab | AI Moves Work Model</title>
+<meta name="description" content="Five classroom tests, one lesson each, to check the AI Moves Work Model with your own students.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314130f'/%3E%3Crect x='10' y='24' width='10' height='16' rx='3' fill='%230f9d8a'/%3E%3Crect x='24' y='24' width='10' height='16' rx='3' fill='%232f62e0'/%3E%3Crect x='38' y='24' width='16' height='16' rx='3' fill='%23e0405a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#14130f;--muted:#55544f;--muted2:#6b6a65;--panel:#f6f7f9;--border:#e8eaee;--divider:#dfe2e8;--chip:#e4e7ec;--green:#0f9d8a;--blue:#2f62e0;--red:#e0405a;--grey:#8a8378;--sg:'Space Grotesk','Inter',system-ui,sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#fff;color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body.present{font-size:21px}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+body.present .wrap{max-width:1320px}
+h1,h2,h3,h4{font-family:var(--sg);letter-spacing:-.02em;margin:0;line-height:1.1}
+h1{font-size:clamp(36px,6vw,68px);letter-spacing:-.035em}
+h2{font-size:clamp(26px,3.4vw,38px)}
+h3{font-size:22px}
+p{margin:10px 0}
+.lead{font-size:clamp(18px,2.2vw,22px);color:var(--muted);line-height:1.45}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:1.5px;color:var(--muted2);text-transform:uppercase}
+.note{font-size:15px;color:var(--muted2)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;flex:none}
+.dot.s{background:var(--green)}.dot.t{background:var(--blue)}.dot.r{background:var(--red)}.dot.g{background:var(--grey)}
+.pill{display:inline-flex;align-items:center;height:30px;padding:0 14px;border-radius:15px;background:var(--chip);font-family:var(--sg);font-weight:700;font-size:13px;letter-spacing:1.4px;text-transform:uppercase;white-space:nowrap}
+.pill.dark{background:var(--ink);color:#fff}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:24px}
+.card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px 20px}
+.dark{background:var(--ink);color:#fff;border-radius:18px;padding:22px 26px}
+.btn{border:1.5px solid var(--ink);background:#fff;padding:9px 18px;border-radius:999px;font-weight:600;font-size:16px}
+.btn:hover{background:var(--ink);color:#fff}
+.btn.solid{background:var(--ink);color:#fff}
+a.btn{color:var(--ink);display:inline-block}a.btn.solid{color:#fff}a.btn:hover{color:#fff}
+.btn.solid:hover{background:#2a2924}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.btn.sm{padding:6px 12px;font-size:14px}
+.seg2{display:inline-flex;flex-wrap:wrap;background:var(--chip);border-radius:999px;padding:3px;gap:2px}
+.seg2 button{border:0;background:transparent;padding:7px 14px;border-radius:999px;font-weight:600;font-size:15px}
+.seg2 button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.seg2 button:not([aria-pressed="true"]):hover{background:#d5d9e0}
+input[type=number],input[type=text],select,textarea{border:1.5px solid var(--divider);border-radius:10px;background:#fff;padding:9px 12px;width:100%}
+input[type=number]{font-size:20px;font-weight:600}
+textarea{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px;line-height:1.5}
+label.f{display:grid;gap:5px;font-size:15px;font-weight:600;color:var(--muted)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.nav .wrap{display:flex;align-items:center;gap:14px;min-height:56px;flex-wrap:wrap;padding-top:6px;padding-bottom:6px}
+.brand{font-family:var(--sg);font-weight:700;font-size:18px;text-decoration:none;display:flex;align-items:center;gap:10px;white-space:nowrap;color:var(--ink)}
+.brand i{display:flex;gap:3px}.brand i b{display:block;width:6px;height:14px;border-radius:2px}
+.nav ul{list-style:none;margin:0 0 0 auto;padding:0;display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+.nav a.l{display:block;padding:6px 11px;border-radius:999px;font-size:15px;font-weight:600;color:var(--muted);text-decoration:none}
+.nav a.l:hover{background:var(--panel);color:var(--ink)}
+.nav a.l.on{background:var(--ink);color:#fff}
+.tog{border:1.5px solid var(--divider);background:#fff;border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+.tog[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+main{padding:40px 0 80px;min-height:70vh}
+.grid3{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-top:28px}
+.tcard{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:var(--ink);background:var(--panel);border:1.5px solid var(--border);border-radius:18px;padding:22px;transition:transform .2s,border-color .2s}
+.tcard:hover{transform:translateY(-2px);border-color:var(--ink)}
+.tcard .num{font-family:var(--sg);font-weight:700;font-size:44px;line-height:1;color:var(--ink)}
+.tcard h3{font-size:24px}
+.tcard .pred{font-size:16px;color:#4a4a46}
+.tcard .meta{margin-top:auto;display:flex;flex-wrap:wrap;gap:6px}
+.steps{counter-reset:s;list-style:none;margin:16px 0 0;padding:0;display:grid;gap:12px}
+.steps li{counter-increment:s;display:flex;gap:14px;align-items:flex-start;font-size:1.06em}
+.steps li::before{content:counter(s);flex:none;width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;font-family:var(--sg);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:16px;margin-top:-2px}
+.teachernote{display:none;background:#fff7e0;border:1px solid #f0dfa8;border-radius:14px;padding:16px 20px;margin-top:20px}
+body.teacher .teachernote{display:block}
+.teachernote h4{font-size:15px;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:6px}
+.teachernote ul{margin:6px 0 0;padding-left:20px}
+.teacheronly{display:none}
+body.teacher .teacheronly{display:block}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 20px}
+.tab{border:1.5px solid var(--divider);background:#fff;padding:9px 20px;border-radius:999px;font-family:var(--sg);font-weight:700;font-size:17px}
+.tab[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.codebox{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
+.codebox input{flex:1 1 260px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:18px;font-weight:600;background:#fff}
+.verdict{border-radius:14px;padding:16px 20px;margin-top:16px;border-left:6px solid var(--grey);background:#fff;border-top:1px solid var(--border);border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.verdict b{display:block;font-family:var(--sg);font-size:20px;margin-bottom:4px}
+.verdict.held{border-left-color:var(--green)}.verdict.not{border-left-color:var(--red)}.verdict.few{border-left-color:var(--grey)}
+.stats{display:flex;flex-wrap:wrap;gap:10px 24px;margin:8px 0}
+.stats span{font-size:15px;color:var(--muted)}
+.stats b{font-family:var(--sg);font-size:24px;color:var(--ink);margin-right:4px}
+table.t{border-collapse:collapse;width:100%;font-size:16px}
+table.t th,table.t td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
+table.t th{font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted2);font-weight:600}
+.tw{overflow-x:auto;border:1px solid var(--border);border-radius:14px;background:#fff}
+.bar{display:flex;gap:3px;height:30px;width:100%}
+.bar.big{height:38px}
+.seg{flex:1 1 0;min-width:0;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#fff;overflow:hidden;white-space:nowrap}
+.seg.s{background:var(--green)}.seg.t{background:var(--blue)}.seg.r{background:var(--red)}.seg.k{background:var(--ink)}.seg.g{background:#c3c7cf;color:var(--ink)}
+.chip{display:inline-block;padding:7px 12px;margin:3px 4px 3px 0;border-radius:10px;border:1.5px solid var(--divider);background:#fff;cursor:pointer;text-align:left;font-size:1em;line-height:1.35}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:#fbd5db;border-color:var(--red)}
+.timer{display:grid;gap:10px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px}
+.timer .phases{display:flex;flex-wrap:wrap;gap:8px}
+.timer .ph{border:2px solid var(--divider);background:#fff;border-radius:12px;padding:8px 14px;font-weight:600;min-width:130px;text-align:left}
+.timer .ph small{display:block;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:20px;font-weight:600}
+.timer .ph.run{color:#fff}
+.timer .ph.run.s{background:var(--green);border-color:var(--green)}.timer .ph.run.t{background:var(--blue);border-color:var(--blue)}.timer .ph.run.r{background:var(--red);border-color:var(--red)}.timer .ph.run.g{background:var(--grey);border-color:var(--grey)}
+.quote{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px 20px;font-size:.98em}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+footer{padding:30px 0 50px;color:var(--muted2);font-size:15px;border-top:1px solid var(--border)}
+.logline{background:#fff;border:1px solid var(--border);border-left:6px solid var(--blue);border-radius:14px;padding:14px 18px;margin-top:16px}
+.runsheet{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.runsheet .rs{flex:1 1 130px;border-radius:12px;padding:10px 14px;background:var(--panel);border:1px solid var(--border)}
+.runsheet .rs b{font-family:var(--sg);font-size:24px;display:block;line-height:1.1}
+.runsheet .rs span{font-size:14px;color:var(--muted);line-height:1.3;display:block;margin-top:2px}
+@media (max-width:760px){.row2{grid-template-columns:1fr}.wrap{padding:0 16px}.nav ul{margin-left:0}}
+h1,h2,h3,h4{text-wrap:balance}
+p,li,.lead,.note{text-wrap:pretty}
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Lab">
+  <div class="wrap">
+    <a class="brand" href="#home"><i aria-hidden="true"><b style="background:#0f9d8a"></b><b style="background:#2f62e0"></b><b style="background:#e0405a"></b></i>AI Moves Work Lab</a>
+    <ul id="navlinks"></ul>
+    <span style="display:flex;gap:6px"><button class="tog" id="tTeacher" aria-pressed="false">Teacher view</button><button class="tog" id="tPresent" aria-pressed="false">Present</button></span>
+  </div>
+</nav>
+<main><div class="wrap" id="app"></div></main>
+<div class="wrap" style="padding-bottom:36px"><div data-pager></div></div>
+<footer><div class="wrap">Codes hold no names. Nothing leaves the device. Results from a class are a case study, not proof. Part of the AI Moves Work Model by Jason Weimer.</div></footer>
+<script src="nav.js"></script>
+<script>
+(function(){
+'use strict';
+/* ---------- helpers ---------- */
+function h(tag,attrs){
+  var el=document.createElement(tag);
+  if(attrs)for(var k in attrs){
+    var v=attrs[k];if(v==null||v===false)continue;
+    if(k==='class')el.className=v;
+    else if(k.slice(0,2)==='on')el.addEventListener(k.slice(2),v);
+    else if(k==='style'&&typeof v==='object')Object.assign(el.style,v);
+    else el.setAttribute(k,v===true?'':v);
+  }
+  for(var i=2;i<arguments.length;i++)add(el,arguments[i]);
+  return el;
+}
+function add(el,c){
+  if(c==null||c===false)return;
+  if(Array.isArray(c))c.forEach(function(x){add(el,x)});
+  else if(c.nodeType)el.appendChild(c);
+  else el.appendChild(document.createTextNode(String(c)));
+}
+function $(s,r){return (r||document).querySelector(s)}
+var store={
+  get:function(k,d){try{var v=localStorage.getItem('aml.'+k);return v==null?d:v}catch(e){return d}},
+  set:function(k,v){try{localStorage.setItem('aml.'+k,v)}catch(e){}}
+};
+function mean(a){return a.length?a.reduce(function(x,y){return x+y},0)/a.length:0}
+function median(a){if(!a.length)return 0;var s=a.slice().sort(function(x,y){return x-y}),m=Math.floor(s.length/2);return s.length%2?s[m]:(s[m-1]+s[m])/2}
+function r1(n){return Math.round(n*10)/10}
+function pct(n){return Math.round(n*100)+'%'}
+function rint(a,b){return a+Math.floor(Math.random()*(b-a+1))}
+function pick(a){return a[Math.floor(Math.random()*a.length)]}
+function nums(str,n){
+  var p=str.split(',');if(p.length!==n)return null;
+  var o=[];for(var i=0;i<n;i++){var v=parseFloat(p[i]);if(!isFinite(v)||v<0)return null;o.push(v)}
+  return o;
+}
+function fmtMin(s){var m=Math.floor(s/60),x=Math.floor(s%60);return (m<10?'0':'')+m+':'+(x<10?'0':'')+x}
+
+function seg(options,value,onchange,label){
+  var box=h('div',{class:'seg2',role:'group','aria-label':label||''});
+  function paint(v){Array.prototype.forEach.call(box.children,function(b){b.setAttribute('aria-pressed',b.getAttribute('data-v')===String(v))})}
+  options.forEach(function(o){
+    var b=h('button',{type:'button','data-v':o[0],onclick:function(){paint(o[0]);onchange(o[0])}},o[1]);
+    box.appendChild(b);
+  });
+  paint(value);
+  box.set=paint;
+  return box;
+}
+function stack(parts){
+  var b=h('div',{class:'bar big'});
+  parts.forEach(function(p){b.appendChild(h('span',{class:'seg '+p[0],style:{flexGrow:Math.max(p[1],0.0001)},title:p[2]||''},p[3]||''))});
+  return b;
+}
+function verdict(status,title,text){
+  return h('div',{class:'verdict '+status},h('b',null,title),h('span',null,text));
+}
+function FEW(n){return verdict('few','Not enough data yet','Needs 3 or more rows in each group. Rows so far: '+n+'.')}
+function table(head,rows){
+  var t=h('table',{class:'t'}),tr=h('tr');
+  head.forEach(function(x){tr.appendChild(h('th',null,x))});
+  t.appendChild(h('thead',null,tr));
+  var tb=h('tbody');
+  rows.forEach(function(r){var tr2=h('tr');r.forEach(function(c){tr2.appendChild(h('td',null,c))});tb.appendChild(tr2)});
+  t.appendChild(tb);
+  return h('div',{class:'tw'},t);
+}
+function codeBox(code,label){
+  var inp=h('input',{type:'text',readonly:true,value:code,'aria-label':label||'Your result code'});
+  var msg=h('span',{class:'note','aria-live':'polite'});
+  var btn=h('button',{class:'btn solid',type:'button',onclick:function(){
+    inp.focus();inp.select();
+    var ok=false;
+    try{ok=document.execCommand('copy')}catch(e){}
+    try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(code);ok=true}}catch(e){}
+    msg.textContent=ok?'Copied. If it did not work, select the code and copy it.':'Select the code and copy it.';
+  }},'Copy code');
+  return h('div',null,h('div',{class:'codebox'},inp,btn),msg);
+}
+function numField(label,val,step){
+  var inp=h('input',{type:'number',min:'0',step:step||'0.1',inputmode:'decimal'});
+  if(val!=null)inp.value=val;
+  return {el:h('label',{class:'f'},label,inp),inp:inp};
+}
+function statusOf(ok){return ok===true?'supports it':(ok===false?'counts against it':'unclear')}
+function logLine(p,name,status,detail){
+  var txt='Test '+p+' '+name+' | '+status+' | '+detail;
+  return h('div',{class:'logline'},h('div',{class:'eyebrow'},'For your class log'),
+    h('p',{style:{margin:'4px 0 0'}},h('b',null,'Test '+p+' '+name+': '+status+'. '),detail),
+    codeBox(txt,'Line for the class log'));
+}
+function phaseTimer(phases,onUse){
+  var acc={},cur=null,t0=0,iv=null,btns={},disp={};
+  phases.forEach(function(p){acc[p[0]]=0});
+  function now(){return Date.now()}
+  function stopCur(){if(cur!=null){acc[cur]+=(now()-t0)/1000;cur=null}}
+  function paint(){
+    phases.forEach(function(p){
+      var s=acc[p[0]]+(cur===p[0]?(now()-t0)/1000:0);
+      disp[p[0]].textContent=fmtMin(s);
+      btns[p[0]].className='ph'+(cur===p[0]?' run '+p[2]:'');
+    });
+  }
+  function start(k){
+    if(cur===k){stopCur();paint();return}
+    stopCur();cur=k;t0=now();paint();
+    if(!iv)iv=setInterval(paint,250);
+  }
+  var wrap=h('div',{class:'timer'});
+  wrap.appendChild(h('div',{class:'note'},'Press a phase to start its clock. Press another to switch. Press the running one to pause.'));
+  var row=h('div',{class:'phases'});
+  phases.forEach(function(p){
+    disp[p[0]]=h('small',null,'00:00');
+    btns[p[0]]=h('button',{type:'button',class:'ph',onclick:function(){start(p[0])}},p[1],disp[p[0]]);
+    row.appendChild(btns[p[0]]);
+  });
+  wrap.appendChild(row);
+  var use=h('button',{class:'btn sm',type:'button',onclick:function(){
+    stopCur();paint();
+    var m={};phases.forEach(function(p){m[p[0]]=r1(acc[p[0]]/60)});
+    onUse(m);
+  }},'Use these minutes');
+  var reset=h('button',{class:'btn sm',type:'button',onclick:function(){
+    cur=null;phases.forEach(function(p){acc[p[0]]=0});paint();
+  }},'Reset');
+  wrap.appendChild(h('div',{style:{display:'flex',gap:'8px'}},use,reset));
+  return wrap;
+}
+
+/* generic class-results panel: students' codes in, class result out */
+function resultsPanel(id,cfg){
+  var key='codes.'+id;
+  var ta=h('textarea',{rows:6,placeholder:'Paste student codes here. One per line.',spellcheck:'false','aria-label':'Student codes'});
+  ta.value=store.get(key,'');
+  var out=h('div');
+  var info=h('p',{class:'note','aria-live':'polite'});
+  function run(){
+    store.set(key,ta.value);
+    var rows=[],bad=0;
+    ta.value.split('\n').forEach(function(l){
+      l=l.trim();if(!l)return;
+      var m=l.match(/^(t\d):(.*)$/i);
+      if(!m||m[1].toLowerCase()!==id){bad++;return}
+      var r=cfg.parse(m[2].trim());
+      if(r)rows.push(r);else bad++;
+    });
+    info.textContent=rows.length+(rows.length===1?' row read':' rows read')+(bad?' · '+bad+' not read':'');
+    out.innerHTML='';
+    out.appendChild(cfg.aggregate(rows));
+  }
+  ta.addEventListener('input',run);
+  var el=h('div',null,
+    cfg.extra||null,
+    h('p',null,'Students give you a code like ',h('span',{class:'mono'},cfg.example),'. Paste one per line.'),
+    ta,
+    h('div',{style:{display:'flex',gap:'8px',flexWrap:'wrap',margin:'10px 0'}},
+      h('button',{class:'btn sm',type:'button',onclick:function(){ta.value=cfg.sample().join('\n');run()}},'Load a sample class'),
+      h('button',{class:'btn sm',type:'button',onclick:function(){ta.value='';run()}},'Clear')),
+    info,out);
+  el.run=run;
+  setTimeout(run,0);
+  return el;
+}
+
+/* ================= TEST 1: where the time goes ================= */
+var T1={
+  id:'t1',n:1,title:'Where the time goes',time:'30 min',split:'Split the class in two',unit:'Stages and time',
+  plan:[[5,'Intro. Say the claim. Split the class.'],[12,'Students work and log minutes.'],[8,'Paste codes. Read the result.'],[5,'Debrief.']],
+  claim:'AI can decrease Planning and Doing. Some of the work moves to Checking.',
+  prediction:'The AI group spends a bigger share of its time checking and a smaller share doing. Completion time may go up, down, or stay the same.',
+  assign:[
+    'Everyone gets the same task. Group H does it by hand. Group A uses AI.',
+    'Open the timer. Press Planning while you think about the audience and the hook.',
+    'Press Doing while you write, or while you prompt and wait for the AI.',
+    'Press Checking while you reread, compare to the facts and fix.',
+    'Stop. Enter your minutes. Give your code to the teacher.'
+  ],
+  teacher:[
+    'Split the class in two. Say who is H and who is A. Swap next week with a new task.',
+    'Planning is thinking before writing or prompting. Doing is writing or prompting. Checking is rereading, comparing to the facts and fixing.',
+    'Give 12 minutes. Ask students to be honest on the clock. It is their data.',
+    'Ask the class after: Where did the saved minutes go?'
+  ],
+  build:function(){
+    var g='A',root=h('div');
+    var task=h('div',{class:'quote'},h('b',null,'The task. '),'Write one Instagram caption for our class bubble tea stall. The new flavor is Thai tea. It costs 30 baht. The fair is on Saturday. Keep it under 30 words.');
+    var gseg=seg([['H','Group H: by hand'],['A','Group A: with AI']],g,function(v){g=v;update()},'Your group');
+    var p=numField('Planning (min)'),d=numField('Doing (min)'),c=numField('Checking (min)');
+    var out=h('div');
+    function update(){
+      out.innerHTML='';
+      var P=parseFloat(p.inp.value),D=parseFloat(d.inp.value),C=parseFloat(c.inp.value);
+      if(![P,D,C].every(function(x){return isFinite(x)&&x>=0}))return;
+      out.appendChild(h('p',null,'Your result. Give this code to your teacher.'));
+      out.appendChild(codeBox('t1:'+g+','+r1(P)+','+r1(D)+','+r1(C)));
+    }
+    [p,d,c].forEach(function(f){f.inp.addEventListener('input',update)});
+    var timer=phaseTimer([['p','Planning','s'],['d','Doing','t'],['c','Checking','r']],function(m){
+      p.inp.value=m.p;d.inp.value=m.d;c.inp.value=m.c;update();
+    });
+    root.appendChild(h('div',{class:'panel'},task,h('p',null,h('b',null,'1. Pick your group.')),gseg,h('p',null,h('b',null,'2. Run the clock while you work.')),timer,h('p',null,h('b',null,'3. Check the minutes. Fix them if the clock missed something.')),h('div',{class:'fields'},p.el,d.el,c.el),out));
+    return root;
+  },
+  results:function(){
+    return resultsPanel('t1',{
+      example:'t1:A,1.5,2,12',
+      parse:function(s){var p=s.split(','),g=p[0];if(g!=='H'&&g!=='A')return null;var n=nums(p.slice(1).join(','),3);return n?{g:g,p:n[0],d:n[1],c:n[2]}:null},
+      sample:function(){
+        var o=[],i;
+        for(i=0;i<8;i++)o.push('t1:H,'+r1(6+Math.random()*4)+','+r1(14+Math.random()*6)+','+r1(3+Math.random()*3));
+        for(i=0;i<8;i++)o.push('t1:A,'+r1(1+Math.random())+','+r1(1+Math.random()*2)+','+r1(10+Math.random()*6));
+        return o;
+      },
+      aggregate:function(rows){
+        var w=h('div');
+        function summ(g){
+          var a=rows.filter(function(r){return r.g===g});
+          var p=mean(a.map(function(r){return r.p})),d=mean(a.map(function(r){return r.d})),c=mean(a.map(function(r){return r.c})),t=p+d+c||1;
+          return {n:a.length,p:p,d:d,c:c,t:t,sp:p/t,sd:d/t,sc:c/t};
+        }
+        var H=summ('H'),A=summ('A');
+        [[H,'Group H: by hand'],[A,'Group A: with AI']].forEach(function(x){
+          var s=x[0];
+          w.appendChild(h('h3',{style:{marginTop:'18px'}},x[1],' ',h('span',{class:'note'},'n = '+s.n)));
+          if(!s.n){w.appendChild(h('p',{class:'note'},'No rows.'));return}
+          w.appendChild(stack([['s',s.p,'Planning',Math.round(s.sp*100)+'%'],['t',s.d,'Doing',Math.round(s.sd*100)+'%'],['r',s.c,'Checking',Math.round(s.sc*100)+'%']]));
+          w.appendChild(h('div',{class:'stats'},h('span',null,h('b',null,r1(s.p)),'min planning'),h('span',null,h('b',null,r1(s.d)),'min doing'),h('span',null,h('b',null,r1(s.c)),'min checking'),h('span',null,h('b',null,r1(s.t)),'min total')));
+        });
+        if(H.n<3||A.n<3){w.appendChild(FEW(rows.length));return w}
+        var held=A.sc>H.sc&&A.sd<H.sd;
+        w.appendChild(verdict(held?'held':'not',held?'The prediction held in this class':'The prediction did not hold in this class',
+          'Checking share: '+pct(H.sc)+' by hand, '+pct(A.sc)+' with AI. Doing share: '+pct(H.sd)+' by hand, '+pct(A.sd)+' with AI. Total time: '+r1(H.t)+' min by hand, '+r1(A.t)+' min with AI. The model says the total may not change.'));
+        w.appendChild(logLine(1,'Where the time goes',statusOf(held),'n='+rows.length+'. Checking share '+pct(H.sc)+' by hand, '+pct(A.sc)+' with AI. Total time '+r1(H.t)+' min by hand, '+r1(A.t)+' min with AI.'));
+        return w;
+      }
+    });
+  }
+};
+
+/* ================= TEST 2: checking is two skills ================= */
+var FACTS=['Stall: Siam Sip, run by Class 11B.','Drinks and prices: Thai tea 30 baht. Green tea 25 baht. Cocoa 35 baht.','Place: Hall 2 at the school fair.','Open: Friday and Saturday, 10:00 to 14:00.','Tea is brewed each morning from loose leaf. Cups are compostable.'];
+var PIECES=[
+  {name:'Piece A',segs:['Siam Sip is a tea stall.','We sell Thai tea, green tea and cocoa.','Thai tea costs 30 baht.','We are open Friday and Saturday.','Come and try our drinks.'],bad:[]},
+  {name:'Piece B',segs:['Sip the story of Bangkok in every cup.','Our Thai tea is brewed fresh from loose leaf each morning','and costs just 25 baht.','Find us in Hall 3','every day from 10 to 2,','served in compostable cups.','Siam Sip: made by Class 11B, loved by the whole school.'],bad:[2,3,4]},
+  {name:'Piece C',segs:['Three drinks. One rule: we make them fresh every morning.','Thai tea 30 baht.','Green tea 25.','Cocoa 35.','Hall 2, Friday and Saturday, 10 to 2.','Compostable cups, because we care where the cup goes.'],bad:[]}
+];
+var T2={
+  id:'t2',n:2,title:'Checking is two skills',time:'30 min',split:'Split the class in two',unit:'Two questions',
+  plan:[[5,'Intro. Split the class. Give Group S the fact sheet.'],[15,'Students review three blurbs.'],[5,'Paste codes. Read the result.'],[5,'Debrief.']],
+  claim:'Checking has two questions. Is it right? Is it good? Right needs a source. Good needs experience.',
+  prediction:'Students with the fact sheet find more errors than students without it. Students who have written more blurbs rate quality closer to the teacher.',
+  assign:[
+    'Three AI blurbs for the same stall. Read them like a reviewer.',
+    'Part 1, accuracy. Tap every phrase you think is wrong. Group S has the fact sheet. Group N does not.',
+    'Part 2, quality. Rate each blurb from 1 (flat) to 5 (strong).',
+    'Get your code. Give it to the teacher.'
+  ],
+  teacher:[
+    'Say who is S (with the fact sheet) and who is N (no sheet). Do not tell N what is wrong.',
+    'Planted errors are in Piece B: "25 baht" (sheet says 30), "Hall 3" (Hall 2), "every day" (Friday and Saturday). Pieces A and C have no errors.',
+    'Set your own quality ratings in the Class results tab. The defaults are mine: A is flat, B is polished but cliche, C is strong. Change them to yours.',
+    'Ask the class: A text can pass one check and fail the other. Which blurb did that?'
+  ],
+  build:function(){
+    var g='S',exp='0',flags=[{},{},{}],rate=[0,0,0],root=h('div');
+    var facts=h('div',{class:'quote',id:'t2facts'},h('b',null,'Fact sheet'),h('ul',{style:{margin:'6px 0 0',paddingLeft:'20px'}},FACTS.map(function(f){return h('li',null,f)})));
+    var piecesBox=h('div'),res=h('div');
+    function showFacts(){facts.style.display=g==='S'?'block':'none'}
+    var gseg=seg([['S','Group S: I have the fact sheet'],['N','Group N: no fact sheet']],g,function(v){g=v;showFacts()},'Your group');
+    var eseg=seg([['0','Never written one'],['1','1 to 5 times'],['2','6 or more']],exp,function(v){exp=v},'Blurbs or captions written before');
+    PIECES.forEach(function(pc,pi){
+      var chips=h('div');
+      pc.segs.forEach(function(s,si){
+        var b=h('button',{type:'button',class:'chip','aria-pressed':'false',onclick:function(){
+          var on=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',on);
+          if(on)flags[pi][si]=1;else delete flags[pi][si];
+        }},s);
+        chips.appendChild(b);
+      });
+      var rs=seg([[1,'1'],[2,'2'],[3,'3'],[4,'4'],[5,'5']],0,function(v){rate[pi]=+v},'Quality of '+pc.name);
+      piecesBox.appendChild(h('div',{class:'card',style:{marginTop:'12px'}},h('h3',null,pc.name),h('p',{class:'note'},'Tap phrases that are wrong.'),chips,h('p',{style:{marginBottom:'4px'}},h('b',null,'Quality, 1 flat to 5 strong')),rs));
+    });
+    var done=h('button',{class:'btn solid',type:'button',onclick:function(){
+      res.innerHTML='';
+      if(rate.some(function(r){return !r})){res.appendChild(h('p',{class:'note'},'Rate all three pieces first.'));return}
+      var found=0,fl=0;
+      PIECES.forEach(function(pc,pi){Object.keys(flags[pi]).forEach(function(k){if(pc.bad.indexOf(+k)>=0)found++;else fl++})});
+      res.appendChild(h('div',{class:'stats'},h('span',null,h('b',null,found+' of 3'),'errors found'),h('span',null,h('b',null,fl),'false flags')));
+      res.appendChild(h('p',null,'Give this code to your teacher.'));
+      res.appendChild(codeBox('t2:'+g+','+exp+','+found+','+fl+','+rate.join(',')));
+    }},'Finish and get my code');
+    root.appendChild(h('div',{class:'panel'},
+      h('p',null,h('b',null,'Your group')),gseg,
+      h('p',null,h('b',null,'How many blurbs or captions have you written before?')),eseg,
+      h('div',{style:{marginTop:'14px'}},facts),piecesBox,h('div',{style:{marginTop:'16px'}},done),res));
+    showFacts();
+    return root;
+  },
+  results:function(){
+    var exp=[2,3,5];
+    var inputs=exp.map(function(v,i){var f=numField('Your quality rating, Piece '+'ABC'[i],v,'1');f.inp.min='1';f.inp.max='5';return f});
+    var extra=h('div',{class:'card',style:{marginBottom:'14px'}},h('b',null,'Your ratings (defaults are mine. Change them.)'),h('div',{class:'fields',style:{marginTop:'8px'}},inputs.map(function(f){return f.el})));
+    var panel;
+    inputs.forEach(function(f){f.inp.addEventListener('input',function(){panel.run()})});
+    panel=resultsPanel('t2',{
+      extra:extra,example:'t2:S,1,3,0,2,4,5',
+      parse:function(s){var p=s.split(',');if(p.length!==7)return null;var g=p[0];if(g!=='S'&&g!=='N')return null;var e=+p[1];if([0,1,2].indexOf(e)<0)return null;var n=nums(p.slice(2).join(','),5);if(!n||n[0]>3)return null;if(n.slice(2).some(function(x){return x<1||x>5}))return null;return {g:g,e:e,found:n[0],fl:n[1],q:n.slice(2)}},
+      sample:function(){
+        var o=[],i,e,q;
+        for(i=0;i<16;i++){
+          var g=i<8?'S':'N';e=rint(0,2);
+          var f=g==='S'?rint(2,3):rint(0,1),fl=g==='S'?rint(0,1):rint(0,3);
+          var base=[2,3,5];
+          q=base.map(function(b,k){var spread=e===2?0:(e===1?1:2);var v=b+rint(-spread,spread);if(e===0&&k===1)v=rint(4,5);return Math.min(5,Math.max(1,v))});
+          o.push('t2:'+g+','+e+','+f+','+fl+','+q.join(','));
+        }
+        return o;
+      },
+      aggregate:function(rows){
+        var w=h('div');
+        var E=inputs.map(function(f){return parseFloat(f.inp.value)||0});
+        rows.forEach(function(r){r.gap=mean(r.q.map(function(q,i){return Math.abs(q-E[i])}))});
+        var S=rows.filter(function(r){return r.g==='S'}),N=rows.filter(function(r){return r.g==='N'});
+        var okAcc=null,okQ=null,dA='',dQ='';
+        w.appendChild(h('h3',{style:{marginTop:'16px'}},'Part 1: accuracy'));
+        w.appendChild(table(['Group','n','Errors found (of 3)','False flags'],[
+          ['S: fact sheet',S.length,r1(mean(S.map(function(r){return r.found}))),r1(mean(S.map(function(r){return r.fl})))],
+          ['N: no sheet',N.length,r1(mean(N.map(function(r){return r.found}))),r1(mean(N.map(function(r){return r.fl})))]]));
+        if(S.length<3||N.length<3)w.appendChild(FEW(rows.length));
+        else{var mS=mean(S.map(function(r){return r.found})),mN=mean(N.map(function(r){return r.found}));okAcc=mS>mN;dA='Errors found: '+r1(mS)+' of 3 with the sheet, '+r1(mN)+' without.';
+          w.appendChild(verdict(mS>mN?'held':'not',mS>mN?'Accuracy needed a source':'The sheet did not help here','With the sheet students found '+r1(mS)+' of 3. Without it they found '+r1(mN)+' of 3.'))}
+        w.appendChild(h('h3',{style:{marginTop:'22px'}},'Part 2: quality'));
+        var labels=['Never written one','1 to 5 times','6 or more'],bands=[0,1,2].map(function(e){return rows.filter(function(r){return r.e===e})});
+        w.appendChild(table(['Experience','n','Average gap from your ratings (0 is a match)'],bands.map(function(b,i){return [labels[i],b.length,b.length?r1(mean(b.map(function(r){return r.gap})))*1:'-']})));
+        if(bands[0].length<3||bands[2].length<3)w.appendChild(h('p',{class:'note'},'Needs 3 or more students in the first and last band to compare.'));
+        else{var g0=mean(bands[0].map(function(r){return r.gap})),g2=mean(bands[2].map(function(r){return r.gap}));okQ=g2<g0;dQ='Quality gap from the teacher: '+r1(g0)+' for new writers, '+r1(g2)+' for experienced writers.';
+          w.appendChild(verdict(g2<g0?'held':'not',g2<g0?'Quality followed experience':'Experience did not help here','Average gap: '+r1(g0)+' for students who never wrote one, '+r1(g2)+' for students who wrote six or more.'))}
+        var ev=[okAcc,okQ].filter(function(x){return x!==null});
+        if(ev.length)w.appendChild(logLine(2,'Checking is two skills',statusOf(ev.every(function(x){return x})?true:(ev.every(function(x){return !x})?false:null)),'n='+rows.length+'. '+dA+' '+dQ));
+        return w;
+      }
+    });
+    return panel;
+  }
+};
+
+/* ================= TEST 3: when to check ================= */
+var TASKS3=[
+  {t:'Ten name ideas for a new tea flavor.',x:null},
+  {t:'A price table with a total for six items.',x:'Thai tea 30 baht. Green tea 25 baht. Cocoa 35 baht. Toast 20 baht. Cookie 15 baht. Iced matcha 40 baht.'},
+  {t:'A caption of 25 words or fewer for the stall\'s Instagram post.',x:'Stall: Siam Sip. Fair day: Saturday. Drinks: Thai tea, green tea, cocoa.'},
+  {t:'One sentence for the poster that says how much caffeine is in one cup of our green tea. Include the number.',x:'Cup size: 8 oz (240 ml). Brewed from tea bags.'}
+];
+var BOX3={a:'Easy to check, cheap mistake',b:'Difficult to check, cheap mistake',c:'Easy to check, costly mistake',d:'Difficult to check, costly mistake'};
+function miniBar(parts,widthPct){
+  return h('div',{class:'bar',style:{width:Math.max(widthPct,3)+'%'}},parts.map(function(p){return p[1]>0?h('span',{class:'seg '+p[0],style:{flexGrow:p[1]},title:p[2]||''},p[3]||''):null}));
+}
+var T3={
+  id:'t3',n:3,title:'When to check',time:'40 min',split:'Split the class in two',unit:'Decision rule',
+  claim:'How difficult it is to check and what a mistake costs set how much to check. AI pays off only when the time it saves beats the time you spend checking.',
+  prediction:'AI wins on some tasks and loses on others. Tasks students sort as difficult to check take a bigger share of their time checking. Students check longer when a mistake is costly.',
+  plan:[[5,'Intro. Say the claim. Split the class.'],[4,'Students sort four tasks.'],[18,'Students do the four tasks and time them.'],[5,'Paste codes. Read the result.'],[8,'Debrief.']],
+  assign:[
+    'Four tasks. First sort each one: Is it easy or difficult to check? Would a mistake be cheap or costly? Do this before you start.',
+    'Group H does each task by hand and times it. Group A uses AI and times two things: the AI making it, and you checking and fixing it.',
+    'Fix anything wrong before you stop the clock. The time to check counts.',
+    'Get your code. Give it to the teacher.'
+  ],
+  teacher:[
+    'Split the class in two. Say who is H and who is A. Keep the groups equal if you can.',
+    'The sorting is the students\' own view. There is no right answer. The tasks are built to land in different boxes, but the class decides.',
+    'Task 2 has a total to check. The correct total is 165 baht. Task 4 has no source in the room. Students can check it only by looking something up. Sources differ. Most give 20 to 50 mg for an 8 oz cup of green tea. Check it yourself before class. After the timing, ask for a show of hands: who put a number outside 20 to 50 on the poster?',
+    'Ask the class: On which task did AI lose? What took the time? Which task would you never leave to AI? Would you print a health number on a poster without a source?'
+  ],
+  build:function(){
+    var g='',ease=[null,null,null,null],cost=[null,null,null,null],fields=[],root=h('div'),taskBox=h('div'),out=h('div');
+    function code(){
+      out.innerHTML='';
+      if(!g)return;
+      var left=0,i;for(i=0;i<4;i++)if(!ease[i]||!cost[i])left++;
+      var vs=[],ok=true;
+      fields.forEach(function(f){f.forEach(function(x){var v=parseFloat(x.inp.value);if(!isFinite(v)||v<0)ok=false;else vs.push(r1(v))})});
+      if(left||!ok){out.appendChild(h('p',{class:'note'},(left?left+' task'+(left>1?'s':'')+' still to sort. ':'')+(ok?'':'Enter the minutes for all four tasks to get your code.')));return}
+      var L='';for(i=0;i<4;i++)L+=ease[i]==='e'?(cost[i]==='ch'?'a':'c'):(cost[i]==='ch'?'b':'d');
+      out.appendChild(h('p',null,'Your code. Give it to your teacher.'));
+      out.appendChild(codeBox('t3:'+g+','+L+','+vs.join(',')));
+    }
+    function drawTasks(){
+      taskBox.innerHTML='';fields=[];
+      if(!g){taskBox.appendChild(h('p',{class:'note'},'Pick your group to see the instructions.'));code();return}
+      taskBox.appendChild(h('p',null,g==='H'?'Do each task by hand. Time it.':'Use AI for each task. Time the AI making it. Then time you checking and fixing it.'));
+      TASKS3.forEach(function(tk,i){
+        var f=g==='H'?[numField('By hand (min)')]:[numField('AI makes it (min)'),numField('Checking and fixing (min)')];
+        fields.push(f);
+        f.forEach(function(x){x.inp.addEventListener('input',code)});
+        var timer=g==='H'
+          ?phaseTimer([['h','By hand','g']],function(m){f[0].inp.value=m.h;code()})
+          :phaseTimer([['m','AI makes it','t'],['j','Checking and fixing','r']],function(m){f[0].inp.value=m.m;f[1].inp.value=m.j;code()});
+        taskBox.appendChild(h('div',{class:'card',style:{marginTop:'12px'}},h('h3',null,'Task '+(i+1)),h('p',null,tk.t),tk.x?h('div',{class:'quote'},tk.x):null,h('div',{style:{marginTop:'10px'}},timer),h('div',{class:'fields',style:{marginTop:'10px'}},f.map(function(x){return x.el}))));
+      });
+      code();
+    }
+    var gseg=seg([['H','Group H: by hand'],['A','Group A: with AI']],g,function(v){g=v;drawTasks()},'Your group');
+    var sortBox=h('div');
+    TASKS3.forEach(function(tk,i){
+      var s1=seg([['e','Easy to check'],['h','Difficult to check']],'',function(v){ease[i]=v;code()},'Check, task '+(i+1));
+      var s2=seg([['ch','Cheap mistake'],['co','Costly mistake']],'',function(v){cost[i]=v;code()},'Mistake, task '+(i+1));
+      sortBox.appendChild(h('div',{class:'card',style:{marginTop:'10px'}},h('b',null,(i+1)+'. '+tk.t),h('div',{style:{display:'flex',gap:'10px',flexWrap:'wrap',marginTop:'8px'}},s1,s2)));
+    });
+    root.appendChild(h('div',{class:'panel'},
+      h('p',{style:{marginTop:0}},h('b',null,'1. Pick your group.')),gseg,
+      h('p',null,h('b',null,'2. Sort the four tasks before you start.')),sortBox,
+      h('p',null,h('b',null,'3. Do the tasks and time them.')),taskBox,
+      h('div',{style:{marginTop:'14px'}},out)));
+    drawTasks();
+    return root;
+  },
+  results:function(){
+    return resultsPanel('t3',{
+      example:'t3:A,abcd,1,2,1,1,1,3,1,6',
+      parse:function(s){
+        var p=s.split(','),g=p[0];
+        if(g!=='H'&&g!=='A')return null;
+        if(!/^[abcd]{4}$/.test(p[1]||''))return null;
+        var n=nums(p.slice(2).join(','),g==='H'?4:8);
+        if(!n)return null;
+        if(g==='H')return {g:g,l:p[1],h:n};
+        return {g:g,l:p[1],m:[n[0],n[2],n[4],n[6]],j:[n[1],n[3],n[5],n[7]]};
+      },
+      sample:function(){
+        var o=[],i,k,L,bias=['a','c','b','d'];
+        for(k=0;k<8;k++){
+          L='';for(i=0;i<4;i++)L+=Math.random()<0.75?bias[i]:pick(['a','b','c','d']);
+          o.push('t3:H,'+L+','+[rint(3,5),rint(4,7),rint(3,6),rint(3,6)].join(','));
+        }
+        for(k=0;k<8;k++){
+          L='';for(i=0;i<4;i++)L+=Math.random()<0.75?bias[i]:pick(['a','b','c','d']);
+          o.push('t3:A,'+L+','+[1,rint(0,1),1,rint(1,3),1,rint(1,3),1,rint(2,4)].join(','));
+        }
+        return o;
+      },
+      aggregate:function(rows){
+        var w=h('div');
+        if(!rows.length){w.appendChild(h('p',{class:'note'},'No rows yet.'));return w}
+        var H=rows.filter(function(r){return r.g==='H'}),Aa=rows.filter(function(r){return r.g==='A'});
+        var info=TASKS3.map(function(t,i){
+          var hm=mean(H.map(function(r){return r.h[i]})),am=mean(Aa.map(function(r){return r.m[i]})),aj=mean(Aa.map(function(r){return r.j[i]}));
+          var c={a:0,b:0,c:0,d:0};rows.forEach(function(r){c[r.l[i]]++});
+          var top='a';['b','c','d'].forEach(function(k){if(c[k]>c[top])top=k});
+          var ok=H.length>=3&&Aa.length>=3;
+          return {t:t.t,hm:hm,am:am,aj:aj,net:ok?hm-(am+aj):null,top:top,agree:c[top]/rows.length};
+        });
+        var mx=Math.max.apply(null,info.map(function(x){return Math.max(x.hm,x.am+x.aj)}).concat([1]));
+        var trs=info.map(function(x,i){
+          return [
+            (i+1)+'. '+x.t,
+            h('div',null,miniBar([['g',x.hm,'By hand',r1(x.hm)+' min']],x.hm/mx*100),h('div',{style:{height:'4px'}}),miniBar([['t',x.am,'AI makes it '+r1(x.am)+' min',''],['r',x.aj,'Checking '+r1(x.aj)+' min','']],(x.am+x.aj)/mx*100),h('div',{class:'note',style:{marginTop:'4px'}},'Hand '+r1(x.hm)+' · AI make '+r1(x.am)+' + check '+r1(x.aj))),
+            x.net===null?'-':(x.net>0?'AI saved ':(x.net===0?'Tied. ':'AI cost '))+(x.net>0||x.net<0?r1(Math.abs(x.net))+' min':''),
+            BOX3[x.top]+' ('+pct(x.agree)+' agree)'
+          ];
+        });
+        w.appendChild(h('div',{class:'note',style:{margin:'10px 0'}},'Grey bar: by hand. Blue and red bar: with AI. Blue is the AI making it. Red is checking, which includes fixing. Group H n = '+H.length+'. Group A n = '+Aa.length+'.'));
+        w.appendChild(table(['Task','Minutes','Net time','How the class sorted it'],trs));
+        var okA=null,okB=null,okC=null,dA='',dB='',dC='';
+        var done=info.filter(function(x){return x.net!==null});
+        if(done.length){
+          var lost=done.filter(function(x){return x.net<=0});
+          okA=lost.length>0;
+          dA='AI lost or tied on '+lost.length+' of '+done.length+' tasks.';
+          w.appendChild(verdict(okA?'held':'not',okA?'AI did not win everywhere':'AI won on every task','Net time by task: '+done.map(function(x,i){return (x.net>0?'+':'')+r1(x.net)}).join(', ')+' min. '+(okA?'On the tasks where AI lost, checking took longer than the production time saved.':'In this class checking never cost more than AI saved.')));
+        }else w.appendChild(FEW(rows.length));
+        var pairs=[];
+        Aa.forEach(function(r){for(var i=0;i<4;i++){var tot=r.m[i]+r.j[i];if(tot>0)pairs.push({easy:'ac'.indexOf(r.l[i])>=0,costly:'cd'.indexOf(r.l[i])>=0,share:r.j[i]/tot,j:r.j[i]})}});
+        var hard=pairs.filter(function(x){return !x.easy}),easy=pairs.filter(function(x){return x.easy});
+        if(hard.length>=3&&easy.length>=3){
+          var sh=mean(hard.map(function(x){return x.share})),se=mean(easy.map(function(x){return x.share}));
+          okB=sh>se;dB='Checking share '+pct(sh)+' on tasks sorted difficult to check, '+pct(se)+' on tasks sorted easy.';
+          w.appendChild(verdict(okB?'held':'not',okB?'Difficult-to-check tasks took more checking':'Difficult-to-check tasks did not take more checking',dB+' Based on '+hard.length+' difficult and '+easy.length+' easy task attempts with AI.'));
+        }
+        var costly=pairs.filter(function(x){return x.costly}),cheap=pairs.filter(function(x){return !x.costly});
+        if(costly.length>=3&&cheap.length>=3){
+          var jc=mean(costly.map(function(x){return x.j})),jh=mean(cheap.map(function(x){return x.j}));
+          okC=jc>jh;dC='Checking minutes '+r1(jc)+' when a mistake was costly, '+r1(jh)+' when cheap.';
+          w.appendChild(verdict(okC?'held':'not',okC?'Students checked longer when a mistake was costly':'Students did not check longer when a mistake was costly',dC));
+        }
+        var ev=[okA,okB,okC].filter(function(x){return x!==null});
+        if(ev.length>=2){
+          var tr=ev.filter(function(x){return x}).length;
+          w.appendChild(logLine(3,'When to check',statusOf(tr>=2?true:(tr===0?false:null)),'n='+rows.length+'. '+[dA,dB,dC].filter(Boolean).join(' ')));
+        }
+        var split=info.slice().sort(function(p,q){return p.agree-q.agree}).slice(0,2).map(function(x){return '"'+x.t+'" ('+pct(x.agree)+' agree)'});
+        w.appendChild(verdict('few','Discuss first: where the class sorted differently',split.join('. ')+'.'));
+        return w;
+      }
+    });
+  }
+};
+
+window.AML={h:h,add:add,$:$,store:store,mean:mean,median:median,r1:r1,pct:pct,rint:rint,pick:pick,nums:nums,fmtMin:fmtMin,seg:seg,stack:stack,verdict:verdict,FEW:FEW,table:table,codeBox:codeBox,numField:numField,phaseTimer:phaseTimer,resultsPanel:resultsPanel,tests:[T1,T2,T3],logLine:logLine,statusOf:statusOf};
+})();
+
+(function(){
+'use strict';
+var A=window.AML,h=A.h,seg=A.seg,mean=A.mean,r1=A.r1,pct=A.pct,rint=A.rint,pick=A.pick,nums=A.nums,verdict=A.verdict,FEW=A.FEW,table=A.table,codeBox=A.codeBox,numField=A.numField,resultsPanel=A.resultsPanel,logLine=A.logLine,statusOf=A.statusOf;
+
+/* ================= TEST 4: the unit of work (routine, then project) ================= */
+var W5=(function(){
+  var items=[['Thai tea',30],['Green tea',25],['Cocoa',35],['Toast',20]];
+  var cups=[[40,22,18,30],[45,20,16,28],[38,25,20,33],[50,24,19,31],[47,21,22,35],[52,26,18,34],[49,23,21,32],[55,27,20,36]];
+  var mat=[0,0,0,0,0,12,14,15],weeks=[],prevOld=0;
+  for(var w=0;w<8;w++){
+    var rows=items.map(function(it,i){return {name:it[0],cups:cups[w][i],price:it[1],rev:cups[w][i]*it[1]}});
+    var oldT=rows.reduce(function(a,r){return a+r.rev},0),oldC=rows.reduce(function(a,r){return a+r.cups},0);
+    if(mat[w])rows.push({name:'Iced matcha',cups:mat[w],price:40,rev:mat[w]*40});
+    var T=rows.reduce(function(a,r){return a+r.rev},0),C=rows.reduce(function(a,r){return a+r.cups},0);
+    var chg=w?Math.round((oldT/prevOld-1)*100):null;prevOld=oldT;
+    weeks.push({rows:rows,total:T,cups:C,drift:!!mat[w],lines:['Total sales: '+oldT+' baht','Cups sold: '+oldC,'Items counted: 4','Best seller: Thai tea',w?'Sales vs last week: '+(chg>=0?'+':'')+chg+'%':'First week of the routine']});
+  }
+  return weeks;
+})();
+
+function buildRoutine(onDone){
+  var root=h('div'),st=null;
+  function draw(){
+    root.innerHTML='';
+    if(!st){
+      root.appendChild(h('div',{class:'panel'},h('h3',null,'Part 1: a routine'),h('p',null,'You run a weekly sales summary for the stall. The AI writes it. Each week you decide whether to send it to the teacher. You will review eight weeks.'),
+        h('p',null,h('b',null,'Pick your group.')),
+        h('div',{style:{display:'flex',gap:'10px',flexWrap:'wrap'}},
+          h('button',{class:'btn solid',type:'button',onclick:function(){start('E')}},'Group E: open the sheet every week'),
+          h('button',{class:'btn solid',type:'button',onclick:function(){start('S')}},'Group S: open the sheet in 3 of 8 weeks'))));
+      return;
+    }
+    if(st.done){finish();return}
+    var wk=W5[st.w],dots=h('div',{style:{display:'flex',gap:'6px',margin:'8px 0'}});
+    for(var i=0;i<8;i++)dots.appendChild(h('span',{style:{width:'26px',height:'8px',borderRadius:'4px',background:i<st.w?'var(--ink)':(i===st.w?'var(--blue)':'#d5d9e0')}}));
+    var p=h('div',{class:'panel'},h('h3',null,'Week '+(st.w+1)+' of 8'),dots,h('p',{class:'note'},'Sheet checks left: '+st.budget),
+      h('div',{class:'quote'},h('b',null,'The AI\'s summary'),h('ul',{style:{margin:'6px 0 0',paddingLeft:'20px'}},wk.lines.map(function(l){return h('li',null,l)}))));
+    var btns=h('div',{style:{display:'flex',gap:'10px',flexWrap:'wrap',marginTop:'14px'}});
+    if(!st.opened){
+      if(st.budget>0)btns.appendChild(h('button',{class:'btn solid',type:'button',onclick:function(){st.budget--;st.checks++;st.opened=true;st.msg='';draw()}},'Open the sheet and check'));
+      btns.appendChild(h('button',{class:'btn',type:'button',onclick:send},'Send the summary as it is'));
+    }else{
+      p.appendChild(h('div',{class:'quote',style:{marginTop:'12px'}},h('b',null,'The sales sheet'),table(['Item','Cups','Price','Revenue'],wk.rows.map(function(r){return [r.name,r.cups,r.price,r.rev]}).concat([[h('b',null,'Total'),h('b',null,wk.cups),'',h('b',null,wk.total)]]))));
+      btns.appendChild(h('button',{class:'btn solid',type:'button',onclick:send},'The summary is right. Send it.'));
+      btns.appendChild(h('button',{class:'btn',type:'button',onclick:report},'The summary is wrong. Stop and report.'));
+    }
+    p.appendChild(btns);
+    if(st.msg)p.appendChild(h('p',{style:{marginTop:'10px',color:'var(--red)',fontWeight:'600'},'aria-live':'polite'},st.msg));
+    root.appendChild(p);
+  }
+  function start(g){st={g:g,budget:g==='E'?8:3,w:0,opened:false,notice:0,checks:0,sentWrong:0,fa:0,msg:'',done:false};draw()}
+  function send(){
+    var wk=W5[st.w];if(wk.drift)st.sentWrong++;
+    st.w++;st.opened=false;st.msg='';
+    if(st.w>=8)st.done=true;
+    draw();
+  }
+  function report(){
+    var wk=W5[st.w];
+    if(wk.drift){st.notice=st.w+1;st.done=true}
+    else{st.fa++;st.msg='This summary matches the sheet. Look again.'}
+    draw();
+  }
+  function finish(){
+    root.appendChild(h('div',{class:'panel'},h('h3',null,'Part 1 finished'),
+      h('div',{class:'stats'},h('span',null,h('b',null,st.notice?'Week '+st.notice:'Never'),'you noticed the problem'),h('span',null,h('b',null,st.checks),'sheet checks used'),h('span',null,h('b',null,st.sentWrong),'wrong summaries sent'),h('span',null,h('b',null,st.fa),'false alarms')),
+      h('p',null,'In week 6 the sheet got a new row, Iced matcha. The AI kept the old template and left it out. Every summary from week 6 was wrong.'),
+      h('div',{style:{marginTop:'12px'}},h('button',{class:'btn solid',type:'button',onclick:function(){onDone(st.g+','+st.notice+','+st.checks+','+st.sentWrong+','+st.fa)}},'Go to part 2'))));
+  }
+  draw();
+  return root;
+}
+
+var P6=[
+  {name:'1. Audience plan',lines:['Goal: sell 120 drinks at the fair.','Target buyers: parents and teachers.','Tone: short and friendly.','Main channel: Instagram.']},
+  {name:'2. Price table',lines:['Thai tea: 40 baht','Green tea: 25 baht','Cocoa: 35 baht','Toast: 20 baht','Combo, Thai tea + toast: 40 + 20 = 50 baht']},
+  {name:'3. Poster',lines:['SIAM SIP','Thai tea 35 baht','Green tea 25 baht','Saturday, 10am to 2pm','Hall 2']},
+  {name:'4. Social post',lines:['Siam Sip is at the school fair this Friday!','Thai tea, green tea and cocoa, from 10am to 3pm.','Find us in Hall 2.','Tell a friend.']}
+];
+var IN6=['p0l1','p1l4','p3l0'],X6=[['p1l0','p2l1'],['p2l3','p3l1']];
+
+function buildWhole(onDone){
+  var root=h('div'),stage=0,f1=[{},{},{},{}],f2={};
+  var brief=h('div',{class:'quote'},h('b',null,'The brief'),h('ul',{style:{margin:'6px 0 0',paddingLeft:'20px'}},['Stall: Siam Sip, run by Class 11B.','Fair day: Saturday.','Buyers at the fair: students.','Drinks: Thai tea, green tea, cocoa. Also toast.'].map(function(x){return h('li',null,x)})));
+  function chips(pi,store){
+    return P6[pi].lines.map(function(l,li){
+      var k='p'+pi+'l'+li,b=h('button',{type:'button',class:'chip','aria-pressed':store[k]?'true':'false',onclick:function(){
+        var on=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',on);if(on)store[k]=1;else delete store[k];
+      }},l);
+      return h('div',null,b);
+    });
+  }
+  function draw(){
+    root.innerHTML='';
+    if(stage<4){
+      root.appendChild(h('div',{class:'panel'},h('h3',null,'Part 2: a project'),h('p',null,'AI built a launch pack for the stall. Four parts. Check them against the brief. Stage 1: one part at a time. You cannot go back.'),
+        h('span',{class:'pill'},'Stage 1 · part '+(stage+1)+' of 4'),h('h3',{style:{marginTop:'12px'}},P6[stage].name),brief,
+        h('div',{class:'card',style:{marginTop:'12px'}},h('p',{class:'note'},'Tap lines that are wrong.'),chips(stage,f1[stage])),
+        h('div',{style:{marginTop:'14px'}},h('button',{class:'btn solid',type:'button',onclick:function(){stage++;draw()}},stage<3?'Next part':'Go to stage 2'))));
+    }else if(stage===4){
+      var g=h('div',{style:{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))',gap:'12px',marginTop:'12px'}});
+      P6.forEach(function(p,pi){g.appendChild(h('div',{class:'card'},h('h3',null,p.name),chips(pi,f2)))});
+      root.appendChild(h('div',{class:'panel'},h('span',{class:'pill dark'},'Stage 2: the whole'),h('p',null,'All four parts together. Tap every line that conflicts with another part.'),brief,g,
+        h('div',{style:{marginTop:'14px'}},h('button',{class:'btn solid',type:'button',onclick:function(){stage=5;draw()}},'Finish'))));
+    }else{
+      var in1=IN6.map(function(k){var pi=+k[1];return f1[pi][k]?1:0});
+      var false1=0;f1.forEach(function(o){Object.keys(o).forEach(function(k){if(IN6.indexOf(k)<0)false1++})});
+      var x2=X6.map(function(pair){return pair.some(function(k){return f2[k]})?1:0});
+      var allKnown=IN6.concat(X6[0],X6[1]),false2=0;Object.keys(f2).forEach(function(k){if(allKnown.indexOf(k)<0)false2++});
+      root.appendChild(h('div',{class:'panel'},h('h3',null,'Part 2 finished'),
+        h('div',{class:'stats'},h('span',null,h('b',null,in1.reduce(function(a,b){return a+b},0)+' of 3'),'errors inside one part (stage 1)'),h('span',null,h('b',null,x2.reduce(function(a,b){return a+b},0)+' of 2'),'conflicts between parts (stage 2)'),h('span',null,h('b',null,false1+false2),'false flags')),
+        h('div',{style:{marginTop:'12px'}},h('button',{class:'btn solid',type:'button',onclick:function(){onDone(in1.join('')+','+x2.join('')+','+false1+','+false2)}},'Get my code'))));
+    }
+  }
+  draw();
+  return root;
+}
+
+var T4={
+  id:'t4',n:4,title:'Where you check',time:'40 min',split:'Split the class in two',unit:'Work types',
+  claim:'The type of work sets where you check. In a routine you check deeply at setup, then sample, and drift can slip in. In a project parts that pass alone can fail together.',
+  prediction:'Students who check only some weeks of a routine notice the problem later and send more wrong summaries. Many students catch errors inside one part of a project. Fewer catch conflicts between parts.',
+  plan:[[5,'Intro. Say the claim. Split the class.'],[8,'Part 1: eight weeks of a routine.'],[10,'Part 2: a four-part project.'],[6,'Paste codes. Read the result.'],[9,'Debrief.']],
+  assign:[
+    'Part 1, a routine. Eight weekly summaries from the AI. Decide each week if you send it. Group E may open the sales sheet every week. Group S may open it in only three of the eight.',
+    'Part 2, a project. AI built a launch pack with four parts. First check each part on its own. Then see all four together and tap every line that conflicts with another part.',
+    'Get one code at the end. Give it to the teacher.'
+  ],
+  teacher:[
+    'Say who is E and who is S. Everyone does Part 2 the same way.',
+    'Part 1 drift starts in week 6. The sheet gets a new row, Iced matcha. The AI keeps the old template and leaves it out. The total is wrong from week 6.',
+    'Part 2 planted errors inside one part: the audience plan says parents and teachers (brief says students). The combo adds up wrong (40 + 20 is 60). The social post says Friday (brief says Saturday).',
+    'Part 2 planted conflicts between parts: the poster says 35 baht and the price table says 40. The poster says 10am to 2pm and the social post says 10am to 3pm.',
+    'Ask the class: What would make you stop trusting a routine? Who checks the whole in a project?',
+    'You can also run a real routine over four to six weeks and change an input halfway.'
+  ],
+  build:function(){
+    var root=h('div'),frag={};
+    function steps(n){return h('div',{style:{display:'flex',gap:'8px',margin:'0 0 14px',flexWrap:'wrap'}},h('span',{class:n===0?'pill dark':'pill'},'Part 1: a routine'),h('span',{class:n===1?'pill dark':'pill'},'Part 2: a project'),h('span',{class:n===2?'pill dark':'pill'},'Your code'))}
+    function draw(n){
+      root.innerHTML='';root.appendChild(steps(n));
+      if(n===0)root.appendChild(buildRoutine(function(c){frag.a=c;draw(1)}));
+      else if(n===1)root.appendChild(buildWhole(function(c){frag.b=c;draw(2)}));
+      else{
+        root.appendChild(h('div',{class:'panel'},h('h3',null,'Both parts done'),h('p',null,'Give this code to your teacher.'),codeBox('t4:'+frag.a+'|'+frag.b),
+          h('div',{style:{marginTop:'12px'}},h('button',{class:'btn',type:'button',onclick:function(){frag={};draw(0)}},'Start again'))));
+      }
+    }
+    draw(0);
+    return root;
+  },
+  results:function(){
+    return resultsPanel('t4',{
+      example:'t4:S,8,3,2,0|101,11,1,0',
+      parse:function(s){
+        var q=s.split('|');if(q.length!==2)return null;
+        var p=q[0].split(',');if(p.length!==5)return null;
+        var g=p[0];if(g!=='E'&&g!=='S')return null;
+        var n=nums(p.slice(1).join(','),4);if(!n)return null;
+        var b=q[1].split(',');if(b.length!==4)return null;
+        if(!/^[01]{3}$/.test(b[0])||!/^[01]{2}$/.test(b[1]))return null;
+        var f=nums(b[2]+','+b[3],2);if(!f)return null;
+        return {g:g,notice:n[0],checks:n[1],wrong:n[2],fa:n[3],a:b[0].split('').map(Number),x:b[1].split('').map(Number),f1:f[0],f2:f[1]};
+      },
+      sample:function(){
+        var o=[],i,j;
+        function whole(){var a='',x='';[0.85,0.55,0.8].forEach(function(p){a+=Math.random()<p?'1':'0'});[0.65,0.45].forEach(function(p){x+=Math.random()<p?'1':'0'});return a+','+x+','+rint(0,2)+','+rint(0,2)}
+        for(i=0;i<8;i++)o.push('t4:E,6,'+rint(6,8)+',0,'+rint(0,1)+'|'+whole());
+        for(i=0;i<8;i++){var nt=pick([0,7,8,8,6]);o.push('t4:S,'+nt+',3,'+(nt?Math.max(0,nt-6):3)+','+rint(0,1)+'|'+whole())}
+        return o;
+      },
+      aggregate:function(rows){
+        var w=h('div'),n=rows.length;
+        if(!n){w.appendChild(h('p',{class:'note'},'No rows yet.'));return w}
+        var okA=null,okB=null,dA='',dB='';
+        /* part 1 */
+        w.appendChild(h('h3',{style:{marginTop:'16px'}},'Part 1: the routine'));
+        function sm(g){var a=rows.filter(function(r){return r.g===g}),nt=a.filter(function(r){return r.notice>0});
+          return {n:a.length,checks:mean(a.map(function(r){return r.checks})),noticed:a.length?nt.length/a.length:0,week:nt.length?mean(nt.map(function(r){return r.notice})):0,wrong:mean(a.map(function(r){return r.wrong})),fa:mean(a.map(function(r){return r.fa}))}}
+        var E=sm('E'),S=sm('S');
+        w.appendChild(table(['Group','n','Sheet checks used','Noticed the drift','Average week noticed','Wrong summaries sent','False alarms'],[
+          ['E: every week',E.n,r1(E.checks),pct(E.noticed),E.week?r1(E.week):'-',r1(E.wrong),r1(E.fa)],
+          ['S: 3 of 8',S.n,r1(S.checks),pct(S.noticed),S.week?r1(S.week):'-',r1(S.wrong),r1(S.fa)]]));
+        if(E.n<3||S.n<3)w.appendChild(FEW(n));
+        else{
+          okA=S.wrong>E.wrong&&S.checks<E.checks;
+          dA='Samplers sent '+r1(S.wrong)+' wrong summaries, every-week students '+r1(E.wrong)+'. Samplers used '+r1(S.checks)+' checks, every-week students '+r1(E.checks)+'.';
+          w.appendChild(verdict(okA?'held':'not',okA?'Sampling cost something':'Sampling did not cost more here',dA));
+        }
+        /* part 2 */
+        w.appendChild(h('h3',{style:{marginTop:'24px'}},'Part 2: the project'));
+        var labels=['Plan says parents and teachers (brief says students)','Combo adds up wrong (40 + 20 is not 50)','Social post says Friday (brief says Saturday)','Poster 35 baht, price table 40 baht','Poster 10am to 2pm, social post 10am to 3pm'];
+        var rates=[0,1,2].map(function(i){return mean(rows.map(function(r){return r.a[i]}))}).concat([0,1].map(function(i){return mean(rows.map(function(r){return r.x[i]}))}));
+        var list=h('div',{style:{display:'grid',gap:'10px',marginTop:'12px'}});
+        rates.forEach(function(v,i){
+          list.appendChild(h('div',null,h('div',{style:{display:'flex',justifyContent:'space-between',gap:'8px',fontSize:'15px'}},h('span',null,(i<3?'Inside one part: ':'Between parts: ')+labels[i]),h('b',null,pct(v))),
+            h('div',{class:'bar'},h('span',{class:'seg '+(i<3?'t':'r'),style:{flexGrow:Math.max(v,0.001)}}),h('span',{class:'seg g',style:{flexGrow:Math.max(1-v,0.001),background:'#e4e7ec'}}))));
+        });
+        w.appendChild(list);
+        var missed=rows.filter(function(r){return r.x[0]+r.x[1]<2}).length;
+        var inAvg=mean(rates.slice(0,3)),xAvg=mean(rates.slice(3));
+        if(n<5)w.appendChild(FEW(n));
+        else{
+          okB=xAvg<inAvg;
+          dB='Catch rate '+pct(inAvg)+' inside one part, '+pct(xAvg)+' between parts. '+missed+' of '+n+' students missed at least one conflict.';
+          w.appendChild(verdict(okB?'held':'not',okB?'Conflicts between parts slipped through more':'Conflicts between parts were caught as often',dB));
+        }
+        var ev=[okA,okB].filter(function(x){return x!==null});
+        if(ev.length){
+          var tr=ev.filter(function(x){return x}).length;
+          w.appendChild(logLine(4,'Where you check',statusOf(tr===ev.length?true:(tr===0?false:null)),'n='+n+'. '+[dA,dB].filter(Boolean).join(' ')));
+        }
+        return w;
+      }
+    });
+  }
+};
+
+/* ================= TEST 5: the work is the learning ================= */
+function prob(){
+  var F=pick([300,450,600,750,900,1200,1500]),P=rint(5,12)*5,m=pick([6,8,9,12,14,15,18]),C=P-m;
+  return {F:F,P:P,C:C,ans:Math.ceil(F/m),text:'A stall pays '+F+' baht to rent a table. Each cup costs '+C+' baht to make and sells for '+P+' baht. How many cups must it sell to cover the rent?'};
+}
+var T5={
+  id:'t5',n:5,title:'When the work is the point',time:'40 min',split:'Split the class in two',unit:'The work is the point',
+  claim:'The work is how you learn. If AI does the practice, you may not build the experience you need to check well.',
+  prediction:'The group that practiced with AI scores lower on a test without AI. A retest a week later shows the gap again.',
+  plan:[[4,'Intro. Say the claim. Split the class.'],[3,'Learn the skill: one-minute explainer.'],[12,'Practice: six problems. H by hand. A with AI.'],[8,'Test: five problems. No AI. No notes.'],[5,'Paste codes. Read the result.'],[8,'Debrief.']],
+  assign:[
+    'Learn one skill: break-even. Read the one-minute explainer.',
+    'Practice with six problems. Group H does them by hand. Group A may use AI.',
+    'Take the test. Five new problems. No AI. No notes.',
+    'Get your code. Give it to the teacher.',
+    'Optional, a week later: take a second test with no practice. Use "A week later" on the Do it tab.'
+  ],
+  teacher:[
+    'The core test is all in one lesson. The retest a week later is optional and adds the stronger evidence.',
+    'Swap groups on the next skill so everyone gets both kinds of practice. Do not let one group lose out.',
+    'Break-even is a placeholder. Swap in any skill you teach if it has a right answer you can score.',
+    'Keep the pressure low. This is the test hardest to run well and the easiest to confound.'
+  ],
+  build:function(){
+    var g='H',round='0',root=h('div'),body=h('div');
+    var gseg=seg([['H','Group H: practice by hand'],['A','Group A: practice with AI']],g,function(v){g=v;draw()},'Your group');
+    var rseg=seg([['0','Today'],['1','A week later (optional)']],round,function(v){round=v;draw()},'Which test');
+    function draw(){
+      body.innerHTML='';
+      var explainer=h('div',{class:'quote'},h('b',null,'One-minute explainer. '),'Break-even is the number of units you must sell to cover a fixed cost. Each unit leaves a margin: price minus cost to make. Cups needed = fixed cost ÷ margin. Round up to a whole cup.');
+      if(round==='0'){
+        var pr=[];for(var i=0;i<6;i++)pr.push(prob());
+        body.appendChild(h('div',{class:'panel',style:{marginTop:'14px'}},h('span',{class:'pill'},'Step 1'),h('h3',{style:{marginTop:'10px'}},'Learn it'),explainer));
+        body.appendChild(h('div',{class:'panel',style:{marginTop:'14px'}},h('span',{class:'pill'},'Step 2'),h('h3',{style:{marginTop:'10px'}},'Practice'),
+          h('p',null,g==='H'?'Do these by hand. No AI.':'Use AI however you like.'),
+          h('ol',{style:{paddingLeft:'20px'}},pr.map(function(p){return h('li',{style:{margin:'8px 0'}},p.text)}))));
+      }else{
+        body.appendChild(h('div',{class:'panel',style:{marginTop:'14px'}},h('p',null,'Later test. No practice today. Go straight to the test.')));
+      }
+      body.appendChild(testBlock());
+    }
+    function testBlock(){
+      var box=h('div',{class:'panel',style:{marginTop:'14px'}},h('span',{class:'pill dark'},'Test'),h('h3',{style:{margin:'10px 0'}},'Five problems. No AI. No notes.'));
+      var area=h('div'),t0=0,ps=[];
+      var start=h('button',{class:'btn solid',type:'button',onclick:function(){
+        ps=[];for(var i=0;i<5;i++)ps.push(prob());t0=Date.now();start.style.display='none';area.innerHTML='';
+        var inputs=ps.map(function(p){var inp=h('input',{type:'number',min:'0',step:'1',inputmode:'numeric','aria-label':'Answer'});area.appendChild(h('div',{class:'card',style:{marginBottom:'10px'}},h('p',{style:{margin:'0 0 8px'}},p.text),inp));return inp});
+        area.appendChild(h('button',{class:'btn solid',type:'button',onclick:function(){
+          var secs=Math.round((Date.now()-t0)/1000),score=0;
+          ps.forEach(function(p,i){if(parseInt(inputs[i].value,10)===p.ans)score++});
+          area.innerHTML='';
+          area.appendChild(h('div',{class:'stats'},h('span',null,h('b',null,score+' of 5'),'correct'),h('span',null,h('b',null,A.fmtMin(secs)),'time')));
+          area.appendChild(h('div',{class:'quote'},h('b',null,'Correct answers: '),ps.map(function(p){return p.ans}).join(', ')));
+          area.appendChild(h('p',null,'Give this code to your teacher.'));
+          area.appendChild(codeBox('t5:'+g+','+round+','+score+','+secs));
+        }},'Submit the test'));
+      }},'Start the test');
+      box.appendChild(start);box.appendChild(area);return box;
+    }
+    root.appendChild(h('div',{class:'panel'},h('p',{style:{marginTop:0}},h('b',null,'Your group')),gseg,h('p',null,h('b',null,'Which test is this?')),rseg));
+    root.appendChild(body);draw();
+    return root;
+  },
+  results:function(){
+    return resultsPanel('t5',{
+      example:'t5:A,0,3,240',
+      parse:function(s){var p=s.split(',');if(p.length!==4)return null;var g=p[0];if(g!=='H'&&g!=='A')return null;var r=+p[1];if(r!==0&&r!==1)return null;var n=nums(p[2]+','+p[3],2);if(!n||n[0]>5)return null;return {g:g,r:r,score:n[0],secs:n[1]}},
+      sample:function(){var o=[],i;for(i=0;i<9;i++)o.push('t5:H,0,'+rint(3,5)+','+rint(180,400));for(i=0;i<9;i++)o.push('t5:A,0,'+rint(1,4)+','+rint(150,380));for(i=0;i<7;i++)o.push('t5:H,1,'+rint(3,5)+','+rint(150,350));for(i=0;i<7;i++)o.push('t5:A,1,'+rint(1,4)+','+rint(150,350));return o},
+      aggregate:function(rows){
+        var w=h('div'),trs=[],res=[],det=[];
+        [0,1].forEach(function(r){
+          var H=rows.filter(function(x){return x.g==='H'&&x.r===r}),Aa=rows.filter(function(x){return x.g==='A'&&x.r===r});
+          trs.push([(r?'A week later':'Today'),'H: by hand',H.length,H.length?r1(mean(H.map(function(x){return x.score})))+' of 5':'-',H.length?A.fmtMin(mean(H.map(function(x){return x.secs}))):'-']);
+          trs.push([(r?'A week later':'Today'),'A: with AI',Aa.length,Aa.length?r1(mean(Aa.map(function(x){return x.score})))+' of 5':'-',Aa.length?A.fmtMin(mean(Aa.map(function(x){return x.secs}))):'-']);
+        });
+        w.appendChild(table(['Test','Practice group','n','Average score','Average time'],trs));
+        var any=false;
+        [0,1].forEach(function(r){
+          var H=rows.filter(function(x){return x.g==='H'&&x.r===r}),Aa=rows.filter(function(x){return x.g==='A'&&x.r===r});
+          if(H.length>=3&&Aa.length>=3){any=true;var mh=mean(H.map(function(x){return x.score})),ma=mean(Aa.map(function(x){return x.score}));
+            w.appendChild(verdict(ma<mh?'held':'not',(r?'A week later: ':'Today: ')+(ma<mh?'the AI practice group scored lower':'the AI practice group did not score lower'),'By hand '+r1(mh)+' of 5. With AI '+r1(ma)+' of 5.'));
+            if(r===0){res.push(ma<mh);det.push('Same-day test: '+r1(mh)+' of 5 by hand, '+r1(ma)+' with AI.')}
+            else det.push('A week later: '+r1(mh)+' by hand, '+r1(ma)+' with AI.');
+          }
+        });
+        if(!any)w.appendChild(FEW(rows.length));
+        else if(res.length)w.appendChild(logLine(5,'When the work is the point',statusOf(res[0]),'n='+rows.length+'. '+det.join(' ')));
+        return w;
+      }
+    });
+  }
+};
+
+/* ================= app: router and pages ================= */
+var tests=A.tests.concat([T4,T5]);
+var cache={},tabs={},app=A.$('#app');
+var mode={teacher:A.store.get('teacher','0')==='1',present:A.store.get('present','0')==='1'};
+function applyMode(){
+  document.body.classList.toggle('teacher',mode.teacher);
+  document.body.classList.toggle('present',mode.present);
+  A.$('#tTeacher').setAttribute('aria-pressed',mode.teacher);
+  A.$('#tPresent').setAttribute('aria-pressed',mode.present);
+}
+A.$('#tTeacher').addEventListener('click',function(){mode.teacher=!mode.teacher;A.store.set('teacher',mode.teacher?'1':'0');applyMode();render()});
+A.$('#tPresent').addEventListener('click',function(){mode.present=!mode.present;A.store.set('present',mode.present?'1':'0');applyMode()});
+
+function navLinks(cur){
+  var ul=A.$('#navlinks');ul.innerHTML='';
+  ul.appendChild(h('li',null,h('a',{class:'l'+(cur==='home'?' on':''),href:'#home'},'Home')));
+  tests.forEach(function(t){ul.appendChild(h('li',null,h('a',{class:'l'+(cur===t.id?' on':''),href:'#'+t.id,title:t.title,'aria-label':'Test '+t.n+': '+t.title},String(t.n))))});
+}
+function metaPills(t){return [h('span',{class:'pill'},t.time),h('span',{class:'pill'},t.split),h('span',{class:'pill dark'},t.unit)]}
+function runSheet(t){
+  var tot=t.plan.reduce(function(a,p){return a+p[0]},0);
+  return h('div',null,
+    h('div',{class:'eyebrow',style:{marginTop:'18px'}},'Run sheet · '+tot+' minutes'),
+    h('div',{class:'runsheet'},t.plan.map(function(p){return h('div',{class:'rs',style:{flexGrow:p[0]}},h('b',null,p[0]+' min'),h('span',null,p[1]))})));
+}
+
+function home(){
+  var w=h('div');
+  w.appendChild(h('div',{class:'eyebrow'},'The classroom lab'));
+  w.appendChild(h('h1',{style:{marginTop:'12px'}},'Five tests for the model.'));
+  w.appendChild(h('p',{class:'lead'},'The model says AI doesn\'t remove the work. It moves it. Do not take that on faith. Test it with your class. One test for each part of the model. Each fits one lesson of 30 to 40 minutes.'));
+  w.appendChild(h('div',{class:'panel',style:{marginTop:'28px'}},h('h3',null,'How to run a test'),
+    h('ol',{class:'steps'},[
+      h('li',null,'Open the test. Read the claim and the prediction out loud. Ask the class if they agree. Write your own prediction first.'),
+      h('li',null,'Show the assignment. Turn on Present for big text.'),
+      h('li',null,'Students open the Do it tab on their own device. They finish and get a short code. The code has no name in it.'),
+      h('li',null,'Switch to Teacher view. Paste the codes into Class results. The page works out the result and gives you one line for your class log.'),
+      h('li',null,'Ask the class: What would break the claim? Record any case that does.')])));
+  var g=h('div',{class:'grid3'});
+  tests.forEach(function(t){
+    g.appendChild(h('a',{class:'tcard',href:'#'+t.id},h('span',{class:'num'},String(t.n)),h('h3',null,t.title),h('p',{class:'pred',style:{margin:0}},h('b',null,'Claim. '),t.claim),h('div',{class:'meta'},metaPills(t))));
+  });
+  w.appendChild(g);
+  w.appendChild(h('div',{class:'teachernote'},h('h4',null,'Teacher notes'),h('ul',null,
+    h('li',null,'Run tests 1, 2 and 3 first. Then tests 4 and 5.'),
+    h('li',null,'Each test page has a run sheet with minutes for each stage. Total time includes the intro and the debrief.'),
+    h('li',null,'Small classes give small samples. Treat results as a case study. Look at the pattern and the exceptions.'),
+    h('li',null,'Do not use student names in codes. Nothing is sent anywhere. Pasted codes stay in your browser on this device.'),
+    h('li',null,'Teacher view shows the planted answers. Keep it off when students share the screen.'))));
+  return w;
+}
+
+function testPage(t){
+  var w=h('div');
+  w.appendChild(h('div',{class:'eyebrow'},'Test '+t.n+' of 5 · '+t.unit));
+  w.appendChild(h('h1',{style:{marginTop:'10px'}},t.title));
+  w.appendChild(h('div',{style:{display:'flex',gap:'8px',flexWrap:'wrap',margin:'14px 0'}},metaPills(t)));
+  w.appendChild(h('div',{class:'dark'},h('div',{class:'eyebrow',style:{color:'#9a9a96'}},'The claim we test'),h('div',{style:{fontFamily:'var(--sg)',fontWeight:700,fontSize:'clamp(22px,3vw,32px)',lineHeight:1.2,marginTop:'6px'}},t.claim)));
+  w.appendChild(h('div',{class:'panel',style:{marginTop:'14px'}},h('div',{class:'eyebrow'},'Our prediction'),h('div',{style:{fontSize:'1.1em',marginTop:'4px'}},t.prediction)));
+  w.appendChild(runSheet(t));
+  var cur=tabs[t.id]||'assign';
+  if(cur==='results'&&!mode.teacher)cur='assign';
+  var tb=h('div',{class:'tabs',role:'tablist'});
+  var body=h('div');
+  function show(k){
+    tabs[t.id]=k;
+    Array.prototype.forEach.call(tb.children,function(b){b.setAttribute('aria-selected',b.getAttribute('data-k')===k)});
+    body.innerHTML='';
+    if(k==='assign'){
+      body.appendChild(h('h2',null,'The assignment'));
+      body.appendChild(h('ol',{class:'steps'},t.assign.map(function(s){return h('li',null,s)})));
+      body.appendChild(h('div',{class:'teachernote'},h('h4',null,'Teacher notes'),h('ul',null,t.teacher.map(function(s){return h('li',null,s)}))));
+    }else if(k==='do'){
+      cache[t.id]=cache[t.id]||{};
+      if(!cache[t.id].d)cache[t.id].d=t.build();
+      body.appendChild(cache[t.id].d);
+    }else{
+      cache[t.id]=cache[t.id]||{};
+      if(!cache[t.id].r)cache[t.id].r=t.results();
+      body.appendChild(h('h2',null,'Class results'));
+      body.appendChild(cache[t.id].r);
+      cache[t.id].r.run();
+    }
+  }
+  [['assign','1  The assignment'],['do','2  Do it']].concat(mode.teacher?[['results','3  Class results']]:[]).forEach(function(x){
+    tb.appendChild(h('button',{class:'tab',role:'tab','data-k':x[0],'aria-selected':'false',type:'button',onclick:function(){show(x[0])}},x[1]));
+  });
+  w.appendChild(tb);w.appendChild(body);
+  var idx=tests.indexOf(t);
+  w.appendChild(h('div',{style:{display:'flex',justifyContent:'space-between',gap:'10px',marginTop:'40px',flexWrap:'wrap'}},
+    h('a',{class:'btn',href:idx?'#'+tests[idx-1].id:'#home',style:{textDecoration:'none'}},idx?'Previous test':'Home'),
+    idx<tests.length-1?h('a',{class:'btn solid',href:'#'+tests[idx+1].id,style:{textDecoration:'none'}},'Next test'):h('a',{class:'btn solid',href:'#home',style:{textDecoration:'none'}},'Back to all tests')));
+  show(cur);
+  return w;
+}
+
+function render(){
+  var id=(location.hash||'#home').slice(1);
+  var t=tests.filter(function(x){return x.id===id})[0];
+  navLinks(t?t.id:'home');
+  app.innerHTML='';
+  app.appendChild(t?testPage(t):home());
+  if(!window.__first)window.__first=1;else window.scrollTo(0,0);
+  document.title=(t?'Test '+t.n+': '+t.title+' · ':'')+'AI Moves Work Lab';
+}
+window.addEventListener('hashchange',render);
+applyMode();
+render();
+})();
+</script>
+</body>
+</html>

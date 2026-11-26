@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Moves Work Model</title>
+<meta name="description" content="AI does not remove the work. It moves it. A model for students, teachers, and administrators.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314130f'/%3E%3Crect x='10' y='24' width='10' height='16' rx='3' fill='%230f9d8a'/%3E%3Crect x='24' y='24' width='10' height='16' rx='3' fill='%232f62e0'/%3E%3Crect x='38' y='24' width='16' height='16' rx='3' fill='%23e0405a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main><div class="wrap">
+
+<div class="eyebrow">A model for students, teachers, and administrators</div>
+<h1 style="margin-top:12px">AI does not remove the work.<span class="br">It moves it.</span></h1>
+<p class="lead">When AI helps with a piece of work, the work does not disappear. Some of it moves to Checking. This model shows where it goes and what to do about it.</p>
+<div class="row" style="margin-top:20px"><a class="btn solid" href="stages.html">Start with the stages</a><a class="btn" href="lab.html">Run the lab</a></div>
+
+<section>
+  <h2>Every piece of work has three stages</h2>
+  <p><b class="c-plan">Plan.</b> <b class="c-do">Do.</b> <b class="c-check">Check.</b></p>
+  <p>AI can decrease Planning and Doing. Some of the work moves to Checking. Completion time can go up, down, or stay the same.</p>
+  <div class="panel" style="margin-top:16px">
+    <div class="eyebrow">See it move</div>
+    <div class="seg" id="exseg" style="margin-top:10px" role="group" aria-label="Pick an example">
+      <button type="button" data-k="task" aria-pressed="true">A task</button>
+      <button type="button" data-k="routine" aria-pressed="false">A routine</button>
+      <button type="button" data-k="project" aria-pressed="false">A project</button>
+      <button type="button" data-k="wrong" aria-pressed="false">When AI gets it wrong</button>
+    </div>
+    <div class="bars">
+      <div class="barrow"><div class="lab">Without AI</div><div class="bar" id="bw"><div class="b-plan"></div><div class="b-do"></div><div class="b-check"></div></div><div class="tot" id="tw"></div></div>
+      <div class="barrow"><div class="lab">With AI</div><div class="bar" id="ba"><div class="b-plan"></div><div class="b-do"></div><div class="b-check"></div></div><div class="tot" id="ta"></div></div>
+    </div>
+    <div class="legend"><span><i class="dot b-plan"></i>Plan</span><span><i class="dot b-do"></i>Do</span><span><i class="dot b-check"></i>Check</span></div>
+    <p id="cap" aria-live="polite" style="margin-top:12px;font-weight:600"></p>
+    <p class="note">Example numbers in minutes. They are not data. The lab collects real numbers.</p>
+  </div>
+</section>
+
+<section>
+  <h2>The model in eight pages</h2>
+  <div class="grid" style="margin-top:16px">
+    <a class="tile" href="stages.html"><div class="n">1</div><h3>Stages</h3><p>Plan, Do, Check. How the pattern changes for a task, a routine, and a project.</p></a>
+    <a class="tile" href="checking.html"><div class="n">2</div><h3>Checking</h3><p>Two questions. Is it right? Is it good? Try them on a short text.</p></a>
+    <a class="tile" href="decide.html"><div class="n">3</div><h3>Decide</h3><p>Four questions and one rule tell you when to use AI and how much to check.</p></a>
+    <a class="tile" href="time-test.html"><div class="n">4</div><h3>Time test</h3><p>Add up Plan, Do, and Check. Is the total lower with AI?</p></a>
+    <a class="tile" href="who.html"><div class="n">5</div><h3>Who uses it</h3><p>Students, teachers, and administrators. Three rules for students.</p></a>
+    <a class="tile" href="teach.html"><div class="n">6</div><h3>Teach it</h3><p>Three lessons. One student rule each.</p></a>
+    <a class="tile" href="lab.html"><div class="n">7</div><h3>Lab</h3><p>Five classroom tests that collect data. No names.</p></a>
+    <a class="tile" href="sources.html"><div class="n">8</div><h3>Sources</h3><p>Related work and what each source supports.</p></a>
+  </div>
+</section>
+
+<div data-pager></div>
+</div></main>
+<footer class="foot"><div class="wrap">AI Moves Work Model by Jason Weimer. jasonweimer.com</div></footer>
+<script src="nav.js"></script>
+<script>
+
+(function(){
+  var EX={
+    task:{w:[5,30,5],a:[4,6,22],cap:'A task. Doing decreases a lot. Checking increases. The total is lower.'},
+    routine:{w:[2,25,3],a:[2,4,8],cap:'A routine after setup. Doing decreases on every run. Checking moves to sampling.'},
+    project:{w:[20,60,15],a:[16,24,55],cap:'A project. Planning and Doing decrease. Checking spans each part and the whole. The total stays the same.'},
+    wrong:{w:[5,30,5],a:[4,6,34],cap:'A task where the AI made mistakes. Checking took longer than the time saved. The total went up.'}
+  };
+  var cur='task';
+  function sum(v){return v[0]+v[1]+v[2]}
+  function fill(id,tid,v,mx){
+    var b=document.getElementById(id),t=sum(v);
+    b.style.width=(t/mx*100)+'%';
+    for(var i=0;i<3;i++){b.children[i].style.flexGrow=v[i];b.children[i].textContent=v[i]}
+    document.getElementById(tid).textContent=t+' min';
+  }
+  function draw(){
+    var e=EX[cur],mx=Math.max(sum(e.w),sum(e.a));
+    fill('bw','tw',e.w,mx);fill('ba','ta',e.a,mx);
+    document.getElementById('cap').textContent=e.cap;
+    var bs=document.getElementById('exseg').children;
+    for(var i=0;i<bs.length;i++)bs[i].setAttribute('aria-pressed',bs[i].getAttribute('data-k')===cur?'true':'false');
+  }
+  document.getElementById('exseg').addEventListener('click',function(ev){
+    var k=ev.target.getAttribute('data-k');if(k){cur=k;draw()}
+  });
+  draw();
+})();
+
+</script>
+</body>
+</html>

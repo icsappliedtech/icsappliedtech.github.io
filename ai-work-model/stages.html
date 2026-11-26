@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stages | AI Moves Work Model</title>
+<meta name="description" content="Plan, Do, Check. How AI changes the three stages for a task, a routine, and a project.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314130f'/%3E%3Crect x='10' y='24' width='10' height='16' rx='3' fill='%230f9d8a'/%3E%3Crect x='24' y='24' width='10' height='16' rx='3' fill='%232f62e0'/%3E%3Crect x='38' y='24' width='16' height='16' rx='3' fill='%23e0405a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main><div class="wrap">
+
+<div class="eyebrow">Page 1 of 8</div>
+<h1 style="margin-top:12px">Plan. Do. Check.</h1>
+<p class="lead">Every piece of work has three stages. AI can decrease Planning and Doing. Some of the work moves to Checking. Completion time can go up, down, or stay the same.</p>
+
+<div class="grid" style="margin-top:22px">
+  <div class="card" style="border-top:6px solid var(--plan)"><h3 class="c-plan">Plan</h3><p>Decide what you need and how you will get it.</p></div>
+  <div class="card" style="border-top:6px solid var(--do)"><h3 class="c-do">Do</h3><p>Make the thing. Write it, build it, solve it, or prompt for it.</p></div>
+  <div class="card" style="border-top:6px solid var(--check)"><h3 class="c-check">Check</h3><p>Decide whether the thing is right and whether it is good.</p></div>
+</div>
+
+<section>
+  <h2>The pattern depends on the type of work</h2>
+  <p>Pick a type.</p>
+  <div class="seg" id="typeseg" role="group" aria-label="Type of work">
+    <button type="button" data-k="task" aria-pressed="true">Task</button>
+    <button type="button" data-k="routine" aria-pressed="false">Routine</button>
+    <button type="button" data-k="project" aria-pressed="false">Project</button>
+  </div>
+  <p id="def" style="margin-top:14px;font-weight:600" aria-live="polite"></p>
+  <p id="ex" class="note"></p>
+  <div class="grid4" style="margin-top:12px">
+    <div class="cell"><div class="k c-plan">Planning</div><div class="v" id="c0"></div></div>
+    <div class="cell"><div class="k c-do">Doing</div><div class="v" id="c1"></div></div>
+    <div class="cell"><div class="k c-check">Checking</div><div class="v" id="c2"></div></div>
+    <div class="cell"><div class="k">Completion time</div><div class="v" id="c3"></div></div>
+  </div>
+  <div class="scroll panel" style="margin-top:16px;padding:8px 14px">
+    <table class="t" id="ptable">
+      <thead><tr><th></th><th>Planning</th><th>Doing</th><th>Checking</th><th>Completion time</th></tr></thead>
+      <tbody>
+        <tr data-k="task"><th>Task</th><td>May decrease</td><td>Decreases most</td><td>Increases</td><td>Often lower, not always</td></tr>
+        <tr data-k="routine"><th>Routine</th><td>Setup may increase</td><td>Decreases each run</td><td>Moves to sampling</td><td>Falls over repeat runs</td></tr>
+        <tr data-k="project"><th>Project</th><td>May decrease or increase</td><td>Decreases by part</td><td>Spans each part and the whole</td><td>Difficult to predict</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">These cells are hypotheses. The lab tests tasks first.</p>
+</section>
+
+<section>
+  <h2>Sort the work</h2>
+  <p>Is each one a task, a routine, or a project?</p>
+  <div id="sort" style="display:grid;gap:10px;margin-top:12px"></div>
+  <p id="score" style="font-weight:600;margin-top:12px" aria-live="polite"></p>
+  <button class="btn sm" type="button" id="again" style="display:none">Try again</button>
+</section>
+
+<div data-pager></div>
+</div></main>
+<footer class="foot"><div class="wrap">AI Moves Work Model by Jason Weimer. jasonweimer.com</div></footer>
+<script src="nav.js"></script>
+<script>
+
+(function(){
+  var T={
+    task:{name:'Task',def:'A single effort done once.',ex:'Example: write one caption for a poster.',c:['May decrease','Decreases most','Increases','Often lower, not always']},
+    routine:{name:'Routine',def:'A repeatable set of tasks.',ex:'Example: send a weekly attendance summary.',c:['Setup may increase','Decreases each run','Moves to sampling','Falls over repeat runs']},
+    project:{name:'Project',def:'Can include tasks and routines.',ex:'Example: build a launch pack with a poster, a post, and a price table.',c:['May decrease or increase','Decreases by part','Spans each part and the whole','Difficult to predict']}
+  };
+  var cur='task';
+  function draw(){
+    var t=T[cur];
+    document.getElementById('def').textContent=t.name+': '+t.def;
+    document.getElementById('ex').textContent=t.ex;
+    for(var i=0;i<4;i++)document.getElementById('c'+i).textContent=t.c[i];
+    var bs=document.getElementById('typeseg').children;
+    for(var j=0;j<bs.length;j++)bs[j].setAttribute('aria-pressed',bs[j].getAttribute('data-k')===cur?'true':'false');
+    var rs=document.querySelectorAll('#ptable tbody tr');
+    for(var r=0;r<rs.length;r++)rs[r].className=rs[r].getAttribute('data-k')===cur?'on':'';
+  }
+  document.getElementById('typeseg').addEventListener('click',function(ev){
+    var k=ev.target.getAttribute('data-k');if(k){cur=k;draw()}
+  });
+  draw();
+
+  var items=[
+    ['Write one caption for a poster','task','One effort, done once.'],
+    ['Send a weekly attendance summary','routine','It repeats every week.'],
+    ['Organize a school open house','project','It holds many tasks and some routines.'],
+    ['Grade one quiz','task','One effort, done once.'],
+    ['Update the class newsletter every Friday','routine','It repeats every week.'],
+    ['Build a launch pack with a poster, a post, and a price table','project','It holds several tasks that must fit together.']
+  ];
+  var names={task:'Task',routine:'Routine',project:'Project'};
+  var ans=[];
+  var box=document.getElementById('sort');
+  function render(){
+    box.innerHTML='';
+    items.forEach(function(it,i){
+      var d=document.createElement('div');d.className='card';
+      var p=document.createElement('div');p.style.fontWeight='600';p.textContent=it[0];d.appendChild(p);
+      var row=document.createElement('div');row.className='row';row.style.marginTop='8px';
+      ['task','routine','project'].forEach(function(k){
+        var b=document.createElement('button');b.type='button';b.className='btn sm';b.textContent=names[k];
+        if(ans[i]){
+          b.disabled=true;
+          if(k===it[1]){b.style.background='#c9efe6';b.style.borderColor='var(--plan)';b.style.color='var(--ink)'}
+          else if(k===ans[i]){b.style.background='#ffd9df';b.style.borderColor='var(--check)';b.style.color='var(--ink)'}
+        }
+        b.addEventListener('click',function(){ans[i]=k;render()});
+        row.appendChild(b);
+      });
+      d.appendChild(row);
+      if(ans[i]){
+        var f=document.createElement('p');f.className='note';f.style.margin='8px 0 0';
+        f.textContent=(ans[i]===it[1]?'Yes. ':'Not quite. It is a '+it[1]+'. ')+it[2];
+        d.appendChild(f);
+      }
+      box.appendChild(d);
+    });
+    var done=ans.filter(Boolean).length;
+    var ok=0;items.forEach(function(it,i){if(ans[i]===it[1])ok++});
+    document.getElementById('score').textContent=done===items.length?('You got '+ok+' of '+items.length+'.'):'';
+    document.getElementById('again').style.display=done===items.length?'inline-block':'none';
+  }
+  document.getElementById('again').addEventListener('click',function(){ans=[];render()});
+  render();
+})();
+
+</script>
+</body>
+</html>

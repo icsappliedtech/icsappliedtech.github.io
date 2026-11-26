@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Who uses it | AI Moves Work Model</title>
+<meta name="description" content="Students, teachers, and administrators run the same model on their own work. Three student rules.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314130f'/%3E%3Crect x='10' y='24' width='10' height='16' rx='3' fill='%230f9d8a'/%3E%3Crect x='24' y='24' width='10' height='16' rx='3' fill='%232f62e0'/%3E%3Crect x='38' y='24' width='16' height='16' rx='3' fill='%23e0405a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main><div class="wrap">
+
+<div class="eyebrow">Page 5 of 8</div>
+<h1 style="margin-top:12px">Who uses the model?</h1>
+<p class="lead">Students, teachers, and administrators run the same model on their own work. Same stages. Same four questions. Same rule.</p>
+
+<div class="tabs" id="roles" role="group" aria-label="Pick a role">
+  <button type="button" data-k="student" aria-pressed="true">Student</button>
+  <button type="button" data-k="teacher" aria-pressed="false">Teacher</button>
+  <button type="button" data-k="admin" aria-pressed="false">Administrator</button>
+</div>
+<div class="grid" id="rolegrid"></div>
+
+<section>
+  <h2>Three student rules</h2>
+  <div style="display:grid;gap:12px;margin-top:14px" id="rulelist"></div>
+</section>
+
+<div data-pager></div>
+</div></main>
+<footer class="foot"><div class="wrap">AI Moves Work Model by Jason Weimer. jasonweimer.com</div></footer>
+<script src="nav.js"></script>
+<script>
+
+(function(){
+  var R={
+    student:[['Task','Write one paragraph that sums up a reading.'],['Routine','Make a weekly study guide.'],['Project','Build a group presentation with slides and a script.']],
+    teacher:[['Task','Draft one email to parents.'],['Routine','Write the weekly class update.'],['Project','Build a unit with plans, slides, and a quiz.']],
+    admin:[['Task','Summarize one policy document.'],['Routine','Prepare the monthly attendance report.'],['Project','Plan next year\'s schedule.']]
+  };
+  var cur='student';
+  var COL=['var(--plan)','var(--do)','var(--check)'];
+  function draw(){
+    var g=document.getElementById('rolegrid');g.innerHTML='';
+    R[cur].forEach(function(r,i){
+      var d=document.createElement('div');d.className='card';d.style.borderTop='6px solid '+COL[i];
+      var e=document.createElement('div');e.className='eyebrow';e.textContent=r[0];
+      var p=document.createElement('p');p.style.margin='6px 0 0';p.style.fontWeight='600';p.textContent=r[1];
+      d.appendChild(e);d.appendChild(p);g.appendChild(d);
+    });
+    var bs=document.getElementById('roles').children;
+    for(var i=0;i<bs.length;i++)bs[i].setAttribute('aria-pressed',bs[i].getAttribute('data-k')===cur?'true':'false');
+  }
+  document.getElementById('roles').addEventListener('click',function(ev){
+    var k=ev.target.getAttribute('data-k');if(k){cur=k;draw()}
+  });
+  draw();
+
+  var RULES=[
+    ['Expect to spend more of your time checking.','AI drafts your paragraph in a minute. Plan to spend the next ten reading it against your source.'],
+    ['Check more when it is difficult to check and a mistake costs a lot.','A date in a history essay is easy to look up. A health number on a poster is difficult to check and costly if it is wrong. Spend your time on the health number.'],
+    ['Do the work yourself when the work is the point.','Practice problems build the skill. If AI solves them for you, you lose the practice.']
+  ];
+  var L=document.getElementById('rulelist');
+  RULES.forEach(function(r,i){
+    var d=document.createElement('div');d.className='panel';
+    var h=document.createElement('div');h.style.display='flex';h.style.gap='14px';h.style.alignItems='flex-start';
+    var n=document.createElement('div');n.style.cssText='font-family:var(--sg);font-weight:700;font-size:38px;line-height:1';n.textContent=String(i+1);
+    var t=document.createElement('div');t.style.cssText='font-family:var(--sg);font-weight:700;font-size:22px;line-height:1.2';t.textContent=r[0];
+    h.appendChild(n);h.appendChild(t);d.appendChild(h);
+    var b=document.createElement('button');b.type='button';b.className='btn sm';b.style.marginTop='12px';b.textContent='Show an example';b.setAttribute('aria-expanded','false');
+    var ex=document.createElement('p');ex.style.display='none';ex.textContent=r[1];
+    b.addEventListener('click',function(){
+      var open=ex.style.display==='none';
+      ex.style.display=open?'block':'none';b.setAttribute('aria-expanded',open?'true':'false');b.textContent=open?'Hide the example':'Show an example';
+    });
+    d.appendChild(b);d.appendChild(ex);L.appendChild(d);
+  });
+})();
+
+</script>
+</body>
+</html>

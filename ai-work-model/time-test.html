@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Time test | AI Moves Work Model</title>
+<meta name="description" content="Completion Time Test. Plan time plus Do time plus Check time. Is the total lower with AI?">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314130f'/%3E%3Crect x='10' y='24' width='10' height='16' rx='3' fill='%230f9d8a'/%3E%3Crect x='24' y='24' width='10' height='16' rx='3' fill='%232f62e0'/%3E%3Crect x='38' y='24' width='16' height='16' rx='3' fill='%23e0405a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main><div class="wrap">
+
+<div class="eyebrow">Page 4 of 8</div>
+<h1 style="margin-top:12px">Completion Time Test</h1>
+<p class="lead">Total Completion Time = Plan time + Do time + Check time</p>
+<p>Is the total completion time with AI lower than without AI?</p>
+
+<div class="grid" style="margin-top:20px">
+  <div class="panel"><h3>Without AI</h3>
+    <div class="grid4" style="margin-top:12px;grid-template-columns:repeat(3,1fr)">
+      <label class="f c-plan">Plan<input class="num" id="w0" type="number" min="0" step="1" value="5"></label>
+      <label class="f c-do">Do<input class="num" id="w1" type="number" min="0" step="1" value="30"></label>
+      <label class="f c-check">Check<input class="num" id="w2" type="number" min="0" step="1" value="5"></label>
+    </div><p class="note">Minutes</p></div>
+  <div class="panel"><h3>With AI</h3>
+    <div class="grid4" style="margin-top:12px;grid-template-columns:repeat(3,1fr)">
+      <label class="f c-plan">Plan<input class="num" id="a0" type="number" min="0" step="1" value="4"></label>
+      <label class="f c-do">Do<input class="num" id="a1" type="number" min="0" step="1" value="8"></label>
+      <label class="f c-check">Check<input class="num" id="a2" type="number" min="0" step="1" value="22"></label>
+    </div><p class="note">Minutes</p></div>
+</div>
+
+<div class="dark" style="margin-top:16px">
+  <div class="eyebrow" style="color:#9a9a96">Result</div>
+  <div id="verdict" style="font-family:var(--sg);font-weight:700;font-size:clamp(24px,3.4vw,36px);line-height:1.15;margin-top:6px" aria-live="polite"></div>
+  <p id="totals" style="margin:8px 0 0;color:#d8d8d4"></p>
+</div>
+
+<div class="panel" style="margin-top:16px">
+  <div class="bars">
+    <div class="barrow"><div class="lab">Without AI</div><div class="bar" id="bw"><div class="b-plan"></div><div class="b-do"></div><div class="b-check"></div></div><div class="tot" id="tw"></div></div>
+    <div class="barrow"><div class="lab">With AI</div><div class="bar" id="ba"><div class="b-plan"></div><div class="b-do"></div><div class="b-check"></div></div><div class="tot" id="ta"></div></div>
+  </div>
+  <div class="legend"><span><i class="dot b-plan"></i>Plan</span><span><i class="dot b-do"></i>Do</span><span><i class="dot b-check"></i>Check</span></div>
+</div>
+
+<section>
+  <h2>Where did the minutes go?</h2>
+  <div class="grid4" id="delta" style="margin-top:12px"></div>
+</section>
+
+<section>
+  <div class="row"><button class="btn sm" type="button" id="ex1">Example: AI saves time</button><button class="btn sm" type="button" id="ex2">Example: AI loses time</button><button class="btn sm" type="button" id="ex3">Example: about the same</button></div>
+  <p class="note">Time yourself with a clock. Memory forgets the checking.</p>
+</section>
+
+<div data-pager></div>
+</div></main>
+<footer class="foot"><div class="wrap">AI Moves Work Model by Jason Weimer. jasonweimer.com</div></footer>
+<script src="nav.js"></script>
+<script>
+
+(function(){
+  function g(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)||v<0?0:v}
+  function sum(v){return v[0]+v[1]+v[2]}
+  function r1(x){return Math.round(x*10)/10}
+  function fill(id,tid,v,mx){
+    var b=document.getElementById(id),t=sum(v);
+    b.style.width=(mx?t/mx*100:0)+'%';
+    for(var i=0;i<3;i++){b.children[i].style.flexGrow=v[i];b.children[i].textContent=v[i]?r1(v[i]):''}
+    document.getElementById(tid).textContent=r1(t)+' min';
+  }
+  function draw(){
+    var w=[g('w0'),g('w1'),g('w2')],a=[g('a0'),g('a1'),g('a2')];
+    var tw=sum(w),ta=sum(a),d=r1(ta-tw),mx=Math.max(tw,ta);
+    var v=document.getElementById('verdict');
+    if(d<0)v.textContent='Yes. With AI is '+Math.abs(d)+' min lower.';
+    else if(d>0)v.textContent='No. With AI is '+d+' min higher.';
+    else v.textContent='The totals are the same.';
+    document.getElementById('totals').textContent='Without AI: '+r1(tw)+' min. With AI: '+r1(ta)+' min.';
+    fill('bw','tw',w,mx);fill('ba','ta',a,mx);
+    var names=['Plan','Do','Check'],cls=['c-plan','c-do','c-check'],h='';
+    for(var i=0;i<3;i++){
+      var x=r1(a[i]-w[i]);
+      h+='<div class="cell"><div class="k '+cls[i]+'">'+names[i]+'</div><div class="v">'+(x>0?'+':'')+x+' min</div><div class="note">'+(x<0?'Decreased':(x>0?'Increased':'No change'))+'</div></div>';
+    }
+    document.getElementById('delta').innerHTML=h;
+  }
+  ['w0','w1','w2','a0','a1','a2'].forEach(function(id){document.getElementById(id).addEventListener('input',draw)});
+  function set(w,a){['w0','w1','w2'].forEach(function(id,i){document.getElementById(id).value=w[i]});['a0','a1','a2'].forEach(function(id,i){document.getElementById(id).value=a[i]});draw()}
+  document.getElementById('ex1').addEventListener('click',function(){set([5,30,5],[4,6,22])});
+  document.getElementById('ex2').addEventListener('click',function(){set([5,30,5],[4,6,34])});
+  document.getElementById('ex3').addEventListener('click',function(){set([20,60,15],[16,24,55])});
+  draw();
+})();
+
+</script>
+</body>
+</html>
